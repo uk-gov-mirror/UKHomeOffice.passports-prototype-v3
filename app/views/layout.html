@@ -1,7 +1,6 @@
-{#- We can't mount GOV.UK Frontend's assets at root as it's done automatically by the extensions framework. -#}
 {%- set assetPath = '/govuk/assets' -%}
 
-{% extends "govuk/template.njk" %}
+{% extends "hmpo-template.njk" %}
 
 {% from "govuk/components/accordion/macro.njk"        import govukAccordion %}
 {% from "govuk/components/back-link/macro.njk"        import govukBackLink %}
@@ -29,45 +28,19 @@
 {% from "govuk/components/textarea/macro.njk"         import govukTextarea %}
 {% from "govuk/components/warning-text/macro.njk"     import govukWarningText %}
 
+{% from "hmpo-form/macro.njk"                         import hmpoForm %}
+{% from "hmpo-submit/macro.njk"                       import hmpoSubmit %}
+{% from "hmpo-text/macro.njk"                         import hmpoText %}
+{% from "hmpo-radios/macro.njk"                       import hmpoRadios %}
+{% from "hmpo-checkboxes/macro.njk"                   import hmpoCheckboxes %}
+{% from "hmpo-select/macro.njk"                       import hmpoSelect %}
+{% from "hmpo-details/macro.njk"                      import hmpoDetails %}
+
 {% block head %}
   {% include "includes/head.html" %}
 {% endblock %}
 
-{% block pageTitle %}
-  GOV.UK Prototype Kit
-{% endblock %}
-
-{% block header %}
-  {% include "includes/cookie-banner.html" %}
-  {# Set serviceName in config.js. #}
-  {{ govukHeader({
-    homepageUrl: "/",
-    serviceName: serviceName,
-    serviceUrl: "/",
-    containerClasses: "govuk-width-container"
-  }) }}
-{% endblock %}
-
 {% set mainClasses = mainClasses | default("govuk-main-wrapper--auto-spacing") %}
-
-{% if useAutoStoreData %}
-  {% block footer %}
-    {{ govukFooter({
-      meta: {
-        items: [
-          {
-            href: "https://govuk-prototype-kit.herokuapp.com/",
-            text: "GOV.UK Prototype Kit " + releaseVersion
-          },
-          {
-            href: "/prototype-admin/clear-data",
-            text: "Clear data"
-          }
-        ]
-      }
-    }) }}
-  {% endblock %}
-{% endif %}
 
 {% block bodyEnd %}
   {% block scripts %}

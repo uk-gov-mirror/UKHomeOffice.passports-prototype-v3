@@ -1,7 +1,7 @@
 {
-  "name": "govuk-prototype-kit",
-  "description": "Rapidly create HTML prototypes of GOV.UK services",
-  "version": "9.3.0",
+  "name": "passports-prototype-v3",
+  "description": "HMPO Passports Prototype v3",
+  "version": "1.0.0",
   "private": true,
   "engines": {
     "node": "^10.0.0"

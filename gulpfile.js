@@ -22,6 +22,8 @@ gulp.task('generate-assets', gulp.series(
   gulp.parallel(
     'sass',
     'copy-assets',
+    'copy-hmpo-assets',
+    'copy-hmpo-js',
     'sass-documentation',
     'copy-assets-documentation',
     'sass-v6',
