@@ -1,7 +1,7 @@
 {
-  "name": "govuk-prototype-kit",
-  "description": "Rapidly create HTML prototypes of GOV.UK services",
-  "version": "9.3.0",
+  "name": "passports-prototype-v3",
+  "description": "HMPO Passports Prototype v3",
+  "version": "1.0.0",
   "private": true,
   "engines": {
     "node": "^10.0.0"
@@ -35,8 +35,11 @@
     "gulp-nodemon": "^2.1.0",
     "gulp-sass": "^4.0.1",
     "gulp-sourcemaps": "^2.6.0",
+    "hmpo-components": "^2.1.0",
+    "hmpo-form-wizard": "^11.2.1",
+    "hmpo-i18n": "^3.8.0",
     "keypather": "^3.0.0",
-    "marked": "^0.4.0",
+    "marked": "^0.7.0",
     "notifications-node-client": "^4.1.0",
     "nunjucks": "^3.1.3",
     "portscanner": "^2.1.1",

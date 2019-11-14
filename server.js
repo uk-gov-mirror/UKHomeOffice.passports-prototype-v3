@@ -85,7 +85,8 @@ middleware.forEach(func => app.use(func))
 // Set up App
 var appViews = extensions.getAppViews([
   path.join(__dirname, '/app/views/'),
-  path.join(__dirname, '/lib/')
+  path.join(__dirname, '/lib/'),
+  path.join(__dirname, '/node_modules/hmpo-components/components/')
 ])
 
 var nunjucksConfig = {
@@ -107,6 +108,13 @@ utils.addNunjucksFilters(nunjucksAppEnv)
 
 // Set views engine
 app.set('view engine', 'html')
+
+require('hmpo-i18n').middleware(app, {
+  baseDir: path.join(__dirname, '/app/'),
+  watch: nunjucksAppEnv.watch,
+  noCache: nunjucksAppEnv.noCache
+});
+require('hmpo-components').setup(app, nunjucksAppEnv);
 
 // Middleware to serve static assets
 app.use('/public', express.static(path.join(__dirname, '/public')))
