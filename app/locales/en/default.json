@@ -1,5 +1,18 @@
 {
     "govuk": {
-        "serviceName": "HMPO Passports Prototype v3"
+        "serviceName": "HMPO Passports Prototype v3",
+        "errorSummaryTitle": "There’s a problem"
+    },
+    "buttons": {
+        "next": "Continue"
+    },
+    "validation": {
+        "default": "You need to answer this question",
+        "is-uk-application": {
+            "default": "Please tell us if you live in the UK"
+        },
+        "country-of-application": {
+            "default": "Please select your country"
+        }
     }
 }

@@ -1,0 +1,46 @@
+
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Overseas{% endset %}
+
+{% block mainContent %}
+
+    {% call hmpoInsetText({classes: "hmpo-inset-info"}) %}
+        <p>If you’re applying on behalf of an adult or child, answer these questions with their details rather than your own.</p>
+    {% endcall %}
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoRadios(ctx, {
+            id: "is-uk-application",
+            legend: {
+                text: "Do you live in the UK?"
+            },
+            isPageHeading: true,
+            items: [
+                {
+                    value: true,
+                    text: "Yes"
+                },
+                {
+                    value: false,
+                    text: "No",
+                    conditional: {
+                        html: hmpoSelect(ctx, {
+                            id: "country-of-application",
+                            label: {
+                                text: "Country or territory",
+                                classes: "govuk-label--m"
+                            },
+                            placeholder: true
+                        })
+                    }
+                }
+            ]
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}
