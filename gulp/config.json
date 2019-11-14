@@ -4,8 +4,6 @@
     "assets" : "app/assets/",
     "hmpoAssets": "node_modules/hmpo-components/assets/",
     "hmpoJs": "node_modules/hmpo-components/all.js",
-    "docsAssets" : "docs/assets/",
-    "v6Assets": "app/v6/assets/",
     "nodeModules": "node_modules/",
     "lib": "lib/"
   }

@@ -23,11 +23,7 @@ gulp.task('generate-assets', gulp.series(
     'sass',
     'copy-assets',
     'copy-hmpo-assets',
-    'copy-hmpo-js',
-    'sass-documentation',
-    'copy-assets-documentation',
-    'sass-v6',
-    'copy-assets-v6'
+    'copy-hmpo-js'
   )
 ))
 gulp.task('watch', gulp.parallel(
