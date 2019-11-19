@@ -12,21 +12,21 @@ var useBrowserSync = config.useBrowserSync.toLowerCase()
 var env = (process.env.NODE_ENV || 'development').toLowerCase()
 
 utils.findAvailablePort(server, function (port) {
-  console.log('Listening on port ' + port + '   url: http://localhost:' + port)
-  if (env === 'production' || useBrowserSync === 'false') {
-    server.listen(port)
-  } else {
-    server.listen(port - 50, function () {
-      browserSync({
-        proxy: 'localhost:' + (port - 50),
-        port: port,
-        ui: false,
-        files: ['public/**/*.*', 'app/views/**/*.*'],
-        ghostmode: false,
-        open: false,
-        notify: false,
-        logLevel: 'error'
-      })
-    })
-  }
+    console.log('Listening on port ' + port + '   url: http://localhost:' + port)
+    if (env === 'production' || useBrowserSync === 'false') {
+        server.listen(port)
+    } else {
+        server.listen(port - 50, function () {
+            browserSync({
+                proxy: 'localhost:' + (port - 50),
+                port: port,
+                ui: false,
+                files: ['public/**/*.*', 'app/views/**/*.*'],
+                ghostmode: false,
+                open: false,
+                notify: false,
+                logLevel: 'error'
+            })
+        })
+    }
 })
