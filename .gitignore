@@ -62,4 +62,6 @@ typings/
 
 # ignore generated files from govuk prototype
 public
-_extensions.scss 
+_extensions.scss
+
+sessions/

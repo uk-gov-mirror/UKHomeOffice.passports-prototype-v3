@@ -9,6 +9,7 @@ const nunjucks = require('nunjucks')
 const sessionInCookie = require('client-sessions')
 const sessionInMemory = require('express-session')
 const cookieParser = require('cookie-parser')
+const FileStore = require('session-file-store')(sessionInMemory)
 
 // Run before other code to make sure variables from .env are available
 dotenv.config()
@@ -35,6 +36,7 @@ app.use(handleCookies)
 var releaseVersion = packageJson.version
 var env = (process.env.NODE_ENV || 'development').toLowerCase()
 var useCookieSessionStore = process.env.USE_COOKIE_SESSION_STORE || config.useCookieSessionStore
+var persistSessions = process.env.PERSIST_SESSIONS || config.persistSessions
 var useHttps = process.env.USE_HTTPS || config.useHttps
 var gtmId = process.env.GOOGLE_TAG_MANAGER_TRACKING_ID
 
@@ -65,6 +67,7 @@ var nunjucksConfig = {
 
 if (env === 'development') {
     nunjucksConfig.watch = true
+    persistSessions = true
 }
 
 nunjucksConfig.express = app
@@ -133,8 +136,12 @@ if (useCookieSessionStore === 'true') {
         requestKey: 'session'
     })))
 } else {
+    let fileStore
+    if (persistSessions) fileStore = new FileStore({ ttl: sessionOptions.cookie.maxAge })
+
     app.use(sessionInMemory(Object.assign(sessionOptions, {
         name: sessionName,
+        store: fileStore,
         resave: false,
         saveUninitialized: false
     })))
