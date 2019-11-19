@@ -5,10 +5,10 @@ module.exports = {
         skip: true,
         next: '/filter/overseas'
     },
-    '/filter/overseas':  {
+    '/filter/overseas': {
         fields: [
             'is-uk-application',
             'country-of-application'
-        ],
+        ]
     }
 }

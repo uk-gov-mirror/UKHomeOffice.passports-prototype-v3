@@ -16,28 +16,28 @@ const config = require('./config.json')
 
 // Warn about npm install on crash
 const onCrash = () => {
-  log(colour.cyan('[nodemon] For missing modules try running `npm install`'))
+    log(colour.cyan('[nodemon] For missing modules try running `npm install`'))
 }
 
 // Remove .port.tmp if it exists
 const onQuit = () => {
-  try {
-    fs.unlinkSync(path.join(__dirname, '/../.port.tmp'))
-  } catch (e) {}
+    try {
+        fs.unlinkSync(path.join(__dirname, '/../.port.tmp'))
+    } catch (e) {}
 
-  process.exit(0)
+    process.exit(0)
 }
 
 gulp.task('server', function () {
-  nodemon({
-    watch: ['.env', '**/*.js', '**/*.json'],
-    script: 'listen-on-port.js',
-    ignore: [
-      config.paths.public + '*',
-      config.paths.assets + '*',
-      config.paths.nodeModules + '*'
-    ]
-  })
-    .on('crash', onCrash)
-    .on('quit', onQuit)
+    nodemon({
+        watch: ['.env', '**/*.js', '**/*.json'],
+        script: 'listen-on-port.js',
+        ignore: [
+            config.paths.public + '*',
+            config.paths.assets + '*',
+            config.paths.nodeModules + '*'
+        ]
+    })
+        .on('crash', onCrash)
+        .on('quit', onQuit)
 })
