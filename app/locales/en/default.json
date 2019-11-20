@@ -1,7 +1,8 @@
 {
     "govuk": {
         "serviceName": "HMPO Passports Prototype v3",
-        "errorSummaryTitle": "There’s a problem"
+        "errorSummaryTitle": "There’s a problem",
+        "backLink": "Back"
     },
     "buttons": {
         "next": "Continue"

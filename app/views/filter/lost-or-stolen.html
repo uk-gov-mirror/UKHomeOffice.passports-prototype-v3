@@ -1,0 +1,33 @@
+
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Is your passport lost or stolen?{% endset %}
+
+{% block mainContent %}
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoRadios(ctx, {
+            id: "passport-lost",
+            legend: {
+                text: "Is your passport lost or stolen?"
+            },
+            isPageHeading: true,
+            items: [
+                {
+                    value: true,
+                    text: "Yes"
+                },
+                {
+                    value: false,
+                    text: "No"
+                }
+            ]
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+
+{% endblock %}

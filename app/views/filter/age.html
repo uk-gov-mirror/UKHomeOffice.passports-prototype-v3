@@ -1,0 +1,23 @@
+
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Date of birth{% endset %}
+
+{% block mainContent %}
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoDate(ctx, {
+            id: "date-of-birth",
+            legend: {
+                text: "Date of birth"
+            },
+            hint: "For example, 20 01 2004",
+            isPageHeading: true
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}

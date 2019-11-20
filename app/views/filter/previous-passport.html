@@ -1,0 +1,66 @@
+
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Date of birth{% endset %}
+
+{# FIXME: Import here because doesn't work in layout.html #}
+{% from "hmpo-html/macro.njk" import hmpoHtml %}
+
+{% set passportInterview %}
+    {%  if values["is-uk-application"] %}
+        {{ hmpoHtml({ "interview-info": "If you’re 16 or older, you may need to have a <a id=\"link-identity-interviews\" href=\"{{urls[\"identity-interviews\"]}}\">passport interview</a>. We’ll tell you if that happens and what you need to do." }) }}
+    {% else %}
+        {{ hmpoHtml({ "interview-info": "You may need to have a <a id=\"link-identity-interviews\" href=\"{{urls[\"identity-interviews\"]}}\">passport interview</a>. We’ll tell you if that happens and what you need to do." }) }}
+    {% endif %}
+{% endset -%}
+
+{% block mainContent %}
+
+    {% call hmpoForm(ctx) %}
+
+        {% if not values.urgent %}
+            {{ hmpoRadios(ctx, {
+                id: "previous-passport",
+                legend: {
+                    text: "Have you had a UK passport before?"
+                 },
+                conditionals: {
+                    "false": passportInterview
+                },
+                isPageHeading: true,
+                items: [
+                    {
+                        value: true,
+                        text: "Yes"
+                    },
+                    {
+                        value: false,
+                        text: "No"
+                    }
+                ]
+            }) }}
+        {% else %}
+            {{ hmpoRadios(ctx, {
+                id: "previous-passport",
+                legend: {
+                    text: "Have you had a UK passport before?"
+                },
+                isPageHeading: true,
+                items: [
+                    {
+                        value: true,
+                        text: "Yes"
+                    },
+                    {
+                        value: false,
+                        text: "No"
+                    }
+                ]
+            }) }}
+        {% endif %}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}
