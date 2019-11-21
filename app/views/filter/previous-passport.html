@@ -24,15 +24,12 @@
                 text: hmpoTitle
             },
             isPageHeading: true,
-            items: [
-                {
-                    value: true
-                },
-                {
-                    value: false,
-                    conditional: { html: passportInterview } if not values.urgent
-                }
-            ]
+            items: [{
+                value: true
+            }, {
+                value: false,
+                conditional: { html: passportInterview } if not values.urgent
+            }]
         }) }}
 
         {{ hmpoSubmit(ctx) }}
