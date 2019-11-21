@@ -1,7 +1,7 @@
 
 {% extends "layout.html" %}
 
-{% set hmpoTitle %}Overseas{% endset %}
+{% set hmpoTitle %}Do you live in the UK?{% endset %}
 
 {% block mainContent %}
 
@@ -14,7 +14,7 @@
         {{ hmpoRadios(ctx, {
             id: "is-uk-application",
             legend: {
-                text: "Do you live in the UK?"
+                text: hmpoTitle
             },
             isPageHeading: true,
             items: [

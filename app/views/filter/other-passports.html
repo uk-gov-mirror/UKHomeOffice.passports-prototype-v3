@@ -1,14 +1,14 @@
 
 {% extends "layout.html" %}
 
-{% set hmpoTitle %}Is your passport lost or stolen?{% endset %}
+{% set hmpoTitle %}Do you have any passports from other countries?{% endset %}
 
 {% block mainContent %}
 
     {% call hmpoForm(ctx) %}
 
         {{ hmpoRadios(ctx, {
-            id: "passport-lost",
+            id: "other-passports",
             legend: {
                 text: hmpoTitle
             },
