@@ -7,36 +7,31 @@
 
     {% call hmpoForm(ctx) %}
 
-        <div class="govuk-grid-row">
-            <div class="govuk-grid-column-two-thirds">
-                {{ hmpoDate(ctx, {
-                    id: "passport-issue",
-                    legend: {
-                        text: "When was your passport issued?"
-                    },
-                    hint: "For example, 19 08 2007",
-                    isPageHeading: true
-                }) }}
-            </div>
-            <div class="sidebar related govuk-grid-column-one-third" aria-hidden="true" id="issue-date-sidebar">
-                <h2 class="govuk-heading-m">Where to find your passport issue date</h2>
-                <img src="{{ assetPath }}/images/issue_date_illustration.png" id="issue-date-image" alt="">
-            </div>
-            <div class="govuk-grid-column-two-thirds">
-                {% if not values["is-uk-application"] %}
-                    {{ hmpoRadios(ctx, {
-                        id: "passport-issuing-authority",
-                        classes: "govuk-radios--inline",
-                        fieldset: {
-                            legend: { classes: "govuk-fieldset__legend--m" }
-                        },
-                        isPageHeading: false
-                    }) }}
-                {% endif %}
+        {{ hmpoDate(ctx, {
+            id: "passport-issue",
+            legend: {
+                text: hmpoTitle
+            },
+            hint: "For example, 19 08 2007",
+            isPageHeading: true
+        }) }}
 
-                {{ hmpoSubmit(ctx) }}
-            </div>
+        <div class="sidebar" aria-hidden="true">
+            <h2>Where to find your passport issue date</h2>
+            <img src="/public/images/issue_date_illustration.png" alt="">
         </div>
+
+        {% if not values["is-uk-application"] %}
+            {{ hmpoRadios(ctx, {
+                id: "passport-issuing-authority",
+                inline: true,
+                fieldset: {
+                    legend: { classes: "govuk-fieldset__legend--m" }
+                }
+            }) }}
+        {% endif %}
+
+        {{ hmpoSubmit(ctx) }}
 
     {% endcall %}
 

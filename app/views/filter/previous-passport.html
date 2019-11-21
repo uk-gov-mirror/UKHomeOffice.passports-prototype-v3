@@ -1,63 +1,39 @@
 
 {% extends "layout.html" %}
 
-{% set hmpoTitle %}Date of birth{% endset %}
-
-{# FIXME: Import here because doesn't work in layout.html #}
-{% from "hmpo-html/macro.njk" import hmpoHtml %}
+{% set hmpoTitle %}Have you had a UK passport before?{% endset %}
 
 {% set passportInterview %}
-    {%  if values["is-uk-application"] %}
-        {{ hmpoHtml({ "interview-info": "If you’re 16 or older, you may need to have a <a id=\"link-identity-interviews\" href=\"{{urls[\"identity-interviews\"]}}\">passport interview</a>. We’ll tell you if that happens and what you need to do." }) }}
-    {% else %}
-        {{ hmpoHtml({ "interview-info": "You may need to have a <a id=\"link-identity-interviews\" href=\"{{urls[\"identity-interviews\"]}}\">passport interview</a>. We’ll tell you if that happens and what you need to do." }) }}
-    {% endif %}
+    <p>
+        {%  if values["is-uk-application"] %}
+            If you’re 16 or older, you may need to have a <a href="/help/identity-interviews">passport interview</a>.
+        {% else %}
+            You may need to have a <a href="/help/identity-interviews">passport interview</a>.
+        {% endif %}
+        We’ll tell you if that happens and what you need to do.
+    </p>
 {% endset -%}
 
 {% block mainContent %}
 
     {% call hmpoForm(ctx) %}
 
-        {% if not values.urgent %}
-            {{ hmpoRadios(ctx, {
-                id: "previous-passport",
-                legend: {
-                    text: "Have you had a UK passport before?"
-                 },
-                conditionals: {
-                    "false": passportInterview
+        {{ hmpoRadios(ctx, {
+            id: "previous-passport",
+            legend: {
+                text: hmpoTitle
+            },
+            isPageHeading: true,
+            items: [
+                {
+                    value: true
                 },
-                isPageHeading: true,
-                items: [
-                    {
-                        value: true,
-                        text: "Yes"
-                    },
-                    {
-                        value: false,
-                        text: "No"
-                    }
-                ]
-            }) }}
-        {% else %}
-            {{ hmpoRadios(ctx, {
-                id: "previous-passport",
-                legend: {
-                    text: "Have you had a UK passport before?"
-                },
-                isPageHeading: true,
-                items: [
-                    {
-                        value: true,
-                        text: "Yes"
-                    },
-                    {
-                        value: false,
-                        text: "No"
-                    }
-                ]
-            }) }}
-        {% endif %}
+                {
+                    value: false,
+                    conditional: { html: passportInterview } if not values.urgent
+                }
+            ]
+        }) }}
 
         {{ hmpoSubmit(ctx) }}
 

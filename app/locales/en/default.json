@@ -7,6 +7,27 @@
     "buttons": {
         "next": "Continue"
     },
+    "fields": {
+      "date-day": {
+        "label": "Day"
+      },
+      "date-month": {
+        "label": "Month"
+      },
+      "date-year": {
+        "label": "Year"
+      },
+      "default": {
+        "items": {
+          "true": {
+            "label": "Yes"
+          },
+          "false": {
+            "label": "No"
+          }
+        }
+      }
+    },
     "validation": {
         "default": "You need to answer this question",
         "is-uk-application": {
