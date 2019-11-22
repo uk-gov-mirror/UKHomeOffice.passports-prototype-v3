@@ -8,7 +8,7 @@
     {% call hmpoForm(ctx) %}
 
         {{ hmpoDate(ctx, {
-            id: "passport-issue",
+            id: "passportIssue",
             legend: {
                 text: hmpoTitle
             },
@@ -21,13 +21,18 @@
             <img src="/public/images/issue_date_illustration.png" alt="">
         </div>
 
-        {% if not values["is-uk-application"] %}
+        {% if not values.isUKApplication %}
             {{ hmpoRadios(ctx, {
-                id: "passport-issuing-authority",
+                id: "passportIssuingAuthority",
                 inline: true,
-                fieldset: {
-                    legend: { classes: "govuk-fieldset__legend--m" }
-                }
+                legend: {
+                    text: "Which is your passport issuing authority?",
+                    classes: "govuk-fieldset__legend--m"
+                },
+                items: [
+                    { value: "hmpo", text: "UKPA, UKPS, IPS or HMPO" },
+                    { value: "other", text: "Other" }
+                ]
             }) }}
         {% endif %}
 

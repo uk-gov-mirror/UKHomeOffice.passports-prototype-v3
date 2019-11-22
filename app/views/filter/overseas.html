@@ -12,7 +12,7 @@
     {% call hmpoForm(ctx) %}
 
         {{ hmpoRadios(ctx, {
-            id: "is-uk-application",
+            id: "isUKApplication",
             legend: {
                 text: hmpoTitle
             },
@@ -25,7 +25,7 @@
                     value: false,
                     conditional: {
                         html: hmpoSelect(ctx, {
-                            id: "country-of-application",
+                            id: "countryOfApplication",
                             label: {
                                 text: "Country or territory",
                                 classes: "govuk-label--m"

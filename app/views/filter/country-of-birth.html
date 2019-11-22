@@ -1,23 +1,23 @@
 
 {% extends "layout.html" %}
 
-{% set hmpoTitle %}Is your passport lost or stolen?{% endset %}
+{% set hmpoTitle %}Which country were you born in?{% endset %}
 
 {% block mainContent %}
 
     {% call hmpoForm(ctx) %}
 
-        {{ hmpoRadios(ctx, {
-            id: "passportLost",
-            legend: {
+        {{ hmpoSelect(ctx, {
+            id: "countryOfBirth",
+            label: {
                 text: hmpoTitle
             },
-            isPageHeading: true
+            isPageHeading: true,
+            placeholder: true
         }) }}
 
         {{ hmpoSubmit(ctx) }}
 
     {% endcall %}
-
 
 {% endblock %}
