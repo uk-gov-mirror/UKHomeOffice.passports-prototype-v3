@@ -1,0 +1,39 @@
+
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Have you had a UK passport before?{% endset %}
+
+{% set passportInterview %}
+    <p>
+        {%  if values["is-uk-application"] %}
+            If you’re 16 or older, you may need to have a <a href="/help/identity-interviews">passport interview</a>.
+        {% else %}
+            You may need to have a <a href="/help/identity-interviews">passport interview</a>.
+        {% endif %}
+        We’ll tell you if that happens and what you need to do.
+    </p>
+{% endset -%}
+
+{% block mainContent %}
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoRadios(ctx, {
+            id: "previous-passport",
+            legend: {
+                text: hmpoTitle
+            },
+            isPageHeading: true,
+            items: [{
+                value: true
+            }, {
+                value: false,
+                conditional: { html: passportInterview } if not values.urgent
+            }]
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}

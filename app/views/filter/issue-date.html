@@ -1,0 +1,38 @@
+
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}When was your passport issued?{% endset %}
+
+{% block mainContent %}
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoDate(ctx, {
+            id: "passport-issue",
+            legend: {
+                text: hmpoTitle
+            },
+            hint: "For example, 19 08 2007",
+            isPageHeading: true
+        }) }}
+
+        <div class="sidebar" aria-hidden="true">
+            <h2>Where to find your passport issue date</h2>
+            <img src="/public/images/issue_date_illustration.png" alt="">
+        </div>
+
+        {% if not values["is-uk-application"] %}
+            {{ hmpoRadios(ctx, {
+                id: "passport-issuing-authority",
+                inline: true,
+                fieldset: {
+                    legend: { classes: "govuk-fieldset__legend--m" }
+                }
+            }) }}
+        {% endif %}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}

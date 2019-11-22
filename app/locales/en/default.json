@@ -1,10 +1,32 @@
 {
     "govuk": {
         "serviceName": "HMPO Passports Prototype v3",
-        "errorSummaryTitle": "There’s a problem"
+        "errorSummaryTitle": "There’s a problem",
+        "backLink": "Back"
     },
     "buttons": {
         "next": "Continue"
+    },
+    "fields": {
+      "date-day": {
+        "label": "Day"
+      },
+      "date-month": {
+        "label": "Month"
+      },
+      "date-year": {
+        "label": "Year"
+      },
+      "default": {
+        "items": {
+          "true": {
+            "label": "Yes"
+          },
+          "false": {
+            "label": "No"
+          }
+        }
+      }
     },
     "validation": {
         "default": "You need to answer this question",
