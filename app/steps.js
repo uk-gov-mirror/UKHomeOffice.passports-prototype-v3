@@ -70,7 +70,7 @@ module.exports = {
             'otherPassports'
         ],
         next: [
-            { field: 'isUKApplication', value: true, next: '/apply/summary' },
+            { field: 'isUKApplication', value: true, next: '/filter/summary' },
             { field: 'applicationType', value: 'first', next: '/filter/country-of-birth' },
             '/filter/british-citizen'
         ]
@@ -79,13 +79,17 @@ module.exports = {
         fields: [
             'countryOfBirth'
         ],
-        next: '/apply/summary'
+        next: '/filter/summary'
     },
     '/filter/british-citizen': {
         fields: [
             'nationality'
         ],
-        next: '/apply/summary'
+        next: '/filter/summary'
+    },
+
+    '/filter/summary': {
+        next: '/photo/digital-photo'
     }
 
 }
