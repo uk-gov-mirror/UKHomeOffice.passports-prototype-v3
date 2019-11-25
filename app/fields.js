@@ -1,48 +1,60 @@
 module.exports = {
-    'is-uk-application': {
+    isUKApplication: {
         formatter: 'boolean',
         validate: 'required'
     },
-    'country-of-application': {
+    countryOfApplication: {
         items: require('./data/countries'),
         validate: 'required',
-        dependent: { field: 'is-uk-application', value: false }
+        dependent: { field: 'isUKApplication', value: false }
     },
-    'date-of-birth': {
-        validate: 'date',
+    dateOfBirth: {
+        validate: ['required', 'date'],
         autocomplete: 'bday'
     },
-    'previous-passport': {
+    previousPassport: {
         formatter: 'boolean',
         validate: 'required'
     },
-    'passport-lost': {
+    passportLost: {
         formatter: 'boolean',
         validate: 'required'
     },
-    'passport-issue': {
-        validate: 'date',
+    passportCancelled: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
+    passportIssue: {
+        validate: ['required', 'date'],
         autocomplete: 'passport-issue',
         offset: 11
     },
-    'passport-issuing-authority': {
+    passportIssuingAuthority: {
     },
-    'damaged': {
+    damaged: {
         formatter: 'boolean'
     },
-    'damaged-reason': {
+    damagedReason: {
         validate: [
+            'required',
             'alphanumex1',
             { type: 'maxlength', arguments: 250 }
         ],
-        dependent: {
-            field: 'damaged',
-            value: true
-        }
+        dependent: { field: 'damaged', value: true }
     },
-    'other-passports': {
-        formatter: 'boolean'
+    naturalised: {
+        formatter: 'boolean',
+        validate: 'required'
     },
-
-
+    otherPassports: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
+    countryOfBirth: {
+        items: require('./data/birth-countries'),
+        validate: 'required'
+    },
+    nationality: {
+        validate: 'required'
+    }
 }

@@ -1,0 +1,28 @@
+
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}What nationality is written on your passport?{% endset %}
+
+{% block mainContent %}
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoRadios(ctx, {
+            id: "nationality",
+            legend: {
+                text: hmpoTitle
+            },
+            isPageHeading: true,
+            items: [
+                { value: "british", text: "British Citizen" },
+                { value: "bno", text: "British National Overseas (usually resident in Hong Kong)" },
+                { value: "other", text: "Other" }
+            ]
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+
+{% endblock %}
