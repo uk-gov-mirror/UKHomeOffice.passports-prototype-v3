@@ -1,0 +1,28 @@
+
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}How to get a digital passport phot{% endset %}
+
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    <h2>Photo taken at home</h2>
+    <p>Get someone to take your photo using a digital camera, smartphone or tablet.</p>
+
+    <h2>Photo taken in a booth or shop</h2>
+    <p>You can go to a:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>photo booth or shop and get a code to add the photo to your application</li>
+        <li>photo shop and get a digital photo</li>
+    </ul>
+
+    {% call hmpoInsetText() %}
+        <p>Photos from a booth or shop are more likely to meet the rules for digital passport photos</p>
+    {% endcall %}
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoSubmit(ctx) }}
+    {% endcall %}
+
+
+{% endblock %}

@@ -16,11 +16,11 @@ module.exports = {
         formatter: 'boolean',
         validate: 'required'
     },
-    passportLost: {
+    lost: {
         formatter: 'boolean',
         validate: 'required'
     },
-    passportCancelled: {
+    cancelled: {
         formatter: 'boolean',
         validate: 'required'
     },

@@ -39,12 +39,25 @@
 {% from "hmpo-select/macro.njk"                       import hmpoSelect %}
 {% from "hmpo-details/macro.njk"                      import hmpoDetails %}
 {% from "hmpo-inset-text/macro.njk"                   import hmpoInsetText %}
+{% from "hmpo-warning-text/macro.njk"                 import hmpoWarningText %}
 
 {% block head %}
   {% include "includes/head.html" %}
 {% endblock %}
 
-{% set mainClasses = mainClasses | default("govuk-main-wrapper--auto-spacing") %}
+{% block beforeContent %}
+    {% block phaseBanner %}
+        {{ govukPhaseBanner({
+            tag: {
+                text: "beta"
+            },
+            html: "This is a new service – your <a href=\"/help/feedback\">feedback</a> will help us to improve it."
+        }) }}
+    {% endblock %}
+    {{ super() }}
+{% endblock %}
+
+{# {% set mainClasses = mainClasses | default("govuk-main-wrapper--auto-spacing") %} #}
 
 {% block bodyEnd %}
   {% block scripts %}

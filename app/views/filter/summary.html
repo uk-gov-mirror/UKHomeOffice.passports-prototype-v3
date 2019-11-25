@@ -37,12 +37,12 @@
         <p>If you want to change the name on this passport, we'll ask for the details later on.</p>
 
     {# Lost or Stolen Child 0–11s, Lost or Stolen Child 12–15s #}
-    {% elif values.applicationType === "renew" and values.lostPassport and values.adultOrChild === "child" %}
+    {% elif values.applicationType === "renew" and values.lost and values.adultOrChild === "child" %}
         <p>Based on your answers, your passport was lost or stolen. You're applying for a replacement child passport.</p>
         <p>If you want to change the name on this passport, we'll ask for the details later on.</p>
 
     {# Lost or Stolen Adult #}
-    {% elif values.applicationType === "renew" and values.lostPassport and values.adultOrChild === "adult" %}
+    {% elif values.applicationType === "renew" and values.lost and values.adultOrChild === "adult" %}
         <p>Based on your answers, your passport was lost or stolen. You're applying for a replacement adult passport.</p>
         <p>If you want to change the name on this passport, we'll ask for the details later on.</p>
 
@@ -89,12 +89,12 @@
         {% endif %}
 
     {# Lost or Stolen Child 0–11s, Lost or Stolen Child 12–15s #}
-    {% elif values.applicationType === "renew" and values.lostPassport and values.adultOrChild === "child" %}
+    {% elif values.applicationType === "renew" and values.lost and values.adultOrChild === "child" %}
 
         <p>It should take 3 weeks to get a new passport. Use the 1 week Fast Track service if you need to <a href="https://www.gov.uk/get-a-passport-urgently/1-week-fast-track-service">get a passport urgently</a>.</p>
 
     {# Lost or Stolen Adult #}
-    {% elif values.applicationType === "renew" and values.lostPassport and values.adultOrChild === "adult" %}
+    {% elif values.applicationType === "renew" and values.lost and values.adultOrChild === "adult" %}
 
         {% if values.ageGroup === "rising16" %}
             <p>As you're about to turn 16, you'll get an adult passport. It should take 3 weeks - you won't get it before your birthday.</p>
@@ -139,7 +139,7 @@
             <p style="margin-left: -20px; margin-top: 20px;">If you need an <a href="../help/identity-interviews" target="_blank">interview</a>, we'll write to you with the details.</p>
 
         {# Lost or Stolen Child 0–11s, Lost or Stolen Child 12–15s, Lost or Stolen Adult #}
-        {% elif values.applicationType === "renew" and values.lostPassport %}
+        {% elif values.applicationType === "renew" and values.lost %}
 
             <li>get someone to <a href="../help/confirming-your-identity" target="_blank">confirm your identity</a> &ndash; we'll show you how</li>
 
@@ -156,6 +156,8 @@
 
         {% endif %}
     </ul>
+
+    <br/>
 
     {% call hmpoForm(ctx) %}
         {{ hmpoSubmit(ctx) }}
