@@ -5,10 +5,6 @@
 
 {% block mainContent %}
 
-    {% call hmpoInsetText({classes: "hmpo-inset-info"}) %}
-        <p>If you’re applying on behalf of an adult or child, answer these questions with their details rather than your own.</p>
-    {% endcall %}
-
     {% call hmpoForm(ctx) %}
 
         {{ hmpoRadios(ctx, {

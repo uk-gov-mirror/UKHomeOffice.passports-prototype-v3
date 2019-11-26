@@ -3,6 +3,10 @@ module.exports = {
         entryPoint: true,
         resetJourney: true,
         skip: true,
+        next: '/filter/begin'
+    },
+    '/filter/begin': {
+        backLink: '/start.html',
         next: '/filter/overseas'
     },
     '/filter/overseas': {
@@ -10,14 +14,22 @@ module.exports = {
             'isUKApplication',
             'countryOfApplication'
         ],
+        next: '/filter/intro'
+    },
+    '/filter/intro': {
         next: '/filter/age'
     },
     '/filter/age': {
         fields: [
             'dateOfBirth'
         ],
+        next: '/photo/digital-photo'
+    },
+
+    '/photo/digital-photo': {
         next: '/filter/previous-passport'
     },
+
     '/filter/previous-passport': {
         fields: [
             'previousPassport'
@@ -29,19 +41,19 @@ module.exports = {
     },
     '/filter/lost-or-stolen': {
         fields: [
-            'passportLost'
+            'lost'
         ],
         next: [
-            { field: 'passportLost', value: true, next: '/filter/cancelled-passport' },
+            { field: 'lost', value: true, next: '/filter/cancelled-passport' },
             '/filter/issue-date'
         ]
     },
     '/filter/cancelled-passport': {
         fields: [
-            'passportCancelled'
+            'cancelled'
         ],
         next: [
-            { field: 'passportCancelled', value: true, next: '/filter/other-passports' },
+            { field: 'cancelled', value: true, next: '/filter/other-passports' },
             'https://www.gov.uk/report-a-lost-or-stolen-passport'
         ]
     },
@@ -70,7 +82,7 @@ module.exports = {
             'otherPassports'
         ],
         next: [
-            { field: 'isUKApplication', value: true, next: '/apply/summary' },
+            { field: 'isUKApplication', value: true, next: '/filter/summary' },
             { field: 'applicationType', value: 'first', next: '/filter/country-of-birth' },
             '/filter/british-citizen'
         ]
@@ -79,13 +91,17 @@ module.exports = {
         fields: [
             'countryOfBirth'
         ],
-        next: '/apply/summary'
+        next: '/filter/summary'
     },
     '/filter/british-citizen': {
         fields: [
             'nationality'
         ],
-        next: '/apply/summary'
+        next: '/filter/summary'
+    },
+
+    '/filter/summary': {
+        next: '/apply/how-to-apply'
     }
 
 }

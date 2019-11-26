@@ -1,0 +1,15 @@
+
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Apply online for UK passport{% endset %}
+
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>If you’re applying on behalf of an adult or child, answer these questions with their details rather than your own.</p>
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoSubmit(ctx) }}
+    {% endcall %}
+
+{% endblock %}

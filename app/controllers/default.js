@@ -41,10 +41,12 @@ class DefaultController extends DateMixin(BaseController) {
     }
 
     setApplicationType (req) {
+        let oldBlue = false;
         let applicationType
         if (req.sessionModel.get('previousPassport') === true) {
-            if (req.sessionModel.get('passportLost') === true) {
-                applicationType = 'replace'
+            if (req.sessionModel.get('passportIssue') < '2004-01-01') {
+                oldBlue = true;
+                applicationType = 'first'
             } else {
                 applicationType = 'renew'
             }
@@ -52,6 +54,7 @@ class DefaultController extends DateMixin(BaseController) {
             applicationType = 'first'
         }
         req.sessionModel.set('applicationType', applicationType)
+        req.sessionModel.set('oldBlue', oldBlue)
     }
 }
 

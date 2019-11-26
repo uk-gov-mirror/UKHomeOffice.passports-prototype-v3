@@ -1,0 +1,56 @@
+
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}How to apply{% endset %}
+
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    <ol class="govuk-list govuk-list--number govuk-heading-m">
+        <li>
+            <h2>Get a digital passport photo</h2>
+            <p>We’ll show you how to get a digital passport photo.</p>
+        </li>
+        <li>
+            <h2>Provide application details</h2>
+            <p>Fill in your application details.</p>
+        </li>
+        <li>
+            <h2>Find out what documents you need to send</h2>
+            <p>We’ll tell you what documents you need to send.</p>
+        </li>
+        <li>
+            <h2>Pay for your passport online</h2>
+            <p>A standard passport is £75.50 for an adult, and £49 for a child.</p>
+        </li>
+        <li>
+            <h2>If required, get someone to confirm your identity</h2>
+            <p>We’ll tell you if we need someone to confirm your identity. They can confirm your identity online without a printed photo.</p>
+        </li>
+        <li>
+            <h2>Track your application</h2>
+            <p>We’ll send you updates by email or text. You can also log in to:</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>track progress on your application</li>
+                <li>check what documents you need to send, and where to send them</li>
+                <li>ask someone to confirm your identity (if required)</li>
+            </ul>
+        </li>
+    </ol>
+
+    {% call hmpoDetails({ summaryText: "I need help doing things online" }) %}
+        <p>You can call the Passport Adviceline for help.</p>
+        <p>
+            Telephone: 0300 330 0901<br/>
+            Textphone: 0300 330 0808<br/>
+            Monday to Friday, 8:00am to 8:00pm<br/>
+            Weekends and public holidays, 9:00am to 5:30pm
+        </p>
+        <p><a href="https://www.gov.uk/call-charges">Find out about call charges</a></p>
+    {% endcall %}
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoSubmit(ctx) }}
+    {% endcall %}
+
+{% endblock %}
