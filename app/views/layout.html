@@ -1,4 +1,4 @@
-{%- set assetPath = '/govuk/assets' -%}
+{%- set assetPath = "/govuk/assets" -%}
 
 {% extends "hmpo-template.njk" %}
 
@@ -56,8 +56,6 @@
     {% endblock %}
     {{ super() }}
 {% endblock %}
-
-{# {% set mainClasses = mainClasses | default("govuk-main-wrapper--auto-spacing") %} #}
 
 {% block bodyEnd %}
   {% block scripts %}
