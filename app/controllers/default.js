@@ -6,6 +6,7 @@ class DefaultController extends DateMixin(BaseController) {
     successHandler (req, res, next) {
         this.setAgeGroup(req)
         this.setApplicationType(req)
+        this.setCosts(req)
         super.successHandler(req, res, next)
     }
 
@@ -56,6 +57,35 @@ class DefaultController extends DateMixin(BaseController) {
         req.sessionModel.set('applicationType', applicationType)
         req.sessionModel.set('oldBlue', oldBlue)
     }
+
+    setCosts (req) {
+        let passportCost;
+        if (req.sessionModel.get('adultOrChild') === 'child') {
+            if (req.sessionModel.get('largePassport')) {
+                passportCost = 59.00
+            } else {
+                passportCost = 49.00
+            }
+        } else { // adult
+            if (req.sessionModel.get('largePassport')) {
+                passportCost = 85.50
+            } else {
+                passportCost = 75.50
+            }
+        }
+
+        let deliveryCost;
+        if (req.sessionModel.get('secureDelivery')) {
+            deliveryCost = 5.00;
+        } else {
+            deliveryCost = 0.00;
+        }
+
+        req.sessionModel.set('passportCost', passportCost)
+        req.sessionModel.set('deliveryCost', deliveryCost)
+        req.sessionModel.set('totalCost', passportCost + deliveryCost)
+    }
+
 }
 
 module.exports = DefaultController

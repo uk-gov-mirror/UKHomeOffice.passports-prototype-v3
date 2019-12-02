@@ -1,0 +1,50 @@
+{
+  "london": [
+    "London HM Passport Office",
+    "Globe House",
+    "89 Eccleston Square",
+    "London",
+    "SW1V 1PN"
+  ],
+  "peterborough": [
+    "Peterborough HM Passport Office",
+    "Aragon Court",
+    "Northminster Road",
+    "Peterborough",
+    "PE1 1QG"
+  ],
+  "newport": [
+    "Newport HM Passport Office",
+    "Nexus House",
+    "Mission Court",
+    "Newport",
+    "NP20 2DW"
+  ],
+  "liverpool": [
+    "Liverpool HM Passport Office",
+    "101 Old Hall Street",
+    "Liverpool",
+    "L3 9BP"
+  ],
+  "durham": [
+    "Durham HM Passport Office",
+    "Freemans Reach",
+    "Riverside Place",
+    "Durham",
+    "DH1 1SL"
+  ],
+  "glasgow": [
+    "Glasgow HM Passport Office",
+    "3 Northgate",
+    "96 Milton Street",
+    "Cowcaddens",
+    "G4 0BT"
+  ],
+  "belfast": [
+    "Belfast HM Passport Office",
+    "Law Society House",
+    "90–106 Victoria Street",
+    "Belfast",
+    "BT1 3GN"
+  ]
+}

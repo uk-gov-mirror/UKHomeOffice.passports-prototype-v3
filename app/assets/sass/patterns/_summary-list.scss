@@ -1,0 +1,19 @@
+dl.govuk-summary-list {
+    .photo {
+        width: 150px;
+        vertical-align: top;
+    }
+
+    dt {
+        color: $govuk-secondary-text-colour;
+        font-weight: normal;
+        @include govuk-media-query($from: desktop) {
+            padding: 1em 1em 1em 0;
+        }
+    }
+    dd {
+        @include govuk-media-query($from: desktop) {
+            padding: 1em 0 1em 0;
+        }
+    }
+}

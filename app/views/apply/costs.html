@@ -1,0 +1,80 @@
+
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Cost{% endset %}
+
+{% set documents %}
+    {%- if values.applicationType == "first" %}
+        {%- if values.oldBlue %}
+            both
+        {%- else %}
+            documents
+        {%- endif %}
+    {%- elif values.lost %}
+        {%- if values.noDocuments %}
+            none
+        {%- else %}
+            documents
+        {%- endif %}
+    {%- else %}
+        {%- if values.nameChanged %}
+            both
+        {%- else %}
+            passport
+        {%- endif %}
+    {%- endif %}
+{% endset %}
+
+{% set deliveryMethod = "secure delivery" if values.secureDelivery else "standard post" %}
+
+{% if documents == "passport" %}
+    {% set deliveryKey = "Old passport" %}
+    {% set deliveryValue = "You need to post your old passport to us. We’ll return it to you by " + deliveryMethod %}
+{% elif documents == "documents" %}
+    {% set deliveryKey = "Documents" %}
+    {% set deliveryValue = "We’ll return your documents by " + deliveryMethod %}
+{% elif documents == "both" %}
+    {% set deliveryKey = "Old passport and extra documents" %}
+    {% set deliveryValue = "We’ll return your old passport and extra documents by " + deliveryMethod %}
+{% else %}
+    {% set deliveryKey = "Delivery" %}
+    {% set deliveryValue = "We’ll send your new passport by secure delivery. The cost is included in the passport fee." %}
+{% endif %}
+
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    {{ govukSummaryList({ rows: [
+        {
+            key: { text: "New passport" },
+            value: { html:
+                (
+                    "Frequent traveller passport with secure delivery included"
+                    if values.largePassport else
+                    "Standard passport with secure delivery included"
+                ) +
+                "<br/>" +
+                (values.passportCost | currency)
+            },
+            actions: { items: [ { text: "Change", href: "/apply/secure-deivery/edit" }]}
+        },
+        {
+            key: { text: deliveryKey },
+            value: { html:
+                deliveryValue +
+                "<br/>" +
+                (values.deliveryCost | currency)
+            },
+            actions: { items: [ { text: "Change", href: "/apply/new-passport/edit" }]} if delivery != "none"
+        },
+        {
+            key: { text: "Total" },
+            value: { text: values.totalCost | currency }
+        }
+    ] | filter }) }}
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoSubmit(ctx) }}
+    {% endcall %}
+
+{% endblock %}

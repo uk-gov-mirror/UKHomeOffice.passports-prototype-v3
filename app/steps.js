@@ -99,9 +99,13 @@ module.exports = {
         ],
         next: '/filter/summary'
     },
-
     '/filter/summary': {
-        next: '/apply/how-to-apply'
-    }
+        next: '/apply/confirm'
+    },
 
+    '/apply/confirm': {
+        next: '/apply/costs'
+    },
+    '/apply/costs': {
+    }
 }
