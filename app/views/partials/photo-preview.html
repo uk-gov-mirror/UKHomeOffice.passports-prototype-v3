@@ -1,0 +1,11 @@
+{% if values.photo %}
+<div class="photo-preview"{% if values.photoError %} aria-hidden="true"{% endif %}>
+    <div class="app-related-items">
+        <h2>{{ translate("pages.checkSubmitPassedPhoto.yourPhoto") }}</h2>
+        <img class="photo" src="{{baseUrl}}/thumbnail" alt="{{ translate("pages.checkSubmitPassedPhoto.yourPhoto") }}">
+        {% if values["photo-code"] %}
+            <div class="photo-code-url"><p>{{values["photo-code"]}}</p></div>
+        {% endif %}
+    </div>
+</div>
+{% endif %}

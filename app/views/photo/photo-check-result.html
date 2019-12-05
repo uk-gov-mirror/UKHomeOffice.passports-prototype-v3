@@ -1,0 +1,50 @@
+
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Photo result{% endset %}
+
+{% block mainContent %}
+    {{ super() }}
+
+    <div class="govuk-grid-row">
+
+        <div class="govuk-grid-column-one-third {# .photo-result-sidebyside #}">
+            {% include "../partials/photo-preview.html" %}
+            <div id="photo-result" class="photo-result-{{ result }}">
+                <img src="{{ assetPath }}/images/dial-gauge-{{ result }}@2x.png" alt="">
+                <h2>{{ translate("pages.photoResult." + result) }}</h2>
+            </div>
+        </div>
+
+        <div class="govuk-grid-column-two-thirds">
+            <div id="photo-result-text-{{ result }}">
+                {{ hmpoHtml(translate("pages.photoResult." + result + "Content")) }}
+            </div>
+
+            {% if result == "poor" or result == "fair" %}
+                {% call hmpoDetails({
+                    attributes: { id: "photo-result-reasons" },
+                    summaryText: translate("pages.photoResult.findOutReason")
+                }) %}
+                    {% for error in values["photo-errors"] %}
+                        <h2>{{ translate([
+                            "photo-failures." + error.key + ".reason",
+                            "photo-failures.default.reason"
+                        ]) | safe }}</h2>
+                        {{ hmpoHtml(translate([
+                            "photo-failures." + error.key + ".explanation",
+                            "photo-failures.default.explanation"
+                        ])) }}
+                    {% endfor %}
+                {% endcall %}
+
+                {{ hmpoHtml(translate("pages.photoResult.next")) }}
+            {% endif %}
+        </div>
+    </div>
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoSubmit(ctx) }}
+    {% endcall %}
+{% endblock %}
+

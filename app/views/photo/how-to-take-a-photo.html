@@ -1,0 +1,367 @@
+
+{% extends "layout.html" %}
+
+{# TODO: import has to be here to work, doesn't work in layout.html #}
+{% from "hmpo-html/macro.njk" import hmpoHtml %}
+
+{% set hmpoTitle %}How to take a digital passport photo{% endset %}
+
+{% set adultPhotoSection %}
+    <h3>{{ translate("pages.howToTakeAPhoto.backGroundGuidanceTitle") }}</h3>
+
+    {{ hmpoHtml(translate("pages.howToTakeAPhoto.backGroundGuidance")) }}
+
+    <div class="photo-guide-photos" aria-hidden="true">
+        <ul>
+            <li>
+                <img src="{{ assetPath }}/images/image-m2-plain.jpg" alt="">
+                <div class="result">
+                    <p class="approved govuk-body-s">{{ translate("pages.howToTakeAPhoto.approved") }}</p>
+                </div>
+            </li>
+            <li>
+                <img src="{{ assetPath }}/images/image-m2-textured-background.jpg" alt="">
+                <div class="result">
+                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.texturedBackground") }}</p>
+                </div>
+            </li>
+            <li>
+                <img src="{{ assetPath }}/images/image-m2-object-in-background.jpg" alt="">
+                <div class="result">
+                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.objectInBackground") }}</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <h3>{{ translate("pages.howToTakeAPhoto.lightingGuidanceTitle") }}</h3>
+
+    {{ hmpoHtml(translate("pages.howToTakeAPhoto.lightingGuidance")) }}
+
+    <div class="photo-guide-photos" aria-hidden="true">
+        <ul>
+            <li>
+                <img src="{{ assetPath }}/images/image-m1-plain.jpg" alt="">
+                <div class="result">
+                    <p class="approved govuk-body-s">{{ translate("pages.howToTakeAPhoto.approved") }}</p>
+                </div>
+            </li>
+            <li>
+                <img src="{{ assetPath }}/images/image-m1-uneven-harsh.jpg" alt="">
+                <div class="result">
+                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.shadowOnFace") }}</p>
+                </div>
+            </li>
+            <li>
+                <img src="{{ assetPath }}/images/image-m1-flash-shadow.jpg" alt="">
+                <div class="result">
+                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.shadowBehindHead") }}</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <h3>{{ translate("pages.howToTakeAPhoto.positionGuidanceTitle") }}</h3>
+
+    {{ hmpoHtml(translate("pages.howToTakeAPhoto.positionGuidance")) }}
+
+    <div class="photo-guide-photos large" aria-hidden="true">
+        <ul>
+            <li>
+                <img src="{{ assetPath }}/images/good-passport-photo.jpg" alt="">
+            </li>
+        </ul>
+    </div>
+
+    <h3>{{ translate("pages.howToTakeAPhoto.faceGuidanceTitle") }}</h3>
+
+    {{ hmpoHtml(translate("pages.howToTakeAPhoto.faceGuidance")) }}
+
+    <div class="photo-guide-photos" aria-hidden="true">
+        <ul>
+            <li>
+                <img src="{{ assetPath }}/images/image-f1-plain.jpg" alt="">
+                <div class="result">
+                    <p class="approved govuk-body-s">{{ translate("pages.howToTakeAPhoto.plainExpression") }}</p>
+                </div>
+            </li>
+            <li>
+                <img src="{{ assetPath }}/images/image-f1-smiling.jpg" alt="">
+                <div class="result">
+                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.dontSmile") }}</p>
+                </div>
+            </li>
+            <li>
+                <img src="{{ assetPath }}/images/image-f1-mouth-open.jpg" alt="">
+                <div class="result">
+                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.mouthClosed") }}</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <h3>{{ translate("pages.howToTakeAPhoto.headwearGuidanceTitle") }}</h3>
+
+    {{ hmpoHtml(translate("pages.howToTakeAPhoto.headwearGuidance")) }}
+
+    <div class="photo-guide-photos" aria-hidden="true">
+        <ul>
+            <li>
+                <img src="{{ assetPath }}/images/image-f2-religious-head-covering.jpg" alt="">
+                <div class="result">
+                    <p class="approved govuk-body-s">{{ translate("pages.howToTakeAPhoto.religiousHeadwear") }}</p>
+                </div>
+            </li>
+            <li>
+                <img src="{{ assetPath }}/images/image-m3-head-covering.jpg" alt="">
+                <div class="result">
+                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.fashionHeadwear") }}</p>
+                </div>
+            </li>
+            <li>
+                <img src="{{ assetPath }}/images/image-f1-hair-accessory.jpg" alt="">
+                <div class="result">
+                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.hairAccessories") }}</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+
+    <h3>{{ translate("pages.howToTakeAPhoto.eyesGuidanceTitle") }}</h3>
+
+    {{ hmpoHtml(translate("pages.howToTakeAPhoto.eyesGuidance")) }}
+
+    <p>{{ translate("pages.howToTakeAPhoto.glassesGuidanceTitle") }}</p>
+
+    {{ hmpoHtml(translate("pages.howToTakeAPhoto.glassesGuidance")) }}
+
+    <div class="photo-guide-photos" aria-hidden="true">
+        <ul>
+            <li>
+                <img src="{{ assetPath }}/images/image-m2-plain-glasses.jpg" alt="">
+                <div class="result">
+                    <p class="approved govuk-body-s">{{ translate("pages.howToTakeAPhoto.eyesVisible") }}</p>
+                </div>
+            </li>
+            <li>
+                <img src="{{ assetPath }}/images/image-m2-glasses-tinted-covering-eyes.jpg" alt="">
+                <div class="result">
+                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.dontCoverEyes") }}</p>
+                </div>
+            </li>
+            <li>
+                <img src="{{ assetPath }}/images/image-m2-glasses-reflection.jpg" alt="">
+                <div class="result">
+                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.noGlare") }}</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <h3>{{ translate("pages.howToTakeAPhoto.watchVideo") }}</h3>
+
+    <div class="videoWrapper">
+        <iframe title="how-to-take-a-photo-video" src="{{ urls["photo-guide-video"] }}" frameborder="0"
+                webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    </div>
+{% endset %}
+
+{% set childPhotoSection %}
+
+    <h3>{{ translate("pages.howToTakeAPhoto.childLightBackgroundTitle") }}</h3>
+    {{ hmpoHtml(translate("pages.howToTakeAPhoto.childLightBackground")) }}
+
+    <p>{{ translate("pages.howToTakeAPhoto.childrenUnder1Title") }}</p>
+    {{ hmpoHtml(translate("pages.howToTakeAPhoto.childrenUnder1")) }}
+    <div class="photo-guide-photos" aria-hidden="true">
+        <ul>
+            <li>
+                <img src="{{ assetPath }}/images/image-child-1.jpg" alt="">
+                <div class="result">
+                    <p class="approved govuk-body-s">{{ translate("pages.howToTakeAPhoto.approved") }}</p>
+                </div>
+            </li>
+            <li>
+                <img src="{{ assetPath }}/images/image-child-2.jpg" alt="">
+                <div class="result">
+                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.noDummies") }}</p>
+                </div>
+            </li>
+            <li>
+                <img src="{{ assetPath }}/images/image-child-3.jpg" alt="">
+                <div class="result">
+                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.only1Person") }}</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <h3>{{ translate("pages.howToTakeAPhoto.childLightingGuidanceTitle") }}</h3>
+    {{ hmpoHtml(translate("pages.howToTakeAPhoto.childLightingGuidance")) }}
+
+    <div class="photo-guide-photos" aria-hidden="true">
+        <ul>
+            <li>
+                <img src="{{ assetPath }}/images/image-m1-plain.jpg" alt="">
+                <div class="result">
+                    <p class="approved govuk-body-s">{{ translate("pages.howToTakeAPhoto.approved") }}</p>
+                </div>
+            </li>
+            <li>
+                <img src="{{ assetPath }}/images/image-m1-uneven-harsh.jpg"
+                     alt="">
+                <div class="result">
+                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.shadowOnFace") }}</p>
+                </div>
+            </li>
+            <li>
+                <img src="{{ assetPath }}/images/image-m1-flash-shadow.jpg"
+                     alt="">
+                <div class="result">
+                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.shadowBehindHead") }}</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <h3>{{ translate("pages.howToTakeAPhoto.positionGuidanceTitle") }}</h3>
+    <p>{{ translate("pages.howToTakeAPhoto.childGuidanceTitle") }}</p>
+    {{ hmpoHtml(translate("pages.howToTakeAPhoto.childGuidance")) }}
+
+    <p>{{ translate("pages.howToTakeAPhoto.childrenUnder1Title") }}</p>
+    {{ hmpoHtml(translate("pages.howToTakeAPhoto.childrenUnder1Guidance")) }}
+
+    <div class="photo-guide-photos large" aria-hidden="true">
+        <ul>
+            <li>
+                <img src="{{ assetPath }}/images/good-passport-photo.jpg" alt="">
+            </li>
+        </ul>
+    </div>
+    <h3>{{ translate("pages.howToTakeAPhoto.expressionGuidanceTitle") }}</h3>
+    {{ hmpoHtml(translate("pages.howToTakeAPhoto.expressionGuidance")) }}
+    <p>{{ translate("pages.howToTakeAPhoto.childrenUnder6Title") }}</p>
+    {{ hmpoHtml(translate("pages.howToTakeAPhoto.childrenUnder6")) }}
+    <div class="photo-guide-photos" aria-hidden="true">
+        <ul>
+            <li>
+                <img src="{{ assetPath }}/images/image-f1-plain.jpg" alt="">
+                <div class="result">
+                    <p class="approved govuk-body-s">{{ translate("pages.howToTakeAPhoto.plainExpression") }}</p>
+                </div>
+            </li>
+            <li>
+                <img src="{{ assetPath }}/images/image-f1-smiling.jpg" alt="">
+                <div class="result">
+                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.dontSmile") }}</p>
+                </div>
+            </li>
+            <li>
+                <img src="{{ assetPath }}/images/image-f1-mouth-open.jpg" alt="">
+                <div class="result">
+                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.mouthClosed") }}</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <h3>{{ translate("pages.howToTakeAPhoto.headwearGuidanceTitle") }}</h3>
+    {{ hmpoHtml(translate("pages.howToTakeAPhoto.headwearGuidance")) }}
+    <div class="photo-guide-photos" aria-hidden="true">
+        <ul>
+            <li>
+                <img src="{{ assetPath }}/images/image-f2-religious-head-covering.jpg"
+                     alt="">
+                <div class="result">
+                    <p class="approved govuk-body-s">{{ translate("pages.howToTakeAPhoto.religiousHeadwear") }}</p>
+                </div>
+            </li>
+            <li>
+                <img src="{{ assetPath }}/images/image-m3-head-covering.jpg"
+                     alt="">
+                <div class="result">
+                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.fashionHeadwear") }}</p>
+                </div>
+            </li>
+            <li>
+                <img src="{{ assetPath }}/images/image-f1-hair-accessory.jpg"
+                     alt="">
+                <div class="result">
+                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.hairAccessories") }}</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <h3>{{ translate("pages.howToTakeAPhoto.eyesGuidanceTitle") }}</h3>
+    {{ hmpoHtml(translate("pages.howToTakeAPhoto.eyesGuidance")) }}
+
+    <p>{{ translate("pages.howToTakeAPhoto.childrenUnder1Title") }}</p>
+    {{ hmpoHtml(translate("pages.howToTakeAPhoto.eyesClosed")) }}
+
+    <p>{{ translate("pages.howToTakeAPhoto.glassesOnTitle") }}</p>
+    {{ hmpoHtml(translate("pages.howToTakeAPhoto.glassesOn")) }}
+    <div class="photo-guide-photos" aria-hidden="true">
+        <ul>
+            <li>
+                <img src="{{ assetPath }}/images/image-m2-plain-glasses.jpg"
+                     alt="">
+                <div class="result">
+                    <p class="approved govuk-body-s">{{ translate("pages.howToTakeAPhoto.eyesVisible") }}</p>
+                </div>
+            </li>
+            <li>
+                <img src="{{ assetPath }}/images/image-m2-glasses-tinted-covering-eyes.jpg"
+                     alt="">
+                <div class="result">
+                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.dontCoverEyes") }}</p>
+                </div>
+            </li>
+            <li>
+                <img src="{{ assetPath }}/images/image-m2-glasses-reflection.jpg"
+                     alt="">
+                <div class="result">
+                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.noGlare") }}</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+{% endset %}
+
+{% set sections = [] %}
+{%- set sections = sections | push({
+    heading: { text: translate("pages.howToTakeAPhoto.adultTitle") },
+    content: { html: adultPhotoSection }
+}) %}
+
+{%- set sections = sections | push({
+    heading: { text: translate("pages.howToTakeAPhoto.childTitle") },
+    content: { html: childPhotoSection }
+}) %}
+
+
+{% block mainContent %}
+    <h1 id="header">{{ hmpoTitle }}</h1>
+
+    <p>{{ translate("pages.howToTakeAPhoto.guidance") }}</p>
+
+    {{ hmpoInsetText({
+        text: translate("pages.howToTakeAPhoto.photoRules")
+    }) }}
+
+    {{ govukAccordion({
+        id: "photo-guidance-accordion",
+        items: sections
+    }) }}
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoSubmit(ctx) }}
+    {% endcall %}
+
+    {{ hmpoDetails({
+        summaryText: translate("pages.howToTakeAPhoto.cantMeetRules"),
+        text: translate("pages.howToTakeAPhoto.overrideRules")
+    }) }}
+
+    {{ hmpoPrintPage({ text: translate("buttons.print") }) }}
+
+{% endblock %}

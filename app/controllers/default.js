@@ -25,8 +25,11 @@ class DefaultController extends DateMixin(BaseController) {
     setAgeGroup (req) {
         let ageGroup
         let adultOrChild
+        let age
         const dateOfBirth = req.sessionModel.get('dateOfBirth')
         if (dateOfBirth) {
+            age = moment().diff(dateOfBirth, 'years')
+
             const dob12to15 = moment().subtract(12, 'years').format('YYYY-MM-DD')
             const dobRising16 = moment().subtract(16, 'years').add(3, 'weeks').format('YYYY-MM-DD')
             const dobAdult = moment().subtract(16, 'years').format('YYYY-MM-DD')
@@ -49,6 +52,7 @@ class DefaultController extends DateMixin(BaseController) {
                 adultOrChild = 'child'
             }
         }
+        req.sessionModel.set('age', age)
         req.sessionModel.set('ageGroup', ageGroup)
         req.sessionModel.set('adultOrChild', adultOrChild)
     }

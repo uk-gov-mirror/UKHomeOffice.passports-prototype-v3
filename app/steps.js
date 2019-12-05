@@ -27,8 +27,44 @@ module.exports = {
     },
 
     '/photo/digital-photo': {
-        next: '/filter/previous-passport'
+        next: '/photo/choose-photo-method'
     },
+    '/photo/choose-photo-method': {
+        fields: [
+            'photo-method'
+        ],
+        next: [
+            { field: 'photo-method', value: 'photo-code', next: 'retrieve' },
+            '/photo/how-to-take-a-photo'
+        ]
+    },
+    '/photo/how-to-take-a-photo': {
+        next: '/photo/upload'
+    },
+    '/photo/upload': {
+        fields: [
+            'photo'
+        ],
+        next: [
+            { field: 'photo-quality', value: 'good', next: 'photo-check-result-good' },
+            { field: 'photo-quality', value: 'fair', next: 'photo-check-result-fair' },
+            { field: 'photo-quality', value: 'poor', next: 'photo-check-result-poor' },
+            'not-accepted'
+        ]
+    },
+    '/photo/photo-check-result-poor': {
+        template: 'photo-check-result',
+        next: '/photo/choose-submit-photo'
+    },
+    '/photo/photo-check-result-fair': {
+        template: 'photo-check-result',
+        next: '/photo/choose-submit-photo'
+    },
+    '/photo/photo-check-result-good': {
+        template: 'photo-check-result',
+        next: '/photo/choose-submit-good-photo'
+    },
+
 
     '/filter/previous-passport': {
         fields: [

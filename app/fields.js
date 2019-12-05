@@ -12,6 +12,14 @@ module.exports = {
         validate: ['required', 'date'],
         autocomplete: 'bday'
     },
+
+    photoMethod: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
+    photo: {
+    },
+
     previousPassport: {
         formatter: 'boolean',
         validate: 'required'
