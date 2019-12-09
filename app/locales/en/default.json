@@ -6,9 +6,7 @@
     },
     "buttons": {
         "next": "Continue",
-        "print": "Print page",
-        "photo-submit": "Upload your photo",
-        "photo-submit-mobile": "Get your photo"
+        "print": "Print page"
     },
     "fields": {
       "date-day": {

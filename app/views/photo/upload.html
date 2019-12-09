@@ -4,34 +4,47 @@
 {% set hmpoTitle %}Upload your photo{% endset %}
 
 {% block mainContent %}
-
-    <header id="header" class="govuk-heading-l">{{ hmpoTitle }}</header>
+    <h1>{{ hmpoTitle }}</h1>
     <p>Your photo will now go through a basic technical check.</p>
 
-    {% call hmpoForm(ctx, { attributes: { enctype: "multipart/form-data"} } ) %}
+    {% call hmpoForm(ctx) %}
 
         {{ govukFileUpload({
-            id: "photo-button",
-            name: "photo",
+            id: "photo",
             classes: "photo-choose-file",
             label: {
-                text: translate("buttons[\"photo-submit-mobile\"]") if mobileDevice else translate("buttons[\"photo-submit\"]"),
-                classes: "govuk-visually-hidden",
-                attributes: {
-                    id: "photo-label-text"
-                }
+                attributes: { id: "photo-label" },
+                text: "Get your photo" if mobileDevice else "Upload your photo"
             },
             attributes: {
                 accept: "image/jpeg"
             }
         }) }}
 
-        <div id="photo-submit">
-            {{ hmpoSubmit(ctx, {
-                id: "photo-submit-button",
-                key: "photo-submit-mobile" if mobileDevice else "photo-submit"
-            }) }}
-        </div>
+        <input type="hidden" name="photo-filename" id="photo-filename"/>
+
+        {{ hmpoSubmit(ctx, { id: "photo-submit-button" }) }}
+
+        <script>
+            (function() {
+                // auto-submit when a file is selected
+                var button = document.getElementById("photo-label");
+                var file = document.getElementById("photo");
+                var filename = document.getElementById("photo-filename");
+                var submit = document.getElementById("photo-submit-button");
+                file.onchange = function() {
+                    filename.name = "photo";
+                    filename.value = file.value;
+                    file.name = "photo-file"
+                    file.value = "";
+                    submit.click();
+                };
+                // hide submit button, file upload, and make upload label look like a submit button
+                file.className = file.className + " govuk-visually-hidden";
+                submit.className = submit.className + " govuk-visually-hidden";
+                button.className = button.className + " govuk-button photo-button";
+            })();
+        </script>
 
         <h2>Your photo must be:</h2>
         <ul class="govuk-list govuk-list--bullet">

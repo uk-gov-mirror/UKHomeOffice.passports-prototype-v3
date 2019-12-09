@@ -13,15 +13,16 @@
     {% call hmpoForm(ctx) %}
 
         {{ hmpoRadios(ctx, {
+            id: "photoMethod",
             legend: {
                 text: hmpoTitle
             },
             isPageHeading: true,
             items: [{
-                value: true,
+                value: "digital-photo",
                 text: "I’ll take or upload a digital photo"
             }, {
-                value: false,
+                value: "photo-code",
                 text: "I have a code to enter",
                 conditional: { html: photoCodeConditional }
             }]

@@ -4,41 +4,53 @@
 {% set hmpoTitle %}Photo result{% endset %}
 
 {% block mainContent %}
-    {{ super() }}
+    <h1>{{ hmpoTitle }}</h1>
 
     <div class="govuk-grid-row">
 
-        <div class="govuk-grid-column-one-third {# .photo-result-sidebyside #}">
-            {% include "../partials/photo-preview.html" %}
-            <div id="photo-result" class="photo-result-{{ result }}">
-                <img src="{{ assetPath }}/images/dial-gauge-{{ result }}@2x.png" alt="">
-                <h2>{{ translate("pages.photoResult." + result) }}</h2>
+        <div class="govuk-grid-column-one-third photo-result-sidebyside">
+
+            {% include "../includes/photo-preview.html" %}
+
+            <div class="photo-result photo-result-{{ values.photoQuality }}">
+                <img src="/public/images/dial-gauge-{{ values.photoQuality }}@2x.png" alt="">
+                <h2>{{ values.photoQuality | capitalize }}</h2>
             </div>
         </div>
 
         <div class="govuk-grid-column-two-thirds">
-            <div id="photo-result-text-{{ result }}">
-                {{ hmpoHtml(translate("pages.photoResult." + result + "Content")) }}
-            </div>
+            {% if values.photoQuality == "good" %}
+                <p>Photos with a good rating are the most likely to be suitable for a new passport.</p>
+            {% elif values.photoQuality == "fair" %}
+                <p>Your photo may be suitable for a new passport.</p>
+            {% elif values.photoQuality == "poor" %}
+                <p>Your photo doesn’t meet all the rules and is unlikely to be suitable for a new passport.</p>
+            {% endif %}
 
-            {% if result == "poor" or result == "fair" %}
-                {% call hmpoDetails({
-                    attributes: { id: "photo-result-reasons" },
-                    summaryText: translate("pages.photoResult.findOutReason")
-                }) %}
-                    {% for error in values["photo-errors"] %}
-                        <h2>{{ translate([
-                            "photo-failures." + error.key + ".reason",
-                            "photo-failures.default.reason"
-                        ]) | safe }}</h2>
-                        {{ hmpoHtml(translate([
-                            "photo-failures." + error.key + ".explanation",
-                            "photo-failures.default.explanation"
-                        ])) }}
-                    {% endfor %}
+            {% if values.photoQuality == "poor" or values.photoQuality == "fair" %}
+                {% call hmpoDetails({ summaryText: "Find out the reason for this result" }) %}
+                    <h2>It looks like your eyes are closed</h2>
+                    <ul class="govuk-list govuk-list--bullet">
+                        <li>keep your head straight and in the centre of the photo</li>
+                        <li>you can still submit your photo if you believe it should be accepted (for example there’s a medical reason why you can’t open your eyes)</li>
+                    </ul>
+
+                    <h2>Your image and the background are difficult to tell apart</h2>
+                    <p>Try:</p>
+                    <ul class="govuk-list govuk-list--bullet">
+                        <li>standing in front of a plain, light-coloured background</li>
+                        <li>tying your hair back or brushing it down if it’s loose</li>
+                        <li>standing further away from the wall to avoid shadows</li>
+                        <li>to make sure the background has no glare or patterns</li>
+                    </ul>
                 {% endcall %}
 
-                {{ hmpoHtml(translate("pages.photoResult.next")) }}
+                <p>Next, you can:</p>
+                <ul class="govuk-list govuk-list--bullet">
+                    <li>use this photo if you think the reason for the result is not correct</li>
+                    <li>use this photo if you can’t meet the rules because of a religious or medical reason</li>
+                    <li>choose to take another photo</li>
+                </ul>
             {% endif %}
         </div>
     </div>

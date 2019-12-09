@@ -14,7 +14,6 @@ module.exports = {
     },
 
     photoMethod: {
-        formatter: 'boolean',
         validate: 'required'
     },
     photo: {

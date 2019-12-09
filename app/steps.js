@@ -31,10 +31,10 @@ module.exports = {
     },
     '/photo/choose-photo-method': {
         fields: [
-            'photo-method'
+            'photoMethod'
         ],
         next: [
-            { field: 'photo-method', value: 'photo-code', next: 'retrieve' },
+            { field: 'photoMethod', value: 'photo-code', next: '/photo/retrieve' },
             '/photo/how-to-take-a-photo'
         ]
     },
@@ -42,27 +42,34 @@ module.exports = {
         next: '/photo/upload'
     },
     '/photo/upload': {
+        controller: require('./controllers/upload'),
         fields: [
             'photo'
         ],
         next: [
-            { field: 'photo-quality', value: 'good', next: 'photo-check-result-good' },
-            { field: 'photo-quality', value: 'fair', next: 'photo-check-result-fair' },
-            { field: 'photo-quality', value: 'poor', next: 'photo-check-result-poor' },
-            'not-accepted'
+            { field: 'photoQuality', value: 'good', next: '/photo/photo-check-result-good' },
+            { field: 'photoQuality', value: 'fair', next: '/photo/photo-check-result-fair' },
+            { field: 'photoQuality', value: 'poor', next: '/photo/photo-check-result-poor' },
+            '/photo/not-accepted'
         ]
     },
     '/photo/photo-check-result-poor': {
-        template: 'photo-check-result',
+        template: 'photo/photo-check-result',
         next: '/photo/choose-submit-photo'
     },
     '/photo/photo-check-result-fair': {
-        template: 'photo-check-result',
+        template: 'photo/photo-check-result',
         next: '/photo/choose-submit-photo'
     },
     '/photo/photo-check-result-good': {
-        template: 'photo-check-result',
+        template: 'photo/photo-check-result',
         next: '/photo/choose-submit-good-photo'
+    },
+    '/photo/choose-submit-photo': {
+        next: '/filter/previous-passport'
+    },
+    '/photo/choose-submit-good-photo': {
+        next: '/filter/previous-passport'
     },
 
 

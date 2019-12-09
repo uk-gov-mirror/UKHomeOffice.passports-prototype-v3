@@ -1,0 +1,23 @@
+
+
+.photo-button {
+    display: inline-block;
+    color: white;
+}
+
+.photo-preview {
+    h2 {
+        display: none;
+    }
+    img {
+        width: 120px;
+    }
+    @include govuk-media-query ($from: tablet) {
+        img {
+            width: 150px;
+        }
+        h2 {
+            display: block;
+        }
+    }
+}
