@@ -13,12 +13,10 @@ $govuk-assets-path: '/govuk/assets/';
 @import "patterns/related-items";
 @import "patterns/sidebar";
 @import "patterns/summary-list";
-
-// Components that aren't in Frontend
-@import "components/cookie-banner";
+@import "patterns/accordions";
+@import "patterns/photo-guide";
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
-
 
 @import "node_modules/hmpo-components/all";
 

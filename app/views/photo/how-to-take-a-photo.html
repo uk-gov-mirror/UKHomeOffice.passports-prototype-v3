@@ -1,366 +1,353 @@
 
 {% extends "layout.html" %}
 
-{# TODO: import has to be here to work, doesn't work in layout.html #}
-{% from "hmpo-html/macro.njk" import hmpoHtml %}
-
 {% set hmpoTitle %}How to take a digital passport photo{% endset %}
-
-{% set adultPhotoSection %}
-    <h3>{{ translate("pages.howToTakeAPhoto.backGroundGuidanceTitle") }}</h3>
-
-    {{ hmpoHtml(translate("pages.howToTakeAPhoto.backGroundGuidance")) }}
-
-    <div class="photo-guide-photos" aria-hidden="true">
-        <ul>
-            <li>
-                <img src="{{ assetPath }}/images/image-m2-plain.jpg" alt="">
-                <div class="result">
-                    <p class="approved govuk-body-s">{{ translate("pages.howToTakeAPhoto.approved") }}</p>
-                </div>
-            </li>
-            <li>
-                <img src="{{ assetPath }}/images/image-m2-textured-background.jpg" alt="">
-                <div class="result">
-                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.texturedBackground") }}</p>
-                </div>
-            </li>
-            <li>
-                <img src="{{ assetPath }}/images/image-m2-object-in-background.jpg" alt="">
-                <div class="result">
-                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.objectInBackground") }}</p>
-                </div>
-            </li>
-        </ul>
-    </div>
-
-    <h3>{{ translate("pages.howToTakeAPhoto.lightingGuidanceTitle") }}</h3>
-
-    {{ hmpoHtml(translate("pages.howToTakeAPhoto.lightingGuidance")) }}
-
-    <div class="photo-guide-photos" aria-hidden="true">
-        <ul>
-            <li>
-                <img src="{{ assetPath }}/images/image-m1-plain.jpg" alt="">
-                <div class="result">
-                    <p class="approved govuk-body-s">{{ translate("pages.howToTakeAPhoto.approved") }}</p>
-                </div>
-            </li>
-            <li>
-                <img src="{{ assetPath }}/images/image-m1-uneven-harsh.jpg" alt="">
-                <div class="result">
-                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.shadowOnFace") }}</p>
-                </div>
-            </li>
-            <li>
-                <img src="{{ assetPath }}/images/image-m1-flash-shadow.jpg" alt="">
-                <div class="result">
-                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.shadowBehindHead") }}</p>
-                </div>
-            </li>
-        </ul>
-    </div>
-
-    <h3>{{ translate("pages.howToTakeAPhoto.positionGuidanceTitle") }}</h3>
-
-    {{ hmpoHtml(translate("pages.howToTakeAPhoto.positionGuidance")) }}
-
-    <div class="photo-guide-photos large" aria-hidden="true">
-        <ul>
-            <li>
-                <img src="{{ assetPath }}/images/good-passport-photo.jpg" alt="">
-            </li>
-        </ul>
-    </div>
-
-    <h3>{{ translate("pages.howToTakeAPhoto.faceGuidanceTitle") }}</h3>
-
-    {{ hmpoHtml(translate("pages.howToTakeAPhoto.faceGuidance")) }}
-
-    <div class="photo-guide-photos" aria-hidden="true">
-        <ul>
-            <li>
-                <img src="{{ assetPath }}/images/image-f1-plain.jpg" alt="">
-                <div class="result">
-                    <p class="approved govuk-body-s">{{ translate("pages.howToTakeAPhoto.plainExpression") }}</p>
-                </div>
-            </li>
-            <li>
-                <img src="{{ assetPath }}/images/image-f1-smiling.jpg" alt="">
-                <div class="result">
-                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.dontSmile") }}</p>
-                </div>
-            </li>
-            <li>
-                <img src="{{ assetPath }}/images/image-f1-mouth-open.jpg" alt="">
-                <div class="result">
-                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.mouthClosed") }}</p>
-                </div>
-            </li>
-        </ul>
-    </div>
-
-    <h3>{{ translate("pages.howToTakeAPhoto.headwearGuidanceTitle") }}</h3>
-
-    {{ hmpoHtml(translate("pages.howToTakeAPhoto.headwearGuidance")) }}
-
-    <div class="photo-guide-photos" aria-hidden="true">
-        <ul>
-            <li>
-                <img src="{{ assetPath }}/images/image-f2-religious-head-covering.jpg" alt="">
-                <div class="result">
-                    <p class="approved govuk-body-s">{{ translate("pages.howToTakeAPhoto.religiousHeadwear") }}</p>
-                </div>
-            </li>
-            <li>
-                <img src="{{ assetPath }}/images/image-m3-head-covering.jpg" alt="">
-                <div class="result">
-                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.fashionHeadwear") }}</p>
-                </div>
-            </li>
-            <li>
-                <img src="{{ assetPath }}/images/image-f1-hair-accessory.jpg" alt="">
-                <div class="result">
-                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.hairAccessories") }}</p>
-                </div>
-            </li>
-        </ul>
-    </div>
-
-
-    <h3>{{ translate("pages.howToTakeAPhoto.eyesGuidanceTitle") }}</h3>
-
-    {{ hmpoHtml(translate("pages.howToTakeAPhoto.eyesGuidance")) }}
-
-    <p>{{ translate("pages.howToTakeAPhoto.glassesGuidanceTitle") }}</p>
-
-    {{ hmpoHtml(translate("pages.howToTakeAPhoto.glassesGuidance")) }}
-
-    <div class="photo-guide-photos" aria-hidden="true">
-        <ul>
-            <li>
-                <img src="{{ assetPath }}/images/image-m2-plain-glasses.jpg" alt="">
-                <div class="result">
-                    <p class="approved govuk-body-s">{{ translate("pages.howToTakeAPhoto.eyesVisible") }}</p>
-                </div>
-            </li>
-            <li>
-                <img src="{{ assetPath }}/images/image-m2-glasses-tinted-covering-eyes.jpg" alt="">
-                <div class="result">
-                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.dontCoverEyes") }}</p>
-                </div>
-            </li>
-            <li>
-                <img src="{{ assetPath }}/images/image-m2-glasses-reflection.jpg" alt="">
-                <div class="result">
-                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.noGlare") }}</p>
-                </div>
-            </li>
-        </ul>
-    </div>
-
-    <h3>{{ translate("pages.howToTakeAPhoto.watchVideo") }}</h3>
-
-    <div class="videoWrapper">
-        <iframe title="how-to-take-a-photo-video" src="{{ urls["photo-guide-video"] }}" frameborder="0"
-                webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-    </div>
-{% endset %}
-
-{% set childPhotoSection %}
-
-    <h3>{{ translate("pages.howToTakeAPhoto.childLightBackgroundTitle") }}</h3>
-    {{ hmpoHtml(translate("pages.howToTakeAPhoto.childLightBackground")) }}
-
-    <p>{{ translate("pages.howToTakeAPhoto.childrenUnder1Title") }}</p>
-    {{ hmpoHtml(translate("pages.howToTakeAPhoto.childrenUnder1")) }}
-    <div class="photo-guide-photos" aria-hidden="true">
-        <ul>
-            <li>
-                <img src="{{ assetPath }}/images/image-child-1.jpg" alt="">
-                <div class="result">
-                    <p class="approved govuk-body-s">{{ translate("pages.howToTakeAPhoto.approved") }}</p>
-                </div>
-            </li>
-            <li>
-                <img src="{{ assetPath }}/images/image-child-2.jpg" alt="">
-                <div class="result">
-                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.noDummies") }}</p>
-                </div>
-            </li>
-            <li>
-                <img src="{{ assetPath }}/images/image-child-3.jpg" alt="">
-                <div class="result">
-                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.only1Person") }}</p>
-                </div>
-            </li>
-        </ul>
-    </div>
-
-    <h3>{{ translate("pages.howToTakeAPhoto.childLightingGuidanceTitle") }}</h3>
-    {{ hmpoHtml(translate("pages.howToTakeAPhoto.childLightingGuidance")) }}
-
-    <div class="photo-guide-photos" aria-hidden="true">
-        <ul>
-            <li>
-                <img src="{{ assetPath }}/images/image-m1-plain.jpg" alt="">
-                <div class="result">
-                    <p class="approved govuk-body-s">{{ translate("pages.howToTakeAPhoto.approved") }}</p>
-                </div>
-            </li>
-            <li>
-                <img src="{{ assetPath }}/images/image-m1-uneven-harsh.jpg"
-                     alt="">
-                <div class="result">
-                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.shadowOnFace") }}</p>
-                </div>
-            </li>
-            <li>
-                <img src="{{ assetPath }}/images/image-m1-flash-shadow.jpg"
-                     alt="">
-                <div class="result">
-                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.shadowBehindHead") }}</p>
-                </div>
-            </li>
-        </ul>
-    </div>
-    <h3>{{ translate("pages.howToTakeAPhoto.positionGuidanceTitle") }}</h3>
-    <p>{{ translate("pages.howToTakeAPhoto.childGuidanceTitle") }}</p>
-    {{ hmpoHtml(translate("pages.howToTakeAPhoto.childGuidance")) }}
-
-    <p>{{ translate("pages.howToTakeAPhoto.childrenUnder1Title") }}</p>
-    {{ hmpoHtml(translate("pages.howToTakeAPhoto.childrenUnder1Guidance")) }}
-
-    <div class="photo-guide-photos large" aria-hidden="true">
-        <ul>
-            <li>
-                <img src="{{ assetPath }}/images/good-passport-photo.jpg" alt="">
-            </li>
-        </ul>
-    </div>
-    <h3>{{ translate("pages.howToTakeAPhoto.expressionGuidanceTitle") }}</h3>
-    {{ hmpoHtml(translate("pages.howToTakeAPhoto.expressionGuidance")) }}
-    <p>{{ translate("pages.howToTakeAPhoto.childrenUnder6Title") }}</p>
-    {{ hmpoHtml(translate("pages.howToTakeAPhoto.childrenUnder6")) }}
-    <div class="photo-guide-photos" aria-hidden="true">
-        <ul>
-            <li>
-                <img src="{{ assetPath }}/images/image-f1-plain.jpg" alt="">
-                <div class="result">
-                    <p class="approved govuk-body-s">{{ translate("pages.howToTakeAPhoto.plainExpression") }}</p>
-                </div>
-            </li>
-            <li>
-                <img src="{{ assetPath }}/images/image-f1-smiling.jpg" alt="">
-                <div class="result">
-                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.dontSmile") }}</p>
-                </div>
-            </li>
-            <li>
-                <img src="{{ assetPath }}/images/image-f1-mouth-open.jpg" alt="">
-                <div class="result">
-                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.mouthClosed") }}</p>
-                </div>
-            </li>
-        </ul>
-    </div>
-    <h3>{{ translate("pages.howToTakeAPhoto.headwearGuidanceTitle") }}</h3>
-    {{ hmpoHtml(translate("pages.howToTakeAPhoto.headwearGuidance")) }}
-    <div class="photo-guide-photos" aria-hidden="true">
-        <ul>
-            <li>
-                <img src="{{ assetPath }}/images/image-f2-religious-head-covering.jpg"
-                     alt="">
-                <div class="result">
-                    <p class="approved govuk-body-s">{{ translate("pages.howToTakeAPhoto.religiousHeadwear") }}</p>
-                </div>
-            </li>
-            <li>
-                <img src="{{ assetPath }}/images/image-m3-head-covering.jpg"
-                     alt="">
-                <div class="result">
-                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.fashionHeadwear") }}</p>
-                </div>
-            </li>
-            <li>
-                <img src="{{ assetPath }}/images/image-f1-hair-accessory.jpg"
-                     alt="">
-                <div class="result">
-                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.hairAccessories") }}</p>
-                </div>
-            </li>
-        </ul>
-    </div>
-
-    <h3>{{ translate("pages.howToTakeAPhoto.eyesGuidanceTitle") }}</h3>
-    {{ hmpoHtml(translate("pages.howToTakeAPhoto.eyesGuidance")) }}
-
-    <p>{{ translate("pages.howToTakeAPhoto.childrenUnder1Title") }}</p>
-    {{ hmpoHtml(translate("pages.howToTakeAPhoto.eyesClosed")) }}
-
-    <p>{{ translate("pages.howToTakeAPhoto.glassesOnTitle") }}</p>
-    {{ hmpoHtml(translate("pages.howToTakeAPhoto.glassesOn")) }}
-    <div class="photo-guide-photos" aria-hidden="true">
-        <ul>
-            <li>
-                <img src="{{ assetPath }}/images/image-m2-plain-glasses.jpg"
-                     alt="">
-                <div class="result">
-                    <p class="approved govuk-body-s">{{ translate("pages.howToTakeAPhoto.eyesVisible") }}</p>
-                </div>
-            </li>
-            <li>
-                <img src="{{ assetPath }}/images/image-m2-glasses-tinted-covering-eyes.jpg"
-                     alt="">
-                <div class="result">
-                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.dontCoverEyes") }}</p>
-                </div>
-            </li>
-            <li>
-                <img src="{{ assetPath }}/images/image-m2-glasses-reflection.jpg"
-                     alt="">
-                <div class="result">
-                    <p class="failed govuk-body-s">{{ translate("pages.howToTakeAPhoto.noGlare") }}</p>
-                </div>
-            </li>
-        </ul>
-    </div>
-{% endset %}
-
-{% set sections = [] %}
-{%- set sections = sections | push({
-    heading: { text: translate("pages.howToTakeAPhoto.adultTitle") },
-    content: { html: adultPhotoSection }
-}) %}
-
-{%- set sections = sections | push({
-    heading: { text: translate("pages.howToTakeAPhoto.childTitle") },
-    content: { html: childPhotoSection }
-}) %}
-
 
 {% block mainContent %}
     <h1 id="header">{{ hmpoTitle }}</h1>
 
-    <p>{{ translate("pages.howToTakeAPhoto.guidance") }}</p>
+    <p>Use this guidance to take a digital photo that meets the passport photo rules.</p>
 
-    {{ hmpoInsetText({
-        text: translate("pages.howToTakeAPhoto.photoRules")
-    }) }}
+    {% call hmpoInsetText() %}
+        If your photo doesn’t meet the rules you may have problems with your application or when you travel.
+    {% endcall %}
+
+
+    {% set adultPhotoSection %}
+
+        <h3>Use a plain light-coloured background</h3>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>no texture or patterns</li>
+            <li>no objects behind you</li>
+        </ul>
+
+        <ul class="photo-guide-photos" aria-hidden="true">
+            <li>
+                <img src="/public/images/image-m2-plain.jpg" alt="">
+                <p class="result approved">Approved</p>
+            </li>
+            <li>
+                <img src="/public/images/image-m2-textured-background.jpg" alt="">
+                <p class="result failed">Textured background</p>
+            </li>
+            <li>
+                <img src="/public/images/image-m2-object-in-background.jpg" alt="">
+                <p class="result failed">Object in background</p>
+            </li>
+        </ul>
+
+
+        <h3>Even lighting and no shadows</h3>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>balanced light - no shadows on your face or behind you</li>
+            <li>it’s best to use natural sunlight, for example facing a window</li>
+        </ul>
+
+        <ul class="photo-guide-photos" aria-hidden="true">
+            <li>
+                <img src="/public/images/image-m1-plain.jpg" alt="">
+                <p class="result approved">Approved</p>
+            </li>
+            <li>
+                <img src="/public/images/image-m1-uneven-harsh.jpg" alt="">
+                <p class="result failed">Shadow on face</p>
+            </li>
+            <li>
+                <img src="/public/images/image-m1-flash-shadow.jpg" alt="">
+                <p class="result failed">Shadow behind head</p>
+            </li>
+        </ul>
+
+
+        <h3>Stand in the right position</h3>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>stand 0.5 metres (1.5 feet) away from your background (this reduces shadow)</li>
+            <li>the person taking the photo should stand 1.5 metres (5 feet) from you</li>
+            <li>include your head, shoulders and upper body in the photo</li>
+            <li>don’t crop your photo - it will be done for you</li>
+        </ul>
+
+        <ul class="photo-guide-photos large" aria-hidden="true">
+            <li>
+                <img src="/public/images/good-passport-photo.jpg" alt="">
+            </li>
+        </ul>
+
+
+        <h3>Plain expression and face in full view</h3>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>face front on to the camera</li>
+            <li>don’t smile or frown - eyes open and mouth closed</li>
+            <li>your photo should be a good likeness and taken in the last month</li>
+        <ul>
+
+        <ul class="photo-guide-photos" aria-hidden="true">
+            <li>
+                <img src="/public/images/image-f1-plain.jpg" alt="">
+                <p class="result approved">Plain expression</p>
+            </li>
+            <li>
+                <img src="/public/images/image-f1-smiling.jpg" alt="">
+                <p class="result failed">Don’t smile</p>
+            </li>
+            <li>
+                <img src="/public/images/image-f1-mouth-open.jpg" alt="">
+                <p class="result failed">Keep your mouth closed</p>
+            </li>
+        </ul>
+
+
+        <h3>No headwear</h3>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>unless it’s for religious or medical reasons</li>
+        <ul>
+
+        <ul class="photo-guide-photos" aria-hidden="true">
+            <li>
+                <img src="/public/images/image-f2-religious-head-covering.jpg" alt="">
+                <p class="result approved">Religious headwear</p>
+            </li>
+            <li>
+                <img src="/public/images/image-m3-head-covering.jpg" alt="">
+                <p class="result failed">No fashion headwear</p>
+            </li>
+            <li>
+                <img src="/public/images/image-f1-hair-accessory.jpg" alt="">
+                <p class="result failed">No hair accessories</p>
+            </li>
+        </ul>
+
+
+        <h3>Eyes fully visible</h3>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>hair away from your face and eyes</li>
+            <li>take your glasses off (if you can)</li>
+        </ul>
+        <p>If you need to keep glasses on:</p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>your eyes must be visible without any glare or reflections</li>
+            <li>no sunglasses or tinted glasses</li>
+        </ul>
+
+        <ul class="photo-guide-photos" aria-hidden="true">
+            <li>
+                <img src="/public/images/image-m2-plain-glasses.jpg" alt="">
+                <p class="result approved">Eyes fully visible</p>
+            </li>
+            <li>
+                <img src="/public/images/image-m2-glasses-tinted-covering-eyes.jpg" alt="">
+                <p class="result failed">Don’t cover eyes with glasses</p>
+            </li>
+            <li>
+                <img src="/public/images/image-m2-glasses-reflection.jpg" alt="">
+                <p class="result failed">No glare on glasses</p>
+            </li>
+        </ul>
+
+
+        <h3>Watch ‘How to take a digital passport photo’</h3>
+
+        <div class="videoWrapper">
+            <iframe src="https://www.youtube.com/embed/JWbfnOYmx6I?rel=0" frameborder="0"
+                    webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        </div>
+
+    {% endset %}
+
+
+
+
+    {% set childPhotoSection %}
+
+        <h3>Use a plain light-coloured background</h3>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>no texture or patterns</li>
+            <li>children must be on their own in the photo</li>
+            <li>babies must not be holding toys or dummies</li>
+        </ul>
+
+        <p>Children under 1:</p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>you can support their head with your hand but your hand must not be visible</li>
+        </ul>
+
+        <ul class="photo-guide-photos" aria-hidden="true">
+            <li>
+                <img src="/public/images/image-child-1.jpg" alt="">
+                <p class="result approved">Approved</p>
+            </li>
+            <li>
+                <img src="/public/images/image-child-2.jpg" alt="">
+                <p class="result failed">No dummies</p>
+            </li>
+            <li>
+                <img src="/public/images/image-child-3.jpg" alt="">
+                <p class="result failed">1 person only in photo</p>
+            </li>
+        </ul>
+
+
+        <h3>Even lighting and no shadows</h3>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>balanced light - no shadows on your child’s face or behind them</li>
+            <li>it’s best to use natural sunlight, for example facing a window</li>
+        </ul>
+
+        <ul class="photo-guide-photos" aria-hidden="true">
+            <li>
+                <img src="/public/images/image-m1-plain.jpg" alt="">
+                <p class="result approved">Approved</p>
+            </li>
+            <li>
+                <img src="/public/images/image-m1-uneven-harsh.jpg" alt="">
+                <p class="result failed">Shadow on face</p>
+            </li>
+            <li>
+                <img src="/public/images/image-m1-flash-shadow.jpg" alt="">
+                <p class="result failed">Shadow behind head</p>
+            </li>
+        </ul>
+
+
+        <h3>Stand in the right position</h3>
+
+        <p>When you take the photo of your child:</p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>they should stand 0.5 metres (1.5 feet) from the background (this reduces shadow)</li>
+            <li>you need to stand far enough away so that their head, shoulders and upper body are included in the photo</li>
+            <li>don’t crop the photo - it will be done for you</li>
+        </ul>
+
+        <p>Children under 1:
+        <ul class="govuk-list govuk-list--bullet">
+            <li>lay them on a plain light-coloured sheet and take the photo from above</li>
+        </ul>
+
+        <ul class="photo-guide-photos large" aria-hidden="true">
+            <li>
+                <img src="/public/images/good-passport-photo.jpg" alt="">
+            </li>
+        </ul>
+
+
+        <h3>Plain expression and face in full view</h3>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>face front on to the camera</li>
+            <li>no smile or frown - eyes open and mouth closed</li>
+            <li>your child’s photo should be a good likeness and taken in the last month</li>
+        </ul>
+
+        <p>Children under 6:</p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>don’t have to look directly at the camera</li>
+            <li>don’t need to have a plain expression</li>
+        </ul>
+
+        <ul class="photo-guide-photos" aria-hidden="true">
+            <li>
+                <img src="/public/images/image-f1-plain.jpg" alt="">
+                <p class="result approved">Plain expression</p>
+            </li>
+            <li>
+                <img src="/public/images/image-f1-smiling.jpg" alt="">
+                <p class="result failed">Don’t smile</p>
+            </li>
+            <li>
+                <img src="/public/images/image-f1-mouth-open.jpg" alt="">
+                <p class="result failed">Keep your mouth closed</p>
+            </li>
+        </ul>
+
+
+        <h3>No headwear</h3>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>unless it’s for religious or medical reasons</li>
+        </ul>
+
+        <ul class="photo-guide-photos" aria-hidden="true">
+            <li>
+                <img src="/public/images/image-f2-religious-head-covering.jpg" alt="">
+                <p class="result approved">Religious headwear</p>
+            </li>
+            <li>
+                <img src="/public/images/image-m3-head-covering.jpg" alt="">
+                <p class="result failed">No fashion headwear</p>
+            </li>
+            <li>
+                <img src="/public/images/image-f1-hair-accessory.jpg" alt="">
+                <p class="result failed">No hair accessories</p>
+            </li>
+        </ul>
+
+
+        <h3>Eyes fully visible</h3>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>hair away from your face and eyes</li>
+            <li>take your glasses off (if you can)</li>
+        </ul>
+
+        <p>Children under 1:</p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>don’t have to have their eyes open</li>
+        </ul>
+
+        <p>If your child needs to keep their glasses on:</p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>their eyes must be visible without any glare or reflections</li>
+        </ul>
+
+        <ul class="photo-guide-photos" aria-hidden="true">
+            <li>
+                <img src="/public/images/image-m2-plain-glasses.jpg"
+                        alt="">
+                <p class="result approved">Eyes fully visible</p>
+            </li>
+            <li>
+                <img src="/public/images/image-m2-glasses-tinted-covering-eyes.jpg"
+                        alt="">
+                <p class="result failed">Don’t cover eyes with glasses</p>
+            </li>
+            <li>
+                <img src="/public/images/image-m2-glasses-reflection.jpg"
+                        alt="">
+                <p class="result failed">No glare on glasses</p>
+            </li>
+        </ul>
+
+    {% endset %}
+
 
     {{ govukAccordion({
         id: "photo-guidance-accordion",
-        items: sections
+        items: [
+            {
+                heading: { text: "Photos for adults" },
+                content: { html: adultPhotoSection }
+            },
+            {
+                heading: { text: "Photos for babies and children" },
+                content: { html: childPhotoSection }
+            }
+        ]
     }) }}
 
     {% call hmpoForm(ctx) %}
         {{ hmpoSubmit(ctx) }}
     {% endcall %}
 
-    {{ hmpoDetails({
-        summaryText: translate("pages.howToTakeAPhoto.cantMeetRules"),
-        text: translate("pages.howToTakeAPhoto.overrideRules")
-    }) }}
+    {% call hmpoDetails({ summaryText: "I can’t meet the photo rules" }) %}
+        You can still use a photo if you can’t meet the photo rules because of a religious or medical reason.
+        We’ll ask you to explain the circumstances when you submit your photo.
+    {% endcall %}
 
     {{ hmpoPrintPage({ text: translate("buttons.print") }) }}
 
