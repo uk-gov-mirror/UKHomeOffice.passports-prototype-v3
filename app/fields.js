@@ -18,6 +18,10 @@ module.exports = {
     },
     photo: {
     },
+    submitPhoto: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
 
     previousPassport: {
         formatter: 'boolean',

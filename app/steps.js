@@ -69,7 +69,13 @@ module.exports = {
         next: '/filter/previous-passport'
     },
     '/photo/choose-submit-good-photo': {
-        next: '/filter/previous-passport'
+        fields: [
+            'submitPhoto'
+        ],
+        next: [
+            { field: 'submitPhoto', value: false, next: '/photo/choose-photo-method' },
+            '/filter/previous-passport'
+        ]
     },
 
 
