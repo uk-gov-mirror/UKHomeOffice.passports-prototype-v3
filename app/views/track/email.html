@@ -1,0 +1,31 @@
+
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Application details{% endset %}
+
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoText(ctx, {
+            id: "trackEmail",
+            label: {
+                text: "Email",
+                classes: "govuk-label--m"
+            }
+        }) }}
+
+        {{ hmpoDate(ctx, {
+            id: "trackDateOfBirth",
+            legend: {
+                text: "Applicant’s date of birth",
+                classes: "govuk-fieldset__legend--m"
+            },
+            hint: "For example, 31 08 1970"
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+{% endblock %}

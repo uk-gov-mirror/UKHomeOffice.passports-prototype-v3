@@ -8,7 +8,7 @@ const addressLines = [
 let manualAddressLines = addressLines.slice();
 manualAddressLines.push('addressStateProvince');
 
-module.exports = {
+const apply = {
     '/filter': {
         entryPoint: true,
         resetJourney: true,
@@ -381,4 +381,32 @@ module.exports = {
     },
     '/apply/costs': {
     }
+}
+
+const tracking = {
+    '/track': {
+        entryPoint: true,
+        skip: true,
+        next: '/track/reference'
+    },
+    '/track/reference': {
+        fields: [
+            'appReference'
+        ],
+        next: '/track/email'
+    },
+    '/track/email': {
+        fields: [
+            'trackDateOfBirth',
+            'trackEmail'
+        ],
+        next: '/track/view'
+    },
+    '/track/view': {
+    }
+}
+
+module.exports = {
+    apply,
+    tracking
 }

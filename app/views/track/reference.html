@@ -1,0 +1,30 @@
+
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Sign in{% endset %}
+
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+    <p>You’ll find your passport application reference in the confirmation email.
+    You can only use this service if your reference begins with PEX or POD.</p>
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoText(ctx, {
+            id: "appReference",
+            label: {
+                text: "Application reference"
+            },
+            hint: "For example PEX 123 456 7890"
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+    {% call hmpoDetails({ summaryText: "My reference number doesn’t begin with PEX or POD" }) %}
+        <p>You should <a href="https://passportofficeforms.service.gov.uk/_/track-application.ofml">use a different application tracker</a> if you filled a paper form.
+        This includes the Post Office Check and Send service.</p>
+    {% endcall %}
+
+{% endblock %}

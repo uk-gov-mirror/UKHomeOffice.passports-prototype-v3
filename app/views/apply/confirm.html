@@ -117,7 +117,7 @@
         } if not values.ageGroup == "under12",
         {
             key: { text: "Photo" },
-            value: { html: "<img src=\"/public/images/photo.jpg\" class=\"photo\" alt=\"Your photo\"/>" }
+            value: { html: "<img src=\"" + values.photo + "\" class=\"photo\" alt=\"Your photo\"/>" }
         }
     ] | filter }) }}
 
