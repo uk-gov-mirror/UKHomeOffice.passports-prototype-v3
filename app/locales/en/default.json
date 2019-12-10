@@ -5,7 +5,8 @@
         "backLink": "Back"
     },
     "buttons": {
-        "next": "Continue"
+        "next": "Continue",
+        "print": "Print page"
     },
     "fields": {
       "date-day": {

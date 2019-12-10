@@ -1,0 +1,40 @@
+
+// side-by-side photo and guague on mobile:
+.photo-result-sidebyside {
+    .sidebar {
+        display: inline-block;
+        width: 150px;
+        @include govuk-media-query ($from: tablet) {
+            display: block;
+            width: (100% / 3);
+        }
+    }
+
+    .photo-result {
+        display: inline-block;
+    }
+}
+
+.photo-result {
+    text-align: center;
+    width: 100%;
+    max-width: 190px;
+
+    h2 {
+        @extend .govuk-heading-l;
+        margin-top: govuk-spacing(2);
+        margin-bottom: govuk-spacing(7);
+    }
+    img {
+        width: 100%;
+    }
+    &.photo-result-good h2 {
+        color: govuk-colour("turquoise");
+    }
+    &.photo-result-fair h2 {
+        color: govuk-colour("black");
+    }
+    &.photo-result-poor h2 {
+        color: govuk-colour("red");
+    }
+}
