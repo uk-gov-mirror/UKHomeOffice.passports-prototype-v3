@@ -149,7 +149,46 @@ module.exports = {
         next: '/filter/summary'
     },
     '/filter/summary': {
-        next: '/apply/confirm'
+        next: '/apply/passport-details'
+    },
+
+    '/apply/passport-details': {
+        fields: [
+            'passportNumber',
+            'passportExpiry',
+        ],
+        next: '/apply/name'
+    },
+    '/apply/old-passport-details': {
+        fields: [
+            'oldPassportNumber',
+            'oldPassportExpiry'
+        ],
+        next: '/apply/name'
+    },
+    '/apply/optional-passport-details': {
+        fields: [
+            'optionalPassportNumber',
+            'optionalPassportExpiry'
+        ],
+        next: '/apply/name'
+    },
+    '/apply/name': {
+        fields: [
+            'title',
+            'otherTitle',
+            'firstName',
+            'lastName',
+            'changeOfName'
+        ],
+        revalidateIf: [ 'adult-or-child' ],
+        next: [
+            { field: 'change-of-name', value: true, next: [
+                { field: 'adult-or-child', value: 'child', next: '/apply/previous-names' },
+                '/apply/change-of-name'
+            ]},
+            '/apply/previous-names'
+        ]
     },
 
     '/apply/confirm': {
