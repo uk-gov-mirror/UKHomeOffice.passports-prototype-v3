@@ -35,16 +35,16 @@ class DefaultController extends DateMixin(BaseController) {
             const dobAdult = moment().subtract(16, 'years').format('YYYY-MM-DD')
             const dobVeteran = '1929-09-03'
 
-            if (dateOfBirth >= dobVeteran) {
+            if (dateOfBirth <= dobVeteran) {
                 ageGroup = 'veteran'
                 adultOrChild = 'adult'
-            } else if (dateOfBirth >= dobAdult) {
+            } else if (dateOfBirth <= dobAdult) {
                 ageGroup = 'adult'
                 adultOrChild = 'adult'
-            } else if (dateOfBirth >= dobRising16) {
+            } else if (dateOfBirth <= dobRising16) {
                 ageGroup = 'rising16'
                 adultOrChild = 'adult'
-            } else if (dateOfBirth >= dob12to15) {
+            } else if (dateOfBirth <= dob12to15) {
                 ageGroup = '12to15'
                 adultOrChild = 'child'
             } else {
