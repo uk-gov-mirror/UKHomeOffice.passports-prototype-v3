@@ -135,9 +135,7 @@ module.exports = {
         display: {
             formatter: 'title'
         },
-        validate: 'required',
-        childTitles: ['Master', 'Miss', 'Other'],
-        adultTitles: ['Mr', 'Mrs', 'Miss', 'Ms', 'Other']
+        validate: 'required'
     },
     otherTitle: {
         validate: [
