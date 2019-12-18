@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}How did you change your name?{% endset %}
+
+{% block mainContent %}
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoRadios(ctx, {
+            id: "nameChangeReason",
+            legend: {
+                text: hmpoTitle
+            },
+            isPageHeading: true,
+            hint: "We need to know how you changed your name so we can tell you which documents to send.",
+            items: [
+                { value: "marriage", text: "Marriage or civil partnership" },
+                { value: "divorce", text: "Divorce or dissolution" },
+                { value: "gender", text: "Gender transition" },
+                { value: "other", text: "I changed my name another way" }
+            ]
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}

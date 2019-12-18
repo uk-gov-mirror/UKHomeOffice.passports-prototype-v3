@@ -1,0 +1,45 @@
+{# {% from "components/previous-names.njk" import hmpoPreviousNames %} #}
+
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Have you ever used any other names?{% endset %}
+
+{% set hint %}
+    {% if ageGroup.child %}
+        For example a name you were given at birth and changed later.
+    {% else %}
+        For example a maiden name, a previous married name or a name you were given at birth and changed later.
+    {% endif %}
+    You must tell us every name you’ve used.
+{% endset %}
+
+{# {% set previousNamesConditional %}
+        {{ hmpoPreviousNames(ctx, {
+            previousNamesFields: previousNamesFields,
+            previousNameFieldLimit: previousNameFieldLimit
+        }) }}
+{% endset %} #}
+
+{% block hmpoContent %}
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoRadios(ctx, {
+            id: "previousNames",
+            legend: {
+                text: hmpoTitle
+            },
+            isPageHeading: true,
+            inline: true,
+            fieldset: { classes: "govuk-grid-column-two-thirds" },
+            hint:  hint,
+            conditionals: {
+                "true": { id: "previous-names-reveal", html: previousNamesConditional }
+            }
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}

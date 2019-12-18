@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Contact details{% endset %}
+
+{% block mainContent %}
+
+    <h1 id="header">{{ hmpoTitle }}</h1>
+    <p>It’s best to use a phone that you’ll have access to. We may contact you if there’s a problem with your
+        application.</p>
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoText(ctx, {
+            id: "contactEmail",
+            attributes: { autocapitalize: "off" },
+            label: {
+                text:"Email" ,
+                classes: "govuk-label--m"
+                }
+        }) }}
+        {{ hmpoText(ctx, {
+            id: "contactEmailConfirm",
+            attributes: { autocapitalize: "off" },
+            noPaste: "true",
+            label: {
+                text:"Confirm your email" ,
+                classes: "govuk-label--m"
+                }
+        }) }}
+
+        {% call hmpoErrorGroup(ctx, {
+            id: "contactPhoneGroup",
+            legend: {
+                text: "Mobile or home phone",
+                classes: "govuk-label--m"
+            }
+        }) %}
+            {% if values.isUKApplication %}
+                {{ hmpoPhone(ctx, {
+                    id: "contactPhone",
+                    label: { classes: "govuk-visually-hidden" },
+                    classes: "govuk-!-width-one-half"
+                }) }}
+            {% else %}
+                <div class="international-phone">
+                    {{ hmpoPhone(ctx, {
+                        id: "diallingCodeContact",
+                        label: { classes: "govuk-visually-hidden" },
+                        classes: "govuk-input--width-4"
+
+                    }) }}
+                    {{ hmpoPhone(ctx, {
+                        id: "contactPhone",
+                        label: { classes: "govuk-visually-hidden" },
+                        classes: "govuk-input--width-10"
+                    }) }}
+                </div>
+            {% endif %}
+        {% endcall %}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}

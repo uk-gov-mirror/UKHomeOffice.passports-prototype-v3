@@ -1,3 +1,13 @@
+const addressLines = [
+    'addressLine1',
+    'addressLine2',
+    'addressTown',
+    'addressPostcode'
+];
+
+let manualAddressLines = addressLines.slice();
+manualAddressLines.push('addressStateProvince');
+
 module.exports = {
     '/filter': {
         entryPoint: true,
@@ -190,7 +200,114 @@ module.exports = {
             '/apply/previous-names'
         ]
     },
-
+    '/apply/change-of-name': {
+        fields: [
+            'nameChangeReason'
+        ],
+        revalidateIf: [ 'change-of-name' ],
+        next: '/apply/previous-names'
+    },
+    '/apply/previous-names': {
+        fields: [
+            'previousNames'
+        ],
+        revalidateIf: [ 'change-of-name' ],
+        next: '/apply/gender'
+    },
+    '/apply/gender': {
+        fields: [
+            'gender'
+        ],
+        next: '/apply/birth',
+    },
+    '/apply/birth': {
+        fields: [
+            'bornInUK',
+            'countryOfBirth',
+            'townOfBirth'
+        ],
+        next: [
+            { field: 'veteran', value: true, next: 'free-passport' },
+            { field: 'applicationType', value: 'first', next: [
+                { field: 'naturalised', value: true, next: '/apply/naturalisation-details' },
+                '/apply/family-details'
+            ]},
+            { field: 'adultOrChild', value: 'child', next: '/apply/parents-details' },
+            { field: 'isUKApplication', value: false, next: '/apply/address-manual' },
+            // '/apply/address'
+            '/apply/address-manual'
+        ]
+    },
+    '/apply/address-manual': {
+        allowedErrors: ['address-not-found', 'address-invalid'],
+        fields: manualAddressLines,
+        // prereqs: ['address'],
+        revalidateIf: [ 'address-postcode', 'country-of-application' ],
+        next: [
+            { field: 'urgent', value: true, next: [
+                { field: 'address-postcode', op: (fieldValue) => fieldValue && fieldValue.startsWith('BF'), next: 'hm-forces' },
+                '/apply/contact-details'
+            ]},
+            '/apply/contact-details'
+        ]
+    },
+    '/apply/contact-details': {
+        fields: [
+            'contact-email',
+            'contact-email-confirm',
+            'dialling-code-contact',
+            'contact-phone',
+            'contact-phone-group'
+        ],
+        next: '/apply/contact-preferences'
+    },
+    '/apply/contact-preferences': {
+        // controller: require('../../controllers/contact-preferences'),
+        fields: [
+            'contactPrefsEmail',
+            'contactPrefsSMS',
+            'diallingCodeSMS',
+            'mobilePhone',
+            'mobilePhoneGroup'
+        ],
+        next: '/apply/new-passport'
+    },
+    '/apply/new-passport': {
+        // controller: require('../../controllers/new-passport'),
+        fields: [
+            'largePassport',
+            'braille'
+        ],
+        revalidateIf: [ 'veteran' ],
+        next: [
+            { field: 'age-subgroup', value: '0-11', next: '/apply/relationship-to-applicant'},
+            '/apply/sign'
+        ]
+    },
+    '/apply/sign': {
+        fields: [
+            'canSign',
+            'noSignReason'
+        ],
+        next: [
+            { field: 'urgent', value: true, next: '/apply/confirm' },
+            { field: 'isUKApplication', value: true, next: [
+                { field: 'adultOrChild', value: 'child', next: '/apply/relationship-to-applicant' },
+                '/apply/who-for'
+            ]},
+            { field: 'adultOrChild', value: 'child', next: '/apply/relationship-to-applicant' },
+            '/apply/who-for'
+        ]
+    },
+    '/apply/who-for': {
+        fields: [
+            'thirdParty'
+        ],
+        next: [
+            { field: 'thirdParty', value: true, next: '/apply/relationship-to-applicant' },
+            '/apply/confirm'
+        ]
+    },
     '/apply/confirm': {
         next: '/apply/costs'
     },
