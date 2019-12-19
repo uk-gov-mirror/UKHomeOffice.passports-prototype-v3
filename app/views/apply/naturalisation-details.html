@@ -1,0 +1,33 @@
+
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Naturalisation or registration details{% endset %}
+
+{% block mainContent %}
+    <h1 id="header">{{ hmpoTitle }}</h1>
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoText(ctx, {
+            id: "naturalisationCertificateNumber",
+            label: {
+                text: "Certificate number",
+                classes: "govuk-label--m"
+            },
+            hint: "For example, 1091644"
+        }) }}
+
+        {{ hmpoDate(ctx, {
+            id: "naturalisationIssueDate",
+            legend: {
+                text: "Date of issue",
+                classes: "govuk-fieldset__legend--m"
+            },
+            hint: "For example, 25 08 2017"
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}

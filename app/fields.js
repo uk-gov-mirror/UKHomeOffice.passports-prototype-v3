@@ -200,6 +200,118 @@ module.exports = {
             { type: 'maxlength', arguments: 25 }
         ]
     },
+    naturalisationCertificateNumber: {
+        validate: [
+            'required',
+            { type: 'maxlength', arguments: 12 },
+            // 'alphanum'
+        ]
+    },
+    naturalisationIssueDate: {
+        validate: [
+            'required',
+            'date',
+            { type: 'before' }
+        ],
+        display: {
+            formatter: 'day-month-year'
+        },
+        autocomplete: 'nat-reg-date'
+    },
+    parent1FirstName: {
+        validate: [
+            { type: 'maxlength', arguments: 30 },
+            // 'firstname'
+        ],
+        display: {
+            formatter: 'name'
+        }
+    },
+    parent1LastName: {
+        validate: [
+            { type: 'minlength', arguments: 2 },
+            { type: 'maxlength', arguments: 30 },
+            // 'surname'
+        ]
+    },
+    parent1DateOfBirth: {
+        validate: [
+            'date',
+            // { type: 'before' },
+            // { type: 'after', arguments: config.eligibility.after }
+        ],
+        autocomplete: 'parent1-bday',
+        display: {
+            formatter: 'day-month-year',
+            // edit: false
+        }
+    },
+    parent1NoDetailsReason: {
+        validate: [
+            { type: 'maxlength', arguments: 250 },
+            'alphanumex1'
+        ],
+        display: {
+            // edit: false
+        }
+    },
+    parent2FirstName: {
+        validate: [
+            { type: 'maxlength', arguments: 30 },
+            // 'firstname'
+        ],
+        display: {
+            formatter: 'name'
+        }
+    },
+    parent2LastName: {
+        validate: [
+            { type: 'minlength', arguments: 2 },
+            { type: 'maxlength', arguments: 30 },
+            // 'surname'
+        ]
+    },
+    parent2DateOfBirth: {
+        validate: [
+            'date',
+            // { type: 'before' },
+            // { type: 'after', arguments: config.eligibility.after }
+        ],
+        autocomplete: 'parent2-bday',
+        display: {
+            formatter: 'day-month-year',
+            // edit: false
+        }
+    },
+    parent2NoDetailsReason: {
+        validate: [
+            { type: 'maxlength', arguments: 250 },
+            // 'alphanumex1'
+        ],
+        display: {
+            // edit: false
+        }
+    },
+    parentsMarried: {
+        // formatter: 'boolean-unknown',
+        validate: 'required',
+        display: {
+            // edit: false
+        }
+    },
+    parentsMarriageDate: {
+        validate: [
+            'date',
+            { type: 'before' },
+            // { type: 'after', arguments: config.eligibility.after }
+        ],
+        autocomplete: 'parents-marriage-bday',
+        display: {
+            formatter: 'day-month-year',
+            // edit: false
+        },
+        dependent: 'parentsMarried'
+    },
     addressLine1: {
         validate: [
             'required',

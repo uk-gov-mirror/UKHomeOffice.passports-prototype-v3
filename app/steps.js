@@ -159,7 +159,17 @@ module.exports = {
         next: '/filter/summary'
     },
     '/filter/summary': {
-        next: '/apply/passport-details'
+        // next: [
+        //     '/apply/passport-details'
+        // ]
+        next: [
+            { field: 'previousPassport', value: true, next: [
+                { field: 'applicationType', value: 'first', next: '/apply/old-passport-details' },
+                { field: 'applicationType', value: 'replace', next: '/apply/optional-passport-details' },
+                '/apply/passport-details'
+            ]},
+            '/apply/name'
+        ]
     },
 
     '/apply/passport-details': {
@@ -238,6 +248,40 @@ module.exports = {
             '/apply/address-manual'
         ]
     },
+    '/apply/naturalisation-details': {
+        fields: [
+            'naturalisationCertificateNumber',
+            'naturalisationIssueDate'
+        ],
+        next: '/apply/family-details'
+    },
+    '/apply/family-details': {
+        next: '/apply/parents-details'
+    },
+    '/apply/parents-details': {
+        // controller: require('../../controllers/parents'),
+        fields: [
+            'parent1FirstName',
+            'parent1LastName',
+            'parent1DateOfBirth',
+            'parent1NoDetailsReason',
+            'parent2FirstName',
+            'parent2LastName',
+            'parent2DateOfBirth',
+            'parent2NoDetailsReason',
+            'parentsMarried',
+            'parentsMarriageDate'
+        ],
+        next: [
+            { field: 'application-type', value: 'first', next: [
+                { field: ['date-of-birth', 'naturalised', 'application-type', 'country-of-birth'],
+                    op: (fieldValues, req) => Euss.isEligible(fieldValues, req), next: 'parents-eu-settled-status' },
+                'parent1-details'
+            ]},
+            'parent1-details'
+        ]
+    },
+
     '/apply/address-manual': {
         allowedErrors: ['address-not-found', 'address-invalid'],
         fields: manualAddressLines,
