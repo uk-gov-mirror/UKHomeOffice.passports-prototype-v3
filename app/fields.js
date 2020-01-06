@@ -457,6 +457,10 @@ module.exports = {
         formatter: 'boolean',
         validate: 'required'
     },
+    secureReturn: { // TODO: consolidate `secureReturn` and `secureDelivery` fields?
+        formatter: 'boolean',
+        validate: 'required'
+    },
 
 
     appReference: {

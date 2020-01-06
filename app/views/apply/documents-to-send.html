@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}What you need to send{% endset %}
+
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>Documents list.</p>
+
+    {% call hmpoForm(ctx) %}
+        {# {% call dcsDocuments(ctx, ctx("documents-response")) %}
+            {% if ctx("show-documents-to-send-question") %}
+                {{ hmpoRadios(ctx, {
+                    id: "documents-to-send"
+                }) }}
+            {% endif %}
+        {% endcall %} #}
+
+        {{ hmpoSubmit(ctx) }}
+    {% endcall %}
+
+    {{ hmpoPrintPage({ text: translate("buttons.print") }) }}
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Confirm your identity{% endset %}
+
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>You’ll need to ask someone to check this photo to <a href="/help/confirming-identity/how-to-confirm-identity">confirm your identity</a>.
+        {% if values.applicationType == 'replace' %}This is because you’re replacing a lost or stolen passport.{% endif %}</p>
+    <p>The way they can do this has changed - they can do it online. They don’t have to sign a printed photo.</p>
+    <p>We’ll tell you what you need to do after you’ve paid.</p>
+
+    {# TODO: Override/remove blue bar + should have diff alt and title than photo-preview #}
+    {% include "../includes/photo-preview.html" %}
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoSubmit(ctx) }}
+    {% endcall %}
+
+{% endblock %}

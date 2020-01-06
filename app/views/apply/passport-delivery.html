@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}How should we return your documents?{% endset %}
+
+{% set hint %}
+    <p>
+        {% if values.previousPassport === false %}
+            Choose how your documents are sent back to you.
+        {% else %}
+            {% if values.lost %}
+                Choose how your documents are sent back to you.
+            {% else %}
+                Choose how your old passport and any extra documents are sent back to you.
+            {% endif %}
+        {% endif %}
+        They won’t be in the same envelope as your new passport.
+    </p>
+{% endset %}
+
+{% block mainContent %}
+
+    {% call hmpoForm(ctx) %}
+
+            {{ hmpoRadios(ctx, {
+                id: "secureReturn",
+                legend: {
+                    text: hmpoTitle
+                },
+                isPageHeading: true,
+                hint: {
+                    html: hint
+                },
+                items: [
+                    {
+                        value: true,
+                        text: "Secure delivery (" + values.deliveryCost | currency + " extra)"
+                    }, {
+                        value: false,
+                        text: "Standard post (free)"
+                    }
+                ]
+            }) }}
+
+            {% call hmpoInsetText() %}
+                We’ll send your new passport by secure delivery at no extra cost.
+            {% endcall %}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}
