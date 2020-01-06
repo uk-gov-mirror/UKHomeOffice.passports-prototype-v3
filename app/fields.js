@@ -255,6 +255,63 @@ module.exports = {
             // edit: false
         }
     },
+    parent1TownOfBirth: {
+        validate: [
+            { type: 'minlength', arguments: 2 },
+            { type: 'maxlength', arguments: 25 },
+            // 'townOfBirth'
+        ],
+        display: {
+            // edit: false
+        }
+    },
+    parent1CountryOfBirth: {
+        items: require('./data/countries'), // TODO: replace with birth countries library
+        validate: 'required',
+        // options: [],
+        display: {
+            formatter: 'country-name',
+            // edit: false
+        }
+    },
+    parent1Nationality: {
+        validate: [
+            { type: 'minlength', arguments: 2 },
+            { type: 'maxlength', arguments: 19 },
+            // 'nationality'
+        ],
+        display: {
+            // edit: false
+        }
+    },
+    parent1HasPassport: {
+        // formatter: 'boolean-unknown',
+        validate: 'required'
+    },
+    parent1PassportNumber: {
+        validate: [
+            { type: 'minlength', arguments: 2 },
+            { type: 'maxlength', arguments: 9 },
+            'alphanum'
+        ],
+        dependent: 'parent1-has-passport',
+        display: {
+            // edit: false
+        }
+    },
+    parent1PassportIssueDate: {
+        validate: [
+            'date',
+            // { type: 'before' },
+            // { type: 'after', arguments: config.eligibility.after }
+        ],
+        autocomplete: 'parent1-issue-date',
+        display: {
+            formatter: 'day-month-year',
+            // edit: false
+        },
+        dependent: 'parent1-has-passport'
+    },
     parent2FirstName: {
         validate: [
             { type: 'maxlength', arguments: 30 },
@@ -291,6 +348,63 @@ module.exports = {
         display: {
             // edit: false
         }
+    },
+    parent2TownOfBirth: {
+        validate: [
+            { type: 'minlength', arguments: 2 },
+            { type: 'maxlength', arguments: 25 },
+            // 'townOfBirth'
+        ],
+        display: {
+            // edit: false
+        }
+    },
+    parent2CountryOfBirth: {
+        items: require('./data/countries'), // TODO: replace with birth countries library
+        validate: 'required',
+        // options: [],
+        display: {
+            formatter: 'country-name',
+            // edit: false
+        }
+    },
+    parent2Nationality: {
+        validate: [
+            { type: 'minlength', arguments: 2 },
+            { type: 'maxlength', arguments: 19 },
+            // 'nationality'
+        ],
+        display: {
+            // edit: false
+        }
+    },
+    parent2HasPassport: {
+        // formatter: 'boolean-unknown',
+        validate: 'required'
+    },
+    parent2PassportNumber: {
+        validate: [
+            { type: 'minlength', arguments: 2 },
+            { type: 'maxlength', arguments: 9 },
+            'alphanum'
+        ],
+        dependent: 'parent2-has-passport',
+        display: {
+            // edit: false
+        }
+    },
+    parent2PassportIssueDate: {
+        validate: [
+            'date',
+            // { type: 'before' },
+            // { type: 'after', arguments: config.eligibility.after }
+        ],
+        autocomplete: 'parent2-issue-date',
+        display: {
+            formatter: 'day-month-year',
+            // edit: false
+        },
+        dependent: 'parent2-has-passport'
     },
     parentsMarried: {
         // formatter: 'boolean-unknown',

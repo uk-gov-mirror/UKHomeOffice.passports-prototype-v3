@@ -276,10 +276,34 @@ module.exports = {
             { field: 'application-type', value: 'first', next: [
                 { field: ['date-of-birth', 'naturalised', 'application-type', 'country-of-birth'],
                     op: (fieldValues, req) => Euss.isEligible(fieldValues, req), next: 'parents-eu-settled-status' },
-                'parent1-details'
+                '/apply/parent1-details'
             ]},
-            'parent1-details'
+            '/apply/parent1-details'
         ]
+    },
+    '/apply/parent1-details': {
+        // controller: require('../../controllers/parents'),
+        fields: [
+            'parent1TownOfBirth',
+            'parent1CountryOfBirth',
+            'parent1Nationality',
+            'parent1HasPassport',
+            'parent1PassportNumber',
+            'parent1PassportIssueDate'
+        ],
+        next: '/apply/parent2-details'
+    },
+    '/apply/parent2-details': {
+        // controller: require('../../controllers/parents'),
+        fields: [
+            'parent2TownOfBirth',
+            'parent2CountryOfBirth',
+            'parent2Nationality',
+            'parent2HasPassport',
+            'parent2PassportNumber',
+            'parent2PassportIssueDate'
+        ],
+        next: '/apply/address-manual'
     },
 
     '/apply/address-manual': {

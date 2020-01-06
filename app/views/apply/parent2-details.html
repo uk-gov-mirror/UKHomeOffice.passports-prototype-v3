@@ -1,0 +1,90 @@
+
+{% set hmpoTitle %}Father or parent 2{% endset %}
+
+{% extends "layout.html" %}
+
+{% set passportDetails %}
+    {% from "hmpo-text/macro.njk" import hmpoText %}
+    {% from "hmpo-date/macro.njk" import hmpoDate %}
+
+    <p>Provide these details and you won’t have to send as many documents.</p>
+
+    {{ hmpoText(ctx, {
+        id: "parent2PassportNumber",
+        label: {
+            text: "Passport number",
+            classes: "govuk-label--m"
+        },
+        hint: "For example 502135326"
+    }) }}
+
+    {{ hmpoDate(ctx, {
+        id: "parent2PassportIssueDate",
+        legend: {
+            text: "Date of issue",
+            classes: "govuk-fieldset__legend--m"
+        },
+        hint: "For example 12 04 2007"
+    }) }}
+{% endset %}
+
+{% block mainContent %}
+    <h1 id="header">{{ hmpoTitle }}</h1>
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoText(ctx, {
+            id: "parent2TownOfBirth",
+            label: {
+                text: "Town of birth",
+                classes: "govuk-label--m"
+            }
+        }) }}
+
+        {{ hmpoSelect (ctx, {
+            id: "parent2CountryOfBirth",
+            label: {
+                text: "Country of birth",
+                classes: "govuk-label--m"
+            },
+            placeholder: true
+        }) }}
+
+        {{ hmpoText(ctx, {
+            id: "parent2Nationality",
+            label: {
+                text: "Nationality",
+                classes: "govuk-label--m"
+            },
+            hint: "At the time of the applicant’s birth"
+        }) }}
+
+        {{ hmpoRadios(ctx, {
+            id: "parent2HasPassport",
+            inline: true,
+            legend: {
+                text: "Do they have a UK passport?",
+                classes: "govuk-label--m"
+            },
+            items: [
+                {
+                    value: true
+                },
+                {
+                    value: false
+                },
+                {
+                    value: 'unknown',
+                    text: "I don’t know"
+                }
+            ],
+            conditionals: {
+                "true": { id: "passport-reveal", html: passportDetails }
+            }
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}
