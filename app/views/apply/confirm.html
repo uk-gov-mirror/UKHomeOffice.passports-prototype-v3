@@ -45,23 +45,56 @@
 
     {% if values.previousPassport %}
         <h2>Old passport details</h2>
-        {{ govukSummaryList({ rows: [
-            {
-                key: { text: "Passport number (optional)" if values.lost else "Passport number" },
-                value: { text: values.oldPassportNumber },
-                actions: { items: [ { text: "Change", href: "/apply/old-passort/edit" }]}
-            },
-            {
-                key: { text: "Passport expiry (optional)" if values.lost else "Passport expiry" },
-                value: { text: values.oldPassportExpiry | date },
-                actions: { items: [ { text: "Change", href: "/apply/old-passport/edit" }]}
-            },
-            {
-                key: { text: "Damaged" },
-                value: { text: values.damagedReason if values.damaged else "No" },
-                actions: { items: [ { text: "Change", href: "/filter/damaged/edit" }]}
-            } if not values.lost
-        ] | filter }) }}
+        {% if values.lost %}
+            {{ govukSummaryList({ rows: [
+                {
+                    key: { text: "Passport number (optional)" },
+                    value: { text: values.optionalPassportNumber },
+                    actions: { items: [ { text: "Change", href: "/apply/optional-passport-details/edit" }]}
+                },
+                {
+                    key: { text: "Passport expiry (optional)" if values.lost else "Passport expiry" },
+                    value: { text: values.optionalPassportExpiry | date },
+                    actions: { items: [ { text: "Change", href: "/apply/optional-passport-details/edit" }]}
+                }
+            ] }) }}
+        {% elif values.oldBlue %}
+            {{ govukSummaryList({ rows: [
+                {
+                    key: { text: "Passport number" },
+                    value: { text: values.oldPassportNumber },
+                    actions: { items: [ { text: "Change", href: "/apply/old-passport-details/edit" }]}
+                },
+                {
+                    key: { text: "Passport expiry" },
+                    value: { text: values.oldPassportExpiry | date },
+                    actions: { items: [ { text: "Change", href: "/apply/old-passport-details/edit" }]}
+                },
+                {
+                    key: { text: "Damaged" },
+                    value: { text: values.damagedReason if values.damaged else "No" },
+                    actions: { items: [ { text: "Change", href: "/filter/damaged/edit" }]}
+                }
+            ] }) }}
+        {% else %}
+            {{ govukSummaryList({ rows: [
+                {
+                    key: { text: "Passport number" },
+                    value: { text: values.passportNumber },
+                    actions: { items: [ { text: "Change", href: "/apply/passport-details/edit" }]}
+                },
+                {
+                    key: { text: "Passport expiry" },
+                    value: { text: values.passportExpiry | date },
+                    actions: { items: [ { text: "Change", href: "/apply/passport-details/edit" }]}
+                },
+                {
+                    key: { text: "Damaged" },
+                    value: { text: values.damagedReason if values.damaged else "No" },
+                    actions: { items: [ { text: "Change", href: "/filter/damaged/edit" }]}
+                }
+            ] }) }}
+        {% endif %}
     {% endif %}
 
     <h2>New passport details</h2>

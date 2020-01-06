@@ -81,10 +81,7 @@ module.exports = {
             'date'
         ],
         autocomplete: 'hmpo-passport-expiry',
-        offset: 20,
-        display: {
-            formatter: 'day-month-year'
-        }
+        offset: 20
     },
     oldPassportNumber: {
         formatters: [
@@ -104,10 +101,7 @@ module.exports = {
             'date'
         ],
         autocomplete: 'hmpo-passport-expiry',
-        offset: 20,
-        display: {
-            formatter: 'day-month-year'
-        }
+        offset: 20
     },
     optionalPassportNumber: {
         formatters: [
@@ -125,15 +119,9 @@ module.exports = {
             'date'
         ],
         autocomplete: 'hmpo-passport-expiry',
-        offset: 20,
-        display: {
-            formatter: 'day-month-year'
-        }
+        offset: 20
     },
     title: {
-        display: {
-            formatter: 'title'
-        },
         validate: 'required'
     },
     otherTitle: {
@@ -151,10 +139,7 @@ module.exports = {
         validate: [
             'required',
             { type: 'maxlength', arguments: 30 }
-        ],
-        display: {
-            formatter: 'name'
-        }
+        ]
     },
     lastName: {
         validate: [
@@ -165,20 +150,42 @@ module.exports = {
     },
     changeOfName: {
         formatter: 'boolean',
-        validate: 'required',
-        display: {
-            formatter: 'change-of-name'
-        }
+        validate: 'required'
     },
     nameChangeReason: {
         validate: 'required'
     },
     previousNames: {
         formatter: 'boolean',
+        validate: 'required'
+    },
+    previousFirstName1: {
         validate: 'required',
-        display: {
-            formatter: 'previous-names'
-        }
+        dependent: { field: 'previousNames', value: true }
+    },
+    previousLastName1: {
+        validate: 'required',
+        dependent: { field: 'previousNames', value: true }
+    },
+    previousFirstName2: {
+        dependent: { field: 'previousNames', value: true }
+    },
+    previousLastName2: {
+        dependent: { field: 'previousNames', value: true }
+    },
+    previousFirstName3: {
+        dependent: { field: 'previousNames', value: true }
+    },
+    previousLastName3: {
+        dependent: { field: 'previousNames', value: true }
+    },
+    previousNames: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
+    previousNames: {
+        formatter: 'boolean',
+        validate: 'required'
     },
     gender: {
         validate: 'required',
@@ -188,7 +195,7 @@ module.exports = {
         validate: 'required'
     },
     countryOfBirth: {
-        items: require('./data/countries'), // TODO: replace with birth countries library
+        items: require('./data/birth-countries'),
         validate: 'required',
         dependent: { field: 'bornInUK', value: false }
     },
@@ -212,19 +219,13 @@ module.exports = {
             'date',
             { type: 'before' }
         ],
-        display: {
-            formatter: 'day-month-year'
-        },
         autocomplete: 'nat-reg-date'
     },
     parent1FirstName: {
         validate: [
             { type: 'maxlength', arguments: 30 },
             // 'firstname'
-        ],
-        display: {
-            formatter: 'name'
-        }
+        ]
     },
     parent1LastName: {
         validate: [
@@ -237,54 +238,35 @@ module.exports = {
         validate: [
             'date',
             // { type: 'before' },
-            // { type: 'after', arguments: config.eligibility.after }
         ],
-        autocomplete: 'parent1-bday',
-        display: {
-            formatter: 'day-month-year',
-            // edit: false
-        }
+        autocomplete: 'parent1-bday'
     },
     parent1NoDetailsReason: {
         validate: [
             { type: 'maxlength', arguments: 250 },
             'alphanumex1'
-        ],
-        display: {
-            // edit: false
-        }
+        ]
     },
     parent1TownOfBirth: {
         validate: [
             { type: 'minlength', arguments: 2 },
             { type: 'maxlength', arguments: 25 },
             // 'townOfBirth'
-        ],
-        display: {
-            // edit: false
-        }
+        ]
     },
     parent1CountryOfBirth: {
         items: require('./data/countries'), // TODO: replace with birth countries library
         validate: 'required',
-        // options: [],
-        display: {
-            formatter: 'country-name',
-            // edit: false
-        }
     },
     parent1Nationality: {
         validate: [
             { type: 'minlength', arguments: 2 },
             { type: 'maxlength', arguments: 19 },
             // 'nationality'
-        ],
-        display: {
-            // edit: false
-        }
+        ]
     },
     parent1HasPassport: {
-        // formatter: 'boolean-unknown',
+        formatter: 'boolean-unknown',
         validate: 'required'
     },
     parent1PassportNumber: {
@@ -293,32 +275,21 @@ module.exports = {
             { type: 'maxlength', arguments: 9 },
             'alphanum'
         ],
-        dependent: 'parent1-has-passport',
-        display: {
-            // edit: false
-        }
+        dependent: 'parent1-has-passport'
     },
     parent1PassportIssueDate: {
         validate: [
             'date',
             // { type: 'before' },
-            // { type: 'after', arguments: config.eligibility.after }
         ],
         autocomplete: 'parent1-issue-date',
-        display: {
-            formatter: 'day-month-year',
-            // edit: false
-        },
         dependent: 'parent1-has-passport'
     },
     parent2FirstName: {
         validate: [
             { type: 'maxlength', arguments: 30 },
             // 'firstname'
-        ],
-        display: {
-            formatter: 'name'
-        }
+        ]
     },
     parent2LastName: {
         validate: [
@@ -331,54 +302,35 @@ module.exports = {
         validate: [
             'date',
             // { type: 'before' },
-            // { type: 'after', arguments: config.eligibility.after }
         ],
-        autocomplete: 'parent2-bday',
-        display: {
-            formatter: 'day-month-year',
-            // edit: false
-        }
+        autocomplete: 'parent2-bday'
     },
     parent2NoDetailsReason: {
         validate: [
             { type: 'maxlength', arguments: 250 },
             // 'alphanumex1'
-        ],
-        display: {
-            // edit: false
-        }
+        ]
     },
     parent2TownOfBirth: {
         validate: [
             { type: 'minlength', arguments: 2 },
             { type: 'maxlength', arguments: 25 },
             // 'townOfBirth'
-        ],
-        display: {
-            // edit: false
-        }
+        ]
     },
     parent2CountryOfBirth: {
-        items: require('./data/countries'), // TODO: replace with birth countries library
-        validate: 'required',
-        // options: [],
-        display: {
-            formatter: 'country-name',
-            // edit: false
-        }
+        items: require('./data/birth-countries'),
+        validate: 'required'
     },
     parent2Nationality: {
         validate: [
             { type: 'minlength', arguments: 2 },
             { type: 'maxlength', arguments: 19 },
             // 'nationality'
-        ],
-        display: {
-            // edit: false
-        }
+        ]
     },
     parent2HasPassport: {
-        // formatter: 'boolean-unknown',
+        formatter: 'boolean-unknown',
         validate: 'required'
     },
     parent2PassportNumber: {
@@ -387,42 +339,26 @@ module.exports = {
             { type: 'maxlength', arguments: 9 },
             'alphanum'
         ],
-        dependent: 'parent2-has-passport',
-        display: {
-            // edit: false
-        }
+        dependent: 'parent2-has-passport'
     },
     parent2PassportIssueDate: {
         validate: [
             'date',
             // { type: 'before' },
-            // { type: 'after', arguments: config.eligibility.after }
         ],
         autocomplete: 'parent2-issue-date',
-        display: {
-            formatter: 'day-month-year',
-            // edit: false
-        },
         dependent: 'parent2-has-passport'
     },
     parentsMarried: {
-        // formatter: 'boolean-unknown',
-        validate: 'required',
-        display: {
-            // edit: false
-        }
+        formatter: 'boolean-unknown',
+        validate: 'required'
     },
     parentsMarriageDate: {
         validate: [
             'date',
             { type: 'before' },
-            // { type: 'after', arguments: config.eligibility.after }
         ],
         autocomplete: 'parents-marriage-bday',
-        display: {
-            formatter: 'day-month-year',
-            // edit: false
-        },
         dependent: 'parentsMarried'
     },
     addressLine1: {
@@ -449,14 +385,8 @@ module.exports = {
     addressPostcode: {
         formatter: 'uppercase',
         validate: [
-            // 'required',
+            'required',
             { type: 'maxlength', arguments: 10 }
-        ]
-    },
-    addressStateProvince: {
-        validate: [
-            // 'placename',
-            { type: 'maxlength', arguments: 30 }
         ]
     },
     contactEmail: {
@@ -467,41 +397,19 @@ module.exports = {
             { type: 'maxlength', arguments: 240 }
         ],
         type: 'email',
-        dependent: {
-            field: 'contact-email-check',
-            value: 'new'
-        },
-        display: {
-            formatter: 'contact-details'
-        },
         'ignore-defaults': true
     },
     contactEmailConfirm: {
         formatter: ['trim'],
         validate: [
             'required',
-            { type: 'match', arguments: 'contact-email' },
+            { type: 'match', arguments: 'contactEmail' },
             { type: 'maxlength', arguments: 240 }
         ],
         type: 'email',
-        dependent: {
-            field: 'contact-email-check',
-            value: 'new'
-        },
         'ignore-defaults': true
     },
-    diallingCodeContact: {
-        errorGroup: 'contact-phone-group',
-        formatter: ['removespaces', 'removehyphens'],
-        validate: [
-            'required',
-            { type: 'maxlength', arguments: 4 },
-            'diallingcodeprefix'
-        ],
-        type: 'tel'
-    },
     contactPhone: {
-        errorGroup: 'contactPhoneGroup',
         formatter: ['removespaces', 'removehyphens'],
         validate: [
             'required',
@@ -512,27 +420,12 @@ module.exports = {
         type: 'tel'
     },
     contactPrefsEmail: {
-        formatter: 'boolean-strict',
-        display: {
-            formatter: 'progress-updates'
-        }
+        formatter: 'boolean-strict' // checkbox
     },
     contactPrefsSMS: {
-        formatter: 'boolean-strict'
-    },
-    diallingCodeSMS: {
-        errorGroup: 'mobilePhoneGroup',
-        formatter: ['removespaces', 'removehyphens'],
-        validate: [
-            'required',
-            { type: 'maxlength', arguments: 4 },
-            // 'diallingcodeprefix'
-        ],
-        type: 'tel',
-        dependent: 'contactPrefsSMS'
+        formatter: 'boolean-strict' // checkbox
     },
     mobilePhone: {
-        errorGroup: 'mobilePhoneGroup',
         formatter: ['removespaces', 'removehyphens', 'removeslashes'],
         validate: [
             'required',
@@ -547,17 +440,11 @@ module.exports = {
         validate: 'required'
     },
     braille: {
-        formatter: 'boolean-strict',
-        display: {
-            // formatter: 'items'
-        }
+        formatter: 'boolean-strict' // checkbox
     },
     canSign: {
         formatter: 'boolean',
-        validate: ['required'],
-        display: {
-            // formatter: 'sign'
-        }
+        validate: ['required']
     },
     noSignReason: {
         validate: [

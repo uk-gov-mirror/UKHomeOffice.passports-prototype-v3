@@ -20,7 +20,7 @@
     }
   },
   "dependencies": {
-    "acorn": "^6.0.5",
+    "acorn": "^6.4.0",
     "ansi-colors": "^3.2.3",
     "basic-auth": "^2.0.0",
     "basic-auth-connect": "^1.0.0",
@@ -42,7 +42,7 @@
     "gulp-sass": "^4.0.1",
     "gulp-sourcemaps": "^2.6.0",
     "hmpo-components": "^2.3.0",
-    "hmpo-form-wizard": "^11.2.1",
+    "hmpo-form-wizard": "^11.4.0",
     "hmpo-i18n": "^3.8.0",
     "keypather": "^3.0.0",
     "notifications-node-client": "^4.1.0",

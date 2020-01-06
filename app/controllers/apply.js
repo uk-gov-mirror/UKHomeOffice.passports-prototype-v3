@@ -5,6 +5,8 @@ class DefaultController extends BaseController {
     successHandler (req, res, next) {
         this.setAgeGroup(req)
         this.setApplicationType(req)
+        this.parentsRequired(req)
+        this.isEUSS(req)
         this.setCosts(req)
         super.successHandler(req, res, next)
     }
@@ -59,6 +61,17 @@ class DefaultController extends BaseController {
         }
         req.sessionModel.set('applicationType', applicationType)
         req.sessionModel.set('oldBlue', oldBlue)
+    }
+
+    parentsRequired(req) {
+        // put logic in here
+        req.sessionModel.set('parentsRequired', false);
+        req.sessionModel.set('grandparentsRequired', false);
+    }
+
+    isEUSS(req) {
+        // put logic in here
+        req.sessionModel.set('isEUSS', false);
     }
 
     setCosts (req) {

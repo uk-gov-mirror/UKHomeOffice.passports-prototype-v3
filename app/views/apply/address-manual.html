@@ -13,65 +13,45 @@
     <h1 id="header">{{ hmpoTitle }}</h1>
 
     {% call hmpoForm(ctx) %}
-        <fieldset class="govuk-fieldset">
-            <legend class="govuk-fieldset__legend govuk-visually-hidden"></legend>
+        {{ hmpoText(ctx, {
+            id: "addressLine1",
+            label: {
+                text: "Address",
+                classes: "govuk-label--m"
+                },
+            attributes: { autocapitalize: "words" },
+            classes: "govuk-!-width-three-quarters"
+        }) }}
 
-            {{ hmpoText(ctx, {
-                id: "addressLine1",
-                label: {
-                    text: "Address",
-                    classes: "govuk-label--m"
-                    },
-                attributes: { autocapitalize: "words" },
-                classes: "govuk-!-width-three-quarters"
-            }) }}
+        {{ hmpoText(ctx, {
+            id: "addressLine2",
+            label: { classes: "govuk-visually-hidden" },
+            attributes: { autocapitalize: "words" },
+            classes: "govuk-!-width-three-quarters"
+        }) }}
 
-            {{ hmpoText(ctx, {
-                id: "addressLine2",
-                label: { classes: "govuk-visually-hidden" },
-                attributes: { autocapitalize: "words" },
-                classes: "govuk-!-width-three-quarters"
-            }) }}
+        {{ hmpoText(ctx, {
+            id: "addressTown",
+            label: {
+                text: "Town or city",
+                classes: "govuk-label--m"
+            },
+            attributes: { autocapitalize: "words" },
+            classes: "govuk-!-width-one-half"
+        }) }}
 
-            {{ hmpoText(ctx, {
-                id: "addressTown",
-                label: {
-                    text: "Town or city",
-                    classes: "govuk-label--m"
-                    },
-                attributes: { autocapitalize: "words" },
-                classes: "govuk-!-width-one-half"
-            }) }}
+        {{ hmpoText(ctx, {
+            id: "addressPostcode",
+            label: {
+                text: "Postcode",
+                classes: "govuk-label--m"
+            },
+            attributes: { autocapitalize: "characters" },
+            classes: "govuk-!-width-one-quarter"
+        }) }}
 
-            {# TODO: Requires controller logic for ctx #}
-            {% if ctx("postcode-in-address") %}
-                {{ hmpoText(ctx, {
-                    id: "addressPostcode",
-                    label: { classes: "govuk-label--m" },
-                    attributes: { autocapitalize: "characters" },
-                    classes: "govuk-!-width-one-quarter"
-                }) }}
-            {% endif %}
+        {{ hmpoSubmit(ctx) }}
 
-            {% if ctx("state-province-in-address") %}
-                {{ hmpoText(ctx, {
-                    id: "addressStateProvince",
-                    label: { classes: "govuk-label--m" },
-                    attributes: { autocapitalize: "words" },
-                    classes: "govuk-!-width-one-quarter"
-                }) }}
-            {% endif %}
-
-            {% if ctx("country-name") %}
-            <div class="govuk-form-group">
-                <label class="govuk-label govuk-label--m">Country</label>
-                <label class="govuk-label">{{ ctx("country-name") }}</label>
-            </div>
-            {% endif %}
-
-            {{ hmpoSubmit(ctx) }}
-
-        </fieldset>
     {% endcall %}
 
 {% endblock %}

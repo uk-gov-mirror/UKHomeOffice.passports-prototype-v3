@@ -3,42 +3,6 @@
 
 {% set hmpoTitle %}Get updates{% endset %}
 
-{% set smsConditional %}
-    {% from "hmpo-error-group/macro.njk" import hmpoErrorGroup %}
-    {% from "hmpo-phone/macro.njk" import hmpoPhone %}
-
-    {% call hmpoErrorGroup(ctx, {
-        id: "mobilePhoneGroup",
-        legend: {
-            text: "Mobile number",
-            classes: "govuk-label--m"
-        }
-    }) %}
-
-        {% if values.isUKApplication %}
-            {{ hmpoPhone(ctx, {
-                id: "mobilePhone",
-                label: { classes: "govuk-visually-hidden" },
-                classes: "govuk-!-width-one-half"
-            }) }}
-        {% else %}
-            <div class="international-phone">
-                {{ hmpoPhone(ctx, {
-                    id: "diallingCodeSMS",
-                    label: { classes: "govuk-visually-hidden" },
-                    classes: "govuk-input--width-4"
-                }) }}
-                {{ hmpoPhone(ctx, {
-                    id: "mobilePhone",
-                    label: { classes: "govuk-visually-hidden" },
-                    classes: "govuk-input--width-10"
-                }) }}
-            </div>
-        {% endif %}
-
-    {% endcall %}
-{% endset %}
-
 {% block mainContent %}
     <h1 id="header">{{ hmpoTitle }}</h1>
 
@@ -55,7 +19,16 @@
         {{ hmpoCheckboxes(ctx, {
             id: "contactPrefsSMS",
             label: "Text updates (optional)",
-            conditional: { html: smsConditional }
+            conditional: {
+                html: hmpoPhone(ctx, {
+                    id: "mobilePhone",
+                    label: {
+                        text: "Mobile number",
+                        classes: "govuk-label--m"
+                    },
+                    classes: "govuk-!-width-one-half"
+                })
+            }
         }) }}
 
         {{ hmpoSubmit(ctx) }}
