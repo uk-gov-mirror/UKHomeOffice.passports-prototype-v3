@@ -5,6 +5,8 @@ const Wizard = require('hmpo-form-wizard')
 const steps = require('./steps')
 const fields = require('./fields')
 
+require('./formatters');
+require('./validators');
 
 router.use(Wizard(
     steps.apply,

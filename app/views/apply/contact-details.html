@@ -27,35 +27,14 @@
                 }
         }) }}
 
-        {% call hmpoErrorGroup(ctx, {
-            id: "contactPhoneGroup",
-            legend: {
+        {{ hmpoPhone(ctx, {
+            id: "contactPhone",
+            label: {
                 text: "Mobile or home phone",
                 classes: "govuk-label--m"
-            }
-        }) %}
-            {% if values.isUKApplication %}
-                {{ hmpoPhone(ctx, {
-                    id: "contactPhone",
-                    label: { classes: "govuk-visually-hidden" },
-                    classes: "govuk-!-width-one-half"
-                }) }}
-            {% else %}
-                <div class="international-phone">
-                    {{ hmpoPhone(ctx, {
-                        id: "diallingCodeContact",
-                        label: { classes: "govuk-visually-hidden" },
-                        classes: "govuk-input--width-4"
-
-                    }) }}
-                    {{ hmpoPhone(ctx, {
-                        id: "contactPhone",
-                        label: { classes: "govuk-visually-hidden" },
-                        classes: "govuk-input--width-10"
-                    }) }}
-                </div>
-            {% endif %}
-        {% endcall %}
+            },
+            classes: "govuk-!-width-one-half"
+        }) }}
 
         {{ hmpoSubmit(ctx) }}
 

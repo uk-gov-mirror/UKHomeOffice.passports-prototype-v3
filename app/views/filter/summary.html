@@ -13,8 +13,8 @@
     <h1>{{ hmpoTitle }}</h1>
 
     {# Hidden FTA (Old Blue) #}
-    {% if values.oldblue and values.adultOrChild == "adult" %}
-        <p>Based on your answers, you have an old passport that was issued in {{values["passportIssue-year"]}}.</p>
+    {% if values.oldBlue and values.adultOrChild == "adult" %}
+        <p>Based on your answers, you have an old passport that was issued in {{values.passportIssue | date("YYYY") }}.</p>
         <p>As your passport was issued a long time ago, you must apply for a first UK passport and you may need to have a <a href="/help/identity-interviews" target="_blank">passport interview</a>.</p>
 
     {# FTC #}

@@ -1,13 +1,3 @@
-const addressLines = [
-    'addressLine1',
-    'addressLine2',
-    'addressTown',
-    'addressPostcode'
-];
-
-let manualAddressLines = addressLines.slice();
-manualAddressLines.push('addressStateProvince');
-
 const apply = {
     '/filter': {
         entryPoint: true,
@@ -159,13 +149,10 @@ const apply = {
         next: '/filter/summary'
     },
     '/filter/summary': {
-        // next: [
-        //     '/apply/passport-details'
-        // ]
         next: [
             { field: 'previousPassport', value: true, next: [
+                { field: 'lost', value: true, next: '/apply/optional-passport-details' },
                 { field: 'applicationType', value: 'first', next: '/apply/old-passport-details' },
-                { field: 'applicationType', value: 'replace', next: '/apply/optional-passport-details' },
                 '/apply/passport-details'
             ]},
             '/apply/name'
@@ -201,10 +188,10 @@ const apply = {
             'lastName',
             'changeOfName'
         ],
-        revalidateIf: [ 'adult-or-child' ],
+        revalidateIf: [ 'adultOrChild' ],
         next: [
-            { field: 'change-of-name', value: true, next: [
-                { field: 'adult-or-child', value: 'child', next: '/apply/previous-names' },
+            { field: 'changeOfName', value: true, next: [
+                { field: 'adultOrChild', value: 'child', next: '/apply/previous-names' },
                 '/apply/change-of-name'
             ]},
             '/apply/previous-names'
@@ -214,14 +201,20 @@ const apply = {
         fields: [
             'nameChangeReason'
         ],
-        revalidateIf: [ 'change-of-name' ],
+        revalidateIf: [ 'changeOfName' ],
         next: '/apply/previous-names'
     },
     '/apply/previous-names': {
         fields: [
-            'previousNames'
+            'previousNames',
+            'previousFirstName1',
+            'previousLastName1',
+            'previousFirstName2',
+            'previousLastName2',
+            'previousFirstName3',
+            'previousLastName3'
         ],
-        revalidateIf: [ 'change-of-name' ],
+        revalidateIf: [ 'changeOfName' ],
         next: '/apply/gender'
     },
     '/apply/gender': {
@@ -237,14 +230,11 @@ const apply = {
             'townOfBirth'
         ],
         next: [
-            { field: 'veteran', value: true, next: 'free-passport' },
             { field: 'applicationType', value: 'first', next: [
                 { field: 'naturalised', value: true, next: '/apply/naturalisation-details' },
                 '/apply/family-details'
             ]},
             { field: 'adultOrChild', value: 'child', next: '/apply/parents-details' },
-            { field: 'isUKApplication', value: false, next: '/apply/address-manual' },
-            // '/apply/address'
             '/apply/address-manual'
         ]
     },
@@ -259,7 +249,6 @@ const apply = {
         next: '/apply/parents-details'
     },
     '/apply/parents-details': {
-        // controller: require('../../controllers/parents'),
         fields: [
             'parent1FirstName',
             'parent1LastName',
@@ -274,15 +263,15 @@ const apply = {
         ],
         next: [
             { field: 'application-type', value: 'first', next: [
-                { field: ['date-of-birth', 'naturalised', 'application-type', 'country-of-birth'],
-                    op: (fieldValues, req) => Euss.isEligible(fieldValues, req), next: 'parents-eu-settled-status' },
+                { field: 'isEUSS', value: true, next: '/apply/parents-eu-settled-status' },
                 '/apply/parent1-details'
             ]},
             '/apply/parent1-details'
         ]
     },
+    '/apply/parents-eu-settled-status': {
+    },
     '/apply/parent1-details': {
-        // controller: require('../../controllers/parents'),
         fields: [
             'parent1TownOfBirth',
             'parent1CountryOfBirth',
@@ -294,7 +283,6 @@ const apply = {
         next: '/apply/parent2-details'
     },
     '/apply/parent2-details': {
-        // controller: require('../../controllers/parents'),
         fields: [
             'parent2TownOfBirth',
             'parent2CountryOfBirth',
@@ -307,30 +295,30 @@ const apply = {
     },
 
     '/apply/address-manual': {
-        allowedErrors: ['address-not-found', 'address-invalid'],
-        fields: manualAddressLines,
-        // prereqs: ['address'],
-        revalidateIf: [ 'address-postcode', 'country-of-application' ],
+        fields: [
+            'addressLine1',
+            'addressLine2',
+            'addressTown',
+            'addressPostcode'
+        ],
         next: [
-            { field: 'urgent', value: true, next: [
-                { field: 'address-postcode', op: (fieldValue) => fieldValue && fieldValue.startsWith('BF'), next: 'hm-forces' },
-                '/apply/contact-details'
-            ]},
+            { field: 'addressPostcode', op: postcode => postcode && postcode.startsWith('BF'), next: '/apply/hm-forces' },
             '/apply/contact-details'
         ]
     },
+    '/apply/hm-forces': {
+    },
     '/apply/contact-details': {
         fields: [
-            'contact-email',
-            'contact-email-confirm',
-            'dialling-code-contact',
-            'contact-phone',
-            'contact-phone-group'
+            'contactEmail',
+            'contactEmailConfirm',
+            'diallingCodeContact',
+            'contactPhone',
+            'contactPhoneGroup'
         ],
         next: '/apply/contact-preferences'
     },
     '/apply/contact-preferences': {
-        // controller: require('../../controllers/contact-preferences'),
         fields: [
             'contactPrefsEmail',
             'contactPrefsSMS',
@@ -341,14 +329,12 @@ const apply = {
         next: '/apply/new-passport'
     },
     '/apply/new-passport': {
-        // controller: require('../../controllers/new-passport'),
         fields: [
             'largePassport',
             'braille'
         ],
-        revalidateIf: [ 'veteran' ],
         next: [
-            { field: 'age-subgroup', value: '0-11', next: '/apply/relationship-to-applicant'},
+            { field: 'ageGroup', value: 'under12', next: '/apply/relationship-to-applicant'},
             '/apply/sign'
         ]
     },
@@ -358,7 +344,6 @@ const apply = {
             'noSignReason'
         ],
         next: [
-            { field: 'urgent', value: true, next: '/apply/confirm' },
             { field: 'isUKApplication', value: true, next: [
                 { field: 'adultOrChild', value: 'child', next: '/apply/relationship-to-applicant' },
                 '/apply/who-for'
