@@ -8,6 +8,7 @@ class DefaultController extends BaseController {
         this.parentsRequired(req)
         this.isEUSS(req)
         this.setCosts(req)
+        this.csigRequired(req)
         super.successHandler(req, res, next)
     }
 
@@ -100,6 +101,19 @@ class DefaultController extends BaseController {
         req.sessionModel.set('passportCost', passportCost)
         req.sessionModel.set('deliveryCost', deliveryCost)
         req.sessionModel.set('totalCost', passportCost + deliveryCost)
+    }
+
+    csigRequired(req) {
+        if (req.sessionModel.get('applicationType') === 'first') {
+            return req.sessionModel.set('csigRequired', true);
+        }
+        if (req.sessionModel.get('lost') === true) {
+            return req.sessionModel.set('csigRequired', true);
+        }
+        if (req.sessionModel.get('ageGroup') === 'under12') {
+            return req.sessionModel.set('csigRequired', true);
+        }
+        req.sessionModel.set('csigRequired', false);
     }
 
 }

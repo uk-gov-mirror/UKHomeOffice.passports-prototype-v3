@@ -362,6 +362,41 @@ const apply = {
         ]
     },
     '/apply/confirm': {
+        // next: '/apply/costs'
+        next: [
+            // { field: DpsPromotion.dpsCheckedFields,
+            //     op: (fieldValues, req, res) => DpsPromotion.isEligible(fieldValues, req, res),
+            //     next: '/apply/passport-urgent' },
+            { field: 'csigRequired', value: true, next: '/apply/confirm-identity' },
+            { field: 'urgent', value: true, next: '/apply/costs' },
+            { field: 'noDocuments', value: true, next: '/apply/costs' }, // TODO: add noDocuments logic to trigger
+            '/apply/documents-to-send'
+        ]
+    },
+    '/apply/confirm-identity': {
+        next: [
+            { field: 'noDocuments', value: true, next: '/apply/costs' },
+            '/apply/documents-to-send'
+        ]
+    },
+    '/apply/documents-to-send': {
+        // controller: require('../../controllers/documents-to-send'),
+        fields: [
+            'documents-to-send'
+        ],
+        next: [
+            { field: 'documents-to-send', value: false, next: '/apply/costs' },
+            { field: 'isUKApplication', value: true, next: '/apply/passport-delivery' },
+            '/apply/costs'
+        ]
+    },
+        '/apply/passport-delivery': {
+        // controller: require('../../controllers/delivery'),
+        fields: [
+            'secureReturn'
+        ],
+        // revalidateIf: [ 'veteran' ],
+        // editBackStep: 'cost',
         next: '/apply/costs'
     },
     '/apply/costs': {
