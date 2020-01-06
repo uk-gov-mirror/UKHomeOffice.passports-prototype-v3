@@ -5,13 +5,27 @@ const Wizard = require('hmpo-form-wizard')
 const steps = require('./steps')
 const fields = require('./fields')
 
-const wizard = Wizard(steps, fields, {
-    name: 'filter',
-    editable: true,
-    editBackStep: '/apply/confirm',
-    controller: require('./controllers/default')
-})
 
-router.use(wizard)
+router.use(Wizard(
+    steps.apply,
+    fields,
+    {
+        journeyName: 'apply',
+        editable: true,
+        editBackStep: '/apply/confirm',
+        controller: require('./controllers/apply')
+    }
+))
+
+
+router.use(Wizard(
+    steps.tracking,
+    fields,
+    {
+        journeyName: 'tracking',
+        controller: require('./controllers/track')
+    }
+))
+
 
 module.exports = router

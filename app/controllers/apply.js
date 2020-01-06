@@ -1,20 +1,7 @@
-const BaseController = require('hmpo-form-wizard').Controller
-const DateMixin = require('hmpo-components').mixins.Date
+const BaseController = require('.')
 const moment = require('moment')
 
-class DefaultController extends DateMixin(BaseController) {
-    middlewareSetup() {
-        super.middlewareSetup();
-        this.use(this.logSessionChanges)
-    }
-
-    logSessionChanges(req, res, next) {
-        req.sessionModel.on('change', changes => {
-            console.log(req.originalUrl, changes)
-        });
-        next();
-    }
-
+class DefaultController extends BaseController {
     successHandler (req, res, next) {
         this.setAgeGroup(req)
         this.setApplicationType(req)

@@ -1,4 +1,4 @@
-const BaseController = require('./default')
+const BaseController = require('./apply')
 
 class UploadController extends BaseController {
     successHandler (req, res, next) {

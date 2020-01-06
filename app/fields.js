@@ -68,7 +68,6 @@ module.exports = {
     nationality: {
         validate: 'required'
     },
-
     passportNumber: {
         validate: [
             'required',
@@ -573,4 +572,14 @@ module.exports = {
     },
 
 
+    appReference: {
+        validate: 'required'
+    },
+    trackDateOfBirth: {
+        validate: ['required', 'date'],
+        autocomplete: 'bday'
+    },
+    trackEmail: {
+        validate: 'required'
+    }
 }
