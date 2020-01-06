@@ -1,0 +1,45 @@
+
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Family details{% endset %}
+
+{% block hmpoContent %}
+    {% call hmpoFlashCard() %}
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+
+                <h1 id="header">{{ hmpoTitle }}</h1>
+
+                {% call hmpoForm(ctx) %}
+
+                    {% if values.adultOrChild == "adult" %}
+                        {% if values.naturalised %}
+                            <p>We need to ask for parents’ details to help confirm your identity.</p>
+                        {% else %}
+                            <p>We need to confirm <a id="british-nationality" href="https://www.gov.uk/types-of-british-nationality" target="_blank">British nationality</a> - this may depend on your parents or grandparents.</p>
+                        {% endif %}
+                    {% endif %}
+
+                    {% if values.adultOrChild == "child" %}
+                        {% if not values.naturalised %}
+                            <p>We need to ask for parents’ details to confirm British nationality and who has <a id="link-parental-responsibility" href="https://www.gov.uk/parental-rights-responsibilities" target="_blank">parental responsibility</a>.</p>
+                        {% else %}
+                            <p>We need to ask for parents’ details to confirm who has <a id="link-parental-responsibility" href="https://www.gov.uk/parental-rights-responsibilities" target="_blank">parental responsibility</a>.</p>
+                        {% endif %}
+                    {% endif %}
+
+                    <p>If you can’t provide these details, you’ll need to tell us why and it may delay your application.</p>
+
+                    {% if values.adultOrChild == "adult" %}
+                        <p>In most cases we won’t contact your family - if we do, we’ll ask your permission first. Their details won’t appear on the new passport.</p>
+                    {% endif %}
+
+                    {{ hmpoSubmit(ctx) }}
+
+                {% endcall %}
+
+            </div>
+        </div>
+    {% endcall %}
+
+{% endblock %}

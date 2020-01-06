@@ -1,0 +1,35 @@
+
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Old passport details{% endset %}
+
+{% block mainContent %}
+    <h1 id="header">{{ hmpoTitle }}</h1>
+
+    <p>Enter your old passport details if you have them.</p>
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoText(ctx, {
+            id: "optionalPassportNumber",
+            label: {
+                text: "Passport number (optional)",
+                classes: "govuk-label--m"
+            },
+            hint: "For example, 502135326"
+        }) }}
+
+        {{ hmpoDate(ctx, {
+            id: "optionalPassportExpiry",
+            legend: {
+                text: "Expiry date (optional)",
+                classes: "govuk-label--m"
+            },
+            hint: "For example, 28 07 2017"
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}

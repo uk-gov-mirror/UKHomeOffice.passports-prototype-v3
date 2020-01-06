@@ -1,0 +1,47 @@
+
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Old passport details{% endset %}
+
+{% block mainContent %}
+    <h1 id="header">{{ hmpoTitle }}</h1>
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoText(ctx, {
+            id: "oldPassportNumber",
+            label: {
+                text: "Passport number",
+                classes: "govuk-label--m"
+            },
+            hint: "For example, B235014"
+        }) }}
+
+        {{ hmpoDate(ctx, {
+            id: "oldPassportExpiry",
+            legend: {
+                text: "Expiry date",
+                classes: "govuk-label--m"
+            },
+            hint: "For example, 28 07 2017"
+        }) }}
+
+        {% call hmpoWarningText({ iconFallbackText: "Warning" }) %}
+            You’ll need to send us your old passport so we can cancel it.
+        {% endcall %}
+
+        {% if values.urgent %}
+            {% call hmpoDetails({ summaryText: "My passport is lost or stolen" }) %}
+                You must <a href="#">cancel your old passport</a>. You can’t apply with Online Premium, but you can still get your passport urgently with Fast Track.
+            {% endcall %}
+        {% else %}
+            {% call hmpoDetails({ summaryText: "My passport is lost or stolen" }) %}
+                If you don’t have your old passport you must <a href="#">report it lost or stolen</a>.
+            {% endcall %}
+        {% endif %}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}

@@ -1,0 +1,41 @@
+
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Who is the passport for?{% endset %}
+
+{% set thirdParty %}
+    <p>You can only apply for someone else if you’re legally responsible for them, for example an adult who doesn’t have mental or physical capacity.</p>
+    <p>If you’re helping someone do this, for example they’re not confident doing things online, select ‘me’.</p>
+{% endset %}
+
+{% block mainContent %}
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoRadios(ctx, {
+            id: "thirdParty",
+            isPageHeading: true,
+            legend: {
+                text: hmpoTitle
+            },
+            inline: true,
+            items: [
+                {
+                    value: false,
+                    text: "Me"
+                },
+                {
+                    value: true,
+                    text: "Someone else"
+                }
+            ],
+            conditionals: {
+                "true": { id: "thirdPartyInfo", html: thirdParty }
+            }
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}

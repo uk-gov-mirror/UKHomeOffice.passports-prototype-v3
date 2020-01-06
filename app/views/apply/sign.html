@@ -1,0 +1,67 @@
+
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Signing a new passport{% endset %}
+
+{% set noSignReason %}
+    {% from "hmpo-textarea/macro.njk" import hmpoTextarea %}
+
+    {{ hmpoTextarea(ctx, {
+        id: "noSignReason",
+        hint: (
+            "You must explain why you can’t sign your passport, for example if there’s a medical reason or you can’t write. If you can, bring supporting evidence to your collection appointment." if values.urgent
+            else "If you have evidence, you’ll need to send it to us"
+        ),
+        label: {
+            text: "Explain why",
+            classes: "govuk-label--m"
+        }
+    }) }}
+{% endset %}
+
+{% block mainContent %}
+
+    {% call hmpoForm(ctx) %}
+
+        <div class="sidebar" aria-hidden="true" id="where-to-sign-sidebar">
+            <h2>Where to sign</h2>
+            {# TODO: consolidate sidebar image sizes at some point #}
+            <img src="/public/images/where-to-sign-x2.png" style="width: 195px" alt="">
+        </div>
+
+        {% if values.urgent %}
+            {% set hintParagraph = "<p>When you collect your new passport, you need to sign it.</p>" %}
+        {% else %}
+            {% set hintParagraph = "<p>All passport holders aged 12 and older must sign the new passport when they receive it.</p>" %}
+        {% endif %}
+
+        {{ hmpoRadios(ctx, {
+            id: "canSign",
+            isPageHeading: true,
+            legend: {
+                text: hmpoTitle
+            },
+            hint: {
+                html: hintParagraph
+            },
+            items: [
+                {
+                    value: true,
+                    text: "I understand and will sign my passport"
+
+                },
+                {
+                    value: false,
+                    text: "I can’t sign my name"
+                }
+            ],
+            conditionals: {
+                "false": { id: "notSignReason", html: noSignReason }
+            }
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Gender{% endset %}
+
+{% block mainContent %}
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoRadios(ctx, {
+            id: "gender",
+            legend: hmpoTitle,
+            isPageHeading: true,
+            items: [
+                { value: "F", text: "Female" },
+                { value: "M", text: "Male" }
+            ]
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}

@@ -1,0 +1,113 @@
+
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Parents’ details{% endset %}
+
+{% block mainContent %}
+    <h1 id="header" >{{ hmpoTitle }}</h1>
+
+
+    {% call hmpoForm(ctx) %}
+        <p>Enter as many details as you can, giving parents’ current names. Check the <a id="parents-details-link" href="https://www.passport.service.gov.uk/help/parents-details" target="_blank">rules about parents</a> if you’re not sure whose details to provide.</p>
+
+        <h2>Mother or parent 1</h2>
+
+        {{ hmpoText(ctx, {
+            id: "parent1FirstName",
+            label: "First and middle names"
+        }) }}
+
+        {{ hmpoText(ctx, {
+            id: "parent1LastName",
+            label: "Last name"
+        }) }}
+
+        {{ hmpoDate(ctx, {
+            id: "parent1DateOfBirth",
+            legend: "Date of birth",
+            hint: "For example, 31 08 1970"
+        }) }}
+
+        {{ hmpoDetails({
+            summaryText: "I can’t provide these details",
+            id: "parent1ReasonReveal",
+            html: hmpoTextarea(ctx, {
+                id: "parent1NoDetailsReason",
+                label: {
+                    text: "Tell us why",
+                    classes: "govuk-label--m"
+                }
+            }),
+            open: "true" if values["parent1-show"]
+        }) }}
+
+        <h2>Father or parent 2</h2>
+
+        {{ hmpoText(ctx, {
+            id: "parent2FirstName",
+            label: "First and middle names"
+        }) }}
+
+        {{ hmpoText(ctx, {
+            id: "parent2LastName",
+            label: "Last name"
+        }) }}
+
+        {{ hmpoDate(ctx, {
+            id: "parent2DateOfBirth",
+            legend: "Date of birth",
+            hint: "For example, 31 08 1970"
+        }) }}
+
+        {{ hmpoDetails({
+            summaryText: "I can’t provide these details",
+            id: "parent2ReasonReveal",
+            html: hmpoTextarea(ctx, {
+                id: "parent2NoDetailsReason",
+                label: {
+                    text: "Tell us why",
+                    classes: "govuk-label--m"
+                }
+            }),
+            open: "true" if values["parent2-show"]
+        }) }}
+
+        {{ hmpoRadios(ctx, {
+            id: "parentsMarried",
+            inline: true,
+            legend: {
+                text: "Were they married or in a civil partnership?",
+                classes: "govuk-label--m"
+            },
+            items: [
+                {
+                    value: true
+                },
+                {
+                    value: false
+                },
+                {
+                    value: 'unknown',
+                    text: "I don’t know"
+                }
+            ],
+            conditionals: {
+                "true": {
+                    id: "parentsMarriageDateReveal",
+                    html: hmpoDate(ctx, {
+                        id: "parentsMarriageDate",
+                        legend: {
+                            text: "Date of marriage or civil partnership",
+                            classes: "govuk-fieldset__legend--m"
+                        },
+                        hint: "For example 25 08 2012, leave this blank if you can’t provide it"
+                    })
+                }
+            }
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}
