@@ -336,7 +336,7 @@ const apply = {
             'largePassport',
             'braille'
         ],
-        editBackStep: '/apply/costs',
+        editBackStep: '/apply/cost',
         next: [
             { field: 'ageGroup', value: 'under12', next: '/apply/relationship-to-applicant'},
             '/apply/sign'
@@ -366,21 +366,21 @@ const apply = {
         ]
     },
     '/apply/confirm': {
-        // next: '/apply/costs'
+        // next: '/apply/cost'
         editable: false,
         next: [
             // { field: DpsPromotion.dpsCheckedFields,
             //     op: (fieldValues, req, res) => DpsPromotion.isEligible(fieldValues, req, res),
             //     next: '/apply/passport-urgent' },
             { field: 'csigRequired', value: true, next: '/apply/confirm-identity' },
-            { field: 'urgent', value: true, next: '/apply/costs' },
-            { field: 'noDocuments', value: true, next: '/apply/costs' }, // TODO: add noDocuments logic to trigger
+            { field: 'urgent', value: true, next: '/apply/cost' },
+            { field: 'noDocuments', value: true, next: '/apply/cost' }, // TODO: add noDocuments logic to trigger
             '/apply/documents-to-send'
         ]
     },
     '/apply/confirm-identity': {
         next: [
-            { field: 'noDocuments', value: true, next: '/apply/costs' },
+            { field: 'noDocuments', value: true, next: '/apply/cost' },
             '/apply/documents-to-send'
         ]
     },
@@ -390,9 +390,9 @@ const apply = {
             'documents-to-send'
         ],
         next: [
-            { field: 'documents-to-send', value: false, next: '/apply/costs' },
+            { field: 'documents-to-send', value: false, next: '/apply/cost' },
             { field: 'isUKApplication', value: true, next: '/apply/passport-delivery' },
-            '/apply/costs'
+            '/apply/cost'
         ]
     },
         '/apply/passport-delivery': {
@@ -400,10 +400,10 @@ const apply = {
         fields: [
             'secureDelivery'
         ],
-        editBackStep: '/apply/costs',
-        next: '/apply/costs'
+        editBackStep: '/apply/cost',
+        next: '/apply/cost'
     },
-    '/apply/costs': {
+    '/apply/cost': {
         // controller: require('../../controllers/cost'),
         editable: false,
         revalidateIf: [ '*' ],
