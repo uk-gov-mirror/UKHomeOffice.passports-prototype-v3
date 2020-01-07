@@ -461,6 +461,20 @@ const apply = {
     //     editable: false,
     //     next: '/apply/next-steps'
     // },
+    '/apply/next-steps': { // TODO: add logic to trigger `next-steps-csig` and `next-steps-csig-no-docs.html`, or refactor and consolidate pages
+        // controller: require('../../controllers/next-steps'),
+        backLink: false,
+        editable: false,
+        // noPost: true
+    },
+    '/apply/next-steps-csig': {
+        backLink: false,
+        editable: false,
+    },
+    '/apply/next-steps-csig-no-docs': {
+        backLink: false,
+        editable: false,
+    },
 }
 
 const tracking = {
