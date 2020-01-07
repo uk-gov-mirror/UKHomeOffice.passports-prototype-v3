@@ -396,10 +396,8 @@ const apply = {
         '/apply/passport-delivery': {
         // controller: require('../../controllers/delivery'),
         fields: [
-            'secureReturn'
+            'secureDelivery'
         ],
-        // revalidateIf: [ 'veteran' ],
-        // editBackStep: 'cost',
         next: '/apply/costs'
     },
     '/apply/costs': {

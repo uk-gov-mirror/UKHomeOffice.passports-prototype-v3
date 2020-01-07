@@ -36,8 +36,8 @@
                 actions: { items: [ { text: "Change", href: "/apply/naturalisation-certificate/edit" }]}
             },
             {
-                key: { text: "Certificate issue date" },
-                value: { text: values.naturalisationIssueDate },
+                key: { text: "Date of issue" },
+                value: { text: values.naturalisationIssueDate | date },
                 actions: { items: [ { text: "Change", href: "/apply/naturalisation-certificate/edit" }]}
             }
         ] }) }}
@@ -146,7 +146,7 @@
         },
         {
             key: { text: "Country of birth" },
-            value: { text: values.countryOfBirth | countryName },
+            value: { text: (values.countryOfBirth) | countryName },
             actions: { items: [ { text: "Change", href: "/apply/birth/edit" }]}
         },
         {
