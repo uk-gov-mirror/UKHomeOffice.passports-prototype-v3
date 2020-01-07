@@ -467,6 +467,13 @@ module.exports = {
         formatter: 'boolean',
         validate: 'required'
     },
+    declaration: {
+        formatter: 'boolean',
+        validate: [
+            'required',
+            { type: 'equal', arguments: true }
+        ]
+    },
 
 
     appReference: {

@@ -336,6 +336,7 @@ const apply = {
             'largePassport',
             'braille'
         ],
+        editBackStep: '/apply/costs',
         next: [
             { field: 'ageGroup', value: 'under12', next: '/apply/relationship-to-applicant'},
             '/apply/sign'
@@ -366,6 +367,7 @@ const apply = {
     },
     '/apply/confirm': {
         // next: '/apply/costs'
+        editable: false,
         next: [
             // { field: DpsPromotion.dpsCheckedFields,
             //     op: (fieldValues, req, res) => DpsPromotion.isEligible(fieldValues, req, res),
@@ -398,10 +400,31 @@ const apply = {
         fields: [
             'secureDelivery'
         ],
+        editBackStep: '/apply/costs',
         next: '/apply/costs'
     },
     '/apply/costs': {
-    }
+        // controller: require('../../controllers/cost'),
+        editable: false,
+        revalidateIf: [ '*' ],
+        next: '/apply/declaration'
+    },
+    '/apply/declaration': {
+        // controller: require('../../controllers/declaration'),
+        editable: false,
+        fields: [
+            'declaration'
+        ],
+        revalidateIf: [ '*' ],
+        next: [
+            // { fn: Captcha.needsCaptcha, next: 'captcha' },
+            // { fn: req => featureFlag.isEnabled('govPay', req), next: [
+            //     { field: 'cost', value: 0, next: 'submit-application'},
+            //     'initialise-payment'
+            // ]},
+            '/apply/payment'
+        ]
+    },
 }
 
 const tracking = {

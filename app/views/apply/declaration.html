@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Declaration{% endset %}
+
+{% block mainContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>By continuing you confirm that:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>the information you’ve given is correct</li>
+        <li>you agree to the <a href="/help/terms-and-conditions" target="_blank">terms and conditions</a></li>
+        <li>HM Passport Office will record, store, use and share your data in accordance with our <a href="/help/privacy" target="_blank">privacy policy</a></li>
+    </ul>
+
+    {% call hmpoWarningText({ iconFallbackText: "Warning" }) %}
+        If you give untrue or misleading information to get a passport you could be prosecuted.
+    {% endcall %}
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoCheckboxes(ctx, {
+            id: "declaration",
+            label: "I agree"
+        }) }}
+
+        {% if values.totalCost %}
+            {{ hmpoSubmit(ctx, { text: translate("buttons.payment") }) }}
+        {% else %}
+            {{ hmpoSubmit(ctx, { text: translate("buttons.submitApplication") }) }}
+        {% endif %}
+
+    {% endcall %}
+
+{% endblock %}

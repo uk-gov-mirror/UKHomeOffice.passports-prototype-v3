@@ -6,7 +6,9 @@
     },
     "buttons": {
         "next": "Continue",
-        "print": "Print page"
+        "payment": "Continue to payment",
+        "print": "Print page",
+        "submitApplication": "Submit application"
     },
     "fields": {
       "date-day": {
