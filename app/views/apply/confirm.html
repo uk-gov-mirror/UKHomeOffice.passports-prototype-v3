@@ -98,6 +98,12 @@
     {% endif %}
 
     <h2>New passport details</h2>
+    {% set previousNames = [
+        (values.previousFirstName1 + " " + values.previousLastName1) | trim,
+        (values.previousFirstName2 + " " + values.previousLastName2) | trim,
+        (values.previousFirstName3 + " " + values.previousLastName3) | trim
+    ] | filter %}
+
     {{ govukSummaryList({ rows: [
         {
             key: { text: "Title" },
@@ -120,7 +126,7 @@
         },
         {
             key: { text: "Previous names" },
-            value: { html: values.previousNames | join("<br/>") if values.previousNames else "You have never been known by any other names" },
+            value: { html: previousNames | join("<br/>") if values.previousNames else "You have never been known by any other names" },
             actions: { items: [ { text: "Change", href: "/apply/previous-names/edit" }]}
         },
         {

@@ -207,10 +207,13 @@ const apply = {
     '/apply/previous-names': {
         fields: [
             'previousNames',
+            'previousName1',
             'previousFirstName1',
             'previousLastName1',
+            'previousName2',
             'previousFirstName2',
             'previousLastName2',
+            'previousName3',
             'previousFirstName3',
             'previousLastName3'
         ],

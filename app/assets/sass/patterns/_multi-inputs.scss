@@ -1,0 +1,7 @@
+.govuk-multi-input {
+    @include govuk-media-query($from: desktop) {
+        display: inline-block;
+        margin-right: 1.55em;
+        margin-bottom: 0px;
+    }
+}
