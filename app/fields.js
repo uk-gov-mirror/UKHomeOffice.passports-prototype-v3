@@ -160,24 +160,30 @@ module.exports = {
         validate: 'required'
     },
     previousFirstName1: {
+        errorGroup: "previousName1",
         validate: 'required',
-        dependent: { field: 'previousNames', value: true }
+        dependent: 'previousNames'
     },
     previousLastName1: {
+        errorGroup: "previousName1",
         validate: 'required',
-        dependent: { field: 'previousNames', value: true }
+        dependent: 'previousNames'
     },
     previousFirstName2: {
-        dependent: { field: 'previousNames', value: true }
+        errorGroup: "previousName2",
+        dependent: 'previousNames'
     },
     previousLastName2: {
-        dependent: { field: 'previousNames', value: true }
+        errorGroup: "previousName2",
+        dependent: 'previousNames'
     },
     previousFirstName3: {
-        dependent: { field: 'previousNames', value: true }
+        errorGroup: "previousName3",
+        dependent: 'previousNames'
     },
     previousLastName3: {
-        dependent: { field: 'previousNames', value: true }
+        errorGroup: "previousName3",
+        dependent: 'previousNames'
     },
     previousNames: {
         formatter: 'boolean',

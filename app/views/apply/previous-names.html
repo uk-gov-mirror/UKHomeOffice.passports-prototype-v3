@@ -1,45 +1,193 @@
-{# {% from "components/previous-names.njk" import hmpoPreviousNames %} #}
-
 {% extends "layout.html" %}
 
-{% set hmpoTitle %}Have you ever used any other names?{% endset %}
+{% set hmpoTitle = "Previous names" if values.changeOfName else "Have you ever used any other names?" %}
 
-{% set hint %}
-    {% if ageGroup.child %}
-        For example a name you were given at birth and changed later.
-    {% else %}
-        For example a maiden name, a previous married name or a name you were given at birth and changed later.
-    {% endif %}
-    You must tell us every name you’ve used.
-{% endset %}
+{% set previousNamesFields %}
+    {% from "hmpo-error-group/macro.njk" import hmpoErrorGroup %}
+    {% from "hmpo-text/macro.njk" import hmpoText %}
 
-{# {% set previousNamesConditional %}
-        {{ hmpoPreviousNames(ctx, {
-            previousNamesFields: previousNamesFields,
-            previousNameFieldLimit: previousNameFieldLimit
-        }) }}
-{% endset %} #}
-
-{% block hmpoContent %}
-
-    {% call hmpoForm(ctx) %}
-
-        {{ hmpoRadios(ctx, {
-            id: "previousNames",
-            legend: {
-                text: hmpoTitle
+    <h2>List all previous names</h2>
+    {% call hmpoErrorGroup(ctx, {
+        id: "previousName1",
+        legend: {
+            text: "Previous Name 1",
+            classes: "govuk-visually-hidden"
+        }
+    }) %}
+        {{ hmpoText(ctx, {
+            id: "previousFirstName1",
+            label: {
+                text: "First and middle names",
+                classes: "govuk-label--s"
             },
-            isPageHeading: true,
-            inline: true,
-            fieldset: { classes: "govuk-grid-column-two-thirds" },
-            hint:  hint,
-            conditionals: {
-                "true": { id: "previous-names-reveal", html: previousNamesConditional }
-            }
+            formGroup: { classes: "govuk-multi-input" },
+            classes: "govuk-!-width-full"
         }) }}
-
-        {{ hmpoSubmit(ctx) }}
-
+        {{ hmpoText(ctx, {
+            id: "previousLastName1",
+            label: {
+                text: "Last name",
+                classes: "govuk-label--s"
+            },
+            formGroup: { classes: "govuk-multi-input" },
+            classes: "govuk-!-width-full"
+        }) }}
     {% endcall %}
 
+    {% call hmpoErrorGroup(ctx, {
+        id: "previousName2",
+        legend: {
+            text: "Previous Name 2",
+            classes: "govuk-visually-hidden"
+        }
+    }) %}
+        {{ hmpoText(ctx, {
+            id: "previousFirstName2",
+            label: {
+                text: "First and middle names",
+                classes: "govuk-label--s"
+            },
+            formGroup: { classes: "govuk-multi-input" },
+            classes: "govuk-!-width-full"
+        }) }}
+        {{ hmpoText(ctx, {
+            id: "previousLastName2",
+            label: {
+                text: "Last name",
+                classes: "govuk-label--s"
+            },
+            formGroup: { classes: "govuk-multi-input" },
+            classes: "govuk-!-width-full"
+        }) }}
+        <a href="javascript:removeName(2)">Remove</a>
+    {% endcall %}
+
+    {% call hmpoErrorGroup(ctx, {
+        id: "previousName3",
+        legend: {
+            text: "Previous Name 1",
+            classes: "govuk-visually-hidden"
+        }
+    }) %}
+        {{ hmpoText(ctx, {
+            id: "previousFirstName3",
+            label: {
+                text: "First and middle names",
+                classes: "govuk-label--s"
+            },
+            formGroup: { classes: "govuk-multi-input" },
+            classes: "govuk-!-width-full"
+        }) }}
+        {{ hmpoText(ctx, {
+            id: "previousLastName3",
+            label: {
+                text: "Last name",
+                classes: "govuk-label--s"
+            },
+            formGroup: { classes: "govuk-multi-input" },
+            classes: "govuk-!-width-full"
+        }) }}
+        <a href="javascript:removeName(3)">Remove</a>
+    {% endcall %}
+
+    <div style="padding-bottom: 30px">
+        <a href="javascript:addName()">Add another name</a>
+    </div>
+{% endset %}
+
+{% block hmpoContent %}
+    <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+        {% if values.changeOfName %}
+
+            <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+
+                <h1>{{ hmpoTitle }}</h1>
+                <p>
+                    {% if values.applicationType == "first" %}
+                        {% if values.naturalised %}
+                            Tell us the name on your naturalisation or registration certificate and any other names you have been known by.
+                        {% else %}
+                            Tell us the name on your birth or adoption certificate and any other names you have been known by.
+                        {% endif %}
+                    {% else %}
+                        Tell us the name on your old passport and any other names you have been known by.
+                    {% endif %}
+                    {% if adultOrChild == "child" %}
+                        For example a name you were given at birth and changed later.
+                    {% else %}
+                        For example a maiden name, a previous married name or a name you were given at birth and changed later.
+                    {% endif %}
+                </p>
+
+            </div>
+            </div>
+
+            {% call hmpoForm(ctx) %}
+                <input type="hidden" name="previousNames" value="true" />
+                {{ previousNamesFields | safe }}
+                {{ hmpoSubmit(ctx) }}
+            {% endcall %}
+
+        {% else %}
+
+            {% set hint %}
+                {% if ageGroup.child %}
+                    For example a name you were given at birth and changed later.
+                {% else %}
+                    For example a maiden name, a previous married name or a name you were given at birth and changed later.
+                {% endif %}
+                You must tell us every name you’ve used.
+            {% endset %}
+
+            {% call hmpoForm(ctx) %}
+
+                {{ hmpoRadios(ctx, {
+                    id: "previousNames",
+                    legend: {
+                        text: hmpoTitle
+                    },
+                    isPageHeading: true,
+                    inline: true,
+                    hint: hint,
+                    fieldset: { classes: "govuk-grid-column-two-thirds" },
+                    conditionals: {
+                        "true": { id: "previous-names-reveal", html: previousNamesFields }
+                    }
+                }) }}
+
+                {{ hmpoSubmit(ctx) }}
+
+            {% endcall %}
+
+        {% endif %}
+    </div>
+    </div>
 {% endblock %}
+
+{% block pageScripts %}
+    <script>
+        $(function() {
+            window.removeName = function(i) {
+                $('#previousFirstName' + i).val('');
+                $('#previousLastName' + i).val('');
+                $('#previousName' + i).hide();
+                return false;
+            };
+            window.addName = function() {
+                if (!$('#previousName2').is(":visible"))
+                    $('#previousName2').show();
+                else if (!$('#previousName3').is(":visible"))
+                    $('#previousName3').show();
+                return false;
+            };
+            if (!$('#previousFirstName2').val() && !$('#previousLastName2').val())
+                $('#previousName2').hide();
+            if (!$('#previousFirstName3').val() && !$('#previousLastName3').val())
+                $('#previousName3').hide();
+        });
+    </script>
+{% endblock %}
+
