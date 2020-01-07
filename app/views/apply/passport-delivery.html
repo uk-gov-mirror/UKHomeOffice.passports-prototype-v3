@@ -22,7 +22,7 @@
     {% call hmpoForm(ctx) %}
 
             {{ hmpoRadios(ctx, {
-                id: "secureReturn",
+                id: "secureDelivery",
                 legend: {
                     text: hmpoTitle
                 },
@@ -33,7 +33,7 @@
                 items: [
                     {
                         value: true,
-                        text: "Secure delivery (" + values.deliveryCost | currency + " extra)"
+                        text: "Secure delivery (£5 extra)"
                     }, {
                         value: false,
                         text: "Standard post (free)"

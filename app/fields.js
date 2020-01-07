@@ -201,7 +201,7 @@ module.exports = {
         validate: 'required'
     },
     countryOfBirth: {
-        items: require('./data/birth-countries'),
+        items: require('./data/countries'),
         validate: 'required',
         dependent: { field: 'bornInUK', value: false }
     },
@@ -463,9 +463,16 @@ module.exports = {
         formatter: 'boolean',
         validate: 'required'
     },
-    secureReturn: { // TODO: consolidate `secureReturn` and `secureDelivery` fields?
+    secureDelivery: {
         formatter: 'boolean',
         validate: 'required'
+    },
+    declaration: {
+        formatter: 'boolean',
+        validate: [
+            'required',
+            { type: 'equal', arguments: true }
+        ]
     },
 
 

@@ -336,6 +336,7 @@ const apply = {
             'largePassport',
             'braille'
         ],
+        editBackStep: '/apply/cost',
         next: [
             { field: 'ageGroup', value: 'under12', next: '/apply/relationship-to-applicant'},
             '/apply/sign'
@@ -365,20 +366,21 @@ const apply = {
         ]
     },
     '/apply/confirm': {
-        // next: '/apply/costs'
+        // next: '/apply/cost'
+        editable: false,
         next: [
             // { field: DpsPromotion.dpsCheckedFields,
             //     op: (fieldValues, req, res) => DpsPromotion.isEligible(fieldValues, req, res),
             //     next: '/apply/passport-urgent' },
             { field: 'csigRequired', value: true, next: '/apply/confirm-identity' },
-            { field: 'urgent', value: true, next: '/apply/costs' },
-            { field: 'noDocuments', value: true, next: '/apply/costs' }, // TODO: add noDocuments logic to trigger
+            { field: 'urgent', value: true, next: '/apply/cost' },
+            { field: 'noDocuments', value: true, next: '/apply/cost' }, // TODO: add noDocuments logic to trigger
             '/apply/documents-to-send'
         ]
     },
     '/apply/confirm-identity': {
         next: [
-            { field: 'noDocuments', value: true, next: '/apply/costs' },
+            { field: 'noDocuments', value: true, next: '/apply/cost' },
             '/apply/documents-to-send'
         ]
     },
@@ -388,22 +390,91 @@ const apply = {
             'documents-to-send'
         ],
         next: [
-            { field: 'documents-to-send', value: false, next: '/apply/costs' },
+            { field: 'documents-to-send', value: false, next: '/apply/cost' },
             { field: 'isUKApplication', value: true, next: '/apply/passport-delivery' },
-            '/apply/costs'
+            '/apply/cost'
         ]
     },
         '/apply/passport-delivery': {
         // controller: require('../../controllers/delivery'),
         fields: [
-            'secureReturn'
+            'secureDelivery'
         ],
-        // revalidateIf: [ 'veteran' ],
-        // editBackStep: 'cost',
-        next: '/apply/costs'
+        editBackStep: '/apply/cost',
+        next: '/apply/cost'
     },
-    '/apply/costs': {
-    }
+    '/apply/cost': {
+        // controller: require('../../controllers/cost'),
+        editable: false,
+        revalidateIf: [ '*' ],
+        next: '/apply/declaration'
+    },
+    '/apply/declaration': {
+        // controller: require('../../controllers/declaration'),
+        editable: false,
+        fields: [
+            'declaration'
+        ],
+        revalidateIf: [ '*' ],
+        next: [
+            // { fn: Captcha.needsCaptcha, next: 'captcha' },
+            // { fn: req => featureFlag.isEnabled('govPay', req), next: [
+            //     { field: 'cost', value: 0, next: 'submit-application'},
+            //     'initialise-payment'
+            // ]},
+            '/apply/payment'
+        ]
+    },
+    '/apply/payment': {
+        // controller: require('../../controllers/payment'),
+        editable: false,
+        // revalidate: true,
+        // csrf: false,
+        // fields: ['base64Response'],
+        // next: '/apply/payment-submission'
+        next: '/apply/next-steps'
+    },
+    // '/apply/payment-submission': {
+        // controller: require('../../controllers/payment-submission'),
+        // editable: false,
+        // revalidate: true,
+        // next: '/apply/next-steps'
+    // },
+    // '/apply/initialise-payment': {
+        // controller: require('../../controllers/initialise-payment'),
+    //     editable: false,
+    //     next: '/apply/redirect-to-gov-pay'
+    // },
+    // '/apply/redirect-to-gov-pay': {
+        // controller: require('../../controllers/redirect-to-gov-pay'),
+        // skip: true,
+    //     editable: false
+    // },
+    // '/apply/complete-payment': {
+        // controller: require('../../controllers/complete-payment'),
+        // prereqs: ['initialise-payment'],
+        // skip: true,
+    //     next: '/apply/submit-application'
+    // },
+    // '/apply/submit-application': {
+        // controller: require('../../controllers/submit-application'),
+    //     editable: false,
+    //     next: '/apply/next-steps'
+    // },
+    '/apply/next-steps': { // TODO: add logic to trigger `next-steps-csig` and `next-steps-csig-no-docs.html`, or refactor and consolidate pages
+        // controller: require('../../controllers/next-steps'),
+        backLink: false,
+        editable: false,
+        // noPost: true
+    },
+    '/apply/next-steps-csig': {
+        backLink: false,
+        editable: false,
+    },
+    '/apply/next-steps-csig-no-docs': {
+        backLink: false,
+        editable: false,
+    },
 }
 
 const tracking = {

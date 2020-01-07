@@ -6,7 +6,11 @@
     },
     "buttons": {
         "next": "Continue",
-        "print": "Print page"
+        "payment": "Continue to payment",
+        "print": "Print page",
+        "submitApplication": "Submit application",
+        "giveFeedback": "Give feedback",
+        "signIn":"Sign in"
     },
     "fields": {
       "date-day": {
