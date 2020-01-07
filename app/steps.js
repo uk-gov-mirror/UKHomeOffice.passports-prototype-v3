@@ -425,6 +425,42 @@ const apply = {
             '/apply/payment'
         ]
     },
+    '/apply/payment': {
+        // controller: require('../../controllers/payment'),
+        editable: false,
+        // revalidate: true,
+        // csrf: false,
+        // fields: ['base64Response'],
+        // next: '/apply/payment-submission'
+        next: '/apply/next-steps'
+    },
+    // '/apply/payment-submission': {
+        // controller: require('../../controllers/payment-submission'),
+        // editable: false,
+        // revalidate: true,
+        // next: '/apply/next-steps'
+    // },
+    // '/apply/initialise-payment': {
+        // controller: require('../../controllers/initialise-payment'),
+    //     editable: false,
+    //     next: '/apply/redirect-to-gov-pay'
+    // },
+    // '/apply/redirect-to-gov-pay': {
+        // controller: require('../../controllers/redirect-to-gov-pay'),
+        // skip: true,
+    //     editable: false
+    // },
+    // '/apply/complete-payment': {
+        // controller: require('../../controllers/complete-payment'),
+        // prereqs: ['initialise-payment'],
+        // skip: true,
+    //     next: '/apply/submit-application'
+    // },
+    // '/apply/submit-application': {
+        // controller: require('../../controllers/submit-application'),
+    //     editable: false,
+    //     next: '/apply/next-steps'
+    // },
 }
 
 const tracking = {
