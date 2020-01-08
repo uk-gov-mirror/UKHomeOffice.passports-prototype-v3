@@ -66,18 +66,14 @@
                 text: "Do they have a UK passport?",
                 classes: "govuk-label--m"
             },
-            items: [
-                {
-                    value: true
-                },
-                {
-                    value: false
-                },
-                {
-                    value: 'unknown',
-                    text: "I don’t know"
-                }
-            ],
+            items: [{
+                value: true
+            }, {
+                value: false
+            }, {
+                value: 'unknown',
+                text: "I don’t know"
+            }],
             conditionals: {
                 "true": { id: "passport-reveal", html: passportDetails }
             }
