@@ -320,7 +320,7 @@ module.exports = {
             { type: 'maxlength', arguments: 9 },
             'alphanum'
         ],
-        dependent: 'parent1-has-passport'
+        dependent: 'parent1HasPassport'
     },
     parent1PassportIssueDate: {
         validate: [
@@ -328,7 +328,7 @@ module.exports = {
             // { type: 'before' },
         ],
         autocomplete: 'parent1-issue-date',
-        dependent: 'parent1-has-passport'
+        dependent: 'parent1HasPassport'
     },
     parent2TownOfBirth: {
         validate: [
@@ -358,7 +358,7 @@ module.exports = {
             { type: 'maxlength', arguments: 9 },
             'alphanum'
         ],
-        dependent: 'parent2-has-passport'
+        dependent: 'parent2HasPassport'
     },
     parent2PassportIssueDate: {
         validate: [
@@ -366,7 +366,7 @@ module.exports = {
             // { type: 'before' },
         ],
         autocomplete: 'parent2-issue-date',
-        dependent: 'parent2-has-passport'
+        dependent: 'parent2HasPassport'
     },
     parent1Parent1FirstName: {
         validate: [
