@@ -78,7 +78,6 @@ const apply = {
         ]
     },
 
-
     '/filter/previous-passport': {
         fields: [
             'previousPassport'
@@ -294,9 +293,66 @@ const apply = {
             'parent2PassportNumber',
             'parent2PassportIssueDate'
         ],
-        next: '/apply/address-manual'
+        next: [
+            { field: 'grandparentsRequired', value: true, next: '/apply/grandparents-explanatory' },
+            { field: 'isUKApplication', value: false, next: '/apply/address-manual' },
+            '/apply/address-manual'
+        ]
     },
+    '/apply/grandparents-explanatory': {
+        // continueOnEdit: true,
+        next: '/apply/parent1-grandparents'
+    },
+    '/apply/parent1-grandparents': {
+        // controller: require('../../controllers/parents'),
+        fields: [
+            'parent1Parent1FirstName',
+            'parent1Parent1LastName',
+            'parent1Parent1TownOfBirth',
+            'parent1Parent1CountryOfBirth',
+            'parent1Parent1DateOfBirth',
+            'parent1Parent1NoDetailsReason',
 
+            'parent1Parent2FirstName',
+            'parent1Parent2LastName',
+            'parent1Parent2TownOfBirth',
+            'parent1Parent2CountryOfBirth',
+            'parent1Parent2DateOfBirth',
+            'parent1Parent2NoDetailsReason',
+
+            'parent1ParentsMarried',
+            'parent1ParentsMarriageDate'
+        ],
+        // setGrandparentsCompleted: true,
+        next: '/apply/parent2-grandparents'
+    },
+    '/apply/parent2-grandparents': {
+        // controller: require('../../controllers/parents'),
+        fields: [
+            'parent2Parent1FirstName',
+            'parent2Parent1LastName',
+            'parent2Parent1TownOfBirth',
+            'parent2Parent1CountryOfBirth',
+            'parent2Parent1DateOfBirth',
+            'parent2Parent1NoDetailsReason',
+
+            'parent2Parent2FirstName',
+            'parent2Parent2LastName',
+            'parent2Parent2TownOfBirth',
+            'parent2Parent2CountryOfBirth',
+            'parent2Parent2DateOfBirth',
+            'parent2Parent2NoDetailsReason',
+
+            'parent2ParentsMarried',
+            'parent2ParentsMarriageDate'
+        ],
+        // setGrandparentsCompleted: true,
+        next: [
+            { field: 'isUKApplication', value: false, next: '/apply/address-manual' },
+            // '/apply/address'
+            '/apply/address-manual'
+        ]
+    },
     '/apply/address-manual': {
         fields: [
             'addressLine1',
@@ -395,7 +451,7 @@ const apply = {
             '/apply/cost'
         ]
     },
-        '/apply/passport-delivery': {
+    '/apply/passport-delivery': {
         // controller: require('../../controllers/delivery'),
         fields: [
             'secureDelivery'

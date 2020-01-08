@@ -7,6 +7,7 @@ class DefaultController extends BaseController {
         this.setApplicationType(req)
         this.parentsRequired(req)
         this.isEUSS(req)
+        this.grandparentsRequired(req)
         this.setCosts(req)
         this.csigRequired(req)
         super.successHandler(req, res, next)
@@ -48,11 +49,11 @@ class DefaultController extends BaseController {
     }
 
     setApplicationType (req) {
-        let oldBlue = false;
+        let oldBlue = false
         let applicationType
         if (req.sessionModel.get('previousPassport') === true) {
             if (req.sessionModel.get('passportIssue') < '2004-01-01') {
-                oldBlue = true;
+                oldBlue = true
                 applicationType = 'first'
             } else {
                 applicationType = 'renew'
@@ -66,17 +67,21 @@ class DefaultController extends BaseController {
 
     parentsRequired(req) {
         // put logic in here
-        req.sessionModel.set('parentsRequired', false);
-        req.sessionModel.set('grandparentsRequired', false);
+        req.sessionModel.set('parentsRequired', false)
     }
 
     isEUSS(req) {
         // put logic in here
-        req.sessionModel.set('isEUSS', false);
+        req.sessionModel.set('isEUSS', false)
+    }
+
+    grandparentsRequired(req) {
+        // put logic in here
+        req.sessionModel.set('grandparentsRequired', false)
     }
 
     setCosts (req) {
-        let passportCost;
+        let passportCost
         if (req.sessionModel.get('adultOrChild') === 'child') {
             if (req.sessionModel.get('largePassport')) {
                 passportCost = 59.00
@@ -91,11 +96,11 @@ class DefaultController extends BaseController {
             }
         }
 
-        let deliveryCost;
+        let deliveryCost
         if (req.sessionModel.get('secureDelivery')) {
-            deliveryCost = 5.00;
+            deliveryCost = 5.00
         } else {
-            deliveryCost = 0.00;
+            deliveryCost = 0.00
         }
 
         req.sessionModel.set('passportCost', passportCost)
@@ -105,15 +110,15 @@ class DefaultController extends BaseController {
 
     csigRequired(req) {
         if (req.sessionModel.get('applicationType') === 'first') {
-            return req.sessionModel.set('csigRequired', true);
+            return req.sessionModel.set('csigRequired', true)
         }
         if (req.sessionModel.get('lost') === true) {
-            return req.sessionModel.set('csigRequired', true);
+            return req.sessionModel.set('csigRequired', true)
         }
         if (req.sessionModel.get('ageGroup') === 'under12') {
-            return req.sessionModel.set('csigRequired', true);
+            return req.sessionModel.set('csigRequired', true)
         }
-        req.sessionModel.set('csigRequired', false);
+        req.sessionModel.set('csigRequired', false)
     }
 
 }

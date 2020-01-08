@@ -1,79 +1,106 @@
-
 {% extends "layout.html" %}
 
-{% set hmpoTitle %}Parents’ details{% endset %}
+{% set hmpoTitle %}Maternal grandparents{% endset %}
 
 {% block mainContent %}
-    <h1 id="header" >{{ hmpoTitle }}</h1>
-
+    <h1>{{ hmpoTitle }}</h1>
 
     {% call hmpoForm(ctx) %}
-        <p>Enter as many details as you can, giving parents’ current names. Check the <a id="parents-details-link" href="https://www.passport.service.gov.uk/help/parents-details" target="_blank">rules about parents</a> if you’re not sure whose details to provide.</p>
 
-        <h2>Mother or parent 1</h2>
+        <p>Enter as many details as you can about your mother’s parents. For same sex couples, these are parent 1’s parents.</p>
+
+        <h2>Grandmother</h2>
 
         {{ hmpoText(ctx, {
-            id: "parent1FirstName",
+            attributes: { autocapitalize: "words" },
+            id: "parent1Parent1FirstName",
             label: "First and middle names"
         }) }}
 
         {{ hmpoText(ctx, {
-            id: "parent1LastName",
+            attributes: { autocapitalize: "words" },
+            id: "parent1Parent1LastName",
             label: "Last name"
         }) }}
 
+        {{ hmpoText(ctx, {
+            attributes: { autocapitalize: "words" },
+            id: "parent1Parent1TownOfBirth",
+            label: "Town of birth"
+        }) }}
+
+        {{ hmpoSelect(ctx, {
+            id: "parent1Parent1CountryOfBirth",
+            label: "Country of birth",
+            placeholder: true
+        }) }}
+
         {{ hmpoDate(ctx, {
-            id: "parent1DateOfBirth",
+            id: "parent1Parent1DateOfBirth",
             legend: "Date of birth",
             hint: "For example, 31 08 1970"
         }) }}
 
         {{ hmpoDetails({
             summaryText: "I can’t provide these details",
-            id: "parent1ReasonReveal",
+            id: "parent1Parent1ReasonReveal",
             html: hmpoTextarea(ctx, {
-                id: "parent1NoDetailsReason",
+                id: "parent1Parent1NoDetailsReason",
                 label: {
                     text: "Tell us why",
                     classes: "govuk-label--m"
                 }
             }),
-            open: "true" if values["parent1-show"]
+            open: "true" if values["parent1-parent1-show"]
         }) }}
 
-        <h2>Father or parent 2</h2>
+        <h2>Grandfather</h2>
 
         {{ hmpoText(ctx, {
-            id: "parent2FirstName",
+            attributes: { autocapitalize: "words" },
+            id: "parent1Parent2FirstName",
             label: "First and middle names"
         }) }}
 
         {{ hmpoText(ctx, {
-            id: "parent2LastName",
+            attributes: { autocapitalize: "words" },
+            id: "parent1Parent2LastName",
             label: "Last name"
         }) }}
 
+        {{ hmpoText(ctx, {
+            attributes: { autocapitalize: "words" },
+            id: "parent1Parent2TownOfBirth",
+            label: "Town of birth"
+        }) }}
+
+        {{ hmpoSelect(ctx, {
+            id: "parent1Parent2CountryOfBirth",
+            label: "Country of birth",
+            placeholder: true
+        }) }}
+
         {{ hmpoDate(ctx, {
-            id: "parent2DateOfBirth",
+            id: "parent1Parent2DateOfBirth",
             legend: "Date of birth",
             hint: "For example, 31 08 1970"
         }) }}
 
         {{ hmpoDetails({
             summaryText: "I can’t provide these details",
-            id: "parent2ReasonReveal",
+            id: "parent1Parent2ReasonReveal",
             html: hmpoTextarea(ctx, {
-                id: "parent2NoDetailsReason",
+                id: "parent1Parent2NoDetailsReason",
                 label: {
                     text: "Tell us why",
                     classes: "govuk-label--m"
                 }
             }),
-            open: "true" if values["parent2-show"]
+            open: "true" if values["parent1-parent2-show"]
         }) }}
 
         {{ hmpoRadios(ctx, {
-            id: "parentsMarried",
+            id: "parent1ParentsMarried",
             inline: true,
             legend: {
                 text: "Were they married or in a civil partnership?",
@@ -89,9 +116,9 @@
             }],
             conditionals: {
                 "true": {
-                    id: "parentsMarriageDateReveal",
+                    id: "parent1ParentsMarriageDateReveal",
                     html: hmpoDate(ctx, {
-                        id: "parentsMarriageDate",
+                        id: "parent1ParentsMarriageDate",
                         legend: {
                             text: "Date of marriage or civil partnership",
                             classes: "govuk-fieldset__legend--m"
