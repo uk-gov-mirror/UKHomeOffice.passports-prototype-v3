@@ -1,0 +1,74 @@
+
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Application history{% endset %}
+
+{% block backLink %}{% endblock %}
+
+{% block mainContent %}
+
+    <div class="govuk-panel status-header">
+        {% block trackingHeader %}{% endblock %}
+    </div>
+
+    {% block trackingBody %}{% endblock %}
+
+    {% block trackingsidebar %}
+        <div class="sidebar">
+            <ul class="sidebar-task">
+                {% block sidebarContent %}
+                    <li>
+                        <h3>Application reference</h3>
+                        <p>{{ values.formattedReference }}</p>
+                    </li>
+
+                    {% if values.documentsLink %}
+                        <li>
+                            <h3>Documents</h3>
+                            <p><a target="_blank" href="/help/documents">What you need to send</a></p>
+                        </li>
+                    {% endif %}
+
+                    {% if values.tellUsWhatYouThinkLink %}
+                        <li>
+                            <h3>Tell us what you think</h3>
+                            <p><a target="_blank" href="/">Fill in a survey about this service</a></p>
+                        </li>
+                    {% endif %}
+                {% endblock %}
+            </ul>
+        </div>
+    {% endblock %}
+
+    {% block trackingHistory %}
+        <hr class="govuk-section-break govuk-section-break--visible">
+
+        {% set trackingStatusRows = [] %}
+        {% for item in values.history %}
+            {% set trackingStatusRows = trackingStatusRows | push([
+                { text: item.status },
+                { text: item.date | date("h:mma on D MMMM YYYY") }
+            ]) %}
+        {% endfor %}
+
+        {{ govukTable({
+            caption: "Application history",
+            captionClasses: "govuk-heading-m",
+            classes: "status-table",
+            head: [
+                {
+                    text: "Status",
+                    classes: "govuk-visually-hidden"
+                },
+                {
+                    text: "Date",
+                    classes: "govuk-visually-hidden"
+                }
+            ],
+            rows: trackingStatusRows
+        }) }}
+    {% endblock %}
+
+{% endblock %}
+
+
