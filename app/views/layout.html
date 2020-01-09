@@ -69,6 +69,41 @@
     {{ super() }}
 {% endblock %}
 
+{% block footer %}
+    {{ hmpoFooter({
+        meta: {
+            items: [
+                {
+                    attributes: { target: "_blank" },
+                    href: "/help/cookies",
+                    text: "Cookies"
+                },
+                {
+                    attributes: { target: "_blank" },
+                    href: "/help/feedback",
+                    text: "Feedback"
+                },
+                {
+                    attributes: { target: "_blank" },
+                    href: "/help",
+                    text: "Help"
+                },
+                {
+                    attributes: { target: "_blank" },
+                    href: "/help/privacy",
+                    text: "Privacy"
+                },
+                {
+                    attributes: { target: "_blank" },
+                    href: "/help/terms-and-conditions",
+                    text: "Terms and conditions"
+                }
+            ],
+            html: footerHtml
+        }
+    }) }}
+{% endblock %}
+
 {% block bodyEnd %}
   {% block scripts %}
     {% include "includes/scripts.html" %}

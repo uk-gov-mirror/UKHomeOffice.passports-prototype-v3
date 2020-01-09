@@ -1,0 +1,46 @@
+{% extends "layout-tracking.html" %}
+
+{% block trackingHeader %}
+    <h1>
+        We’ve received your
+        {% if values.onlyOldPassportRequired %}
+            old passport
+        {% else %}
+            documents
+        {% endif %}</h1>
+    </h1>
+{% endblock %}
+
+{% block trackingBody %}
+    <h2>What happens next</h2>
+
+    <p>
+        {% if values.noDocuments %}
+            We’ll check your application.
+        {% else %}
+            We’ll check your application and
+            {% if values.onlyOldPassportRequired %}
+                your old passport.
+            {% else %}
+                the documents we asked for.
+            {% endif %}
+        {% endif %}
+
+        If we need more information, we’ll contact you.
+    </p>
+
+    <p>When we’ve finished checking your application, we’ll update this page.</p>
+
+    {{ trackingHistory([
+      "Documents received",
+      "Application received",
+      "Application submitted"
+    ]) }}
+
+{% endblock %}
+
+{% set nextStatuses = [
+    "PROCESSING"
+] %}
+
+

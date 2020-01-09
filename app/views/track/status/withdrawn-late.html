@@ -1,0 +1,22 @@
+{% extends "layout-tracking.html" %}
+
+{% block trackingHeader %}
+    <h1>We’ve sent you a letter</h1>
+{% endblock %}
+
+{% block trackingBody %}
+    <p>We sent you a letter on {{values.submitted | date}} that has more details about the problem with your application.</p>
+    <p>If this letter has not arrived, please <a href="/help" target="_blank">contact us</a>.</p>
+
+    {{ trackingHistory([
+      "We’ve sent you a letter",
+      "Application submitted"
+    ]) }}
+
+{% endblock %}
+
+
+{% set nextStatuses = [
+    "IN_QUEUE"
+] %}
+

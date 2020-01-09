@@ -43,7 +43,15 @@
         </p>
     {% endcall %}
 
+    {{ trackingHistory([
+      "Application submitted"
+    ]) }}
+
 {% endblock %}
 
+{% set nextStatuses = [
+    "IN_QUEUE",
+    "WITHDRAWN"
+] %}
 
 

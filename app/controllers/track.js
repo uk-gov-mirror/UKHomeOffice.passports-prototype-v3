@@ -4,25 +4,24 @@ const trackingStatuses = require('../data/tracking-statuses');
 
 class DefaultTrackController extends BaseController {
     get(req, res, next) {
+        // get subnmitted date
+        let date = moment(req.sessionModel.get('submitted'))
+        req.sessionModel.set({ submitted: date.toISOString() })
+
+        // choose tracking status
         let status = req.sessionModel.get('status')
+        if (req.query.status) {
+            status = req.query.status.toUpperCase()
+                .replace(/[^A-Z]+/g, '_')
+        }
         if (!status) {
             status = 'SUBMITTED'
-            req.sessionModel.set({ status })
         }
+        req.sessionModel.set({ status })
 
-        // get status history for a given status
-        let statusData = Object.assign({}, trackingStatuses[status])
-        let date = moment()
-        statusData.history = statusData.history || []
-        statusData.history = statusData.history.map(status => {
-            date.add(15, 'minutes')
-            return { status, date: date.toISOString() }
-        })
-        req.sessionModel.set(statusData)
-
-        // template
+        // set status template
         if (req.form.options.route === '/track/view') {
-            let template = 'track/view-' + status.toLowerCase()
+            let template = 'track/status/' + status.toLowerCase()
                 .replace(/[^a-z]+/g, '-')
             req.form.options.template = template;
         }
@@ -46,7 +45,24 @@ class DefaultTrackController extends BaseController {
             onlyOldPassportRequired: docs === 'passport',
             noDocuments: docs === 'nodocs',
             documentsLink: docs !== 'nodocs'
-        });
+        })
+
+        // notifications
+        req.sessionModel.set({
+            mobileNotification: true,
+            emailNotification: true
+        })
+
+        // survey link
+        req.sessionModel.set({
+            tellUsWhatYouThinkLink: true
+        })
+
+        // dates
+        req.sessionModel.set({
+            photoRejectedDate: moment().toISOString(),
+            resubmissionDeadlineDate: moment().add(49, 'days').toISOString()
+        })
 
         super.get(req, res, next)
     }

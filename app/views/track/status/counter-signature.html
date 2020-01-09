@@ -1,0 +1,35 @@
+{% extends "layout-tracking.html" %}
+
+{% block trackingHeader %}
+    <h1>You need a countersignature</h1>
+{% endblock %}
+
+{% block trackingBody %}
+    <p>Your passport application is on hold.</p>
+    <p>You need to ask someone to fill in and sign a form to confirm your identity. This is known as getting a countersignature.</p>
+    <p>We’ve posted a form to you.</p>
+
+    <h2>What you need to do</h2>
+    <p>Find out <a href=\"https://www.gov.uk/countersigning-passport-applications/accepted-occupations-for-countersignatories" target="_blank">who you can ask to countersign your passport application</a>.</p>
+    <p>If someone has already confirmed your identity for this passport application, ask a different person this time.</p>
+    <p>After they’ve filled in and signed the form, return it to us.</p>
+
+    <h2>What happens next</h2>
+    <p>We may contact the person who signed the form. We’ll carry on with your application once we’ve made this check.</p>
+    <p>If you chose to get updates, we’ll send you an email or text when your application is approved.</p>
+
+    {{ trackingHistory([
+      "Countersignature needed: on hold",
+      "Application being processed",
+      "Documents received",
+      "Application received",
+      "Application submitted"
+    ]) }}
+
+{% endblock %}
+
+
+{% set nextStatuses = [
+    "COUNTER_SIGNATURE_RECEIVED"
+] %}
+

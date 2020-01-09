@@ -1,0 +1,42 @@
+{% extends "layout-tracking.html" %}
+
+{% block trackingHeader %}
+    <h1>Your passport is on its way</h1>
+{% endblock %}
+
+{% block trackingBody %}
+    <h2>What happens next</h2>
+
+    <p>
+        We’ve sent your new passport by secure delivery.
+        In most cases it will be delivered by <a href="https://www.dxdelivery.com/static/HMPO/" target=\"_blank\">DX delivery services</a>.
+    </p>
+
+    {% if not values.noDocuments %}
+        <p>
+            Your {% if values.extraDocuments %}documents{% else %}old passport{% endif %} will arrive separately.
+            They won’t be in the same envelope as your new passport.
+        </p>
+    {% endif %}
+
+    {% call hmpoInsetText(ctx) %}
+        <h2>You must sign your new passport when you receive it</h2>
+        <p>You won’t be able to use it until you do.</p>
+    {% endcall %}
+
+    {{ trackingHistory([
+      "Passport printed and sent",
+      "Application approved",
+      "Application being processed",
+      "Documents received",
+      "Application received",
+      "Application submitted"
+    ]) }}
+
+{% endblock %}
+
+
+{% set nextStatuses = [
+    "SUBMITTED"
+] %}
+

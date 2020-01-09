@@ -74,3 +74,16 @@
         }
     }
 }
+
+.photo-resub-notice {
+    border: 3px solid $govuk-error-colour;
+    padding: $govuk-gutter-half $govuk-gutter*2 $govuk-gutter-half $govuk-gutter-half;
+    margin-bottom: $govuk-gutter;
+    position: relative;
+
+    .icon {
+        position: absolute;
+        top: $govuk-gutter-half;
+        right: $govuk-gutter-half;
+    }
+}
