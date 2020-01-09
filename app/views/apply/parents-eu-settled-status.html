@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Did either parent have settled status from the EU Settlement Scheme when you were born?{% endset %}
+
+{% block mainContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>The <a target="_blank" href="https://www.gov.uk/settled-status-eu-citizens-families">EU Settlement Scheme</a> is
+        for citizens of the EU (excluding the UK), Iceland, Liechtenstein, Norway and Switzerland, plus their families.
+    </p>
+    <p>
+        Only tell us about EU settled status, not pre-settled status or other types of indefinite leave to
+        remain.
+    </p>
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoRadios(ctx, {
+            id: "parentsHaveEUSettledStatus",
+            legend: "",
+            items: [{
+                value: true
+            }, {
+                value: false
+            }, {
+                value: 'unknown',
+                text: "I don't know"
+            }]
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}
