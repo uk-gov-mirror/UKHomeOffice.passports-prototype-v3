@@ -292,6 +292,10 @@ module.exports = {
         autocomplete: 'parents-marriage-bday',
         dependent: 'parentsMarried'
     },
+    parentsHaveEUSettledStatus: {
+        formatter: 'boolean-unknown',
+        validate: 'required'
+    },
     parent1TownOfBirth: {
         validate: [
             { type: 'minlength', arguments: 2 },

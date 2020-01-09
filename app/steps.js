@@ -264,7 +264,7 @@ const apply = {
             'parentsMarriageDate'
         ],
         next: [
-            { field: 'application-type', value: 'first', next: [
+            { field: 'applicationType', value: 'first', next: [
                 { field: 'isEUSS', value: true, next: '/apply/parents-eu-settled-status' },
                 '/apply/parent1-details'
             ]},
@@ -272,6 +272,13 @@ const apply = {
         ]
     },
     '/apply/parents-eu-settled-status': {
+        // controller: require('../../controllers/parents-eu-settled-status'),
+        fields: [
+            'parentsHaveEUSettledStatus'
+        ],
+        // continueOnEdit: true,
+        // revalidateIf: ['date-of-birth', 'naturalised', 'application-type', 'country-of-birth'],
+        next: '/apply/parent1-details'
     },
     '/apply/parent1-details': {
         fields: [
