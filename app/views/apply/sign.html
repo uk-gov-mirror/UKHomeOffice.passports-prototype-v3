@@ -37,24 +37,21 @@
 
         {{ hmpoRadios(ctx, {
             id: "canSign",
-            isPageHeading: true,
             legend: {
                 text: hmpoTitle
             },
+            isPageHeading: true,
             hint: {
                 html: hintParagraph
             },
-            items: [
-                {
-                    value: true,
-                    text: "I understand and will sign my passport"
+            items: [{
+                value: true,
+                text: "I understand and will sign my passport"
 
-                },
-                {
-                    value: false,
-                    text: "I can’t sign my name"
-                }
-            ],
+            }, {
+                value: false,
+                text: "I can’t sign my name"
+            }],
             conditionals: {
                 "false": { id: "notSignReason", html: noSignReason }
             }

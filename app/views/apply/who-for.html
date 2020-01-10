@@ -1,4 +1,3 @@
-
 {% extends "layout.html" %}
 
 {% set hmpoTitle %}Who is the passport for?{% endset %}
@@ -14,21 +13,18 @@
 
         {{ hmpoRadios(ctx, {
             id: "thirdParty",
-            isPageHeading: true,
             legend: {
                 text: hmpoTitle
             },
+            isPageHeading: true,
+            items: [{
+                value: false,
+                text: "Me"
+            }, {
+                value: true,
+                text: "Someone else"
+            }],
             inline: true,
-            items: [
-                {
-                    value: false,
-                    text: "Me"
-                },
-                {
-                    value: true,
-                    text: "Someone else"
-                }
-            ],
             conditionals: {
                 "true": { id: "thirdPartyInfo", html: thirdParty }
             }
