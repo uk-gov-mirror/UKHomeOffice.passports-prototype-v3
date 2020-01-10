@@ -8,6 +8,7 @@ class DefaultController extends BaseController {
         this.parentsRequired(req)
         this.isEUSS(req)
         this.grandparentsRequired(req)
+        this.isParentOfChild(req)
         this.setCosts(req)
         this.csigRequired(req)
         super.successHandler(req, res, next)
@@ -78,6 +79,11 @@ class DefaultController extends BaseController {
     grandparentsRequired(req) {
         // put logic in here
         req.sessionModel.set('grandparentsRequired', false)
+    }
+
+    isParentOfChild(req) {
+        // put logic in here
+        req.sessionModel.set('isParentOfChild', false)
     }
 
     setCosts (req) {

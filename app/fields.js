@@ -616,6 +616,47 @@ module.exports = {
         formatter: 'boolean',
         validate: 'required'
     },
+    relationship: {
+        validate: 'required'
+    },
+    otherRelationship: {
+        validate: [
+            'required',
+            { type: 'minlength', arguments: 2 },
+            { type: 'maxlength', arguments: 17 },
+            // 'relationship'
+        ],
+        dependent: {
+            field: 'relationship',
+            value: 'other'
+        }
+    },
+    thirdPartyFirstName: {
+        validate: [
+            'required',
+            { type: 'minlength', arguments: 2 },
+            { type: 'maxlength', arguments: 30 },
+            // 'firstname'
+        ],
+        // display: {
+        //     formatter: 'name'
+        // }
+    },
+    thirdPartyLastName: {
+        validate: [
+            'required',
+            { type: 'minlength', arguments: 2 },
+            { type: 'maxlength', arguments: 30 },
+            // 'surname'
+        ]
+    },
+    thirdPartyExplanation: {
+        validate: [
+            'required',
+            { type: 'maxlength', arguments: 200 },
+            // 'explanation'
+        ]
+    },
     secureDelivery: {
         formatter: 'boolean',
         validate: 'required'

@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}What is your relationship to the applicant?{% endset %}
+
+{% set otherRelationship %}
+    {% from "hmpo-text/macro.njk" import hmpoText %}
+
+    {{ hmpoText(ctx, {
+        id: "otherRelationship",
+        label: "What is your relationship?"
+    }) }}
+{% endset %}
+
+{% block hmpoContent %}
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoRadios(ctx, {
+            id: "relationship",
+            legend: {
+                text: hmpoTitle
+            },
+            isPageHeading: true,
+            items: [{
+                value: 'mother',
+                text: "Mother"
+            }, {
+                value: 'father',
+                text: "Father"
+            }, {
+                value: 'other',
+                text: "Other"
+            }],
+            conditionals: {
+                "other": { id: "otherRelationshipText", html: otherRelationship }
+            }
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}

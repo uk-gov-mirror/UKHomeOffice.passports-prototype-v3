@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Your name{% endset %}
+
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoText(ctx, {
+            id: "thirdPartyFirstName",
+            attributes: { autocapitalize: "words" },
+            label: {
+                text: "First and middle names",
+                classes: "govuk-label--m"
+            }
+        }) }}
+
+        {{ hmpoText(ctx, {
+            id: "thirdPartyLastName",
+            attributes: { autocapitalize: "words" },
+            label: {
+                text: "Last name",
+                classes: "govuk-label--m"
+            }
+        }) }}
+
+        {% if not ctx("isParentOfChild") %}
+            {{ hmpoTextarea(ctx, {
+                id: "thirdPartyExplanation",
+                label: {
+                    text: "Why are you applying for someone else?",
+                    classes: "govuk-label--m"
+                },
+                hint: "Explain the circumstances."
+            }) }}
+        {% endif %}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}

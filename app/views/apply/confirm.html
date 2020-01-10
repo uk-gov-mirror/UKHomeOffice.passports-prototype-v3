@@ -1,4 +1,3 @@
-
 {% extends "layout.html" %}
 
 {% set hmpoTitle %}Check this application{% endset %}
@@ -11,7 +10,7 @@
         {{ govukSummaryList({ rows: [
             {
                 key: { text: "Relationship" },
-                value: { text: values.otherRelationship if values.relationship == 'Other' else values.relationship | capitalise },
+                value: { text: values.otherRelationship if values.relationship == 'other' else values.relationship | capitalize },
                 actions: { items: [ { text: "Change", href: "/apply/relationship-to-applicant/edit" }]}
             },
             {
