@@ -1,0 +1,38 @@
+{% extends "layout-tracking.html" %}
+
+{% block trackingHeader %}
+    <h1>We received your photo</h1>
+{% endblock %}
+
+{% block trackingBody %}
+    <p>Thank you for submitting a new photo.</p>
+    <p>We’ll now carry on with your application.</p>
+
+    {% if values.mobileNotification and values.emailNotification %}
+        <h2>What happens next</h2>
+        <p>We’ll text and email you when your application is approved.</p>
+    {% elif values.mobileNotification %}
+        <h2>What happens next</h2>
+        <p>We’ll text you when your application is approved.</p>
+    {% elif values.emailNotification %}
+        <h2>What happens next</h2>
+        <p>We’ll email you when your application is approved.</p>
+    {% endif %}
+
+    {{ trackingHistory([
+      "New photo received",
+      "Photo rejected",
+      "Application being processed",
+      "Documents received",
+      "Application received",
+      "Application submitted"
+    ]) }}
+
+{% endblock %}
+
+{% set nextStatuses = [
+    "APPLICATION_APPROVED",
+    "PHOTO_FAIL",
+    "COUNTER_SIGNATURE",
+    "REPLACED"
+] %}

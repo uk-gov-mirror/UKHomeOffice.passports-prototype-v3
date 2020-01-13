@@ -1,0 +1,41 @@
+{% extends "layout-tracking.html" %}
+
+{% block trackingHeader %}
+    <h1>Application approved</h1>
+{% endblock %}
+
+{% block trackingBody %}
+    <h2>What happens next</h2>
+
+    <p>
+        Your new passport is being printed.
+        We’ll update this page when it’s on its way
+    </p>
+
+    {% if not values.noDocuments %}
+        <p>
+            {% if values.extraDocuments %}
+                We’ll send back your documents separately.
+                They won’t be in the same envelope as your new passport.
+            {% else %}
+                We’ll send back your old passport separately.
+                It won’t be in the same envelope as your new passport.
+            {% endif %}
+        </p>
+    {% endif %}
+
+    {{ trackingHistory([
+      "Application approved",
+      "Application being processed",
+      "Documents received",
+      "Application received",
+      "Application submitted"
+    ]) }}
+
+{% endblock %}
+
+
+{% set nextStatuses = [
+    "PASSPORT_DISPATCHED"
+] %}
+

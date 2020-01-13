@@ -1,0 +1,57 @@
+{% extends "layout-tracking.html" %}
+
+{% block trackingHeader %}
+    <h1>Submitted</h1>
+{% endblock %}
+
+{% block trackingBody %}
+    <h2>What you need to do</h2>
+
+    {% if values.onlyOldPassportRequired %}
+        <p>
+            You can now send your old passport.
+            Use a strong envelope that is the right size for your passport.
+            Check the weight and pay the correct postage – consider using signed for delivery.
+        </p>
+    {% else %}
+        <p>
+            You can now send your documents.
+            Use a strong envelope that is the right size for your documents.
+            Check the weight and pay the correct postage – consider using signed for delivery.
+        </p>
+    {% endif %}
+
+    <p>Send your {% if values.onlyOldPassportRequired %}old passport{% else %}documents{% endif %} to:</p>
+    <p>
+        HM Passport Office<br/>
+        INBOUND<br/>
+        Durham HM Passport Office<br/>
+        Freemans Reach<br/>
+        Riverside Place<br/>
+        Durham<br/>
+        DH1 1SL
+    </p>
+
+    {% if featureFlags.multipleDocumentsGuidance %}
+        <p>Find out how to send your documents if you’re <a target="_blank" href="/help/multiple-docs">applying as part of a family or couple.</a></p>
+    {% endif %}
+
+    {% call hmpoDetails({ summaryHtml: "Already sent" }) %}
+        <p>
+            Check again in 3 days.
+            If we still haven’t received your {% if values.onlyOldPassportRequired %}old passport{% else %}documents{% endif %}, <a href="/help" target="_blank">contact HM Passport Office.</a>
+        </p>
+    {% endcall %}
+
+    {{ trackingHistory([
+      "Application submitted"
+    ]) }}
+
+{% endblock %}
+
+{% set nextStatuses = [
+    "IN_QUEUE",
+    "WITHDRAWN"
+] %}
+
+

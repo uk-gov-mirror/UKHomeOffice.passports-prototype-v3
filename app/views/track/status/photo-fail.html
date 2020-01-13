@@ -1,0 +1,46 @@
+{% extends "layout-tracking.html" %}
+
+{% block trackingHeader %}
+    <h1>You need a new photo</h1>
+    <p>Your application is on hold because there was a problem with your photo.</p>
+{% endblock %}
+
+{% block trackingBody %}
+    <h2>What you need to do</h2>
+
+    <div class="photo-resub-notice">
+        <div class="icon">
+            <object data="/public/images/icon-warning.svg" type="image/svg+xml">
+                <img src="/public/images/icon-warning.png" alt="Photo rejected">
+            </object>
+        </div>
+        <p><strong>New photo needed</strong> {{values.photoRejectedDate | date("D MMMM YYYY") }}</p>
+        <p>Your photo didn’t meet the rules.</p>
+        <p>You must submit a new photo by {{values.resubmissionDeadlineDate | date }}</p>
+        {{ hmpoSubmit(ctx, {
+            classes:"govuk-button--secondary",
+            text: "Find out more and submit a new photo",
+            href: "/track/photo-rejected"
+        }) }}
+    </div>
+
+    <h2>What happens next</h2>
+    <p>
+        After you’ve supplied a new photo, we check it.
+        If there are no more problems, we issue your new passport.
+        If there is another problem, we will notify you.
+    </p>
+
+    {{ trackingHistory([
+      "Photo rejected",
+      "Application being processed",
+      "Documents received",
+      "Application received",
+      "Application submitted"
+    ]) }}
+
+{% endblock %}
+
+{% set nextStatuses = [
+    "PHOTO_RESUBMISSION_SUBMITTED"
+] %}
