@@ -1,6 +1,5 @@
 const BaseController = require('.')
 const moment = require('moment');
-const trackingStatuses = require('../data/tracking-statuses');
 
 class DefaultTrackController extends BaseController {
     get(req, res, next) {
