@@ -1,10 +1,10 @@
 const BaseController = require('.')
-const moment = require('moment');
+const moment = require('moment')
 
 class DefaultTrackController extends BaseController {
-    get(req, res, next) {
+    get (req, res, next) {
         // get subnmitted date
-        let date = moment(req.sessionModel.get('submitted'))
+        const date = moment(req.sessionModel.get('submitted'))
         req.sessionModel.set({ submitted: date.toISOString() })
 
         // choose tracking status
@@ -20,24 +20,24 @@ class DefaultTrackController extends BaseController {
 
         // set status template
         if (req.form.options.route === '/track/view') {
-            let template = 'track/status/' + status.toLowerCase()
+            const template = 'track/status/' + status.toLowerCase()
                 .replace(/[^a-z]+/g, '-')
-            req.form.options.template = template;
+            req.form.options.template = template
         }
 
         // format the application reference
         let reference = req.sessionModel.get('appReference')
         reference = reference || '123456789X'
-        reference = reference.replace(/\s+/g, '');
+        reference = reference.replace(/\s+/g, '')
         reference = reference.replace(/(PEX|POD)/, '')
-        let formattedReference = 'PEX' + reference.replace(/(...)/g, ' $1');
+        const formattedReference = 'PEX' + reference.replace(/(...)/g, ' $1')
         req.sessionModel.set({
             reference,
             formattedReference
         })
 
         // documents required
-        let docs = req.sessionModel.get('docs') || 'documents'
+        const docs = req.sessionModel.get('docs') || 'documents'
         req.sessionModel.set({
             tellUsWhatYouThinkLink: status === 'awating-referee-nomination',
             extraDocuments: docs === 'documents',

@@ -61,10 +61,6 @@ module.exports = {
         formatter: 'boolean',
         validate: 'required'
     },
-    countryOfBirth: {
-        items: require('./data/birth-countries'),
-        validate: 'required'
-    },
     nationality: {
         validate: 'required'
     },
@@ -161,41 +157,33 @@ module.exports = {
         validate: 'required'
     },
     previousFirstName1: {
-        errorGroup: "previousName1",
+        errorGroup: 'previousName1',
         validate: 'required',
         dependent: 'previousNames'
     },
     previousLastName1: {
-        errorGroup: "previousName1",
+        errorGroup: 'previousName1',
         validate: 'required',
         dependent: 'previousNames'
     },
     previousFirstName2: {
-        errorGroup: "previousName2",
+        errorGroup: 'previousName2',
         dependent: 'previousNames'
     },
     previousLastName2: {
-        errorGroup: "previousName2",
+        errorGroup: 'previousName2',
         dependent: 'previousNames'
     },
     previousFirstName3: {
-        errorGroup: "previousName3",
+        errorGroup: 'previousName3',
         dependent: 'previousNames'
     },
     previousLastName3: {
-        errorGroup: "previousName3",
+        errorGroup: 'previousName3',
         dependent: 'previousNames'
     },
-    previousNames: {
-        formatter: 'boolean',
-        validate: 'required'
-    },
-    previousNames: {
-        formatter: 'boolean',
-        validate: 'required'
-    },
     gender: {
-        validate: 'required',
+        validate: 'required'
     },
     bornInUK: {
         formatter: 'boolean',
@@ -216,7 +204,7 @@ module.exports = {
     naturalisationCertificateNumber: {
         validate: [
             'required',
-            { type: 'maxlength', arguments: 12 },
+            { type: 'maxlength', arguments: 12 }
             // 'alphanum'
         ]
     },
@@ -230,20 +218,20 @@ module.exports = {
     },
     parent1FirstName: {
         validate: [
-            { type: 'maxlength', arguments: 30 },
+            { type: 'maxlength', arguments: 30 }
             // 'firstname'
         ]
     },
     parent1LastName: {
         validate: [
             { type: 'minlength', arguments: 2 },
-            { type: 'maxlength', arguments: 30 },
+            { type: 'maxlength', arguments: 30 }
             // 'surname'
         ]
     },
     parent1DateOfBirth: {
         validate: [
-            'date',
+            'date'
             // { type: 'before' },
         ],
         autocomplete: 'parent1-bday'
@@ -256,27 +244,27 @@ module.exports = {
     },
     parent2FirstName: {
         validate: [
-            { type: 'maxlength', arguments: 30 },
+            { type: 'maxlength', arguments: 30 }
             // 'firstname'
         ]
     },
     parent2LastName: {
         validate: [
             { type: 'minlength', arguments: 2 },
-            { type: 'maxlength', arguments: 30 },
+            { type: 'maxlength', arguments: 30 }
             // 'surname'
         ]
     },
     parent2DateOfBirth: {
         validate: [
-            'date',
+            'date'
             // { type: 'before' },
         ],
         autocomplete: 'parent2-bday'
     },
     parent2NoDetailsReason: {
         validate: [
-            { type: 'maxlength', arguments: 250 },
+            { type: 'maxlength', arguments: 250 }
             // 'alphanumex1'
         ]
     },
@@ -287,7 +275,7 @@ module.exports = {
     parentsMarriageDate: {
         validate: [
             'date',
-            { type: 'before' },
+            { type: 'before' }
         ],
         autocomplete: 'parents-marriage-bday',
         dependent: 'parentsMarried'
@@ -299,18 +287,18 @@ module.exports = {
     parent1TownOfBirth: {
         validate: [
             { type: 'minlength', arguments: 2 },
-            { type: 'maxlength', arguments: 25 },
+            { type: 'maxlength', arguments: 25 }
             // 'townOfBirth'
         ]
     },
     parent1CountryOfBirth: {
         items: require('./data/birth-countries'), // TODO: replace with birth countries library
-        validate: 'required',
+        validate: 'required'
     },
     parent1Nationality: {
         validate: [
             { type: 'minlength', arguments: 2 },
-            { type: 'maxlength', arguments: 19 },
+            { type: 'maxlength', arguments: 19 }
             // 'nationality'
         ]
     },
@@ -328,7 +316,7 @@ module.exports = {
     },
     parent1PassportIssueDate: {
         validate: [
-            'date',
+            'date'
             // { type: 'before' },
         ],
         autocomplete: 'parent1-issue-date',
@@ -337,7 +325,7 @@ module.exports = {
     parent2TownOfBirth: {
         validate: [
             { type: 'minlength', arguments: 2 },
-            { type: 'maxlength', arguments: 25 },
+            { type: 'maxlength', arguments: 25 }
             // 'townOfBirth'
         ]
     },
@@ -348,7 +336,7 @@ module.exports = {
     parent2Nationality: {
         validate: [
             { type: 'minlength', arguments: 2 },
-            { type: 'maxlength', arguments: 19 },
+            { type: 'maxlength', arguments: 19 }
             // 'nationality'
         ]
     },
@@ -366,7 +354,7 @@ module.exports = {
     },
     parent2PassportIssueDate: {
         validate: [
-            'date',
+            'date'
             // { type: 'before' },
         ],
         autocomplete: 'parent2-issue-date',
@@ -374,21 +362,21 @@ module.exports = {
     },
     parent1Parent1FirstName: {
         validate: [
-            { type: 'maxlength', arguments: 30 },
+            { type: 'maxlength', arguments: 30 }
             // 'firstname'
         ]
     },
     parent1Parent1LastName: {
         validate: [
             { type: 'minlength', arguments: 2 },
-            { type: 'maxlength', arguments: 30 },
+            { type: 'maxlength', arguments: 30 }
             // 'surname'
         ]
     },
     parent1Parent1TownOfBirth: {
         validate: [
             { type: 'minlength', arguments: 2 },
-            { type: 'maxlength', arguments: 25 },
+            { type: 'maxlength', arguments: 25 }
             // 'townOfBirth'
         ]
     },
@@ -398,7 +386,7 @@ module.exports = {
     },
     parent1Parent1DateOfBirth: {
         validate: [
-            'date',
+            'date'
             // { type: 'before' },
         ],
         autocomplete: 'parent1-parent1-bday'
@@ -411,21 +399,21 @@ module.exports = {
     },
     parent1Parent2FirstName: {
         validate: [
-            { type: 'maxlength', arguments: 30 },
+            { type: 'maxlength', arguments: 30 }
             // 'firstname'
         ]
     },
     parent1Parent2LastName: {
         validate: [
             { type: 'minlength', arguments: 2 },
-            { type: 'maxlength', arguments: 30 },
+            { type: 'maxlength', arguments: 30 }
             // 'surname'
         ]
     },
     parent1Parent2TownOfBirth: {
         validate: [
             { type: 'minlength', arguments: 2 },
-            { type: 'maxlength', arguments: 25 },
+            { type: 'maxlength', arguments: 25 }
             // 'townOfBirth'
         ]
     },
@@ -435,7 +423,7 @@ module.exports = {
     },
     parent1Parent2DateOfBirth: {
         validate: [
-            'date',
+            'date'
             // { type: 'before' },
         ],
         autocomplete: 'parent1-parent2-bday'
@@ -448,21 +436,21 @@ module.exports = {
     },
     parent2Parent1FirstName: {
         validate: [
-            { type: 'maxlength', arguments: 30 },
+            { type: 'maxlength', arguments: 30 }
             // 'firstname'
         ]
     },
     parent2Parent1LastName: {
         validate: [
             { type: 'minlength', arguments: 2 },
-            { type: 'maxlength', arguments: 30 },
+            { type: 'maxlength', arguments: 30 }
             // 'surname'
         ]
     },
     parent2Parent1TownOfBirth: {
         validate: [
             { type: 'minlength', arguments: 2 },
-            { type: 'maxlength', arguments: 25 },
+            { type: 'maxlength', arguments: 25 }
             // 'townOfBirth'
         ]
     },
@@ -472,7 +460,7 @@ module.exports = {
     },
     parent2Parent1DateOfBirth: {
         validate: [
-            'date',
+            'date'
             // { type: 'before' },
         ],
         autocomplete: 'parent2-parent1-bday'
@@ -485,21 +473,21 @@ module.exports = {
     },
     parent2Parent2FirstName: {
         validate: [
-            { type: 'maxlength', arguments: 30 },
+            { type: 'maxlength', arguments: 30 }
             // 'firstname'
         ]
     },
     parent2Parent2LastName: {
         validate: [
             { type: 'minlength', arguments: 2 },
-            { type: 'maxlength', arguments: 30 },
+            { type: 'maxlength', arguments: 30 }
             // 'surname'
         ]
     },
     parent2Parent2TownOfBirth: {
         validate: [
             { type: 'minlength', arguments: 2 },
-            { type: 'maxlength', arguments: 25 },
+            { type: 'maxlength', arguments: 25 }
             // 'townOfBirth'
         ]
     },
@@ -509,7 +497,7 @@ module.exports = {
     },
     parent2Parent2DateOfBirth: {
         validate: [
-            'date',
+            'date'
             // { type: 'before' },
         ],
         autocomplete: 'parent2-parent2-bday'
@@ -526,7 +514,7 @@ module.exports = {
             // 'placename',
             { type: 'minlength', arguments: 3 },
             { type: 'maxlength', arguments: 40 }
-        ],
+        ]
     },
     addressLine2: {
         validate: [
@@ -572,7 +560,7 @@ module.exports = {
         formatter: ['removespaces', 'removehyphens'],
         validate: [
             'required',
-            { type: 'maxlength', arguments: 15 },
+            { type: 'maxlength', arguments: 15 }
             // 'numeric',
             // 'phonenumber'
         ],
@@ -588,7 +576,7 @@ module.exports = {
         formatter: ['removespaces', 'removehyphens', 'removeslashes'],
         validate: [
             'required',
-            { type: 'maxlength', arguments: 15 },
+            { type: 'maxlength', arguments: 15 }
             // 'numeric',
         ],
         type: 'tel',
@@ -608,7 +596,7 @@ module.exports = {
     noSignReason: {
         validate: [
             'required',
-            { type: 'maxlength', arguments: 250 },
+            { type: 'maxlength', arguments: 250 }
             // 'alphanumex1'
         ]
     },
@@ -623,7 +611,7 @@ module.exports = {
         validate: [
             'required',
             { type: 'minlength', arguments: 2 },
-            { type: 'maxlength', arguments: 17 },
+            { type: 'maxlength', arguments: 17 }
             // 'relationship'
         ],
         dependent: {
@@ -635,9 +623,9 @@ module.exports = {
         validate: [
             'required',
             { type: 'minlength', arguments: 2 },
-            { type: 'maxlength', arguments: 30 },
+            { type: 'maxlength', arguments: 30 }
             // 'firstname'
-        ],
+        ]
         // display: {
         //     formatter: 'name'
         // }
@@ -646,14 +634,14 @@ module.exports = {
         validate: [
             'required',
             { type: 'minlength', arguments: 2 },
-            { type: 'maxlength', arguments: 30 },
+            { type: 'maxlength', arguments: 30 }
             // 'surname'
         ]
     },
     thirdPartyExplanation: {
         validate: [
             'required',
-            { type: 'maxlength', arguments: 200 },
+            { type: 'maxlength', arguments: 200 }
             // 'explanation'
         ]
     },

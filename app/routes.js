@@ -5,8 +5,8 @@ const Wizard = require('hmpo-form-wizard')
 const steps = require('./steps')
 const fields = require('./fields')
 
-require('./formatters');
-require('./validators');
+require('./formatters')
+require('./validators')
 
 router.use(Wizard(
     steps.apply,
@@ -19,7 +19,6 @@ router.use(Wizard(
     }
 ))
 
-
 router.use(Wizard(
     steps.tracking,
     fields,
@@ -28,6 +27,5 @@ router.use(Wizard(
         controller: require('./controllers/track')
     }
 ))
-
 
 module.exports = router

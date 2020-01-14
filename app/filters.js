@@ -9,18 +9,16 @@ module.exports = function (env) {
 
     /* ------------------------------------------------------------------ */
 
+    const countries = require('./data/birth-countries')
+    const countryNames = {}
+    countries.map(country => { countryNames[country.value] = country.text })
+    filters.countryName = code => countryNames[code]
 
-    const countries = require('./data/birth-countries');
-    const countryNames = {};
-    countries.map(country => countryNames[country.value] = country.text);
-    filters.countryName = code => countryNames[code];
+    const yesNoUnknown = { true: 'Yes', false: 'No', unknown: 'I don’t know' }
+    filters.yesOrNo = bool => yesNoUnknown[bool]
 
-    const yesNoUnknown = { true: 'Yes', false: 'No', unknown: 'I don’t know' };
-    filters.yesOrNo = bool => yesNoUnknown[bool];
-
-    const dpsLocations = require('./data/dps-locations');
-    filters.dpsLocation = code => dpsLocations[code];
-
+    const dpsLocations = require('./data/dps-locations')
+    filters.dpsLocation = code => dpsLocations[code]
 
     /* ------------------------------------------------------------------
     keep the following line to return your filters to the app
