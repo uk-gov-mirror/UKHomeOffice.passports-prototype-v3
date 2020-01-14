@@ -5,12 +5,12 @@ class DefaultController extends BaseController {
     successHandler (req, res, next) {
         this.setAgeGroup(req)
         this.setApplicationType(req)
-        this.parentsRequired(req)
+        this.setParentsRequired(req)
         this.setEUSSEligible(req)
-        this.grandparentsRequired(req)
-        this.isParentOfChild(req)
+        this.setGrandparentsRequired(req)
+        this.setParentOfChild(req)
         this.setCosts(req)
-        this.csigRequired(req)
+        this.setCsigRequired(req)
         super.successHandler(req, res, next)
     }
 
@@ -67,7 +67,7 @@ class DefaultController extends BaseController {
         req.sessionModel.set('oldBlue', oldBlue)
     }
 
-    parentsRequired (req) {
+    setParentsRequired (req) {
         // put logic in here
         req.sessionModel.set('parentsRequired', false)
     }
@@ -86,16 +86,15 @@ class DefaultController extends BaseController {
         } else {
             req.sessionModel.unset('parentsHaveEUSettledStatus')
         }
-
         req.sessionModel.set('eussEligible', eussEligible)
     }
 
-    grandparentsRequired (req) {
+    setGrandparentsRequired (req) {
         // put logic in here
         req.sessionModel.set('grandparentsRequired', false)
     }
 
-    isParentOfChild (req) {
+    setParentOfChild (req) {
         // put logic in here
         req.sessionModel.set('isParentOfChild', false)
     }
@@ -128,7 +127,7 @@ class DefaultController extends BaseController {
         req.sessionModel.set('totalCost', passportCost + deliveryCost)
     }
 
-    csigRequired (req) {
+    setCsigRequired (req) {
         if (req.sessionModel.get('applicationType') === 'first') {
             return req.sessionModel.set('csigRequired', true)
         }
