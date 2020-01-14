@@ -6,7 +6,7 @@ class DefaultController extends BaseController {
         this.setAgeGroup(req)
         this.setApplicationType(req)
         this.parentsRequired(req)
-        this.isEUSS(req)
+        this.setEUSSEligible(req)
         this.grandparentsRequired(req)
         this.isParentOfChild(req)
         this.setCosts(req)
@@ -19,6 +19,7 @@ class DefaultController extends BaseController {
         let adultOrChild
         let age
         const dateOfBirth = req.sessionModel.get('dateOfBirth')
+
         if (dateOfBirth) {
             age = moment().diff(dateOfBirth, 'years')
 
@@ -71,9 +72,22 @@ class DefaultController extends BaseController {
         req.sessionModel.set('parentsRequired', false)
     }
 
-    isEUSS (req) {
-        // put logic in here
-        req.sessionModel.set('isEUSS', false)
+    setEUSSEligible (req) {
+        let eussEligible = false
+        const dateOfBirth = req.sessionModel.get('dateOfBirth')
+        const isSameOrAfterEUSSDate = dateOfBirth.isSameOrAfter('2018-08-28')
+
+        if (isSameOrAfterEUSSDate &&
+            req.sessionModel.get('applicationType') === 'first' &&
+            !req.sessionModel.get('naturalised') &&
+            req.sessionModel.get('countryOfBirth') === 'GB') {
+
+            eussEligible = true
+        } else {
+            req.sessionModel.unset('parentsHaveEUSettledStatus')
+        }
+
+        req.sessionModel.set('eussEligible', eussEligible)
     }
 
     grandparentsRequired (req) {

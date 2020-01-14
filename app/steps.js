@@ -237,6 +237,7 @@ const apply = {
                 '/apply/family-details'
             ] },
             { field: 'adultOrChild', value: 'child', next: '/apply/parents-details' },
+            { field: 'isUKApplication', value: false, next: '/apply/address-manual' },
             '/apply/address-manual'
         ]
     },
@@ -265,14 +266,13 @@ const apply = {
         ],
         next: [
             { field: 'applicationType', value: 'first', next: [
-                { field: 'isEUSS', value: true, next: '/apply/parents-eu-settled-status' },
+                { field: 'eussEligible', value: true, next: '/apply/parents-eu-settled-status' },
                 '/apply/parent1-details'
             ] },
             '/apply/parent1-details'
         ]
     },
     '/apply/parents-eu-settled-status': {
-        controller: require('../../controllers/parents-eu-settled-status'),
         fields: [
             'parentsHaveEUSettledStatus'
         ],
