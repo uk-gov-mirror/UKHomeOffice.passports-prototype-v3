@@ -8,7 +8,7 @@
   },
   "scripts": {
     "start": "node start.js",
-    "lint": "standardx",
+    "lint": "standardx --fix",
     "test": "npm run lint && gulp generate-assets && jest"
   },
   "eslintConfig": {
@@ -16,7 +16,9 @@
       "indent": [
         "error",
         4
-      ]
+      ],
+      "object-property-newline": 0,
+      "object-curly-newline": 0
     }
   },
   "dependencies": {

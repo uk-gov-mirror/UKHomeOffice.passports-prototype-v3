@@ -66,22 +66,22 @@ class DefaultController extends BaseController {
         req.sessionModel.set('oldBlue', oldBlue)
     }
 
-    parentsRequired(req) {
+    parentsRequired (req) {
         // put logic in here
         req.sessionModel.set('parentsRequired', false)
     }
 
-    isEUSS(req) {
+    isEUSS (req) {
         // put logic in here
         req.sessionModel.set('isEUSS', false)
     }
 
-    grandparentsRequired(req) {
+    grandparentsRequired (req) {
         // put logic in here
         req.sessionModel.set('grandparentsRequired', false)
     }
 
-    isParentOfChild(req) {
+    isParentOfChild (req) {
         // put logic in here
         req.sessionModel.set('isParentOfChild', false)
     }
@@ -114,7 +114,7 @@ class DefaultController extends BaseController {
         req.sessionModel.set('totalCost', passportCost + deliveryCost)
     }
 
-    csigRequired(req) {
+    csigRequired (req) {
         if (req.sessionModel.get('applicationType') === 'first') {
             return req.sessionModel.set('csigRequired', true)
         }
@@ -126,7 +126,6 @@ class DefaultController extends BaseController {
         }
         req.sessionModel.set('csigRequired', false)
     }
-
 }
 
 module.exports = DefaultController
