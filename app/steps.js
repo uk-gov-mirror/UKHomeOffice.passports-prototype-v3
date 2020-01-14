@@ -359,12 +359,7 @@ const apply = {
             'addressTown',
             'addressPostcode'
         ],
-        next: [
-            { field: 'addressPostcode', op: postcode => postcode && postcode.startsWith('BF'), next: '/apply/hm-forces' },
-            '/apply/contact-details'
-        ]
-    },
-    '/apply/hm-forces': {
+        next: '/apply/contact-details'
     },
     '/apply/contact-details': {
         fields: [
