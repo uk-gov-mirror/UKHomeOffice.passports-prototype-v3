@@ -12,15 +12,15 @@
         We’ll update this page when it’s on its way
     </p>
 
-    {% if not values.noDocuments %}
+    {% if values.documentsRequired == "documents" %}
         <p>
-            {% if values.extraDocuments %}
-                We’ll send back your documents separately.
-                They won’t be in the same envelope as your new passport.
-            {% else %}
-                We’ll send back your old passport separately.
-                It won’t be in the same envelope as your new passport.
-            {% endif %}
+            We’ll send back your documents separately.
+            They won’t be in the same envelope as your new passport.
+        </p>
+    {% elif values.documentsRequired == "passport" %}
+        <p>
+            We’ll send back your old passport separately.
+            It won’t be in the same envelope as your new passport.
         </p>
     {% endif %}
 

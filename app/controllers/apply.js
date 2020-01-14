@@ -11,6 +11,7 @@ class DefaultController extends BaseController {
         this.setParentOfChild(req)
         this.setCosts(req)
         this.setCsigRequired(req)
+        this.setDocsRequired(req)
         super.successHandler(req, res, next)
     }
 
@@ -138,6 +139,16 @@ class DefaultController extends BaseController {
             return req.sessionModel.set('csigRequired', true)
         }
         req.sessionModel.set('csigRequired', false)
+    }
+
+    setDocsRequired (req) {
+        let documentsRequired = 'passport'
+        if (req.sessionModel.get('lost')) documentsRequired = 'none'
+        if (req.sessionModel.get('adultOrChild') === 'child') documentsRequired = 'documents'
+        if (req.sessionModel.get('applicationType') === 'first') documentsRequired = 'documents'
+        if (req.sessionModel.get('changeOfName')) documentsRequired = 'documents'
+        if (req.sessionModel.get('documentsToSend') === false) documentsRequired = 'none'
+        req.sessionModel.set({ documentsRequired })
     }
 }
 

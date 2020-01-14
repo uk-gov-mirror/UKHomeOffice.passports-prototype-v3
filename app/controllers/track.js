@@ -14,9 +14,13 @@ class DefaultTrackController extends BaseController {
                 .replace(/[^A-Z]+/g, '_')
         }
         if (!status) {
-            status = 'SUBMITTED'
+            status = req.sessionModel.get('csigRequired') ?
+                'AWAITING_REFEREE_NOMINATION' : 'SUBMITTED'
         }
-        req.sessionModel.set({ status })
+        req.sessionModel.set({
+            status,
+            tellUsWhatYouThinkLink: status === 'AWAITING_REFEREE_NOMINATION',
+        })
 
         // set status template
         if (req.form.options.route === '/track/view') {
@@ -37,24 +41,22 @@ class DefaultTrackController extends BaseController {
         })
 
         // documents required
-        const docs = req.sessionModel.get('docs') || 'documents'
+        const documentsRequired = req.sessionModel.get('documentsRequired') || 'documents'
         req.sessionModel.set({
-            tellUsWhatYouThinkLink: status === 'awating-referee-nomination',
-            extraDocuments: docs === 'documents',
-            onlyOldPassportRequired: docs === 'passport',
-            noDocuments: docs === 'nodocs',
-            documentsLink: docs !== 'nodocs'
+            documentsRequired,
+            documentsLink: documentsRequired !== 'none'
         })
 
         // notifications
-        req.sessionModel.set({
-            mobileNotification: true,
-            emailNotification: true
-        })
+        let mobileNotification = req.sessionModel.get('contactPrefsSMS');
+        if (typeof mobileNotification !== 'boolean') mobileNotification = true;
 
-        // survey link
+        let emailNotification = req.sessionModel.get('contactPrefsEmail');
+        if (typeof emailNotification !== 'boolean') emailNotification = true;
+
         req.sessionModel.set({
-            tellUsWhatYouThinkLink: true
+            mobileNotification,
+            emailNotification
         })
 
         // dates

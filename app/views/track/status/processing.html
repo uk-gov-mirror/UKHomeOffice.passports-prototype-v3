@@ -8,12 +8,12 @@
     <h2>What happens next</h2>
 
     <p>
-        {% if values.noDocuments %}
-            We’ll check your application.
-        {% elseif values.onlyOldPassportRequired %}
+        {% if values.documentsRequired == "documents" %}
+            We’ll check your application and the documents we asked for.
+        {% elif values.documentsRequired == "passport" %}
             We’ll check your application and your old passport.
         {% else %}
-            We’ll check your application and the documents we asked for.
+            We’ll check your application.
         {% endif %}
 
         If we need more information, we’ll contact you.

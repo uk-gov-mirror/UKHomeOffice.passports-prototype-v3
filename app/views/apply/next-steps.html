@@ -5,62 +5,92 @@
 {% block mainContent %}
 
     {% call hmpoInsetText({ classes: "hmpo-inset-success"}) %}
-        {% if values.paid %}
-            <h2>You’ve paid {{ values.paid | currency }}</h2>
-        {% endif %}
-        {% if not values.paid %}
-            <h2>Your application</h2>
-        {% endif %}
+        <h2>You’ve paid {{ values.totalCost | currency }}</h2>
         <p>We’ve saved your application and sent confirmation to: {{ values.contactEmail }}.
-            <a id="your-confirmation" href="{{baseUrl}}/pdf-confirmation" class="download">Download your confirmation</a></p>
+            <a href="/apply/pdf-confirmation" class="download">Download your confirmation</a></p>
     {% endcall %}
 
-    <p>Application reference: <strong><span id="application-reference">[#referenceNumber]</span></strong></p>
+    <p>Application reference: <strong>PEX 123 456 789X</strong></p>
+
+    {% if values.csigRequired %}
 
         <h1>What you need to do</h1>
-        <p id="next-steps">Before we can work on your application, you need to:</p>
 
-        {% if isExtraDocumentsRequired %}
-            <h2 id="send-documents" class="compact">Send us your documents</h2>
-        {% elif isOldPassportRequired %}
-            <h2 id="send-documents" class="compact">Send us your old passport</h2>
+        {% if values.documentsRequired == "none" %}
+
+            <p>Before we can work on your application, you need to ask someone to confirm your identity.</p>
+            <p>Sign in to check who can do this and provide their details. You’ll need your application reference: PEX 123 456 789X</p>
+
+        {% else %}
+
+            <p>Before we can work on your application, you need to:</p>
+
+            <h2>1. Ask someone to confirm your identity</h2>
+            <p>Sign in to check who can do this and provide their details. You’ll need your application reference: PEX 123 456 789X</p>
+
+            <h2>2. Get your documents ready</h2>
+            <p>We can only receive your documents after your identity has been confirmed. This includes anyone you’re <a target="_blank" href="/help/multiple-documents">applying with as part of a family or couple</a></p>
+            <p>We’ll let you know when and where to send them.</p>
+
         {% endif %}
-
-        {% if values["documents-url"] %}
-            {% if isExtraDocumentsRequired %}
-                <p><a id="documents-link" target="_blank" href="{{ctx("documents-url")}}">Check what you need to send</a></p>
-            {% endif %}
-            {% if not isExtraDocumentsRequired %}
-                <p>Check if you need to send any <a id="documents-link" target="_blank" href="{{ctx("documents-url")}}">additional documents</a>.</p>
-            {% endif %}
-        {% endif %}
-
-        {% if isExtraDocumentsRequired %}
-            <p>Use a strong envelope that is the right size for your documents. Check the weight and pay the correct postage – consider using signed for delivery.</p>
-        {% elif isOldPassportRequired %}
-            <p>Use a strong envelope that is the right size for your passport. Check the weight and pay the correct postage – consider using signed for delivery.</p>
-        {% endif %}
-
-        <p>[processingCentre]</p>
-
-        <p>
-            {% if featureFlags.multipleDocumentsGuidance %}
-                {{ hmpoDetails({
-                    summaryText: "If you’re applying as part of a family or couple",
-                    id: "family-guidance-id",
-                    html: "Find out how to send your documents if you’re <a target=\"_blank\" href=\"{{ urls[\"multiple-documents\"] }}\">applying as part of a family or couple.</a>"
-                }) }}
-            {% endif %}
-        </p>
-
-        <h2 id="track-your-application">Track your application</h2>
-        <p class="word-wrap">You’ll need your application reference: [#referenceNumber]<br/>
-        <a id="track-link" href="{{urls["status-check"]}}">{{ ctx("tracking-url") }}</a></p>
 
         {{ hmpoSubmit(ctx, {
-            id: "feedback-button",
-            text: translate("buttons.giveFeedback"),
-            href: ctx("feedback-url")
+            id: "track-button",
+            text: "Sign in",
+            href: "/track"
         }) }}
+
+    {% else %}
+
+        <h1>What you need to do</h1>
+        <p>Before we can work on your application, you need to:</p>
+
+        {% if values.documentsRequired == "documents" %}
+            <h2 class="compact">Send us your documents</h2>
+        {% elif values.documentsRequired == "passport" %}
+            <h2 class="compact">Send us your old passport</h2>
+        {% endif %}
+
+        {% if values.documentsLink %}
+            {% if value.documentsRequired == "documents" %}
+                <p><a target="_blank" href="/help/documents">Check what you need to send</a></p>
+            {% else %}
+                <p>Check if you need to send any <a target="_blank" href="/help/documents">additional documents</a>.</p>
+            {% endif %}
+        {% endif %}
+
+        <p>
+            {% if values.documentsRequired == "documents" %}
+                Use a strong envelope that is the right size for your documents.
+            {% elif values.documentsRequired == "passport" %}
+                Use a strong envelope that is the right size for your passport.
+            {% endif %}
+            Check the weight and pay the correct postage – consider using signed for delivery.
+        </p>
+
+        <p>
+            HM Passport Office<br/>
+            INBOUND<br/>
+            Durham HM Passport Office<br/>
+            Freemans Reach<br/>
+            Riverside Place<br/>
+            Durham<br/>
+            DH1 1SL
+        </p>
+
+        {% call hmpoDetails({ summaryText: "If you’re applying as part of a family or couple" }) %}
+            Find out how to send your documents if you’re <a target="_blank" href="/help/multiple-docs">applying as part of a family or couple.</a>
+        {% endcall %}
+
+        <h2>Track your application</h2>
+        <p>You’ll need your application reference: PEX 123 456 789X<br/>
+        <a href="/track">www.passport.service.gov.uk/track</a></p>
+
+        {{ hmpoSubmit(ctx, {
+            text: "Give feedback",
+            href: "/help/feedback"
+        }) }}
+
+    {% endif %}
 
 {% endblock %}

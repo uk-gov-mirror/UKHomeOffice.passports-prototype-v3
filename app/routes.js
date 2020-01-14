@@ -12,6 +12,7 @@ router.use(Wizard(
     steps.apply,
     fields,
     {
+        name: 'apply',
         journeyName: 'apply',
         editable: true,
         editBackStep: '/apply/confirm',
@@ -23,6 +24,7 @@ router.use(Wizard(
     steps.tracking,
     fields,
     {
+        name: 'apply',
         journeyName: 'tracking',
         controller: require('./controllers/track')
     }

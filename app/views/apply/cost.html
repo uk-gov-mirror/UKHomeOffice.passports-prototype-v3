@@ -11,7 +11,7 @@
             documents
         {%- endif %}
     {%- elif values.lost %}
-        {%- if values.noDocuments %}
+        {%- if values.documentsRequired == "none" %}
             none
         {%- else %}
             documents

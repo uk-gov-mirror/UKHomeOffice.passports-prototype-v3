@@ -12,10 +12,15 @@
         In most cases it will be delivered by <a href="https://www.dxdelivery.com/static/HMPO/" target=\"_blank\">DX delivery services</a>.
     </p>
 
-    {% if not values.noDocuments %}
+    {% if values.documentsRequired == "documents" %}
         <p>
-            Your {% if values.extraDocuments %}documents{% else %}old passport{% endif %} will arrive separately.
+            Your documents will arrive separately.
             They won’t be in the same envelope as your new passport.
+        </p>
+    {% elif values.documentsRequired == "passport" %}
+        <p>
+            Your old passport will arrive separately.
+            It won’t be in the same envelope as your new passport.
         </p>
     {% endif %}
 
