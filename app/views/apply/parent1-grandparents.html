@@ -51,7 +51,7 @@
                     classes: "govuk-label--m"
                 }
             }),
-            open: "true" if values["parent1-parent1-show"]
+            open: "true" if values.parent1Parent1NoDetailsReason or errors.parent1Parent1NoDetailsReason
         }) }}
 
         <h2>Grandfather</h2>
@@ -96,7 +96,7 @@
                     classes: "govuk-label--m"
                 }
             }),
-            open: "true" if values["parent1-parent2-show"]
+            open: "true" if values.parent1Parent2NoDetailsReason or errors.parent1Parent2NoDetailsReason
         }) }}
 
         {{ hmpoRadios(ctx, {
