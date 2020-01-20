@@ -440,22 +440,22 @@ const apply = {
         next: [
             { field: 'csigRequired', value: true, next: '/apply/confirm-identity' },
             { field: 'urgent', value: true, next: '/apply/cost' },
-            { field: 'noDocuments', value: true, next: '/apply/cost' }, // TODO: add noDocuments logic to trigger
+            { field: 'documentsRequired', value: 'none', next: '/apply/cost' },
             '/apply/documents-to-send'
         ]
     },
     '/apply/confirm-identity': {
         next: [
-            { field: 'noDocuments', value: true, next: '/apply/cost' },
+            { field: 'documentsRequired', value: 'none', next: '/apply/cost' },
             '/apply/documents-to-send'
         ]
     },
     '/apply/documents-to-send': {
         fields: [
-            'documents-to-send'
+            'documentsToSend'
         ],
         next: [
-            { field: 'documents-to-send', value: false, next: '/apply/cost' },
+            { field: 'documentsToSend', value: false, next: '/apply/cost' },
             { field: 'isUKApplication', value: true, next: '/apply/passport-delivery' },
             '/apply/cost'
         ]

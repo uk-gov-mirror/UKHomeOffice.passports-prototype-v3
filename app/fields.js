@@ -546,7 +546,7 @@ module.exports = {
             { type: 'maxlength', arguments: 240 }
         ],
         type: 'email',
-        'ignore-defaults': true
+        'ignore-defaults': true // stops removing double dashes etc by default
     },
     contactEmailConfirm: {
         formatter: ['trim'],
@@ -600,7 +600,8 @@ module.exports = {
             'required',
             { type: 'maxlength', arguments: 250 }
             // 'alphanumex1'
-        ]
+        ],
+        dependent: { field: 'canSign', value: false }
     },
     thirdParty: {
         formatter: 'boolean',
@@ -646,6 +647,9 @@ module.exports = {
             { type: 'maxlength', arguments: 200 }
             // 'explanation'
         ]
+    },
+    documentsToSend: {
+        formatter: 'boolean',
     },
     secureDelivery: {
         formatter: 'boolean',

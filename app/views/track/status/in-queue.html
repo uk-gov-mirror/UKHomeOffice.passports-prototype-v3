@@ -2,11 +2,10 @@
 
 {% block trackingHeader %}
     <h1>
-        We’ve received your
-        {% if values.onlyOldPassportRequired %}
-            old passport
+        {% if values.documentsRequired == "passport" %}
+            We’ve received your old passport
         {% else %}
-            documents
+            We’ve received your documents
         {% endif %}</h1>
     </h1>
 {% endblock %}
@@ -15,15 +14,12 @@
     <h2>What happens next</h2>
 
     <p>
-        {% if values.noDocuments %}
-            We’ll check your application.
+        {% if values.documentsRequired == "documents" %}
+            We’ll check your application and the documents we asked for.
+        {% if values.documentsRequired == "passport" %}
+            We’ll check your application and your old passport.
         {% else %}
-            We’ll check your application and
-            {% if values.onlyOldPassportRequired %}
-                your old passport.
-            {% else %}
-                the documents we asked for.
-            {% endif %}
+            We’ll check your application.
         {% endif %}
 
         If we need more information, we’ll contact you.

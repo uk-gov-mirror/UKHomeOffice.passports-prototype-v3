@@ -7,7 +7,7 @@
 {% block trackingBody %}
     <h2>What you need to do</h2>
 
-    {% if values.onlyOldPassportRequired %}
+    {% if values.documentsRequired == "passport" %}
         <p>
             You can now send your old passport.
             Use a strong envelope that is the right size for your passport.
@@ -21,7 +21,12 @@
         </p>
     {% endif %}
 
-    <p>Send your {% if values.onlyOldPassportRequired %}old passport{% else %}documents{% endif %} to:</p>
+    {% if values.documentsRequired == "passport" %}
+        <p>Send your old passport to:</p>
+    {% else %}
+        <p>Send your documents to:</p>
+    {% endif %}
+
     <p>
         HM Passport Office<br/>
         INBOUND<br/>
@@ -32,14 +37,12 @@
         DH1 1SL
     </p>
 
-    {% if featureFlags.multipleDocumentsGuidance %}
-        <p>Find out how to send your documents if you’re <a target="_blank" href="/help/multiple-docs">applying as part of a family or couple.</a></p>
-    {% endif %}
+    <p>Find out how to send your documents if you’re <a target="_blank" href="/help/multiple-docs">applying as part of a family or couple.</a></p>
 
     {% call hmpoDetails({ summaryHtml: "Already sent" }) %}
         <p>
             Check again in 3 days.
-            If we still haven’t received your {% if values.onlyOldPassportRequired %}old passport{% else %}documents{% endif %}, <a href="/help" target="_blank">contact HM Passport Office.</a>
+            If we still haven’t received your {% if values.documentsRequired == "passport" %}old passport{% else %}documents{% endif %}, <a href="/help" target="_blank">contact HM Passport Office.</a>
         </p>
     {% endcall %}
 

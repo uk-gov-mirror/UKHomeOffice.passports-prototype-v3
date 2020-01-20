@@ -8,17 +8,23 @@
     <p>Documents list.</p>
 
     {% call hmpoForm(ctx) %}
-        {# {% call dcsDocuments(ctx, ctx("documents-response")) %}
-            {% if ctx("show-documents-to-send-question") %}
-                {{ hmpoRadios(ctx, {
-                    id: "documents-to-send"
-                }) }}
-            {% endif %}
-        {% endcall %} #}
+        {% if values.adultOrChild == "child"
+            and values.lost
+            and not values.otherPassports
+            and not values.changeOfName
+            and not values.parentsHaveEUSS %}
+            {{ hmpoRadios(ctx, {
+                id: "documentsToSend",
+                legend: "I have documents to send",
+                items: [
+                    { value: true }, { value: false }
+                ]
+            }) }}
+        {% endif %}
 
         {{ hmpoSubmit(ctx) }}
     {% endcall %}
 
-    {{ hmpoPrintPage({ text: translate("buttons.print") }) }}
+    {{ hmpoPrintPage({ }) }}
 
 {% endblock %}
