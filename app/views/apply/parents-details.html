@@ -38,7 +38,7 @@
                     classes: "govuk-label--m"
                 }
             }),
-            open: "true" if values["parent1-show"]
+            open: "true" if values.parent1NoDetailsReason or errors.parent1NoDetailsReason
         }) }}
 
         <h2>Father or parent 2</h2>
@@ -69,7 +69,7 @@
                     classes: "govuk-label--m"
                 }
             }),
-            open: "true" if values["parent2-show"]
+            open: "true" if values.parent2NoDetailsReason or errors.parent2NoDetailsReason
         }) }}
 
         {{ hmpoRadios(ctx, {

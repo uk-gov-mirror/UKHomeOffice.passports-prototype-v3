@@ -292,8 +292,7 @@ module.exports = {
         ]
     },
     parent1CountryOfBirth: {
-        items: require('./data/birth-countries'), // TODO: replace with birth countries library
-        validate: 'required'
+        items: require('./data/birth-countries') // TODO: replace with birth countries library
     },
     parent1Nationality: {
         validate: [
@@ -330,8 +329,7 @@ module.exports = {
         ]
     },
     parent2CountryOfBirth: {
-        items: require('./data/birth-countries'), // TODO: replace with birth countries library
-        validate: 'required'
+        items: require('./data/birth-countries') // TODO: replace with birth countries library
     },
     parent2Nationality: {
         validate: [
@@ -381,8 +379,7 @@ module.exports = {
         ]
     },
     parent1Parent1CountryOfBirth: {
-        items: require('./data/birth-countries'), // TODO: replace with birth countries library
-        validate: 'required'
+        items: require('./data/birth-countries') // TODO: replace with birth countries library
     },
     parent1Parent1DateOfBirth: {
         validate: [
@@ -418,8 +415,7 @@ module.exports = {
         ]
     },
     parent1Parent2CountryOfBirth: {
-        items: require('./data/birth-countries'), // TODO: replace with birth countries library
-        validate: 'required'
+        items: require('./data/birth-countries') // TODO: replace with birth countries library
     },
     parent1Parent2DateOfBirth: {
         validate: [
@@ -433,6 +429,10 @@ module.exports = {
             { type: 'maxlength', arguments: 250 },
             'alphanumex1'
         ]
+    },
+    parent1ParentsMarried: {
+        formatter: 'boolean-unknown',
+        validate: 'required'
     },
     parent2Parent1FirstName: {
         validate: [
@@ -455,8 +455,7 @@ module.exports = {
         ]
     },
     parent2Parent1CountryOfBirth: {
-        items: require('./data/birth-countries'), // TODO: replace with birth countries library
-        validate: 'required'
+        items: require('./data/birth-countries') // TODO: replace with birth countries library
     },
     parent2Parent1DateOfBirth: {
         validate: [
@@ -492,8 +491,7 @@ module.exports = {
         ]
     },
     parent2Parent2CountryOfBirth: {
-        items: require('./data/birth-countries'), // TODO: replace with birth countries library
-        validate: 'required'
+        items: require('./data/birth-countries') // TODO: replace with birth countries library
     },
     parent2Parent2DateOfBirth: {
         validate: [
@@ -507,6 +505,10 @@ module.exports = {
             { type: 'maxlength', arguments: 250 },
             'alphanumex1'
         ]
+    },
+    parent2ParentsMarried: {
+        formatter: 'boolean-unknown',
+        validate: 'required'
     },
     addressLine1: {
         validate: [

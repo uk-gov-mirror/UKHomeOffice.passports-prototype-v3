@@ -252,6 +252,7 @@ const apply = {
         next: '/apply/parents-details'
     },
     '/apply/parents-details': {
+        controller: require('./controllers/parents-and-grandparents'),
         fields: [
             'parent1FirstName',
             'parent1LastName',
@@ -311,6 +312,7 @@ const apply = {
         next: '/apply/parent1-grandparents'
     },
     '/apply/parent1-grandparents': {
+        controller: require('./controllers/parents-and-grandparents'),
         fields: [
             'parent1Parent1FirstName',
             'parent1Parent1LastName',
@@ -332,6 +334,7 @@ const apply = {
         next: '/apply/parent2-grandparents'
     },
     '/apply/parent2-grandparents': {
+        controller: require('./controllers/parents-and-grandparents'),
         fields: [
             'parent2Parent1FirstName',
             'parent2Parent1LastName',
