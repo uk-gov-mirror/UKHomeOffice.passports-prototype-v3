@@ -75,7 +75,7 @@ class DefaultController extends BaseController {
     setEUSSEligible (req) {
         let eussEligible = false
         const dateOfBirth = req.sessionModel.get('dateOfBirth')
-        const isSameOrAfterEUSSDate = dateOfBirth.isSameOrAfter('2018-08-28')
+        const isSameOrAfterEUSSDate = moment(dateOfBirth).isSameOrAfter('2018-08-28')
 
         if (isSameOrAfterEUSSDate &&
             req.sessionModel.get('applicationType') === 'first' &&
