@@ -90,8 +90,82 @@ class DefaultController extends BaseController {
     }
 
     setGrandparentsRequired (req) {
-        // put logic in here
-        req.sessionModel.set('grandparentsRequired', false)
+        let grandparentsRequired = true
+
+        if (req.sessionModel.get('eussEligible')) {
+            grandparentsRequired = false
+        }
+
+        // if (req.sessionModel.get('grandparentsCompleted')) {
+        //     debug('Grandparents required: forms completed')
+        //     grandparentsRequired = true
+        // }
+
+        let rightOfAbodeDate = moment('1983-01-01')
+        let parentsNotMarriedBirthDate = moment('2006-07-01')
+
+        // Renew or Replace
+        if (req.sessionModel.get('applicationType') === 'renew' || req.sessionModel.get('applicationType') === 'replace') {
+            grandparentsRequired = false
+        }
+
+        // Applicant born in UK before right of abode legislation
+        if (req.sessionModel.get('bornInUK') &&
+            moment(req.sessionModel.get('dateOfBirth')).isBefore(rightOfAbodeDate)) {
+            // debug('Grandparents not required: born in UK before right of abode legislation')
+            grandparentsRequired = false
+        }
+
+        if (req.sessionModel.get('naturalised')) {
+            // debug('Grandparents not required: Naturalised')
+            grandparentsRequired = false
+        }
+
+        // Applicant is hidden FTA born before right of abode
+        if (req.sessionModel.get('bornInUK') &&
+            moment(req.sessionModel.get('dateOfBirth')).isBefore(rightOfAbodeDate) &&
+            req.sessionModel.get('previousPassport')) {
+            // debug('Grandparents not required: Applicant born in UK before right of abode and passport date of issue before 01/01/1994')
+            grandparentsRequired = false
+        }
+
+        // Mothers passport number supplied
+        if (req.sessionModel.get('parent1PassportNumber')) {
+            // debug('Grandparents not required: Mothers passport number supplied')
+            grandparentsRequired = false
+        }
+
+        // Fathers passport number and married
+        if (req.sessionModel.get('parent2PassportNumber') &&
+            req.sessionModel.get('parentsMarried') === true) {
+            // debug('Grandparents not required: Fathers passport number and married')
+            grandparentsRequired = false
+        }
+
+        // Mother born in UK before right of abode
+        if (req.sessionModel.get('parent1CountryOfBirth') === 'GB' &&
+            moment(req.sessionModel.get('parent1DateOfBirth')).isBefore(rightOfAbodeDate)) {
+            // debug('Grandparents not required: Mother born in UK before right of abode')
+            grandparentsRequired = false
+        }
+
+        // Father born in UK before right of abode and married
+        if (req.sessionModel.get('parent2CountryOfBirth') === 'GB' &&
+            moment(req.sessionModel.get('parent2DateOfBirth')).isBefore(rightOfAbodeDate) &&
+            req.sessionModel.get('parentsMarried') === true) {
+            // debug('Grandparents not required: Father born in UK before right of abode and married')
+            grandparentsRequired = false
+        }
+
+        // Parents not married, father passport number supplied, born on or after 2006-07-01
+        if (moment(req.sessionModel.get('dateOfBirth')).isSameOrAfter(parentsNotMarriedBirthDate) &&
+            req.sessionModel.get('parent2PassportNumber')) {
+            // debug('Grandparents not required: Fathers passport number, not married, born after Jul 2006')
+            grandparentsRequired = false
+        }
+
+        // debug('Grandparents required')
+        req.sessionModel.set('grandparentsRequired', grandparentsRequired)
     }
 
     setParentOfChild (req) {
