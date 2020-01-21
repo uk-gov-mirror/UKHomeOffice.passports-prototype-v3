@@ -1,0 +1,31 @@
+{% extends "layout-tracking.html" %}
+
+{% block trackingHeader %}
+    <h1>Identity details received</h1>
+{% endblock %}
+
+{% block trackingBody %}
+    <h2>What happens next</h2>
+
+    <p>
+        {{values.refereeFirstName}} {{values.refereeSurname}} has provided details to help us confirm your identity.
+        We’re checking these details.
+    </p>
+
+    <p>We’ll email you when your application is approved.</p>
+
+
+    {{ trackingHistory([
+      "Identity details received",
+      "Email sent to person confirming your identity",
+      "Ask someone to confirm your identity",
+      "Application submitted"
+    ]) }}
+
+{% endblock %}
+
+
+{% set nextStatuses = [
+    "IN_QUEUE"
+] %}
+

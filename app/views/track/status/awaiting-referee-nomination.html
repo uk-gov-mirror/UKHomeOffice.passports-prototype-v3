@@ -1,0 +1,35 @@
+{% extends "layout-tracking.html" %}
+
+{% block trackingHeader %}
+    <h1>Ask someone to confirm your identity</h1>
+{% endblock %}
+
+{% block trackingBody %}
+    <h2>What you need to do</h2>
+    <p>
+        You need to ask someone to confirm your identity.
+        {% if values.documentsRequired != "none" %}
+            We can’t receive your documents until this is done.
+        {% endif %}
+    </p>
+    {% if values.documentsRequired != "none" %}
+        <p>Once your identity is confirmed, we’ll let you know where to send your documents.</p>
+    {% endif %}
+
+    {{ hmpoSubmit(ctx, {
+        href: "/track/nominate"
+    }) }}
+
+    {{ trackingHistory([
+      "Ask someone to confirm your identity",
+      "Application submitted"
+    ]) }}
+
+{% endblock %}
+
+
+{% set nextStatuses = [
+    "REFEREE_NOMINATED",
+    "PAPER_REFEREE_RECEIVED"
+] %}
+
