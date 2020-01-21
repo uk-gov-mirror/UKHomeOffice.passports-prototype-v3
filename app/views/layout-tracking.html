@@ -22,14 +22,14 @@
                         <p>{{ values.formattedReference }}</p>
                     </li>
 
-                    {% if values.documentsLink %}
+                    {% if values.documentsRequired !== 'none' %}
                         <li>
                             <h3>Documents</h3>
                             <p><a target="_blank" href="/help/documents">What you need to send</a></p>
                         </li>
                     {% endif %}
 
-                    {% if values.tellUsWhatYouThinkLink %}
+                    {% if values.status != "AWAITING_REFEREE_NOMINATION" %}
                         <li>
                             <h3>Tell us what you think</h3>
                             <p><a target="_blank" href="/">Fill in a survey about this service</a></p>

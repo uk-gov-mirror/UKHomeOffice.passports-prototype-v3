@@ -1,0 +1,42 @@
+{% extends "layout-tracking.html" %}
+
+{% block trackingHeader %}
+    <h1>Waiting for your identity to&nbsp;be&nbsp;confirmed</h1>
+    <p>Email sent to {{ values.refereeEmail }}</p>
+{% endblock %}
+
+{% block trackingBody %}
+    <h2>What happens next</h2>
+    <p>
+        If you don’t get an update in the next few days, remind the person doing this for you.
+        You can only ask one person at a time.
+    </p>
+
+    <p>If you need to, you can <a href="/track/person-contact-details">resend the email</a> or <a href="/track/ask-someone-to-confirm">ask someone else</a>.</p>
+
+    {% if values.documentsRequired != "none" %}
+        <p>
+            Get your documents ready.
+            Once your identity is confirmed, we’ll let you know where to send them.
+        </p>
+    {% endif %}
+
+    {% call hmpoDetails({ summaryText: "If the person you ask can’t do this online" }) %}
+        You need to ask them to <a href="/track/use-a-form">use a paper form</a>.
+    {% endcall %}
+
+
+    {{ trackingHistory([
+      "Email sent to person confirming your identity",
+      "Ask someone to confirm your identity",
+      "Application submitted"
+    ]) }}
+
+{% endblock %}
+
+
+{% set nextStatuses = [
+    "REFEREE_DETAILS_SUBMITTED",
+    "REFEREE_INELIGIBLE"
+] %}
+

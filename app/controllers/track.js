@@ -17,10 +17,7 @@ class DefaultTrackController extends BaseController {
             status = req.sessionModel.get('csigRequired') ?
                 'AWAITING_REFEREE_NOMINATION' : 'SUBMITTED'
         }
-        req.sessionModel.set({
-            status,
-            tellUsWhatYouThinkLink: status === 'AWAITING_REFEREE_NOMINATION',
-        })
+        req.sessionModel.set({ status })
 
         // set status template
         if (req.form.options.route === '/track/view') {
@@ -42,10 +39,7 @@ class DefaultTrackController extends BaseController {
 
         // documents required
         const documentsRequired = req.sessionModel.get('documentsRequired') || 'documents'
-        req.sessionModel.set({
-            documentsRequired,
-            documentsLink: documentsRequired !== 'none'
-        })
+        req.sessionModel.set({ documentsRequired })
 
         // notifications
         let mobileNotification = req.sessionModel.get('contactPrefsSMS');

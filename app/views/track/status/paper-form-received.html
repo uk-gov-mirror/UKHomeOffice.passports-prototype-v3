@@ -1,0 +1,25 @@
+{% extends "layout-tracking.html" %}
+
+{% block trackingHeader %}
+    <h1>Use a form to confirm your identity</h1>
+{% endblock %}
+
+{% block trackingBody %}
+    <h2>What happens next</h2>
+
+    <p>You’ll no longer be able to ask someone to do this online.</p>
+
+
+    {{ trackingHistory([
+      "Use paper form to confirm identity",
+      "Ask someone to confirm your identity",
+      "Application submitted"
+    ]) }}
+
+{% endblock %}
+
+
+{% set nextStatuses = [
+    "IN_QUEUE"
+] %}
+

@@ -51,12 +51,10 @@
             <h2 class="compact">Send us your old passport</h2>
         {% endif %}
 
-        {% if values.documentsLink %}
-            {% if value.documentsRequired == "documents" %}
-                <p><a target="_blank" href="/help/documents">Check what you need to send</a></p>
-            {% else %}
-                <p>Check if you need to send any <a target="_blank" href="/help/documents">additional documents</a>.</p>
-            {% endif %}
+        {% if value.documentsRequired == "documents" %}
+            <p><a target="_blank" href="/help/documents">Check what you need to send</a></p>
+        {% else %}
+            <p>Check if you need to send any <a target="_blank" href="/help/documents">additional documents</a>.</p>
         {% endif %}
 
         <p>
