@@ -649,7 +649,7 @@ module.exports = {
         ]
     },
     documentsToSend: {
-        formatter: 'boolean',
+        formatter: 'boolean'
     },
     secureDelivery: {
         formatter: 'boolean',

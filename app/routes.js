@@ -31,9 +31,9 @@ router.use(Wizard(
 ))
 
 router.use((err, req, res, next) => {
-    if (err.code === 'SESSION_EXPIRED') return res.redirect('/');
-    if (err.code === 'MISSING_PREREQ') return res.redirect('/');
-    next();
+    if (err.code === 'SESSION_EXPIRED') return res.redirect('/')
+    if (err.code === 'MISSING_PREREQ') return res.redirect('/')
+    next()
 })
 
 module.exports = router

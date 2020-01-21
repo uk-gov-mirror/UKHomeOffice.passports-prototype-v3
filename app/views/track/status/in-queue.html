@@ -16,7 +16,7 @@
     <p>
         {% if values.documentsRequired == "documents" %}
             We’ll check your application and the documents we asked for.
-        {% if values.documentsRequired == "passport" %}
+        {% elif values.documentsRequired == "passport" %}
             We’ll check your application and your old passport.
         {% else %}
             We’ll check your application.

@@ -1,12 +1,11 @@
 const BaseController = require('./apply')
 
 class ParentsAndGrandparentsController extends BaseController {
-
     requireParentOrGrandparentReason (name, req) {
         if (!req.form.values[name + 'FirstName'] ||
             !req.form.values[name + 'LastName'] ||
             !req.form.values[name + 'DateOfBirth']) {
-                req.form.options.fields[name + 'NoDetailsReason'].validate.push('required')
+            req.form.options.fields[name + 'NoDetailsReason'].validate.push('required')
         }
     }
 
@@ -14,7 +13,7 @@ class ParentsAndGrandparentsController extends BaseController {
         super.process(req, res, err => {
             if (err) return next(err)
 
-            let reasonFields = Object.keys(req.form.options.fields)
+            const reasonFields = Object.keys(req.form.options.fields)
                 .filter(name => name.endsWith('NoDetailsReason'))
                 .map(name => name.replace('NoDetailsReason', ''))
 

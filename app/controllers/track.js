@@ -3,9 +3,13 @@ const moment = require('moment')
 
 class DefaultTrackController extends BaseController {
     get (req, res, next) {
-        // get subnmitted date
+        // set dates
         const date = moment(req.sessionModel.get('submitted'))
-        req.sessionModel.set({ submitted: date.toISOString() })
+        req.sessionModel.set({
+            submitted: date.toISOString(),
+            photoRejectedDate: moment(date).toISOString(),
+            resubmissionDeadlineDate: moment(date).add(49, 'days').toISOString()
+        })
 
         // choose tracking status
         let status = req.sessionModel.get('status')
@@ -14,17 +18,10 @@ class DefaultTrackController extends BaseController {
                 .replace(/[^A-Z]+/g, '_')
         }
         if (!status) {
-            status = req.sessionModel.get('csigRequired') ?
-                'AWAITING_REFEREE_NOMINATION' : 'SUBMITTED'
+            status = req.sessionModel.get('csigRequired')
+                ? 'AWAITING_REFEREE_NOMINATION' : 'SUBMITTED'
         }
         req.sessionModel.set({ status })
-
-        // set status template
-        if (req.form.options.route === '/track/view') {
-            const template = 'track/status/' + status.toLowerCase()
-                .replace(/[^a-z]+/g, '-')
-            req.form.options.template = template
-        }
 
         // format the application reference
         let reference = req.sessionModel.get('appReference')
@@ -42,22 +39,23 @@ class DefaultTrackController extends BaseController {
         req.sessionModel.set({ documentsRequired })
 
         // notifications
-        let mobileNotification = req.sessionModel.get('contactPrefsSMS');
-        if (typeof mobileNotification !== 'boolean') mobileNotification = true;
+        let mobileNotification = req.sessionModel.get('contactPrefsSMS')
+        if (typeof mobileNotification !== 'boolean') mobileNotification = true
 
-        let emailNotification = req.sessionModel.get('contactPrefsEmail');
-        if (typeof emailNotification !== 'boolean') emailNotification = true;
+        let emailNotification = req.sessionModel.get('contactPrefsEmail')
+        if (typeof emailNotification !== 'boolean') emailNotification = true
 
         req.sessionModel.set({
             mobileNotification,
             emailNotification
         })
 
-        // dates
-        req.sessionModel.set({
-            photoRejectedDate: moment().toISOString(),
-            resubmissionDeadlineDate: moment().add(49, 'days').toISOString()
-        })
+        // set status template
+        if (req.form.options.route === '/track/view') {
+            const template = 'track/status/' + status.toLowerCase()
+                .replace(/[^a-z]+/g, '-')
+            req.form.options.template = template
+        }
 
         super.get(req, res, next)
     }

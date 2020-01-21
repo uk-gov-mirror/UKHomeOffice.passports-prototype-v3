@@ -61,7 +61,7 @@ class DefaultController extends BaseController {
             } else {
                 applicationType = 'renew'
             }
-        } else {
+        } else if (req.sessionModel.get('previousPassport') === false) {
             applicationType = 'first'
         }
         req.sessionModel.set('applicationType', applicationType)
@@ -82,7 +82,6 @@ class DefaultController extends BaseController {
             req.sessionModel.get('applicationType') === 'first' &&
             !req.sessionModel.get('naturalised') &&
             req.sessionModel.get('countryOfBirth') === 'GB') {
-
             eussEligible = true
         } else {
             req.sessionModel.unset('parentsHaveEUSettledStatus')

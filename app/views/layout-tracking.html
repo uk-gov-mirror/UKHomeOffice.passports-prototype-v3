@@ -16,26 +16,24 @@
     {% block trackingsidebar %}
         <div class="sidebar">
             <ul class="sidebar-task">
-                {% block sidebarContent %}
+                <li>
+                    <h3>Application reference</h3>
+                    <p>{{ values.formattedReference }}</p>
+                </li>
+
+                {% if values.documentsRequired != "none" %}
                     <li>
-                        <h3>Application reference</h3>
-                        <p>{{ values.formattedReference }}</p>
+                        <h3>Documents</h3>
+                        <p><a target="_blank" href="/help/documents">What you need to send</a></p>
                     </li>
+                {% endif %}
 
-                    {% if values.documentsRequired !== 'none' %}
-                        <li>
-                            <h3>Documents</h3>
-                            <p><a target="_blank" href="/help/documents">What you need to send</a></p>
-                        </li>
-                    {% endif %}
-
-                    {% if values.status != "AWAITING_REFEREE_NOMINATION" %}
-                        <li>
-                            <h3>Tell us what you think</h3>
-                            <p><a target="_blank" href="/">Fill in a survey about this service</a></p>
-                        </li>
-                    {% endif %}
-                {% endblock %}
+                {% if values.status != "AWAITING_REFEREE_NOMINATION" %}
+                    <li>
+                        <h3>Tell us what you think</h3>
+                        <p><a target="_blank" href="/">Fill in a survey about this service</a></p>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     {% endblock %}
