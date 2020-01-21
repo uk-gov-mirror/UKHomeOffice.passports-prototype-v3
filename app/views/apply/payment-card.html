@@ -1,0 +1,77 @@
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Payment{% endset %}
+
+{% block backLink %}{% endblock %}
+
+{% block hmpoContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>Total: <b>{{ values.totalCost | currency }}<b></p>
+
+    <hr>
+
+    <br>
+
+    <p>Accepted cards</p>
+    <p><img src="/public/images/cards.png"/></p>
+
+    {{ govukInput({
+        label: { text: "Card number (without spaces)" },
+        classes: "govuk-input--width-20"
+    }) }}
+
+    <fieldset class="govuk-fieldset">
+        <legend class="govuk-fieldset__legend">Expiry date</legend>
+        <div class="govuk-date-input">
+        <div class="govuk-date-input__item">
+            {{ govukSelect({
+                label: { text: "Month" },
+                items: [
+                    { text: "01" },
+                    { text: "02" },
+                    { text: "03" },
+                    { text: "04" },
+                    { text: "05" },
+                    { text: "06" },
+                    { text: "07" },
+                    { text: "08" },
+                    { text: "09" },
+                    { text: "10" },
+                    { text: "11" },
+                    { text: "12" }
+                ]
+            }) }}
+        </div>
+        <div class="govuk-date-input__item">
+            {{ govukSelect({
+                label: { text: "Year" },
+                items: [
+                    { text: "2019" },
+                    { text: "2020" },
+                    { text: "2021" },
+                    { text: "2022" },
+                    { text: "2023" },
+                    { text: "2024" },
+                    { text: "2025" },
+                    { text: "2026" },
+                    { text: "2027" },
+                    { text: "2028" }
+                ]
+            }) }}
+            </div>
+        </div>
+    </fieldset>
+
+    {{ govukInput({
+        label: { text: "Security code" },
+        classes: "govuk-input--width-3"
+    }) }}
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoSubmit(ctx, { text: "Confirm" }) }}
+    {% endcall %}
+
+    <p><a href="/apply/declaration">Cancel</a></p>
+
+{% endblock %}

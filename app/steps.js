@@ -480,11 +480,24 @@ const apply = {
         revalidateIf: ['*'],
         next: '/apply/payment'
     },
+
     '/apply/payment': {
+        editable: false,
+        revalidate: true,
+        next: '/apply/payment-card'
+    },
+    '/apply/payment-card': {
+        editable: false,
+        revalidate: true,
+        next: '/apply/payment-submission'
+    },
+    '/apply/payment-submission': {
+        template: 'apply/payment',
         editable: false,
         revalidate: true,
         next: '/apply/next-steps'
     },
+
     '/apply/next-steps': {
         backLink: false,
         editable: false,
