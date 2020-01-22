@@ -53,6 +53,8 @@ const apply = {
             '/photo/not-accepted'
         ]
     },
+    '/photo/not-accepted': {
+    },
     '/photo/photo-check-result-poor': {
         template: 'photo/photo-check-result',
         next: '/photo/choose-submit-photo'

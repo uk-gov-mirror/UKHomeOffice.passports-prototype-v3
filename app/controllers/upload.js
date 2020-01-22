@@ -5,11 +5,11 @@ class UploadController extends BaseController {
         const filename = req.sessionModel.get('photo')
         let quality
 
-        if (filename.indexOf('bad') >= 0) {
+        if (filename.match(/bad|fail|4\.jpe?g/i)) {
             quality = undefined
-        } else if (filename.indexOf('poor') >= 0) {
+        } else if (filename.match(/poor|3\.jpe?g/i)) {
             quality = 'poor'
-        } else if (filename.indexOf('fair') >= 0) {
+        } else if (filename.match(/fair|okay|2\.jpe?g/i)) {
             quality = 'fair'
         } else {
             quality = 'good'

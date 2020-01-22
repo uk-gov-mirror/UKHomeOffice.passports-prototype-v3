@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Do you want to submit this photo?{% endset %}
+
+{% block mainContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    {% include "../includes/photo-preview.html" %}
+
+    {% call hmpoWarningText() %}
+        By continuing you confirm that your photo meets the <a href="">photo rules</a>
+    {% endcall %}
+
+    <p>You can submit this photo if:</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+        <li>you think it meets all the rules</li>
+        <li>you have a medical or religious reason why it doesn’t meet the rules</li>
+    </ul>
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoRadios(ctx, {
+            id: "submitPhoto",
+            legend: { classes: "govuk-visually-hidden" },
+            items: [
+                { value: true, text: "Yes, this photo meets the rules" },
+                { value: false, text: "No, I want to get another photo" }
+            ]
+        }) }}
+        {{ hmpoSubmit(ctx) }}
+    {% endcall %}
+
+{% endblock %}

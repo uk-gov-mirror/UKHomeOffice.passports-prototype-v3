@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}You need another photo{% endset %}
+
+{% block mainContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    {% include "../includes/photo-preview.html" %}
+
+    <p>This photo has failed our automated checks for the following reason:</p>
+
+    <div class="panel-photo-result panel-photo-error">
+        <h2>It looks like your photo is black and white</h2>
+        <p>Colour photos can appear black and white because of the flash or bad lighting. Try:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>switching off the flash and filter settings</li>
+            <li>standing where there’s better lighting</li>
+        </ul>
+    </div>
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoSubmit(ctx, {
+            href: "/photo/choose-photo-method",
+            text: "Choose another photo"
+        }) }}
+    {% endcall %}
+
+{% endblock %}
