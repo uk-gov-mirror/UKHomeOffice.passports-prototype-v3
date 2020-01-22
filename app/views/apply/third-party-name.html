@@ -25,7 +25,7 @@
             }
         }) }}
 
-        {% if not ctx("isParentOfChild") %}
+        {% if not values.isParentOfChild %}
             {{ hmpoTextarea(ctx, {
                 id: "thirdPartyExplanation",
                 label: {

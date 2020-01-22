@@ -169,8 +169,11 @@ class DefaultController extends BaseController {
     }
 
     setParentOfChild (req) {
-        // put logic in here
-        req.sessionModel.set('isParentOfChild', false)
+        let thirdPartyRelationship = req.sessionModel.get('relationship')
+        let isParent = thirdPartyRelationship === 'mother' || thirdPartyRelationship === 'father'
+        let isParentOfChild = isParent && req.sessionModel.get('adultOrChild') === 'child'
+
+        req.sessionModel.set('isParentOfChild', isParentOfChild)
     }
 
     setCosts (req) {
