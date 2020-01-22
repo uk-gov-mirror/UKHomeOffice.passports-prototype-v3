@@ -430,6 +430,7 @@ const apply = {
         next: '/apply/third-party-name'
     },
     '/apply/third-party-name': {
+        controller: require('./controllers/third-party-name'),
         fields: [
             'thirdPartyFirstName',
             'thirdPartyLastName',
