@@ -132,7 +132,7 @@ const apply = {
             'otherPassports'
         ],
         next: [
-            { field: 'isUKApplication', value: true, next: '/filter/summary' },
+            { field: 'isUKApplication', value: true, next: '/apply/application-summary' },
             { field: 'applicationType', value: 'first', next: '/filter/country-of-birth' },
             '/filter/british-citizen'
         ]
@@ -141,15 +141,16 @@ const apply = {
         fields: [
             'countryOfBirth'
         ],
-        next: '/filter/summary'
+        next: '/apply/application-summary'
     },
     '/filter/british-citizen': {
         fields: [
             'nationality'
         ],
-        next: '/filter/summary'
+        next: '/apply/application-summary'
     },
-    '/filter/summary': {
+
+    '/apply/application-summary': {
         next: [
             { field: 'previousPassport', value: true, next: [
                 { field: 'lost', value: true, next: '/apply/optional-passport-details' },
@@ -159,7 +160,6 @@ const apply = {
             '/apply/name'
         ]
     },
-
     '/apply/passport-details': {
         fields: [
             'passportNumber',
