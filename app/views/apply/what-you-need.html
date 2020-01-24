@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}What you’ll need{% endset %}
+
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    {% call hmpoForm(ctx) %}
+
+        <p>You won’t be able to save your application - get this information ready before you continue. If you can’t provide these details, you’ll need to tell us why.</p>
+
+        {% if values.applicationType !== 'replace' %}
+            {% if values.adultOrChild == 'child' %}
+                <h2>Applicant’s details</h2>
+            {% else %}
+                <h2>Your details</h2>
+            {% endif %}
+
+            {% set applicantDetailsList = [] %}
+
+            {% if values.applicationType == 'first' %}
+                {% if values.naturalised %}
+                    {% set applicantDetailsList = applicantDetailsList | push('naturalisation or registration certificate') %}
+                {% else %}
+                    {% set applicantDetailsList = applicantDetailsList | push('birth or adoption certificate') %}
+                {% endif %}
+            {% endif %}
+
+            {% if values.previousPassport %}
+                {% set applicantDetailsList = applicantDetailsList | push('UK passport details') %}
+            {% endif %}
+
+            <ul class="govuk-list govuk-list--bullet">
+                {% for item in applicantDetailsList %}
+                    <li>{{item}}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <h2>Parents’ details</h2>
+
+        <ul class="govuk-list govuk-list--bullet">
+            <li>name, date and place of birth</li>
+            <li>nationality</li>
+            <li>UK passport details (if this applies)</li>
+            <li>date of marriage or civil partnership (if this applies)</li>
+        </ul>
+
+        <p>Check the <a target="_blank" href="/help/parents-details">rules about parents</a> if you’re not sure whose details to provide.</p>
+
+        {% if values.grandparentsRequired %}
+            <h2>Grandparents’ details</h2>
+            <p>Based on what you tell us, we may ask for their:</p>
+
+            <ul class="govuk-list govuk-list--bullet">
+                <li>name, date and place of birth</li>
+                <li>date of marriage or civil partnership (if this applies)</li>
+            </ul>
+        {% endif %}
+
+        {{ hmpoCheckboxes(ctx, {
+            id: "whatYouNeed",
+            label: "I’m ready to continue",
+            classes: "govuk-checkboxes--small"
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+    {% endcall %}
+
+    {{ hmpoPrintPage({ }) }}
+
+{% endblock %}

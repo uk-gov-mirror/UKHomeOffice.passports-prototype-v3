@@ -132,7 +132,7 @@ const apply = {
             'otherPassports'
         ],
         next: [
-            { field: 'isUKApplication', value: true, next: '/filter/summary' },
+            { field: 'isUKApplication', value: true, next: '/apply/application-summary' },
             { field: 'applicationType', value: 'first', next: '/filter/country-of-birth' },
             '/filter/british-citizen'
         ]
@@ -141,25 +141,40 @@ const apply = {
         fields: [
             'countryOfBirth'
         ],
-        next: '/filter/summary'
+        next: '/apply/application-summary'
     },
     '/filter/british-citizen': {
         fields: [
             'nationality'
         ],
-        next: '/filter/summary'
+        next: '/apply/application-summary'
     },
-    '/filter/summary': {
+
+    '/apply/application-summary': {
+        next: [
+            { field: 'applicationType', value: 'first', next: '/apply/what-you-need' },
+            { field: 'adultOrChild', value: 'child', next: '/apply/what-you-need' },
+            { field: 'previousPassport', value: true, next: [
+                { field: 'applicationType', value: 'first', next: '/apply/what-you-need' }, // Old Blue
+                { field: 'lost', value: true, next: '/apply/optional-passport-details' },
+                '/apply/passport-details'
+            ] },
+            '/apply/what-you-need'
+        ]
+    },
+    '/apply/what-you-need': {
+        fields: [
+            'whatYouNeed'
+        ],
         next: [
             { field: 'previousPassport', value: true, next: [
+                { field: 'applicationType', value: 'first', next: '/apply/old-passport-details' }, // Old blue
                 { field: 'lost', value: true, next: '/apply/optional-passport-details' },
-                { field: 'applicationType', value: 'first', next: '/apply/old-passport-details' },
                 '/apply/passport-details'
             ] },
             '/apply/name'
         ]
     },
-
     '/apply/passport-details': {
         fields: [
             'passportNumber',

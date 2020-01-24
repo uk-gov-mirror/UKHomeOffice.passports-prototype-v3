@@ -65,6 +65,13 @@ module.exports = {
         validate: 'required'
     },
 
+    whatYouNeed: {
+        formatter: 'boolean',
+        validate: [
+            'required',
+            { type: 'equal', arguments: true }
+        ]
+    },
     passportNumber: {
         validate: [
             'required',
