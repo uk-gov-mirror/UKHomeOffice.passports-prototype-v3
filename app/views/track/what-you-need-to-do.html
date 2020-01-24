@@ -1,0 +1,67 @@
+
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}What you need to do{% endset %}
+
+{% block hmpoContent %}
+    {% call hmpoFlashCard(ctx) %}
+        <h1>{{ hmpoTitle }}</h1>
+
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+                {% set contactPersonHtml %}
+                    {% if values.adultOrChild == "adult" %}
+
+                        <p>
+                            Once you’ve decided who can do this, you must contact them before we send them an email.
+                            You need to tell them:
+                        </p>
+                        <div class="govuk-list--bullet">
+                            <ul class="govuk-list govuk-list--bullet">
+                                <li>your date of birth, including the year</li>
+                                <li>your current address</li>
+                            </ul>
+                        </div>
+
+                    {% else %}
+
+                        <p>
+                            Once you’ve decided who can do this, you must contact them before we send them an email.
+                            You need to tell them the applicant’s:
+                        </p>
+                        <div class="govuk-list--bullet">
+                            <ul class="govuk-list govuk-list--bullet">
+                                <li>current address</li>
+                                <li>place and date of birth, including the year</li>
+                                <li>parents’ names and years they were born</li>
+                            </ul>
+                        </div>
+
+                    {% endif %}
+                {% endset %}
+
+                {{ hmpoCircleStepList({
+                    items: [
+                        {
+                            title: "Contact the person",
+                            html: contactPersonHtml
+                        },
+                        {
+                            title: "Enter their name and email",
+                            html: "We’ll send them an email with a link to go online. They’ll need to look at a photo and answer a few questions."
+                        }
+                    ]
+                }) }}
+            </div>
+        </div>
+
+        {% call hmpoForm(ctx) %}
+            {{ hmpoSubmit(ctx) }}
+        {% endcall %}
+
+        <p>
+            <a href="/track">I’ll do this later (sign out)</a>
+        </p>
+    {% endcall %}
+{% endblock %}
+

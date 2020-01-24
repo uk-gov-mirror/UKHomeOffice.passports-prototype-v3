@@ -695,5 +695,42 @@ module.exports = {
     },
     trackEmail: {
         validate: 'required'
-    }
+    },
+
+    refereeFirstName: {
+        validate: 'required'
+    },
+    refereeSurname: {
+        validate: 'required'
+    },
+    refereeEmail: {
+        formatter: ['trim'],
+        validate: [
+            'required',
+            'email',
+            { type: 'maxlength', arguments: 240 }
+        ],
+        type: 'email',
+        className: 'js-nopaste',
+        'ignore-defaults': true
+    },
+    refereeEmailConfirm: {
+        formatter: ['trim'],
+        validate: [
+            'required',
+            { type: 'match', arguments: 'refereeEmail' },
+            { type: 'maxlength', arguments: 240 }
+        ],
+        type: 'email',
+        className: 'js-nopaste',
+        'ignore-defaults': true
+    },
+    refereeContactDeclaration: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
+    paperForm: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
 }

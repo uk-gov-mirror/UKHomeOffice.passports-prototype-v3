@@ -4,8 +4,10 @@
     <h1>
         {% if values.documentsRequired == "passport" %}
             We’ve received your old passport
-        {% else %}
+        {% elif values.documentsRequired == "documents" %}
             We’ve received your documents
+        {% else %}
+            We’ve received the form confirming your identity
         {% endif %}</h1>
     </h1>
 {% endblock %}
@@ -19,7 +21,7 @@
         {% elif values.documentsRequired == "passport" %}
             We’ll check your application and your old passport.
         {% else %}
-            We’ll check your application.
+            We’ll check your application and the form. We’ll contact you if we need more information.
         {% endif %}
 
         If we need more information, we’ll contact you.
@@ -28,7 +30,7 @@
     <p>When we’ve finished checking your application, we’ll update this page.</p>
 
     {{ trackingHistory([
-      "Documents received",
+      "Form confirming identity received" if values.documentsRequired == "none" else "Documents received",
       "Application received",
       "Application submitted"
     ]) }}

@@ -1,0 +1,24 @@
+
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Use a form to confirm your identity{% endset %}
+            "title": "Use a form to confirm your identity",
+            "cantDoThisOnline": "You’ll no longer be able to ask someone to do this online."
+
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+    <p>You’ll no longer be able to ask someone to do this online.</p>
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoRadios(ctx, {
+            id: "paperForm",
+            inline: true,
+            legend: {
+                text: "Do you want to download the form?",
+                classes: "govuk-fieldset__legend--m"
+            }
+        }) }}
+        {{ hmpoSubmit(ctx) }}
+    {% endcall %}
+{% endblock %}
+

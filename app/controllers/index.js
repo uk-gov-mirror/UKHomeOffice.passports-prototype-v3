@@ -9,6 +9,7 @@ class DefaultController extends DateMixin(BaseController) {
 
     logSessionChanges (req, res, next) {
         req.sessionModel.on('change', changes => {
+            delete changes.errorValues
             console.log(req.originalUrl, changes)
         })
         next()

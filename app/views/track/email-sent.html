@@ -1,0 +1,22 @@
+
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Email sent{% endset %}
+
+{% block mainContent %}
+
+    {% call hmpoInsetText({ classes: "hmpo-inset-success" }) %}
+        <h1 class="govuk-heading-m">{{ hmpoTitle }}</h1>
+        <p>We’ve sent details to {{ values.refereeEmail }}</p>
+    {% endcall %}
+
+    <p>The person you’ve asked needs to go online to look at a photo and answer a few questions.</p>
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoSubmit(ctx, {
+            href: "/track/view?status=REFEREE_NOMINATED"
+        }) }}
+    {% endcall %}
+
+{% endblock %}
+
