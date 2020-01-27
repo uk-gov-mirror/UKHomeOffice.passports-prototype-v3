@@ -441,6 +441,14 @@ module.exports = {
         formatter: 'boolean-unknown',
         validate: 'required'
     },
+    parent1ParentsMarriageDate: {
+        validate: [
+            'date',
+            { type: 'before' }
+        ],
+        autocomplete: 'parent1-parents-marriage-bday',
+        dependent: 'parent1ParentsMarried'
+    },
     parent2Parent1FirstName: {
         validate: [
             { type: 'maxlength', arguments: 30 }
@@ -516,6 +524,14 @@ module.exports = {
     parent2ParentsMarried: {
         formatter: 'boolean-unknown',
         validate: 'required'
+    },
+    parent2ParentsMarriageDate: {
+        validate: [
+            'date',
+            { type: 'before' }
+        ],
+        autocomplete: 'parent2-parents-marriage-bday',
+        dependent: 'parent2ParentsMarried'
     },
     addressLine1: {
         validate: [
