@@ -69,10 +69,15 @@ class DefaultController extends BaseController {
     }
 
     setParentsRequired (req) {
-        // put logic in here
         req.sessionModel.set('parentsRequired', false)
+
+        if (req.sessionModel.get('applicationType') === 'first' ||
+            req.sessionModel.get('adultOrChild') === 'child') {
+            req.sessionModel.set('parentsRequired', true)
+        }
     }
 
+    // FIXME: If `bornInUK` === true || `countryOfBirth` === '', set `countryOfBirth` = 'GB', as otherwise EUSS logic won't trigger
     setEUSSEligible (req) {
         let eussEligible = false
         const dateOfBirth = req.sessionModel.get('dateOfBirth')

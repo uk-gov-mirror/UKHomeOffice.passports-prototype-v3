@@ -11,17 +11,17 @@
             {
                 key: { text: "Relationship" },
                 value: { text: values.otherRelationship if values.relationship == 'other' else values.relationship | capitalize },
-                actions: { items: [ { text: "Change", href: "/apply/relationship-to-applicant/edit" }]}
+                actions: { items: [{ text: "Change", href: "/apply/relationship-to-applicant/edit" }]}
             },
             {
                 key: { text: "Name" },
                 value: { text: values.thirdPartyFirstName + " " + values.thirdPartyLastName },
-                actions: { items: [ { text: "Change", href: "/apply/third-party-name/edit" }]}
+                actions: { items: [{ text: "Change", href: "/apply/third-party-name/edit" }]}
             },
             {
                 key: { text: "Explanation" },
                 value: { text: values.thirdPartyExplanation },
-                actions: { items: [ { text: "Change", href: "/apply/third-party-name/edit" }]}
+                actions: { items: [{ text: "Change", href: "/apply/third-party-name/edit" }]}
             } if values.thirdPartyExplanation
         ] | filter }) }}
     {% endif %}
@@ -32,47 +32,47 @@
             {
                 key: { text: "Certificate number" },
                 value: { text: values.naturalisationCertificateNumber },
-                actions: { items: [ { text: "Change", href: "/apply/naturalisation-certificate/edit" }]}
+                actions: { items: [{ text: "Change", href: "/apply/naturalisation-details/edit" }]}
             },
             {
                 key: { text: "Date of issue" },
                 value: { text: values.naturalisationIssueDate | date },
-                actions: { items: [ { text: "Change", href: "/apply/naturalisation-certificate/edit" }]}
+                actions: { items: [{ text: "Change", href: "/apply/naturalisation-details/edit" }]}
             }
         ] }) }}
     {% endif %}
 
     {% if values.previousPassport %}
         <h2>Old passport details</h2>
-        {% if values.lost %}
-            {{ govukSummaryList({ rows: [
-                {
-                    key: { text: "Passport number (optional)" },
-                    value: { text: values.optionalPassportNumber },
-                    actions: { items: [ { text: "Change", href: "/apply/optional-passport-details/edit" }]}
-                },
-                {
-                    key: { text: "Passport expiry (optional)" if values.lost else "Passport expiry" },
-                    value: { text: values.optionalPassportExpiry | date },
-                    actions: { items: [ { text: "Change", href: "/apply/optional-passport-details/edit" }]}
-                }
-            ] }) }}
-        {% elif values.oldBlue %}
+        {% if values.oldBlue %}
             {{ govukSummaryList({ rows: [
                 {
                     key: { text: "Passport number" },
                     value: { text: values.oldPassportNumber },
-                    actions: { items: [ { text: "Change", href: "/apply/old-passport-details/edit" }]}
+                    actions: { items: [{ text: "Change", href: "/apply/old-passport-details/edit" }]}
                 },
                 {
                     key: { text: "Passport expiry" },
                     value: { text: values.oldPassportExpiry | date },
-                    actions: { items: [ { text: "Change", href: "/apply/old-passport-details/edit" }]}
+                    actions: { items: [{ text: "Change", href: "/apply/old-passport-details/edit" }]}
                 },
                 {
                     key: { text: "Damaged" },
                     value: { text: values.damagedReason if values.damaged else "No" },
-                    actions: { items: [ { text: "Change", href: "/filter/damaged/edit" }]}
+                    actions: { items: [{ text: "Change", href: "/filter/damaged/edit" }]}
+                }
+            ] }) }}
+        {% elif values.lost %}
+            {{ govukSummaryList({ rows: [
+                {
+                    key: { text: "Passport number (optional)" },
+                    value: { text: values.optionalPassportNumber },
+                    actions: { items: [{ text: "Change", href: "/apply/optional-passport-details/edit" }]}
+                },
+                {
+                    key: { text: "Passport expiry (optional)" if values.lost else "Passport expiry" },
+                    value: { text: values.optionalPassportExpiry | date },
+                    actions: { items: [{ text: "Change", href: "/apply/optional-passport-details/edit" }]}
                 }
             ] }) }}
         {% else %}
@@ -80,17 +80,17 @@
                 {
                     key: { text: "Passport number" },
                     value: { text: values.passportNumber },
-                    actions: { items: [ { text: "Change", href: "/apply/passport-details/edit" }]}
+                    actions: { items: [{ text: "Change", href: "/apply/passport-details/edit" }]}
                 },
                 {
                     key: { text: "Passport expiry" },
                     value: { text: values.passportExpiry | date },
-                    actions: { items: [ { text: "Change", href: "/apply/passport-details/edit" }]}
+                    actions: { items: [{ text: "Change", href: "/apply/passport-details/edit" }]}
                 },
                 {
                     key: { text: "Damaged" },
                     value: { text: values.damagedReason if values.damaged else "No" },
-                    actions: { items: [ { text: "Change", href: "/filter/damaged/edit" }]}
+                    actions: { items: [{ text: "Change", href: "/filter/damaged/edit" }]}
                 }
             ] }) }}
         {% endif %}
@@ -103,75 +103,77 @@
         (values.previousFirstName3 + " " + values.previousLastName3) | trim
     ] | filter %}
 
+    {# TODO: If edit `Name change`, need to route to name -> change-of-name -> previous-names pages #}
     {{ govukSummaryList({ rows: [
         {
             key: { text: "Title" },
             value: { text: values.otherTitle if values.title == "Other" else values.title },
-            actions: { items: [ { text: "Change", href: "/apply/name/edit" }]}
+            actions: { items: [{ text: "Change", href: "/apply/name/edit" }]}
         },
         {
             key: { text: "Name" },
             value: { text: values.firstName + " " + values.lastName },
-            actions: { items: [ { text: "Change", href: "/apply/name/edit" }]}
+            actions: { items: [{ text: "Change", href: "/apply/name/edit" }]}
         },
         {
             key: { text: "Name change" },
             value: {
-                text: "Your name hasn’t changed" if not values.nameChanged
-                    else ("Your name has changed" if values.adultOrChild == "child"
-                    else values.nameChangedReason)
+                text: "Your name hasn’t changed" if not values.changeOfName
+                    else ("Your name has changed" if values.adultOrChild == "child" else values.nameChangeReason)
             },
-            actions: { items: [ { text: "Change", href: "/apply/name/edit" }]}
+            actions: { items: [{ text: "Change", href: "/apply/name/edit" }]}
         },
         {
             key: { text: "Previous names" },
             value: { html: previousNames | join("<br/>") if values.previousNames else "You have never been known by any other names" },
-            actions: { items: [ { text: "Change", href: "/apply/previous-names/edit" }]}
+            actions: { items: [{ text: "Change", href: "/apply/previous-names/edit" }]}
         },
         {
             key: { text: "Gender" },
             value: { text: values.gender },
-            actions: { items: [ { text: "Change", href: "/apply/gender/edit" }]}
+            actions: { items: [{ text: "Change", href: "/apply/gender/edit" }]}
         },
         {
             key: { text: "Date of birth" },
             value: { text: values.dateOfBirth | date },
-            actions: { items: [ { text: "Change", href: "/apply/age/edit" }]}
+            actions: { items: [{ text: "Change", href: "/filter/age/edit" }]}
         },
         {
             key: { text: "Town of birth" },
             value: { text: values.townOfBirth },
-            actions: { items: [ { text: "Change", href: "/apply/birth/edit" }]}
+            actions: { items: [{ text: "Change", href: "/apply/birth/edit" }]}
         },
         {
             key: { text: "Country of birth" },
-            value: { text: (values.countryOfBirth) | countryName },
-            actions: { items: [ { text: "Change", href: "/apply/birth/edit" }]}
+            value: { text: values.countryOfBirth | countryName | default("United Kingdom")},
+            actions: { items: [{ text: "Change", href: "/apply/birth/edit" }]}
         },
         {
             key: { text: "Signature" },
-            value: { text: values.canSign | yesOrNo },
-            actions: { items: [ { text: "Change", href: "/apply/birth/edit" }]}
-        } if not values.ageGroup == "under12",
+            value: {
+                text: "You must sign your new passport when you receive it" if values.canSign
+                    else ("You can’t sign your passport: <br/>" + values.noSignReason) | safe
+            },
+            actions: { items: [{ text: "Change", href: "/apply/sign/edit" }]}
+        } if values.ageGroup !== "under12",
         {
-            key: { text: "Photo" },
+            key: { text: "Your photo" },
             value: { html: "<img src=\"" + values.photo + "\" class=\"photo\" alt=\"Your photo\"/>" }
         }
     ] | filter }) }}
 
-
-    {% if values.parents %}
+    {% if values.parentsRequired %}
         <h2>Parents’ details</h2>
         {{ govukSummaryList({ rows: [
             {
                 key: { text: "Mother or parent 1" },
                 value: { text: values.parent1FirstName + " " + values.parent1LastName },
-                actions: { items: [ { text: "Change", href: "/apply/parents-details/edit" }]}
+                actions: { items: [{ text: "Change", href: "/apply/parents-details/edit" }]}
             },
             {
                 key: { text: "Father or parent 2" },
                 value: { text: values.parent2FirstName + " " + values.parent2LastName },
-                actions: { items: [ { text: "Change", href: "/apply/parents-details/edit" }]}
+                actions: { items: [{ text: "Change", href: "/apply/parents-details/edit" }]}
             },
             {
                 key: { text: "Marriage date" },
@@ -179,20 +181,20 @@
             },
             {
                 key: { text: "EU settled status" },
-                value: { text: values.parentsHaveEUSS | yesOrNo },
-                actions: { items: [ { text: "Change", href: "/apply/parents-eu-settled-status/edit" }]}
-            } if values.parentsHaveEUSS != undefined
+                value: { text: values.parentsHaveEUSettledStatus | yesOrNo },
+                actions: { items: [{ text: "Change", href: "/apply/parents-eu-settled-status/edit" }]}
+            } if values.parentsHaveEUSettledStatus != undefined
         ] | filter }) }}
 
         <h2>Mother or parent 1</h2>
         {{ govukSummaryList({ rows: [
             {
                 key: { text: "Town of birth" },
-                value: { text: values.parent1Town }
+                value: { text: values.parent1TownOfBirth }
             },
             {
                 key: { text: "Country of birth" },
-                value: { text: values.parent1Country | countryName }
+                value: { text: values.parent1CountryOfBirth | countryName }
             },
             {
                 key: { text: "Date of birth" },
@@ -203,7 +205,7 @@
                 value: { text: values.parent1Nationality }
             },
             {
-                key: { text: "Passport number" },
+                key: { text: "UK passport number" },
                 value: { text: values.parent1PassportNumber }
             },
             {
@@ -220,11 +222,11 @@
         {{ govukSummaryList({ rows: [
             {
                 key: { text: "Town of birth" },
-                value: { text: values.parent2Town }
+                value: { text: values.parent2TownOfBirth }
             },
             {
                 key: { text: "Country of birth" },
-                value: { text: values.parent2Country | countryName }
+                value: { text: values.parent2CountryOfBirth | countryName }
             },
             {
                 key: { text: "Date of birth" },
@@ -235,7 +237,7 @@
                 value: { text: values.parent2Nationality }
             },
             {
-                key: { text: "Passport number" },
+                key: { text: "UK passport number" },
                 value: { text: values.parent2PassportNumber }
             },
             {
@@ -249,18 +251,18 @@
         ] | filter }) }}
     {% endif %}
 
-    {% if values.grandparents %}
+    {% if values.grandparentsRequired %}
         <h2>Maternal grandparents</h2>
         {{ govukSummaryList({ rows: [
             {
                 key: { text: "Grandmother" },
                 value: { text: values.parent1Parent1FirstName + " " + values.parent1Parent1LastName },
-                actions: { items: [ { text: "Change", href: "/apply/parent1-grandparents/edit" }]}
+                actions: { items: [{ text: "Change", href: "/apply/parent1-grandparents/edit" }]}
             },
             {
                 key: { text: "Grandfather" },
                 value: { text: values.parent1Parent2FirstName + " " + values.parent1Parent2LastName },
-                actions: { items: [ { text: "Change", href: "/apply/parent1-grandparents/edit" }]}
+                actions: { items: [{ text: "Change", href: "/apply/parent1-grandparents/edit" }]}
             },
             {
                 key: { text: "Marriage date" },
@@ -272,11 +274,11 @@
         {{ govukSummaryList({ rows: [
             {
                 key: { text: "Town of birth" },
-                value: { text: values.parent1Parent1Town }
+                value: { text: values.parent1Parent1TownOfBirth }
             },
             {
                 key: { text: "Country of birth" },
-                value: { text: values.parent1Parent1Country | countryName }
+                value: { text: values.parent1Parent1CountryOfBirth | countryName }
             },
             {
                 key: { text: "Date of birth" },
@@ -292,11 +294,11 @@
         {{ govukSummaryList({ rows: [
             {
                 key: { text: "Town of birth" },
-                value: { text: values.parent1Parent2Town }
+                value: { text: values.parent1Parent2TownOfBirth }
             },
             {
                 key: { text: "Country of birth" },
-                value: { text: values.parent1Parent2Country | countryName }
+                value: { text: values.parent1Parent2CountryOfBirth | countryName }
             },
             {
                 key: { text: "Date of birth" },
@@ -313,12 +315,12 @@
             {
                 key: { text: "Grandmother" },
                 value: { text: values.parent2Parent1FirstName + " " + values.parent2Parent1LastName },
-                actions: { items: [ { text: "Change", href: "/apply/parent2-grandparents/edit" }]}
+                actions: { items: [{ text: "Change", href: "/apply/parent2-grandparents/edit" }]}
             },
             {
                 key: { text: "Grandfather" },
                 value: { text: values.parent2Parent2FirstName + " " + values.parent2Parent2LastName },
-                actions: { items: [ { text: "Change", href: "/apply/parent2-grandparents/edit" }]}
+                actions: { items: [{ text: "Change", href: "/apply/parent2-grandparents/edit" }]}
             },
             {
                 key: { text: "Marriage date" },
@@ -330,11 +332,11 @@
         {{ govukSummaryList({ rows: [
             {
                 key: { text: "Town of birth" },
-                value: { text: values.parent2Parent1Town }
+                value: { text: values.parent2Parent1TownOfBirth }
             },
             {
                 key: { text: "Country of birth" },
-                value: { text: values.parent2Parent1Country | countryName }
+                value: { text: values.parent2Parent1CountryOfBirth | countryName }
             },
             {
                 key: { text: "Date of birth" },
@@ -350,11 +352,11 @@
         {{ govukSummaryList({ rows: [
             {
                 key: { text: "Town of birth" },
-                value: { text: values.parent2Parent2Town }
+                value: { text: values.parent2Parent2TownOfBirth }
             },
             {
                 key: { text: "Country of birth" },
-                value: { text: values.parent2Parent2Country | countryName }
+                value: { text: values.parent2Parent2CountryOfBirth | countryName }
             },
             {
                 key: { text: "Date of birth" },
@@ -372,8 +374,8 @@
     {{ govukSummaryList({ rows: [
         {
             key: { text: "Country or territory you live in" },
-            value: { text: values.countryOfAppliction | default("GB") | countryName },
-            actions: { items: [ { text: "Change", href: "/filter/overseas/edit" }]}
+            value: { text: values.countryOfApplication | countryName | default("United Kingdom") },
+            actions: { items: [{ text: "Change", href: "/filter/overseas/edit" }]}
         },
         {
             key: { text: "Address" },
@@ -383,30 +385,28 @@
                 values.addressTown,
                 values.addressPostcode
             ] | filter | join("<br/>") },
-            actions: { items: [ { text: "Change", href: "/apply/address/edit" }]}
+            actions: { items: [{ text: "Change", href: "/apply/address-manual/edit" }]}
         },
         {
             key: { text: "Contact details" },
-            value: { html: [ values.emails, values.contactPhone ] | filter | join("<br/><br/>") },
-            actions: { items: [ { text: "Change", href: "/apply/contact-details/edit" }]}
+            value: { html: [ values.contactEmail, values.contactPhone ] | filter | join("<br/><br/>") },
+            actions: { items: [{ text: "Change", href: "/apply/contact-details/edit" }]}
         },
         {
-            key: { text: "Contact preferences" },
+            key: { text: "Progress updates" },
             value: { html:
-                ("We will send you progress updates via email and text message to " + values.contactMobile)
-                    if values.textUpdates and values.emailUpdates else
-                (("We will send you progress updates via text message to " + values.contactMobile)
-                    if values.textUpdates else
-                ("We will send you progress updates via email"
-                    if values.emailUpdates else
-                ("You’ve chosen not to get progress updates")))
+                ("We will send you progress updates via email and text message to " + values.mobilePhone) if values.contactPrefsSMS and values.contactPrefsEmail
+                else (("We will send you progress updates via text message to " + values.mobilePhone) if values.contactPrefsSMS
+                    else ("We will send you progress updates via email" if values.contactPrefsEmail
+                    else ("You’ve chosen not to get progress updates"))
+                )
             },
-            actions: { items: [ { text: "Change", href: "/apply/contact-details/edit" }]}
+            actions: { items: [{ text: "Change", href: "/apply/contact-preferences/edit" }]}
         },
         {
             key: { text: "Braille" },
             value: { text: "You require a braille sticker" if values.braille else "You don’t require a braille sticker" },
-            actions: { items: [ { text: "Change", href: "/apply/new-passport/edit" }]}
+            actions: { items: [{ text: "Change", href: "/apply/new-passport/edit" }]}
         }
     ] }) }}
 
