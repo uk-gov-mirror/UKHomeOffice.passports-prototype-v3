@@ -31,8 +31,10 @@ router.use(Wizard(
 ))
 
 router.use((err, req, res, next) => {
-    if (err.code === 'SESSION_EXPIRED') return res.redirect('/')
-    if (err.code === 'MISSING_PREREQ') return res.redirect('/')
+    console.log(req.journeyModel.get('history'));
+    if (err.code === 'SESSION_EXPIRED') err.redirect = '/'
+    if (err.code === 'MISSING_PREREQ' && !err.redirect) err.redirect = '/'
+    if (err.redirect) return res.redirect(err.redirect)
     next()
 })
 

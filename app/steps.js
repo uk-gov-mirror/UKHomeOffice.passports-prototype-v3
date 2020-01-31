@@ -155,7 +155,6 @@ const apply = {
             { field: 'applicationType', value: 'first', next: '/apply/what-you-need' },
             { field: 'adultOrChild', value: 'child', next: '/apply/what-you-need' },
             { field: 'previousPassport', value: true, next: [
-                { field: 'applicationType', value: 'first', next: '/apply/what-you-need' }, // Old Blue
                 { field: 'lost', value: true, next: '/apply/optional-passport-details' },
                 '/apply/passport-details'
             ] },
@@ -543,7 +542,43 @@ const tracking = {
         next: '/track/view'
     },
     '/track/view': {
-    }
+        noPost: true,
+        next: '/track'
+    },
+    '/track/ask-someone-to-confirm': {
+        prereqs: ['/track/view'],
+        next: '/track/what-you-need-to-do'
+    },
+    '/track/what-you-need-to-do': {
+        next: '/track/person-contact-details'
+    },
+    '/track/person-contact-details': {
+        prereqs: ['/track/view'],
+        fields: [
+            'refereeFirstName',
+            'refereeSurname',
+            'refereeEmail',
+            'refereeEmailConfirm',
+            'refereeContactDeclaration'
+        ],
+        next: '/track/email-sent'
+    },
+    '/track/email-sent': {
+        backLink: false,
+        next: '/track/view'
+    },
+    '/track/use-a-form': {
+        prereqs: ['/track/view'],
+        fields: ['paperForm'],
+        next: [
+            { field: 'paperForm', value: true, next: '/track/view?status=PAPER_REFEREE_RECEIVED'},
+            '/track/view'
+        ]
+    },
+    '/track/confirm-identity-form': {
+        prereqs: ['/track/view'],
+        noPost: true,
+    },
 }
 
 module.exports = {

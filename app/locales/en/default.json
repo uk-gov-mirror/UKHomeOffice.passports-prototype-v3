@@ -40,6 +40,15 @@
         },
         "country-of-application": {
             "default": "Please select your country"
+        },
+        "refereeEmailConfirm": {
+          "default": "Confirm their email address"
+        },
+        "refereeContactDeclaration": {
+          "default": "You must contact this person before we send them an email"
+        },
+        "paperForm": {
+            "required": "Confirm you want to download the form"
         }
-    }
+}
 }

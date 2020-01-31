@@ -1,0 +1,93 @@
+{% extends "layout-tracking.html" %}
+
+{% block trackingHeader %}
+    {% if values.documentsRequired == "documents" %}
+        <h1>Send the form and your documents</h1>
+    {% else %}
+        <h1>Send the form to confirm your identity</h1>
+    {% endif %}
+{% endblock %}
+
+{% block trackingBody %}
+    <h2>What you need to do</h2>
+
+    <p>Before we can work on your application, you need to:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>ask someone to confirm your identity</li>
+        {% if values.documentsRequired == "documents" %}
+            <li>get your documents ready</li>
+            <li>send the completed form and your documents</li>
+        {% else %}
+            <li>send the completed form</li>
+        {% endif %}
+    </ul>
+
+    <h3>1. Ask someone to confirm your identity</h3>
+    <p>The person confirming your identity needs to complete this form and give it back to you. Print the form:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>single sided</li>
+        <li>on A4 or US letter sized paper</li>
+        <li>at its default size (sometimes called ‘no scaling’ or ‘100% scale’)</li>
+        <li>in either black and white or colour</li>
+    </ul>
+
+    <section class="attachment">
+        <div class="attachment-thumb">
+            <a aria-hidden="true" class="thumbnail" href=""><img id="paper-form-thumbnail" alt="Paper application form thumbnail" src="/public/images/referee-paper-form-thumbnail.png"></a>
+        </div>
+        <div class="attachment-details">
+            <h2 class="title"><a href="">Download the form</a></h2>
+            <p class="metadata">
+                <span class="type"><abbr title="Portable Document Format">PDF</abbr></span>, <span class="file-size">320KB</span>, <span class="page-length">3 pages</span>
+            </p>
+        </div>
+    </section>
+
+    {% if values.documentsRequired == "documents" %}
+
+        <h3>2. Get your documents ready</h3>
+        <p>Find out <a target="_blank" href="/help/documents">what documents you need to send</a>.</p>
+
+        <h3>3. Send the completed form and your documents</h3>
+        <p>
+            Use a strong envelope that is the right size for your documents.
+            Check the weight and pay the correct postage – consider using signed for delivery. You do not need to include a covering letter.
+        </p>
+        <p>Send the form and your documents to:</p>
+
+    {% else %}
+
+        <h3>2. Send the completed form</h3>
+        <p>
+            Use an envelope that is the right size for your form.
+            Check the weight and pay the correct postage – consider using signed for delivery. You do not need to include a covering letter.
+        </p>
+        <p>Send the form to:</p>
+    {% endif %}
+
+    <p>
+        HM Passport Office<br/>
+        INBOUND<br/>
+        Durham HM Passport Office<br/>
+        Freemans Reach<br/>
+        Riverside Place<br/>
+        Durham<br/>
+        DH1 1SL
+    </p>
+
+    <p>Find out how to send your documents if you’re <a target="_blank" href="/help/multiple-docs">applying as part of a family or couple.</a></p>
+
+
+    {{ trackingHistory([
+      "Use paper form to confirm identity",
+      "Ask someone to confirm your identity",
+      "Application submitted"
+    ]) }}
+
+{% endblock %}
+
+
+{% set nextStatuses = [
+    "REFEREE_DETAILS_SUBMITTED"
+] %}
+

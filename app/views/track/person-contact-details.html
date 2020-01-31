@@ -1,0 +1,47 @@
+
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}The person's contact details{% endset %}
+
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+    <p>We’ll only contact this person about confirming your identity.</p>
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoText(ctx, {
+            id: "refereeFirstName",
+            label: {
+                text: "Their first name",
+                classes: "govuk-label--m"
+            }
+        }) }}
+        {{ hmpoText(ctx, {
+            id: "refereeSurname",
+            label: {
+                text: "Last name",
+                classes: "govuk-label--m"
+            }
+        }) }}
+        {{ hmpoText(ctx, {
+            id: "refereeEmail",
+            label: {
+                text: "Email",
+                classes: "govuk-label--m"
+            }
+        }) }}
+        {{ hmpoText(ctx, {
+            id: "refereeEmailConfirm",
+            noPaste: "true",
+            label: {
+                text: "Confirm their email",
+                classes: "govuk-label--m"
+            }
+        }) }}
+        {{ hmpoCheckboxes(ctx, {
+            id: "refereeContactDeclaration",
+            label: "I’ve contacted this person"
+        }) }}
+        {{ hmpoSubmit(ctx) }}
+    {% endcall %}
+{% endblock %}
+

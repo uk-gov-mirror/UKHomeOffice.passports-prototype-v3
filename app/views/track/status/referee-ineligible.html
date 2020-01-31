@@ -6,21 +6,18 @@
 
 {% block trackingBody %}
     <h2>What you need to do</h2>
+
     <p>
-        You need to ask someone to confirm your identity.
-        {% if values.documentsRequired != "none" %}
-            We can’t receive your documents until this is done.
-        {% endif %}
+        {{values.refereeFirstName}} {{values.refereeSurname}} can’t do this for you – you need to ask someone else.
+        We can’t work on your application until your identity is confirmed.
     </p>
-    {% if values.documentsRequired != "none" %}
-        <p>Once your identity is confirmed, we’ll let you know where to send your documents.</p>
-    {% endif %}
 
     {{ hmpoSubmit(ctx, {
         href: "/track/ask-someone-to-confirm"
     }) }}
 
     {{ trackingHistory([
+      "Person not eligible",
       "Ask someone to confirm your identity",
       "Application submitted"
     ]) }}
