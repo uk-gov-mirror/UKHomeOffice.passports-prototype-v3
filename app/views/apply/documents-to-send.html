@@ -144,49 +144,107 @@
 {% block mainContent %}
     <h1>{{ hmpoTitle }}</h1>
 
-    {% set documentsObject = {
-        "overseas": false,
-        "has-applicant-docs": true,
-        "show-applicant-accordion": false,
-        "applicants-docs": [
-            {
-                "header": "Send the following:",
-                "documents": [
+    {% if values.applicationType == "renew" %}
+        {% set documentsObject = {
+            "overseas": false,
+            "has-applicant-docs": true,
+            "show-applicant-accordion": false,
+            "applicants-docs": [
+                {
+                    "header": "Send the following:",
+                    "documents": [
+                        {
+                            "name": "old passport"
+                        },
+                        {
+                            "name": "any current or expired passports from other countries that haven’t been cancelled"
+                        }
+                    ]
+                }
+            ],
+            "additional": {
+                "header": "If any of the following apply, you need to send <a
+                    href=\"https://www.passport.service.gov.uk/help/additional-documents-guidance\"
+                    target=\"_blank\">additional documents</a>:",
+                "scenarios": [
                     {
-                        "name": "old passport"
+                        "name": "include a professional, or other title on your passport"
                     },
                     {
-                        "name": "any current or expired passports from other countries that haven’t been cancelled"
+                        "name": "apply for a British National Overseas (BNO) passport"
+                    },
+                    {
+                        "name": "apply for a British Protected Person passport"
+                    },
+                    {
+                        "name": "change your gender on your passport"
+                    },
+                    {
+                        "name": "renew a passport that was issued for 1 year or less"
+                    },
+                    {
+                        "name": "change British nationality status in your passport to British citizen"
                     }
                 ]
             }
-        ],
-        "additional": {
-            "header": "If any of the following apply, you need to send <a
-                href=\"https://www.passport.service.gov.uk/help/additional-documents-guidance\"
-                target=\"_blank\">additional documents</a>:",
-            "scenarios": [
+        } %}
+    {% elif values.applicationType == "first" %}
+        {% set documentsObject = {
+            "overseas": false,
+            "has-applicant-docs": true,
+            "show-applicant-accordion": false,
+            "applicants-docs": [
                 {
-                    "name": "include a professional, or other title on your passport"
-                },
-                {
-                    "name": "apply for a British National Overseas (BNO) passport"
-                },
-                {
-                    "name": "apply for a British Protected Person passport"
-                },
-                {
-                    "name": "change your gender on your passport"
-                },
-                {
-                    "name": "renew a passport that was issued for 1 year or less"
-                },
-                {
-                    "name": "change British nationality status in your passport to British citizen"
+                    "header": "Send the following:",
+                    "documents": [
+                        {
+                            "name": "naturalisation or registration certificate"
+                        },
+                        {
+                            "name": "any current or expired passports from other countries that haven’t been cancelled"
+                        }
+                    ]
                 }
-            ]
-        }
-    } %}
+            ],
+            "additional": {
+                "header": "If any of the following apply, you need to send <a
+                    href=\"https://www.passport.service.gov.uk/help/additional-documents-guidance\"
+                    target=\"_blank\">additional documents</a>:",
+                "scenarios": [
+                    {
+                        "name": "include a professional, or other title on your passport"
+                    },
+                    {
+                        "name": "apply for a British National Overseas (BNO) passport"
+                    },
+                    {
+                        "name": "apply for a passport under treaty rights"
+                    },
+                    {
+                        "name": "change your gender on your passport"
+                    },
+                    {
+                        "name": "get a first UK passport based on your parents’ Crown or Community service"
+                    },
+                    {
+                        "name": "get a first UK passport if you were born abroad but adopted in the UK before 1 January 1983"
+                    },
+                    {
+                        "name": "get a first UK passport if you were adopted abroad and you haven’t naturalised or registered"
+                    },
+                    {
+                        "name": "get a first UK passport if you were born in the Philippines, or your parents are married or divorced and have links to the Philippines"
+                    },
+                    {
+                        "name": "apply for a first UK passport if you were born through surrogacy"
+                    },
+                    {
+                        "name": "apply for a British Protected Person passport"
+                    }
+                ]
+            }
+        } %}
+    {% endif %}
 
     {% call hmpoForm(ctx) %}
         {% call dcsDocuments(ctx, documentsObject) %}
