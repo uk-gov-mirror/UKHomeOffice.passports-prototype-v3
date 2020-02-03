@@ -76,7 +76,7 @@
 
 
 {# Static template: using hmpo/govuk components #}
-{% block mainContent %}
+{# {% block mainContent %}
     <h1>{{ hmpoTitle }}</h1>
 
     {% call hmpoForm(ctx) %}
@@ -137,4 +137,119 @@
 
         {{ hmpoPrintPage({ }) }}
     {% endcall %}
-{% endblock %}
+{% endblock %} #}
+
+
+{# Static template: pulls in static .json object in-template with component call #}
+{# {% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    {% set documentsObject = {
+        "overseas": false,
+        "has-applicant-docs": true,
+        "show-applicant-accordion": false,
+        "applicants-docs": [
+            {
+                "header": "Send the following:",
+                "documents": [
+                    {
+                        "name": "old passport"
+                    },
+                    {
+                        "name": "any current or expired passports from other countries that haven’t been cancelled"
+                    }
+                ]
+            }
+        ],
+        "additional": {
+            "header": "If any of the following apply, you need to send <a
+                href=\"https://www.passport.service.gov.uk/help/additional-documents-guidance\"
+                target=\"_blank\">additional documents</a>:",
+            "scenarios": [
+                {
+                    "name": "include a professional, or other title on your passport"
+                },
+                {
+                    "name": "apply for a British National Overseas (BNO) passport"
+                },
+                {
+                    "name": "apply for a British Protected Person passport"
+                },
+                {
+                    "name": "change your gender on your passport"
+                },
+                {
+                    "name": "renew a passport that was issued for 1 year or less"
+                },
+                {
+                    "name": "change British nationality status in your passport to British citizen"
+                }
+            ]
+        }
+    } %}
+
+    {% call hmpoForm(ctx) %}
+        {% call dcsDocuments(ctx, documentsObject) %}
+            <!-- {% if ctx("show-documents-to-send-question") %}
+                {{ hmpoRadios(ctx, {
+                    id: "documents-to-send"
+                }) }}
+            {% endif %} -->
+
+            {% if values.adultOrChild == "child"
+                and values.lost
+                and not values.otherPassports
+                and not values.changeOfName
+                and not values.parentsHaveEUSS %}
+                {{ hmpoRadios(ctx, {
+                    id: "documentsToSend",
+                    legend: "I have documents to send",
+                    items: [
+                        { value: true }, { value: false }
+                    ]
+                }) }}
+            {% endif %}
+
+            {{ hmpoSubmit(ctx) }}
+        {% endcall %}
+
+        {{ hmpoPrintPage({ }) }}
+    {% endcall %}
+{% endblock %} #}
+
+
+{# Static template: pulls in static .json object from app/data/ using controller with component call #}
+{# {% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    <!-- {% set documentsObject =  %} -->
+    <script>let documentsObject = nunjucks.render("../../data/dcs-documents-renew.json")</script>
+
+    {% call hmpoForm(ctx) %}
+        {% call dcsDocuments(ctx, documentsObject) %}
+            <!-- {% if ctx("show-documents-to-send-question") %}
+                {{ hmpoRadios(ctx, {
+                    id: "documents-to-send"
+                }) }}
+            {% endif %} -->
+
+            {% if values.adultOrChild == "child"
+                and values.lost
+                and not values.otherPassports
+                and not values.changeOfName
+                and not values.parentsHaveEUSS %}
+                {{ hmpoRadios(ctx, {
+                    id: "documentsToSend",
+                    legend: "I have documents to send",
+                    items: [
+                        { value: true }, { value: false }
+                    ]
+                }) }}
+            {% endif %}
+
+            {{ hmpoSubmit(ctx) }}
+        {% endcall %}
+
+        {{ hmpoPrintPage({ }) }}
+    {% endcall %}
+{% endblock %} #}
