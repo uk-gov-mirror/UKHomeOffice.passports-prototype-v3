@@ -47,7 +47,7 @@
             and values.lost
             and not values.otherPassports
             and not values.changeOfName
-            and not values.parentsHaveEUSS %}
+            and not values.parentsHaveEUSettledStatus %}
             {{ hmpoRadios(ctx, {
                 id: "documentsToSend",
                 legend: "I have documents to send",
@@ -117,7 +117,7 @@
             and values.lost
             and not values.otherPassports
             and not values.changeOfName
-            and not values.parentsHaveEUSS %}
+            and not values.parentsHaveEUSettledStatus %}
             {{ hmpoRadios(ctx, {
                 id: "documentsToSend",
                 legend: "I have documents to send",
@@ -141,7 +141,7 @@
 
 
 {# Static template: pulls in static .json object in-template with component call #}
-{# {% block mainContent %}
+{% block mainContent %}
     <h1>{{ hmpoTitle }}</h1>
 
     {% set documentsObject = {
@@ -200,7 +200,7 @@
                 and values.lost
                 and not values.otherPassports
                 and not values.changeOfName
-                and not values.parentsHaveEUSS %}
+                and not values.parentsHaveEUSettledStatus %}
                 {{ hmpoRadios(ctx, {
                     id: "documentsToSend",
                     legend: "I have documents to send",
@@ -215,7 +215,7 @@
 
         {{ hmpoPrintPage({ }) }}
     {% endcall %}
-{% endblock %} #}
+{% endblock %}
 
 
 {# Static template: pulls in static .json object from app/data/ using controller with component call #}
@@ -237,7 +237,7 @@
                 and values.lost
                 and not values.otherPassports
                 and not values.changeOfName
-                and not values.parentsHaveEUSS %}
+                and not values.parentsHaveEUSettledStatus %}
                 {{ hmpoRadios(ctx, {
                     id: "documentsToSend",
                     legend: "I have documents to send",
@@ -314,7 +314,7 @@
             and values.lost
             and not values.otherPassports
             and not values.changeOfName
-            and not values.parentsHaveEUSS %}
+            and not values.parentsHaveEUSettledStatus %}
             {{ hmpoRadios(ctx, {
                 id: "documentsToSend",
                 legend: "I have documents to send",
@@ -338,7 +338,7 @@
 
 
 {# Dynamic template: using hmpo/govuk components, with componentised auto-generating nunjucks logic (similar to v2, but better) #}
-{% block mainContent %}
+{# {% block mainContent %}
     <h1>{{ hmpoTitle }}</h1>
 
     {% call hmpoForm(ctx) %}
@@ -362,7 +362,7 @@
             and values.lost
             and not values.otherPassports
             and not values.changeOfName
-            and not values.parentsHaveEUSS %}
+            and not values.parentsHaveEUSettledStatus %}
             {{ hmpoRadios(ctx, {
                 id: "documentsToSend",
                 legend: "I have documents to send",
@@ -378,4 +378,4 @@
 
         {{ hmpoPrintPage({ }) }}
     {% endcall %}
-{% endblock %}
+{% endblock %} #}
