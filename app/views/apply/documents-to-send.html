@@ -256,7 +256,7 @@
 
 
 {# Dynamic template: using hmpo/govuk components, with in-template nunjucks logic #}
-{% block mainContent %}
+{# {% block mainContent %}
     <h1>{{ hmpoTitle }}</h1>
 
     {% call hmpoForm(ctx) %}
@@ -331,6 +331,50 @@
                     href="https://www.gov.uk/certifying-a-document" rel="external" target="_blank">certified
                     translation</a>.</p>
         {% endcall %}
+
+        {{ hmpoPrintPage({ }) }}
+    {% endcall %}
+{% endblock %} #}
+
+
+{# Dynamic template: using hmpo/govuk components, with componentised auto-generating nunjucks logic (similar to v2, but better) #}
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    {% call hmpoForm(ctx) %}
+        {% include "dcs-documents/original.njk" %}
+
+        {% include "dcs-documents/applicant.njk" %}
+
+        {% if params["parents-docs"] %}
+            {% include "dcs-documents/parents.njk" %}
+        {% endif %}
+
+        {% if params["grandparent-docs"] %}
+            {% include "dcs-documents/grandparents.njk" %}
+        {% endif %}
+
+        {% if params.additional %}
+            {% include "dcs-documents/additional.njk" %}
+        {% endif %}
+
+        {% if values.adultOrChild == "child"
+            and values.lost
+            and not values.otherPassports
+            and not values.changeOfName
+            and not values.parentsHaveEUSS %}
+            {{ hmpoRadios(ctx, {
+                id: "documentsToSend",
+                legend: "I have documents to send",
+                items: [
+                    { value: true }, { value: false }
+                ]
+            }) }}
+        {% endif %}
+
+        {{ hmpoSubmit(ctx) }}
+
+        {% include "dcs-documents/not-in-english-or-welsh.njk" %}
 
         {{ hmpoPrintPage({ }) }}
     {% endcall %}
