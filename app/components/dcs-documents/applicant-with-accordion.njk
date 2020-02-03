@@ -1,0 +1,34 @@
+
+{%- set sections = [] %}
+{%- for section in params["applicants-docs"]["document-groups"] %}
+    {%- set sectionContent %}
+        {% for group in section["document-groups"] %}
+            <p class="govuk-heading-s">{{ group.header | safe}}</p>
+            <ul class="govuk-list govuk-list--bullet">
+                {% for document in group.documents %}
+                    <li>{{ document.name | safe }}</li>
+                {% endfor %}
+            </ul>
+        {% endfor %}
+        {% if section["changed-name-another-way"] %}
+            <p id="changed-more-than-once">If you’ve changed your name more than once, you’ll need to send proof of every name change.</p>
+        {% endif %}
+    {% endset %}
+
+    {%- set sections = sections | push({
+        heading: { text: section.header },
+        content: { html: sectionContent }
+    }) %}
+{% endfor %}
+
+
+<h3>{{ params["applicants-docs"].header | safe }}</h3>
+
+{%- from "govuk/components/accordion/macro.njk" import govukAccordion %}
+{{ govukAccordion({
+    id: "applicant-with-accordion",
+    headingLevel: 3,
+    items: sections
+}) }}
+
+<br/>

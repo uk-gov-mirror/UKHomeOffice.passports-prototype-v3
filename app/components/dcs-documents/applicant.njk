@@ -1,0 +1,10 @@
+
+<div id="applicant-docs">
+    <h2 id="applicant-header">Applicant’s documents</h2>
+
+    {% if isObject(params["applicants-docs"]) %}
+        {% include "./applicant-with-accordion.njk" %}
+    {% else %}
+        {% include "./applicant-without-accordion.njk" %}
+    {% endif %}
+</div>

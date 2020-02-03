@@ -1,0 +1,20 @@
+
+<div id="parents-docs">
+    <h2 id="parent-header">Parents’ documents</h2>
+
+    {% for group in params["parents-docs"] %}
+        <p class="govuk-heading-s">{{ group.header | safe }}</p>
+        <ul class="govuk-list govuk-list--bullet">
+            {% for document in group.documents %}
+                <li>{{ document.name | safe }}</li>
+            {% endfor %}
+        </ul>
+        {% if group["euss-eligible"] %}
+            <p id="euss-eligible-docs-content">The application reference is on the letter or email confirming their settled status. Send a copy or write the reference on a piece of paper.</p>
+            <p id="euss-eligible-passport-content">You don’t need to send any passports.</p>
+            <p id="euss-eligible-guidance-content">If both parents have settled status, you only need to send one application reference.</p>
+        {% endif %}
+    {% endfor %}
+
+    <hr thickness="1" marginTop="-5"/>
+</div>

@@ -1,0 +1,15 @@
+
+<div id="grandparents-docs">
+    <h2 id="grandparent-header">Grandparents’ documents</h2>
+
+    {% for group in params["grandparent-docs"] %}
+        <p class="govuk-heading-s">{{ group.header | safe }}</p>
+        <ul class="govuk-list govuk-list--bullet">
+            {% for document in group.documents %}
+                <li>{{ document.name | safe }}</li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+
+    <hr thickness="1" marginTop="-5"/>
+</div>
