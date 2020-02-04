@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Retrieving image{% endset %}
+
+{% block backLink %}{% endblock %}
+
+{% set content %}
+    <h1>{{ hmpoTitle }}</h1>
+{% endset %}
+
+{% block hmpoContent %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+            {% call hmpoForm(ctx) %}
+
+                {{ hmpoAutoSubmit(ctx, {
+                    submitDelay: 500,
+                    html: content
+                }) }}
+
+            {% endcall %}
+        </div>
+    </div>
+{% endblock %}
+
