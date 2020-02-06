@@ -1,0 +1,25 @@
+
+{% macro dcsDocuments(ctx, params) %}
+    {% set translate = ctx("translate") %}
+
+    {% include "./original.njk" %}
+
+    {% include "./applicant.njk" %}
+
+    {% if params["parents-docs"] %}
+        {% include "./parents.njk" %}
+    {% endif %}
+
+    {% if params["grandparent-docs"] %}
+        {% include "./grandparents.njk" %}
+    {% endif %}
+
+    {% if params.additional %}
+        {% include "./additional.njk" %}
+    {% endif %}
+
+    {{ caller() if caller }}
+
+    {% include "./not-in-english-or-welsh.njk" %}
+{% endmacro %}
+

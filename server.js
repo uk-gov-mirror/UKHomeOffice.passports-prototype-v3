@@ -56,7 +56,8 @@ middleware.forEach(func => app.use(func))
 var appViews = extensions.getAppViews([
     path.join(__dirname, '/app/views/'),
     path.join(__dirname, '/lib/'),
-    path.join(__dirname, '/node_modules/hmpo-components/components/')
+    path.join(__dirname, '/node_modules/hmpo-components/components/'),
+    path.join(__dirname, '/app/components/')
 ])
 
 var nunjucksConfig = {

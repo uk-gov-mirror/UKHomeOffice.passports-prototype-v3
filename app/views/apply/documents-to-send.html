@@ -1,18 +1,53 @@
+
 {% extends "layout.html" %}
 
 {% set hmpoTitle %}What you need to send{% endset %}
 
-{% block mainContent %}
+{# Static html #}
+{# {% block mainContent %}
     <h1>{{ hmpoTitle }}</h1>
 
-    <p>Documents list.</p>
-
     {% call hmpoForm(ctx) %}
+        <div id="original-docs-panel" class="govuk-inset-text hmpo-inset-info">
+            <p>
+                You must send original documents - we can’t accept photocopies.
+                Your application will be delayed if you don’t send everything we need.
+            </p>
+        </div>
+
+        <div id="applicant-docs">
+            <h2 id="applicant-header">Applicant’s documents</h2>
+
+            <div id="applicant-without-accordion">
+                <p class="govuk-heading-s">Send the following:</p>
+                <ul class="govuk-list govuk-list--bullet">
+                    <li>old passport</li>
+                    <li>any current or expired passports from other countries that haven’t been cancelled</li>
+                </ul>
+            </div>
+
+            <hr thickness="1" marginTop="-5" />
+        </div>
+
+        <div id="additional-docs">
+            <p>If any of the following apply, you need to send <a
+                    href="https://www.passport.service.gov.uk/help/additional-documents-guidance"
+                    target="_blank">additional documents</a>:</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>include a professional, or other title on your passport</li>
+                <li>apply for a British National Overseas (BNO) passport</li>
+                <li>apply for a British Protected Person passport</li>
+                <li>change your gender on your passport</li>
+                <li>renew a passport that was issued for 1 year or less</li>
+                <li>change British nationality status in your passport to British citizen</li>
+            </ul>
+        </div>
+
         {% if values.adultOrChild == "child"
             and values.lost
             and not values.otherPassports
             and not values.changeOfName
-            and not values.parentsHaveEUSS %}
+            and not values.parentsHaveEUSettledStatus %}
             {{ hmpoRadios(ctx, {
                 id: "documentsToSend",
                 legend: "I have documents to send",
@@ -23,8 +58,398 @@
         {% endif %}
 
         {{ hmpoSubmit(ctx) }}
+
+        <details class="govuk-details" data-module="govuk-details">
+            <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">My documents aren’t in English or Welsh</span>
+            </summary>
+            <div class="govuk-details__text">
+                <p>If your documents aren’t in English or Welsh you’ll need to get a <a id="certifying-a-document-link"
+                        href="https://www.gov.uk/certifying-a-document" rel="external" target="_blank">certified
+                        translation</a>.</p>
+            </div>
+        </details>
+
+        {{ hmpoPrintPage({ }) }}
     {% endcall %}
+{% endblock %} #}
 
-    {{ hmpoPrintPage({ }) }}
 
+{# Static template: using hmpo/govuk components #}
+{# {% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    {% call hmpoForm(ctx) %}
+        {% call hmpoInsetText({ classes: "hmpo-inset-info"}) %}
+            You must send original documents - we can’t accept photocopies.
+            Your application will be delayed if you don’t send everything we need.
+        {% endcall %}
+
+        <div id="applicant-docs">
+            <h2 id="applicant-header">Applicant’s documents</h2>
+
+            <div id="applicant-without-accordion">
+                <p class="govuk-heading-s">Send the following:</p>
+                <ul class="govuk-list govuk-list--bullet">
+                    <li>old passport</li>
+                    <li>any current or expired passports from other countries that haven’t been cancelled</li>
+                </ul>
+            </div>
+
+            <hr thickness="1" marginTop="-5" />
+        </div>
+
+        <div id="additional-docs">
+            <p>If any of the following apply, you need to send <a
+                    href="https://www.passport.service.gov.uk/help/additional-documents-guidance"
+                    target="_blank">additional documents</a>:</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>include a professional, or other title on your passport</li>
+                <li>apply for a British National Overseas (BNO) passport</li>
+                <li>apply for a British Protected Person passport</li>
+                <li>change your gender on your passport</li>
+                <li>renew a passport that was issued for 1 year or less</li>
+                <li>change British nationality status in your passport to British citizen</li>
+            </ul>
+        </div>
+
+        {% if values.adultOrChild == "child"
+            and values.lost
+            and not values.otherPassports
+            and not values.changeOfName
+            and not values.parentsHaveEUSettledStatus %}
+            {{ hmpoRadios(ctx, {
+                id: "documentsToSend",
+                legend: "I have documents to send",
+                items: [
+                    { value: true }, { value: false }
+                ]
+            }) }}
+        {% endif %}
+
+        {{ hmpoSubmit(ctx) }}
+
+        {% call hmpoDetails({ summaryText: "My documents aren’t in English or Welsh" }) %}
+            <p>If your documents aren’t in English or Welsh you’ll need to get a <a
+                    href="https://www.gov.uk/certifying-a-document" rel="external" target="_blank">certified
+                    translation</a>.</p>
+        {% endcall %}
+
+        {{ hmpoPrintPage({ }) }}
+    {% endcall %}
+{% endblock %} #}
+
+
+{# Static template: pulls in static .json object in-template with component call #}
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    {% if values.applicationType == "renew" %}
+        {% if values.adultOrChild == "adult" %}
+            {% if !values.changeOfName %}
+                {% set documentsObject = {
+                    "overseas": false,
+                    "has-applicant-docs": true,
+                    "show-applicant-accordion": false,
+                    "applicants-docs": [
+                        {
+                            "header": "Send the following:",
+                            "documents": [
+                                {
+                                    "name": "old passport"
+                                },
+                                {
+                                    "name": "any current or expired passports from other countries that haven’t been cancelled"
+                                }
+                            ]
+                        }
+                    ],
+                    "additional": {
+                        "header": "If any of the following apply, you need to send <a
+                            href=\"https://www.passport.service.gov.uk/help/additional-documents-guidance\"
+                            target=\"_blank\">additional documents</a>:",
+                        "scenarios": [
+                            {
+                                "name": "include a professional, or other title on your passport"
+                            },
+                            {
+                                "name": "apply for a British National Overseas (BNO) passport"
+                            },
+                            {
+                                "name": "apply for a British Protected Person passport"
+                            },
+                            {
+                                "name": "change your gender on your passport"
+                            },
+                            {
+                                "name": "renew a passport that was issued for 1 year or less"
+                            },
+                            {
+                                "name": "change British nationality status in your passport to British citizen"
+                            }
+                        ]
+                    }
+                } %}
+            {% else %}
+                {# Add Adult Renewal with CoN #}
+            {% endif %}
+        {% else %}
+            {# Add Child Renewal #}
+        {% endif %}
+    {% elif values.applicationType == "first" %}
+        {% if values.adultOrChild == "adult" %}
+            {% if !values.changeOfName %}
+                {% set documentsObject = {
+                    "overseas": false,
+                    "has-applicant-docs": true,
+                    "show-applicant-accordion": false,
+                    "applicants-docs": [
+                        {
+                            "header": "Send the following:",
+                            "documents": [
+                                {
+                                    "name": "naturalisation or registration certificate"
+                                },
+                                {
+                                    "name": "any current or expired passports from other countries that haven’t been cancelled"
+                                }
+                            ]
+                        }
+                    ],
+                    "additional": {
+                        "header": "If any of the following apply, you need to send <a
+                            href=\"https://www.passport.service.gov.uk/help/additional-documents-guidance\"
+                            target=\"_blank\">additional documents</a>:",
+                        "scenarios": [
+                            {
+                                "name": "include a professional, or other title on your passport"
+                            },
+                            {
+                                "name": "apply for a British National Overseas (BNO) passport"
+                            },
+                            {
+                                "name": "apply for a passport under treaty rights"
+                            },
+                            {
+                                "name": "change your gender on your passport"
+                            },
+                            {
+                                "name": "get a first UK passport based on your parents’ Crown or Community service"
+                            },
+                            {
+                                "name": "get a first UK passport if you were born abroad but adopted in the UK before 1 January 1983"
+                            },
+                            {
+                                "name": "get a first UK passport if you were adopted abroad and you haven’t naturalised or registered"
+                            },
+                            {
+                                "name": "get a first UK passport if you were born in the Philippines, or your parents are married or divorced and have links to the Philippines"
+                            },
+                            {
+                                "name": "apply for a first UK passport if you were born through surrogacy"
+                            },
+                            {
+                                "name": "apply for a British Protected Person passport"
+                            }
+                        ]
+                    }
+                } %}
+            {% else %}
+                {# Add FTA, naturalised, with CoN #}
+            {% endif %}
+        {% else %}
+            {# Add FTC, no CoN #}
+        {% endif %}
+    {% endif %}
+
+    {% call hmpoForm(ctx) %}
+        {% call dcsDocuments(ctx, documentsObject) %}
+            <!-- {% if ctx("show-documents-to-send-question") %}
+                {{ hmpoRadios(ctx, {
+                    id: "documents-to-send"
+                }) }}
+            {% endif %} -->
+
+            {% if values.adultOrChild == "child"
+                and values.lost
+                and not values.otherPassports
+                and not values.changeOfName
+                and not values.parentsHaveEUSettledStatus %}
+                {{ hmpoRadios(ctx, {
+                    id: "documentsToSend",
+                    legend: "I have documents to send",
+                    items: [
+                        { value: true }, { value: false }
+                    ]
+                }) }}
+            {% endif %}
+
+            {{ hmpoSubmit(ctx) }}
+        {% endcall %}
+
+        {{ hmpoPrintPage({ }) }}
+    {% endcall %}
 {% endblock %}
+
+
+{# Static template: pulls in static .json object from app/data/ using controller with component call #}
+{# {% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    <!-- {% set documentsObject =  %} -->
+    <script>let documentsObject = nunjucks.render("../../data/dcs-documents-renew.json")</script>
+
+    {% call hmpoForm(ctx) %}
+        {% call dcsDocuments(ctx, documentsObject) %}
+            <!-- {% if ctx("show-documents-to-send-question") %}
+                {{ hmpoRadios(ctx, {
+                    id: "documents-to-send"
+                }) }}
+            {% endif %} -->
+
+            {% if values.adultOrChild == "child"
+                and values.lost
+                and not values.otherPassports
+                and not values.changeOfName
+                and not values.parentsHaveEUSettledStatus %}
+                {{ hmpoRadios(ctx, {
+                    id: "documentsToSend",
+                    legend: "I have documents to send",
+                    items: [
+                        { value: true }, { value: false }
+                    ]
+                }) }}
+            {% endif %}
+
+            {{ hmpoSubmit(ctx) }}
+        {% endcall %}
+
+        {{ hmpoPrintPage({ }) }}
+    {% endcall %}
+{% endblock %} #}
+
+
+{# Dynamic template: using hmpo/govuk components, with in-template nunjucks logic #}
+{# {% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    {% call hmpoForm(ctx) %}
+        {% call hmpoInsetText({ classes: "hmpo-inset-info"}) %}
+            You must send original documents - we can’t accept photocopies.
+            Your application will be delayed if you don’t send everything we need.
+        {% endcall %}
+
+        <div id="applicant-docs">
+            <h2 id="applicant-header">Applicant’s documents</h2>
+
+            <div id="applicant-without-accordion">
+                <p class="govuk-heading-s">Send the following:</p>
+                <ul class="govuk-list govuk-list--bullet">
+                    {% if not values.lost %}
+                        <li>old passport</li>
+                    {% endif %}
+                    <li>any current or expired passports from other countries that haven’t been cancelled</li>
+                </ul>
+            </div>
+
+            <hr thickness="1" marginTop="-5" />
+        </div>
+
+        <!-- <div id="parents-docs">
+            <h2 id="parent-header">Parents’ documents</h2>
+
+            <p class="govuk-heading-s">something:</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>list item</li>
+            </ul>
+            <p class="govuk-heading-s">something else:</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>list item</li>
+            </ul>
+
+            <hr thickness="1" marginTop="-5"/>
+        </div> -->
+
+        <div id="additional-docs">
+            <p>If any of the following apply, you need to send <a
+                    href="https://www.passport.service.gov.uk/help/additional-documents-guidance"
+                    target="_blank">additional documents</a>:</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>include a professional, or other title on your passport</li>
+                <li>apply for a British National Overseas (BNO) passport</li>
+                <li>apply for a British Protected Person passport</li>
+                <li>change your gender on your passport</li>
+                <li>renew a passport that was issued for 1 year or less</li>
+                <li>change British nationality status in your passport to British citizen</li>
+            </ul>
+        </div>
+
+        {% if values.adultOrChild == "child"
+            and values.lost
+            and not values.otherPassports
+            and not values.changeOfName
+            and not values.parentsHaveEUSettledStatus %}
+            {{ hmpoRadios(ctx, {
+                id: "documentsToSend",
+                legend: "I have documents to send",
+                items: [
+                    { value: true }, { value: false }
+                ]
+            }) }}
+        {% endif %}
+
+        {{ hmpoSubmit(ctx) }}
+
+        {% call hmpoDetails({ summaryText: "My documents aren’t in English or Welsh" }) %}
+            <p>If your documents aren’t in English or Welsh you’ll need to get a <a
+                    href="https://www.gov.uk/certifying-a-document" rel="external" target="_blank">certified
+                    translation</a>.</p>
+        {% endcall %}
+
+        {{ hmpoPrintPage({ }) }}
+    {% endcall %}
+{% endblock %} #}
+
+
+{# Dynamic template: using hmpo/govuk components, with componentised auto-generating nunjucks logic (similar to v2, but better) #}
+{# {% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    {% call hmpoForm(ctx) %}
+        {% include "dcs-documents/original.njk" %}
+
+        {% include "dcs-documents/applicant.njk" %}
+
+        {% if params["parents-docs"] %}
+            {% include "dcs-documents/parents.njk" %}
+        {% endif %}
+
+        {% if params["grandparent-docs"] %}
+            {% include "dcs-documents/grandparents.njk" %}
+        {% endif %}
+
+        {% if params.additional %}
+            {% include "dcs-documents/additional.njk" %}
+        {% endif %}
+
+        {% if values.adultOrChild == "child"
+            and values.lost
+            and not values.otherPassports
+            and not values.changeOfName
+            and not values.parentsHaveEUSettledStatus %}
+            {{ hmpoRadios(ctx, {
+                id: "documentsToSend",
+                legend: "I have documents to send",
+                items: [
+                    { value: true }, { value: false }
+                ]
+            }) }}
+        {% endif %}
+
+        {{ hmpoSubmit(ctx) }}
+
+        {% include "dcs-documents/not-in-english-or-welsh.njk" %}
+
+        {{ hmpoPrintPage({ }) }}
+    {% endcall %}
+{% endblock %} #}

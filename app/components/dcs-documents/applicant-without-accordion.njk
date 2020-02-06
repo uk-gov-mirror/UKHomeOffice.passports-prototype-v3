@@ -1,0 +1,12 @@
+<div id="applicant-without-accordion">
+    {% for group in params["applicants-docs"] %}
+        <p class="govuk-heading-s">{{ group.header | safe }}</p>
+        <ul class="govuk-list govuk-list--bullet">
+            {% for document in group.documents %}
+                <li>{{ document.name | safe }}</li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+</div>
+
+<hr thickness="1" marginTop="-5"/>
