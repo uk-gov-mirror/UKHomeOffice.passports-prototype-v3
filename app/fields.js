@@ -18,6 +18,33 @@ module.exports = {
     },
     photo: {
     },
+    photoCode: {
+        // validate: 'required'
+    },
+    photoCodeSld: {
+        // validate: [
+        //     // 'required',
+        //     'alphanum',
+        //     { type: 'minlength', arguments: 1 },
+        //     { type: 'maxlength', arguments: 6 }
+        // ]
+    },
+    photoCodeTld: {
+        // validate: [
+        //     // 'required',
+        //     'alphanum',
+        //     { type: 'minlength', arguments: 2 },
+        //     { type: 'maxlength', arguments: 3 }
+        // ]
+    },
+    photoCodePath: {
+        // validate: [
+        //     // 'required',
+        //     'alphanum',
+        //     { type: 'minlength', arguments: 6 },
+        //     { type: 'maxlength', arguments: 8 }
+        // ]
+    },
     submitPhoto: {
         formatter: 'boolean',
         validate: 'required'

@@ -53,22 +53,35 @@ const apply = {
             '/photo/not-accepted'
         ]
     },
-    '/photo/not-accepted': {
+    '/photo/retrieve': {
+        // controller: require('../../controllers/photo-code'),
+        // template: 'photo-code',
+        fields: [
+            'photoCodeSld',
+            'photoCodeTld',
+            'photoCodePath',
+            'photoCode'
+        ],
+        next: '/photo/retrieving-image'
     },
-    '/photo/photo-check-result-poor': {
-        template: 'photo/photo-check-result',
-        next: '/photo/choose-submit-photo'
-    },
-    '/photo/photo-check-result-fair': {
-        template: 'photo/photo-check-result',
-        next: '/photo/choose-submit-photo'
+    '/photo/retrieving-image': {
+        next: '/photo/photo-check-result-good'
     },
     '/photo/photo-check-result-good': {
         template: 'photo/photo-check-result',
         next: '/photo/choose-submit-good-photo'
     },
-    '/photo/choose-submit-photo': {
-        next: '/filter/previous-passport'
+    '/photo/photo-check-result-fair': {
+        template: 'photo/photo-check-result',
+        next: '/photo/choose-submit-photo'
+    },
+    '/photo/photo-check-result-poor': {
+        template: 'photo/photo-check-result',
+        next: '/photo/choose-submit-photo'
+    },
+    '/photo/not-accepted': {
+    },
+    '/photo/code-error': {
     },
     '/photo/choose-submit-good-photo': {
         fields: [
@@ -78,6 +91,9 @@ const apply = {
             { field: 'submitPhoto', value: false, next: '/photo/choose-photo-method' },
             '/filter/previous-passport'
         ]
+    },
+    '/photo/choose-submit-photo': {
+        next: '/filter/previous-passport'
     },
 
     '/filter/previous-passport': {
