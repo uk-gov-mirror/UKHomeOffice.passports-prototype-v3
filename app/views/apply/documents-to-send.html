@@ -146,7 +146,7 @@
 
     {% if values.applicationType == "renew" %}
         {% if values.adultOrChild == "adult" %}
-            {% if !values.changeOfName %}
+            {% if not values.changeOfName %}
                 {% set documentsObject = {
                     "overseas": false,
                     "has-applicant-docs": true,
@@ -198,7 +198,7 @@
         {% endif %}
     {% elif values.applicationType == "first" %}
         {% if values.adultOrChild == "adult" %}
-            {% if !values.changeOfName %}
+            {% if not values.changeOfName %}
                 {% set documentsObject = {
                     "overseas": false,
                     "has-applicant-docs": true,
