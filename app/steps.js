@@ -483,9 +483,12 @@ const apply = {
             'urgentPassport'
         ],
         next: [
-            { field: 'urgentPassport', value: true, next: '/apply/relationship-to-applicant' },
+            { field: 'urgentPassport', value: true, next: '/apply/priority-services' },
             '/apply/documents-to-send'
         ]
+    },
+    '/apply/priority-services': {
+
     },
     '/apply/confirm-identity': {
         next: [
