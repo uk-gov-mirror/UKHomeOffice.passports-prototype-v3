@@ -488,8 +488,16 @@ const apply = {
         ]
     },
     '/apply/priority-services': {
-
+        fields: [
+            'priorityServices'
+        ],
+        next: [
+            { field: 'priorityServices', value: "DFT", next: '/apply/how-to-dft' },
+            '/apply/how-to-dps'
+        ]
     },
+    '/apply/how-to-dft':{},
+    '/apply/how-to-dps':{},
     '/apply/confirm-identity': {
         next: [
             { field: 'documentsRequired', value: 'none', next: '/apply/cost' },

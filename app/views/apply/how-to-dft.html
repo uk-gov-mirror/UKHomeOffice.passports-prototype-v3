@@ -1,0 +1,24 @@
+
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Online Fast Track service{% endset %}
+
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    <ol class="govuk-list govuk-list--number govuk-heading-m">
+        <li>
+            <h2>Choose an appointment</h2>
+            <p>You'll need to book an appointment to give us your old passport from a <a href="https://www.passport.service.gov.uk/help/passport-offices" target="_blank">passport office</a>.</p>
+        </li>
+        <li>
+            <h2>Receive your new passport</h2>
+            <p>Your new passport will be delivered to your home within a week of your appointment. Someone may need to be in to sign for it.</p>
+        </li>
+    </ol>
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoSubmit(ctx) }}
+    {% endcall %}
+
+{% endblock %}

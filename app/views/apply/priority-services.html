@@ -30,18 +30,17 @@
     {% set DPSSection %}
         <h3>Choose an appointment</h3>
         <ul class="govuk-list govuk-list--bullet">
-            <li>You'll need to book an appointment to bring your old passport to a <a href="https://www.passport.service.gov.uk/help/passport-offices" target="_blank">passport office</a>.</li>
-            <li>We'll post your old passport to you</li>
+            <li>You'll need to book an appointment to collect your new passport from a <a href="https://www.passport.service.gov.uk/help/passport-offices" target="_blank">passport office</a>.</li>
         </ul>
 
         <h3>New passport</h3>
         <ul class="govuk-list govuk-list--bullet">
-            <li>We will post your new passport to you once your application has been successful.</li>
+            <li>Collect your new passport at your appointment.</li>
         </ul>
 
         <h3>Cost</h3>
         <ul class="govuk-list govuk-list--bullet">
-            <li>£142 for an adult passport.</li>
+            <li>£177 for an adult passport.</li>
         </ul>
     {% endset %}
 
@@ -55,11 +54,11 @@
         id: "priority-services-accordion",
         items: [
             {
-                heading: { text: "Online Fast Track service" },
+                heading: { text: "Online Fast Track service (£142)" },
                 content: { html: DFTSection }
             },
             {
-                heading: { text: "Online Premium service" },
+                heading: { text: "Online Premium service (£177)" },
                 content: { html: DPSSection }
             }
         ]
