@@ -2,10 +2,6 @@
 
 {% set hmpoTitle %}Priority services{% endset %}
 
-{% set questionText %}
-    Which service you want mate?
-{% endset %}
-
 
 {% block mainContent %}
     <h1 id="header">{{ hmpoTitle }}</h1>
@@ -14,7 +10,6 @@
 
 
     {% set DFTSection %}
-
         <h3>Choose an appointment</h3>
             <ul class="govuk-list govuk-list--bullet">
                 <li>You'll need to book an appointment to bring your old passport to a <a href="https://www.passport.service.gov.uk/help/passport-offices" target="_blank">passport office</a>.</li>
@@ -33,7 +28,26 @@
     {% endset %}
 
     {% set DPSSection %}
+        <h3>Choose an appointment</h3>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>You'll need to book an appointment to bring your old passport to a <a href="https://www.passport.service.gov.uk/help/passport-offices" target="_blank">passport office</a>.</li>
+            <li>We'll post your old passport to you</li>
+        </ul>
 
+        <h3>New passport</h3>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>We will post your new passport to you once your application has been successful.</li>
+        </ul>
+
+        <h3>Cost</h3>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>£142 for an adult passport.</li>
+        </ul>
+    {% endset %}
+
+    {% set priorityQuestion %}
+        <br>
+        <h2>Which service you want mate?</h2>
     {% endset %}
 
 
@@ -41,7 +55,7 @@
         id: "priority-services-accordion",
         items: [
             {
-                heading: { text: "Digital Fast Track service" },
+                heading: { text: "Online Fast Track service" },
                 content: { html: DFTSection }
             },
             {
@@ -51,21 +65,21 @@
         ]
     }) }}
 
+
     {% call hmpoForm(ctx) %}
             {{ hmpoRadios(ctx, {
                 id: "priorityServices",
                 legend: {
-                    text: questionText
+                    html: priorityQuestion
                 },
-                isPageHeading: false,
                 items: [
                     {
                         value: "DFT",
-                        text: "Digital Fast Track service £142"
+                        text: "Digital Fast Track service (£142)"
                     },
                     {
                         value: "DPS",
-                        text: "Online Premium service £177"
+                        text: "Online Premium service (£177)"
                     }
                 ]
             }) }}
