@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+
+{% set serviceName %}HMPO Prototypes{% endset %}
+{% set pageTitle, hmpoTitle %}Notifications{% endset %}
+
+{% block govukHeader %}
+    {{ govukHeader({
+        serviceName: serviceName,
+        navigation: [
+            {
+            href: "./",
+            text: "Latest"
+            },
+            {
+            href: "notifications",
+            text: pageTitle,
+            active: true
+            },
+            {
+            href: "archive",
+            text: "Archive"
+            }
+        ]
+    }) }}
+{% endblock %}
+
+{% block phaseBanner %}
+{% endblock %}
+
+{% block mainContent %}
+    <span class="govuk-caption-xl">{{ serviceName }}</span>
+    <h1>{{ pageTitle }}</h1>
+    <p>Notifications placeholder page.</p>
+
+{% endblock %}
