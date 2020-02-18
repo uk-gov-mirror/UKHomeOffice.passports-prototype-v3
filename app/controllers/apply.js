@@ -106,8 +106,8 @@ class DefaultController extends BaseController {
         //     grandparentsRequired = true
         // }
 
-        let rightOfAbodeDate = moment('1983-01-01')
-        let parentsNotMarriedBirthDate = moment('2006-07-01')
+        const rightOfAbodeDate = moment('1983-01-01')
+        const parentsNotMarriedBirthDate = moment('2006-07-01')
 
         // Renew or Replace
         if (req.sessionModel.get('applicationType') === 'renew' || req.sessionModel.get('applicationType') === 'replace') {
@@ -174,9 +174,9 @@ class DefaultController extends BaseController {
     }
 
     setParentOfChild (req) {
-        let thirdPartyRelationship = req.sessionModel.get('relationship')
-        let isParent = thirdPartyRelationship === 'mother' || thirdPartyRelationship === 'father'
-        let isParentOfChild = isParent && req.sessionModel.get('adultOrChild') === 'child'
+        const thirdPartyRelationship = req.sessionModel.get('relationship')
+        const isParent = thirdPartyRelationship === 'mother' || thirdPartyRelationship === 'father'
+        const isParentOfChild = isParent && req.sessionModel.get('adultOrChild') === 'child'
 
         req.sessionModel.set('isParentOfChild', isParentOfChild)
     }

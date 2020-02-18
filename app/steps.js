@@ -587,14 +587,14 @@ const tracking = {
         prereqs: ['/track/view'],
         fields: ['paperForm'],
         next: [
-            { field: 'paperForm', value: true, next: '/track/view?status=PAPER_REFEREE_RECEIVED'},
+            { field: 'paperForm', value: true, next: '/track/view?status=PAPER_REFEREE_RECEIVED' },
             '/track/view'
         ]
     },
     '/track/confirm-identity-form': {
         prereqs: ['/track/view'],
-        noPost: true,
-    },
+        noPost: true
+    }
 }
 
 module.exports = {

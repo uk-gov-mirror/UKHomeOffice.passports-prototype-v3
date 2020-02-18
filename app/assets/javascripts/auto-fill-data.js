@@ -1,47 +1,48 @@
-(function () {
+/* eslint quote-props: ["error", "always"] */
 
+(function () {
     window.hmpoAutoFillControls = {
-        age: {
-            adult: 'Adult',
-            rising16: 'Rising 16',
-            twelvetoFifteen: 'Child 12 to 15',
-            underTwelve: 'Child Under 12'
+        'age': {
+            'adult': 'Adult',
+            'rising16': 'Rising 16',
+            'twelvetoFifteen': 'Child 12 to 15',
+            'underTwelve': 'Child Under 12'
         },
-        type: {
-            renew: 'Renewal',
-            firstTime: 'First time',
-            oldBlue: 'Old blue book',
-            lostAndStolen: 'Lost and stolen'
+        'type': {
+            'renew': 'Renewal',
+            'firstTime': 'First time',
+            'oldBlue': 'Old blue book',
+            'lostAndStolen': 'Lost and stolen'
         },
-        damaged: 'Damaged',
-        naturalised: 'Naturalised',
-        changeOfName: 'Change of name',
-        grandparents: 'Grandparents',
-        thirdParty: 'Third party'
-    };
+        'damaged': 'Damaged',
+        'naturalised': 'Naturalised',
+        'changeOfName': 'Change of name',
+        'grandparents': 'Grandparents',
+        'thirdParty': 'Third party'
+    }
 
     window.hmpoAutoFillRestrictions = {
-        naturalised: {
-            type: [ 'firstTime' ]
+        'naturalised': {
+            'type': ['firstTime']
         },
 
-        grandparents: {
-            type: [ 'firstTime' ],
-            age: [ 'twelvetoFifteen', 'underTwelve' ]
+        'grandparents': {
+            'type': ['firstTime'],
+            'age': ['twelvetoFifteen', 'underTwelve']
         },
 
-        damaged: {
-            type: [ 'renew', 'oldBlue' ]
+        'damaged': {
+            'type': ['renew', 'oldBlue']
         }
     }
 
-    var now = new Date();
-    var rising16Date = new Date();
-    rising16Date.setFullYear(rising16Date.getFullYear() - 16);
-    rising16Date.setDate(rising16Date.getDate() + 15);
+    var now = new Date()
+    var rising16Date = new Date()
+    rising16Date.setFullYear(rising16Date.getFullYear() - 16)
+    rising16Date.setDate(rising16Date.getDate() + 15)
 
     window.hmpoAutoFillData = {
-        base: { // adult renew
+        'base': { // adult renew
             'isUKApplication': true,
             'dateOfBirth-day': 20,
             'dateOfBirth-month': 7,
@@ -129,29 +130,29 @@
             'refereeContactDeclaration': true
 
         },
-        rising16: {
+        'rising16': {
             'dateOfBirth-day': rising16Date.getDate(),
             'datOfBirth-month': rising16Date.getMonth(),
             'dateOfBirth-year': rising16Date.getFullYear(),
             'passportIssue-year': now.getFullYear() - 5
         },
-        twelveToFifteen: {
+        'twelveToFifteen': {
             'dateOfBirth-day': 20,
             'dateOfBirth-month': 7,
             'dateOfBirth-year': now.getFullYear() - 14,
             'passportIssue-year': now.getFullYear() - 5
         },
-        underTwelve: {
+        'underTwelve': {
             'dateOfBirth-day': 20,
             'dateOfBirth-month': 7,
             'dateOfBirth-year': now.getFullYear() - 5,
             'passportIssue-year': now.getFullYear() - 4
         },
-        firstTime: {
+        'firstTime': {
             'previousPassport': false,
             'naturalised': false
         },
-        oldBlue: {
+        'oldBlue': {
             'passportIssue-year': '1994',
             'passportExpiry-year': '2004',
             'oldPassportNumber': 'A263526',
@@ -159,7 +160,7 @@
             'oldPassportExpiry-month': 4,
             'oldPassportExpiry-year': 2004
         },
-        lostAndStolen: {
+        'lostAndStolen': {
             'lost': true,
             'cancelled': true,
             'optionalPassportNumber': '5263526',
@@ -167,32 +168,32 @@
             'optionalPassportExpiry-month': 4,
             'optionalPassportExpiry-year': now.getFullYear() + 2
         },
-        naturalised: {
+        'naturalised': {
             'naturalised': true,
             'naturalisationCertificateNumber': '10273625',
             'naturalisationIssueDate-day': 15,
             'naturalisationIssueDate-month': 9,
             'naturalisationIssueDate-year': now.getFullYear() - 1
         },
-        damaged: {
+        'damaged': {
             'damaged': true,
             'damagedReason': 'My dog ate my homework.\n\nHonest, ask my mum.'
         },
-        thirdParty: {
+        'thirdParty': {
             'thirdParty': true,
             'relationship': 'mother',
             'thirdPartyFirstName': 'Mary',
             'thirdPartyLastName': 'Smythe',
             'thirdPartyExplanation': 'Third party explanation text.'
         },
-        changeOfName: {
+        'changeOfName': {
             'changeOfName': true,
             'nameChangeReason': 'Marriage or civil partnership',
             'previousNames': true,
             'previousFirstName1': 'Jennifer',
             'previousLastName1': 'Smythe'
         },
-        grandparents: {
+        'grandparents': {
             // make grandparents required
             'parent1CountryOfBirth': 'FR',
             'parent1HasPassport': false,
@@ -250,5 +251,5 @@
             'parent2ParentsMarriageDate-year': now.getFullYear() - 53
 
         }
-    };
-})();
+    }
+})()
