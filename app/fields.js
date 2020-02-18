@@ -759,5 +759,5 @@ module.exports = {
     paperForm: {
         formatter: 'boolean',
         validate: 'required'
-    },
+    }
 }

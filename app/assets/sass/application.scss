@@ -24,5 +24,7 @@ $hmpo-assets-path: '/public/';
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
 
+@import "patterns/autofill";
+
 @import "node_modules/hmpo-components/all";
 
