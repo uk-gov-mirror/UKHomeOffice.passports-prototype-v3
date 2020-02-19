@@ -1,0 +1,54 @@
+{% extends "layout-help.html" %}
+
+{% set hmpoTitle %}
+    Rheolau ar gyfer lluniau pasbort digidol
+{% endset %}
+
+{% block helpContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    {% call hmpoInsetText() %}
+        <p>Os nad yw eich llun yn cyd-fynd, i’r rheolau gallech wynebu problemau gyda’ch cais neu pan fyddwch yn teithio.</p>
+    {% endcall %}
+
+    <ol class="govuk-list govuk-list--number govuk-heading-m">
+        <li>
+            <h2>Cefndir a golau</h2>
+            <p>Rhaid i’ch llun gael:</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>cefndir plaen, lliw golau - heb wead na phatrwm</li>
+                <li>golau sefydlog - dim cysgodion ar eich wyneb neu tu ôl i chi</li>
+                <li>dim gwrthrychau y tu ôl i chi</li>
+            </ul>
+        </li>
+
+        <li>
+            <h2>Wyneb a mynegiant</h2>
+            <p>Gwnewch yn siŵr:</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>bod y llun yn debygrwydd da i chi ac wedi ei gymryd o fewn y mis diwethaf</li>
+                <li>bod eich wyneb i gyd yn y golwg gyda’ch llygaid ar agor</li>
+                <li>eich bod yn ddifynegiant - dim gwenu â ceg ar gau</li>
+                <li>nad oes adlewyrchiad na disgleirdeb (os oes raid i chi wisgo sbectol)</li>
+                <li>nad ydych chi’n gwisgo penwisg (oni bai ei bod am resymau crefyddol neu feddygol)</li>
+            </ul>
+            <p>Lluniau o fabanod a phlant:</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>nid oes rhaid i blant dan 1 oed fod a’u llygaid ar agor</li>
+                <li>nid oes rhaid i blant dan 6 oed fod yn ddifynegiant</li>
+            </ul>
+        </li>
+
+        <li>
+            <h2>Ansawdd a fformat</h2>
+            <p>Rhaid i’ch llun fod:</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>mewn lliw, heb effeithiau na hidlyddion</li>
+                <li>yn eglur a heb ‘lygaid coch’</li>
+                <li>heb ei altro - ni allwch gywiro eich llun pasbort</li>
+            </ul>
+        </li>
+    </ol>
+
+{% endblock %}

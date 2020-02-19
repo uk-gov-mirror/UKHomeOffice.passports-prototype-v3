@@ -1,0 +1,197 @@
+{% extends "layout-help.html" %}
+
+{% set hmpoTitle %}
+    Cwcis
+{% endset %}
+
+{% block helpContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>Mae’r gwasanaeth ymgeisio am basbort ar-lein yn rhoi ffeiliau bach (a elwir yn ‘cwcis’) ar eich cyfrifiadur er mwyn:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>i gofio pa negeseuon ydych chi wedi eu gweld fel nad ydym yn eu dangos i chi eto</li>
+        <li>i ddeall sut ydych chi’n defnyddio’r gwasanaeth er mwyn i ni allu ei ddiweddaru a gwella</li>
+        <li>i storio gwybodaeth a roddwch dros dro i gefnogi’ch cais</li>
+    </ul>
+
+    {% call hmpoInsetText() %}
+        <p>Ni fydd y cwcis rydym ni’n eu defnyddio yn eich adnabod chi’n bersonol.</p>
+    {% endcall %}
+
+    <p>Dysgwch <a href="http://www.aboutcookies.org/Default.aspx?page=1" rel="external">sut i reoli cwcis</a>.</p>
+
+    <h2>Neges agoriadol cwcis</h2>
+    <p>Pan fyddwch chi’n defnyddio’r gwasanaeth am y tro cyntaf, byddwn yn dangos ‘neges cwcis’. Yna byddwn yn storio cwci ar eich cyfrifiadur fel ei fod yn gwybod na ddylai ddangos y neges hon eto.</p>
+
+
+    {% set cookieName %}
+        Enw
+    {% endset %}
+
+    {% set cookiePurpose %}
+        Diben
+    {% endset %}
+
+    {% set cookieExpires %}
+        Dod i Ben
+    {% endset %}
+
+    {% set seenPurpose %}
+        Yn rhoi gwybod i ni eich bod eisoes wedi gweld ein neges cwcis
+    {% endset %}
+
+    {% set seenExpires %}
+        1 mis
+    {% endset %}
+
+    {% set cookieHead = [ { html: cookieName }, { html: cookiePurpose }, { html: cookieExpires } ] %}
+        {{ govukTable({
+            head: cookieHead,
+            rows: [
+                [ { text: "seen_cookie_message" }, { html: seenPurpose }, { html: seenExpires } ]
+            ]
+        }) }}
+
+
+    <h2>Mesur defnydd o’r safle</h2>
+    <p>Rydym yn defnyddio Google Analytics i gasglu gwybodaeth am sut ydych chi’n defnyddio’r gwasanaeth hwn. Mae hyn yn ein helpu i wirio ei fod yn bodloni eich anghenion a gwneud gwelliannau.</p>
+    <p>Mae Google Analytics yn storio gwybodaeth ynghylch:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>sut y cyrhaeddoch y safle</li>
+        <li>tudalennau y byddwch yn ymweld â nhw a faint o amser ydych chi’n ei dreulio arnynt</li>
+        <li>ar beth ydych chi’n clicio</li>
+    </ul>
+    <p>Nid oes unrhyw fanylion personol yn cael eu storio gyda’ r wybodaeth hon, felly ni ellir eich adnabod.</p>
+
+
+    {% set _gaPurpose %}
+        Defnyddir i wahaniaethu rhwng defnyddwyr
+    {% endset %}
+
+    {% set _gaExpires %}
+        2 flynedd
+    {% endset %}
+
+    {% set _gatPurpose %}
+        Defnyddir i gyfyngu cyfradd y ceisiadau
+    {% endset %}
+
+    {% set _gatExpires %}
+        10 munud
+    {% endset %}
+
+    {% set _gcl_auPurpose %}
+        Defnyddir gan Google AdSense ar gyfer arbrofi gyda hysbysebion yn effeithiol ar draws gwefannau yn defnyddio eu gwasanaethau
+    {% endset %}
+
+    {% set _gcl_auExpires %}
+        3 mis
+    {% endset %}
+
+    {% set _gidPurpose %}
+        Defnyddir i wahaniaethu rhwng defnyddwyr
+    {% endset %}
+
+    {% set _gidExpires %}
+        24 awr
+    {% endset %}
+
+    {% set _gacPurpose %}
+        Yn cynnwys gwybodaeth berthnasol i’r ymgyrch ar gyfer y defnyddiwr
+    {% endset %}
+
+    {% set _gacExpires %}
+        90 diwrnod
+    {% endset %}
+
+    {{ govukTable({
+        head: cookieHead,
+        rows: [
+            [ { text: "_ga" }, { html: _gaPurpose }, { html: _gaExpires } ],
+            [ { text: "_gat" }, { html: _gatPurpose }, { html: _gatExpires } ],
+            [ { text: "_gcl_au" }, { html: _gcl_auPurpose }, { html: _gcl_auExpires } ],
+            [ { text: "_gid" }, { html: _gidPurpose }, { html: _gidExpires } ],
+            [ { text: "_gac" }, { html: _gacPurpose }, { html: _gacExpires } ]
+        ]
+    }) }}
+
+    {% call hmpoInsetText() %}
+        <p>Ni chaiff Google ddefnyddio na rhannu ein data dadansoddeg.</p>
+    {% endcall %}
+
+    <p>Gallwch <a href="https://tools.google.com/dlpage/gaoptout" rel="external">optio allan o gwcis Google Analytics</a>.</p>
+
+    <h2>Cwcis sesiwn</h2>
+    <p>Rydym yn storio cwcis sesiwn ar eich cyfrifiadur i’ch helpu i gadw’ch gwybodaeth yn ddiogel tra byddwch yn defnyddio’r gwasanaeth.</p>
+
+    {% set sidPurpose %}
+        Mae’n storio IS sesiwn ac yn storio data a nodwch dros dro iích galluogi i gofrestru neu wneud cais
+    {% endset %}
+
+    {% set sidExpires %}
+        Pan fyddwch yn cau eich porwr
+    {% endset %}
+
+    {% set langPurpose %}
+        Storio eich dewis iaith
+    {% endset %}
+
+    {% set langExpires %}
+        Pan fyddwch yn cau eich porwr
+    {% endset %}
+
+    {% set pexPurpose %}
+        Storio’r tro diwethaf i chi gyrchu’r gwasanaeth
+    {% endset %}
+
+    {% set pexExpires %}
+        24 awr
+    {% endset %}
+
+    {{ govukTable({
+        head: cookieHead,
+        rows: [
+            [ { text: "hmpo.*.sid" }, { html: sidPurpose }, { html: sidExpires } ],
+            [ { text: "lang" }, { html: langPurpose }, { html: langExpires } ],
+            [ { text: "pex-last-access" }, { html: pexPurpose }, { html: pexExpires } ]
+        ]
+    }) }}
+
+
+    <h2>Canfod gwall</h2>
+
+    {% set scPurpose %}
+        Defnyddir i ganfod gwallau a dangos cynnwys perthnasol &ndash; e.e. os yw eich sesiwn wedi dod i ben
+    {% endset %}
+
+    {% set scExpires %}
+        Pan fyddwch yn cau eich porwr
+    {% endset %}
+
+    {% set submittedPurpose %}
+        Defnyddir i ganfod cais a gyflwynwyd yn flaenorol a dangos cynnwys perthnasol
+    {% endset %}
+
+    {% set submittedExpires %}
+        1 mis
+    {% endset %}
+
+    {% set pexCcPurpose %}
+        Defnyddir i ganfod os yw briwsion wedi eu galluogi ac i ddangos cynnwys perthnasol
+    {% endset %}
+
+    {% set pexCcExpires %}
+        Pan fyddwch yn cau eich porwr
+    {% endset %}
+
+    {{ govukTable({
+        head: cookieHead,
+        rows: [
+            [ { text: "hmpo-wizard-sc" }, { html: scPurpose }, { html: scExpires } ],
+            [ { text: "pex-submitted" }, { html: submittedPurpose }, { html: submittedExpires } ],
+            [ { text: "pex-cc" }, { html: pexCcPurpose }, { html: pexCcExpires } ]
+        ]
+    }) }}
+
+{% endblock %}

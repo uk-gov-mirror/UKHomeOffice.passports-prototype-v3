@@ -1,0 +1,54 @@
+{% extends "layout-help.html" %}
+
+{% set hmpoTitle %}
+    Rules for digital passport photos
+{% endset %}
+
+{% block helpContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    {% call hmpoInsetText() %}
+        <p>If your photo doesn’t meet the rules you may have problems with your application or when you travel.</p>
+    {% endcall %}
+
+    <ol class="govuk-list govuk-list--number govuk-heading-m">
+        <li>
+            <h2>Background and lighting</h2>
+            <p>Your photo must have:</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>a plain light-coloured background &ndash; without texture or pattern</li>
+                <li>balanced light &ndash; no shadows on your face or behind you</li>
+                <li>no objects behind you</li>
+            </ul>
+        </li>
+
+        <li>
+            <h2>Face and expression</h2>
+            <p>Make sure:</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>the photo is a good likeness taken in the last month</li>
+                <li>your whole face is visible with your eyes open</li>
+                <li>you have a plain expression &ndash; no smile and mouth closed</li>
+                <li>there are no reflections or glare (if you have to wear glasses)</li>
+                <li>you’re not wearing headwear (unless for religious or medical reasons)</li>
+            </ul>
+            <p>Photos of babies and children:</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>children under 1 don’t have to have their eyes open</li>
+                <li>children under 6 don’t need to have a plain expression</li>
+            </ul>
+        </li>
+
+        <li>
+            <h2>Quality and format</h2>
+            <p>Your photo must be:</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>in colour, with no effects or filters</li>
+                <li>not blurred or have ‘red eye’</li>
+                <li>unedited &ndash; you can’t ‘correct’ your passport photo</li>
+            </ul>
+        </li>
+    </ol>
+
+{% endblock %}

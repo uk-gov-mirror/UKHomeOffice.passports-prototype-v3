@@ -1,0 +1,37 @@
+{% extends "layout-help.html" %}
+
+{% set hmpoTitle %}
+    Photo with a code
+{% endset %}
+
+{% block helpContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    <h2>How to get a photo code</h2>
+    <p>At a photo booth or shop, choose to get a code with your photo.</p>
+
+    <h2>How to use a photo code</h2>
+    <p>It’s simple and easy to use. In the online passport application:</p>
+
+    <ol class="govuk-list govuk-list--number">
+        <li>you’ll have the option to enter the code to access your photo</li>
+        <li>after entering the code, you’ll see your photo on the screen</li>
+        <li>check your photo and submit it</li>
+        <li>your photo will be added directly to your application</li>
+    </ol>
+    {% call hmpoInsetText() %}
+        <p>The photo code is a new service and may not be available yet from photo booths or shops in your area.</p>
+    {% endcall %}
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+        <div class="app-related-items">
+            <h2>Where to find your code</h2>
+            <img src="{{ assetPath }}/images/printed-photo-code.jpg" alt="">
+        </div>
+    </div>
+    <div class="govuk-grid-column-two-thirds">
+
+{% endblock %}

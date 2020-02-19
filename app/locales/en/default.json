@@ -7,12 +7,13 @@
     "backLink": "Back"
   },
   "buttons": {
-        "next": "Continue",
-        "payment": "Continue to payment",
-        "print": "Print page",
-        "submitApplication": "Submit application",
-        "giveFeedback": "Give feedback",
-        "signIn":"Sign in"
+    "next": "Continue",
+    "payment": "Continue to payment",
+    "print": "Print page",
+    "submitApplication": "Submit application",
+    "giveFeedback": "Give feedback",
+    "close": "Close",
+    "signIn":"Sign in"
     },
     "fields": {
       "date-day": {
@@ -36,21 +37,21 @@
       }
     },
     "validation": {
-        "default": "You need to answer this question",
-        "is-uk-application": {
-            "default": "Please tell us if you live in the UK"
-        },
-        "country-of-application": {
-            "default": "Please select your country"
-        },
-        "refereeEmailConfirm": {
-          "default": "Confirm their email address"
-        },
-        "refereeContactDeclaration": {
-          "default": "You must contact this person before we send them an email"
-        },
-        "paperForm": {
-            "required": "Confirm you want to download the form"
-        }
+      "default": "You need to answer this question",
+      "is-uk-application": {
+          "default": "Please tell us if you live in the UK"
+      },
+      "country-of-application": {
+          "default": "Please select your country"
+      },
+      "refereeEmailConfirm": {
+        "default": "Confirm their email address"
+      },
+      "refereeContactDeclaration": {
+        "default": "You must contact this person before we send them an email"
+      },
+      "paperForm": {
+          "required": "Confirm you want to download the form"
+      }
 }
 }

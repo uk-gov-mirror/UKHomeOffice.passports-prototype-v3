@@ -1,0 +1,28 @@
+{% extends "layout-help.html" %}
+
+{% set hmpoTitle %}
+    Swyddfeydd pasbort
+{% endset %}
+
+{% block helpContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>Mae yna {{ passportOffices.length }} o swyddfeydd pasbort yn y Deyrnas Unedig.</p>
+
+    <p>Cyn mynd i swyddfa basbort, rhaid i chi ddewis amser casglu a chwblhau eich cais.</p>
+
+    <div class="offices">
+        {% for office in passportOffices %}
+            <h2>{{ office.name }}</h2>
+            <p>
+                {% for line in office.address %}
+                    {{ line }}<br />
+                {% endfor %}
+                {{ office.postcode }}<br />
+                <a href="https://www.google.co.uk/maps/?q={{ office.name }}, {{ office.postcode }}" target="_blank" rel="external">Gweld y map</a>
+            </p>
+        {% endfor %}
+    </div>
+
+{% endblock %}

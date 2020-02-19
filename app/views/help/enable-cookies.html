@@ -1,0 +1,22 @@
+{% extends "layout-help.html" %}
+
+{% set hmpoTitle %}
+    You need to enable cookies
+{% endset %}
+
+{% block backLink %}{% endblock %}
+
+{% block mainContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>We use ‘cookies’ &ndash; small files stored on your computer &ndash; to provide and improve this service. You can’t use this service without them.</p>
+    <p>You’ll need to enable cookies. Find out how to <a href="http://www.aboutcookies.org/Default.aspx?page=1" rel="external">change your cookie settings</a>.</p>
+
+    {% set tryAgain %}
+        I’ve enabled cookies &ndash; try again
+    {% endset %}
+
+    {{ govukButton({ href: urls.start, html: tryAgain }) }}
+
+{% endblock %}

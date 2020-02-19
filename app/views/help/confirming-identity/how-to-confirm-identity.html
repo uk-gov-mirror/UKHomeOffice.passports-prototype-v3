@@ -1,0 +1,50 @@
+{% extends "layout-help.html" %}
+
+{% set hmpoTitle %}
+    Confirming someone’s identity: How to confirm someone’s identity
+{% endset %}
+
+{% block backLink %}{% endblock %}
+
+{% block mainContent %}
+
+    <h1>Confirming someone’s identity</h1>
+
+    <ul class="govuk-list govuk-list--dashed">
+        <li><a id="who-can-confirm-identity" href="../confirming-identity">Who can confirm someone’s identity</a></li>
+        <li>How to confirm someone’s identity</li>
+    </ul>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2>{{ helpSubtitle }}</h2>
+    <h2>How to confirm someone’s identity</h2>
+    <p>For applications with a digital photo, you can confirm someone’s identity online. You don’t need to sign a printed photo.</p>
+
+    <h3>What the applicant needs to do</h3>
+    <p>As the applicant, you need to:</p>
+    <ol class="govuk-list govuk-list--number">
+        <li>Check <a id="check-who-can-confirm-identity" href="../confirming-identity">who can confirm your identity</a></li>
+        <li>Contact the person before giving their details to HM Passport Office</li>
+        <li>Make sure they know your address and date of birth, including the year</li>
+        <li>Sign into your application to enter the person’s name and email</li>
+    </ol>
+
+    <p>If you’re applying for a child, the person you ask must be able to confirm where the child was born as well as their parents’ names and years of birth.</p>
+
+    <h3>What the person confirming an identity needs to do</h3>
+    <p>As the person confirming someone’s identity, you’ll receive an email from HM Passport Office. The email includes a link and a reference to sign in online.</p>
+    <p>You’ll need to:</p>
+    <ol class="govuk-list govuk-list--number">
+        <li>Enter the reference from the email and the applicant’s date of birth</li>
+        <li>Provide your UK passport details and current address</li>
+        <li>Answer a few questions about how you know the applicant</li>
+        <li>Confirm some of the applicant’s details</li>
+        <li>Check a digital passport photo</li>
+    </ol>
+    <p>This takes about 10 minutes.</p>
+    <p>If the applicant is a child, you’ll need to answer a few questions about how you know the person making their application. We need to confirm the person applying has parental responsibility.</p>
+
+    {{ hmpoClose() }}
+
+{% endblock %}

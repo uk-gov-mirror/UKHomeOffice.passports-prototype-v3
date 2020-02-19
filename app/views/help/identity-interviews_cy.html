@@ -1,0 +1,45 @@
+{% extends "layout-help.html" %}
+
+{% set hmpoTitle %}
+    Cyfweliadau pasbort
+{% endset %}
+
+{% block helpContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>Efallai y gofynnir i chi ddod am gyfweliad mewn <a id="link-interview-office" href="https://www.gov.uk/passport-interview-office" target="_blank">swyddfa basbort</a> os nad ydych chi erioed wedi cael pasbort y Deyrnas Unedig o’r blaen, neu os daeth eich hen basbort i ben beth amser yn ôl.</p>
+
+    <p>Mae’r cyfweliad yn ein helpu i gadarnhau pwy ydych chi a bod y cais am basbort yn perthyn i chi.</p>
+
+    <p>Mae’n rhan bwysig o ddiogelu eich hunaniaeth. Mae’n atal pobl eraill rhag ymgeisio am basbort yn eich enw.</p>
+
+    <h2>Beth sy’n digwydd yn y cyfweliad</h2>
+    <p>Bydd eich apwyntiad yn parhau oddeutu 30 munud.</p>
+
+    <p>Byddwn yn gofyn rhai cwestiynau i chi na fyddai rhywun sy’n ceisio dwyn eich hunaniaeth o reidrwydd yn ei wybod. Byddwn hefyd yn gwirio bod eich llun yn edrych fel chi.</p>
+
+    {% call hmpoInsetText() %}
+        <p>Ni fyddwch chi’n cael eich pasbort newydd y diwrnod hwnnw. Byddwn yn parhau gyda’n gwiriadau olaf ar eich cais cyn i ni anfon eich pasbort newydd.</p>
+    {% endcall %}
+
+    <p>Gallwch ddod â ffrind neu berthynas gyda chi i’r swyddfa, ond ni all eistedd gyda chi yn ystod y cyfweliad.</p>
+
+    <h2>Trefnu eich apwyntiad</h2>
+    <p>Byddwn yn anfon llythyr atoch yn gofyn i chi ffonio am apwyntiad. Pan fyddwch chi’n ffonio, dywedwch wrthym os byddwch angen:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>dolen clyw</li>
+        <li>mynediad cadair olwyn</li>
+        <li>dehonglydd iaith arwyddion</li>
+        <li>rhywun i fod gyda chi yn ystod y cyfweliad, fel rhiant neu ofalwr</li>
+        <li>ystafell cyfweliad preifat am nad ydych chi eisiau dadorchuddio eich wyneb yn gyhoeddus</li>
+    </ul>
+
+    <h2>Help os oes gennych chi anabledd</h2>
+    <p>Mae gan y rhan fwyaf o swyddfeydd fynediad cadair olwyn a dolenni clyw, ac mae gan rai doiledau a pharcio i’r anabl. Gofynnwch pa gyfleusterau sydd ar gael pan fyddwch yn trefnu’r apwyntiad.</p>
+
+    <p>Os oes gennych chi anabledd meddyliol neu gorfforol a fyddai’n eich atal rhag dod a chymryd rhan mewn cyfweliad, bydd angen i chi anfon llythyr gan feddyg.</p>
+
+    <p>Dylai’r llythyr esbonio pam na allwch chi fynychu ac os yw’ch anabledd yn debygol o fod yn barhaol. Dylech ei gynnwys gyda’ch dogfennau.</p>
+
+{% endblock %}

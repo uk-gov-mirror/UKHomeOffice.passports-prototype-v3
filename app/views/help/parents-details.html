@@ -1,0 +1,79 @@
+{% extends "layout-help.html" %}
+
+{% set hmpoTitle %}
+    About your parents
+{% endset %}
+
+{% block helpContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>We ask for parents’ details to check your claim to <a href="https://www.gov.uk/types-of-british-nationality" target="_blank">British nationality</a> and confirm your identity.</p>
+    <p>
+        It’s important you provide as much information as you can.
+        If you don’t know their details, you’ll need to tell us why.
+    </p>
+
+    <h2>Whose details should I provide?</h2>
+
+    {% set singleParentsHeading %}
+        Single parents
+    {% endset %}
+    {% set singleParentsContent %}
+        <p>Provide as much information as you can. If you don’t know anything about your other parent, leave their details blank.</p>
+        <p>You’ll need to tell us why you can’t provide their details.</p>
+    {% endset %}
+
+    {% set adoptionHeading %}
+        If you were adopted
+    {% endset %}
+    {% set adoptionContent %}
+        <p>Give the details of your adoptive parents.</p>
+        <p>For same-sex couples, parent 1 is the person listed second on the adoption certificate. The other parent is parent 2.</p>
+        <p>If you only have one adoptive parent, give their details and leave the section for the other parent blank. You’ll need to tell us it was a sole adoption.</p>
+    {% endset %}
+
+    {% set donationHeading %}
+        If you were conceived through sperm donation
+    {% endset %}
+    {% set donationContent %}
+        <p>You don’t need to tell us if you were conceived through sperm donation and born in the UK. Give parents’ details as they appear on the birth certificate.</p>
+        <p>For same-sex couples, parent 1 is the person who gave birth. The other parent is parent 2.</p>
+        <p>There may be <a href="https://www.gov.uk/government/publications/how-to-get-a-passport-if-your-child-was-conceived-through-sperm-donation/children-conceived-through-sperm-donation" target="_blank">different rules</a> if you were conceived through sperm donation and born outside the UK.</p>
+    {% endset %}
+
+    {% set surrogacyHeading %}
+        If you were born through surrogacy
+    {% endset %}
+    {% set surrogacyContent %}
+        <p>Provide your parent’s details as they appear on the parental order.</p>
+        <p>For same-sex couples, parent 1 is the person listed first on the parental order. The other parent is parent 2.</p>
+        <p>You need to <a href="https://www.gov.uk/legal-rights-when-using-surrogates-and-donors" target="_blank">check the rules about surrogacy and legal parents</a> if they don’t have a parental order.</p>
+    {% endset %}
+
+
+    {{ govukAccordion({
+        id: "parents-details",
+        headingLevel: 3,
+        items: [
+            {
+                heading: { html: singleParentsHeading },
+                content: { html: singleParentsContent }
+            },
+            {
+                heading: { html: adoptionHeading },
+                content: { html: adoptionContent }
+            },
+            {
+                heading: { html: donationHeading },
+                content: { html: donationContent }
+            },
+            {
+                heading: { html: surrogacyHeading },
+                content: { html: surrogacyContent }
+            }
+        ]
+    }) }}
+
+
+{% endblock %}

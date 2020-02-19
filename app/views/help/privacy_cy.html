@@ -1,0 +1,55 @@
+{% extends "layout-help.html" %}
+
+{% set hmpoTitle %}
+    Polisi preifatrwydd
+{% endset %}
+
+{% block helpContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>Mae’r polisi preifatrwydd hwn yn ymwneud â’r gwasanaeth ymgeisio am basbort ar-lein sy’n cael ei redeg gan Swyddfa Basbort Ei Mawrhydi.</p>
+
+    <p>Trwy gytuno i’r datganiad, rydych chi’n deall:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>y bydd y manylion a roddoch yn cael eu gwirio yn erbyn gwybodaeth a gedwir gan sefydliadau eraill i benderfynu a ddylid cyhoeddi pasbort neu dynnu pasbort yn ôl</li>
+        <li>y byddwn yn cadw eich data yn electronig ac y gallwn ei ddefnyddio i wirio bod ein systemau yn gweithio’n ddiogel ac effeithiol</li>
+        <li>y gallwn basio gwybodaeth ymlaen am eich pasbort neu ddogfennau cysylltiedig i sefydliadau yn y Deyrnas Unedig a thramor pan fyddwch yn defnyddio eich pasbort, caffael gwasanaeth neu pan fydd er lles y cyhoedd i wneud hynny</li>
+        <li>y gallwn ofyn am adborth trwy ddolenni ac arolygon wedi ymgeisio</li>
+    </ul>
+
+    <p>Darllenwch <a href="https://www.gov.uk/government/publications/ips-privacy-policy">bolisi preifatrwydd Swyddfa Basbort Ei Mawrhydi</a> i weld sut ydyn ni’n storio a diogelu eich gwybodaeth.</p>
+
+    <h2>Gwybodaeth y byddwn yn gofyn amdani</h2>
+    <p>Pan fyddwch chi’n ymgeisio am basbort y Deyrnas Unedig fe ofynnir i chi am amrywiaeth o wybodaeth, gan gynnwys eich enw, dyddiad geni, manylion cyswllt a llun.</p>
+
+    {% call hmpoInsetText() %}
+        <p>Efallai y cysylltir â chi i gael rhagor o wybodaeth, er enghraifft os nad yw’ch gwybodaeth yn cyd-fynd gyda’r hyn sydd gan Swyddfa Basbort Ei Mawrhydi wedi ei gofnodi, neu os oes angen i chi ofyn i rywun gadarnhau pwy ydych chi.</p>
+    {% endcall %}
+
+    <p>
+        Cedwir gwybodaeth a roddwch ar-lein dros dro ac yn ddiogel yn unol â’n <a href="{{urls.cookies}}">polisi cwcis</a>. Rydym yn gwneud hyn er mwyn i chi symud ymlaen a pharhau i gwblhau eich cais. Ni fydd eich gwybodaeth a lluniau sydd wedi eu lanlwytho yn cael eu storio’n barhaol nes i chi gyflwyno eich cais.
+    </p>
+
+    <p>
+        Os na fyddwch chi’n cyflwyno eich cais, byddwn yn storio eich lluniau wedi eu lanlwytho am hyd at 30 niwrnod. Gwneir hyn i’n cynorthwyo i ddatblygu a gwella ein gwasanaethau ymhellach. Ni fydd y lluniau hyn yn cael eu storio gydag unrhyw wybodaeth bersonol arall.
+    </p>
+
+    <h2>Manylion talu</h2>
+    <p>
+        Darperir rhan taliad y gwasanaeth hwn gan Atos yn unol â’n <a href="{{urls.terms}}">amodau a thelerau</a>. Nid yw Swyddfa Basbort Ei Mawrhydi yn casglu na storio eich gwybodaeth ariannol.
+    </p>
+
+    <h2>Adborth atodol</h2>
+    <p>
+        Rydym yn croesawu eich barn ynglŷn â’r gwasanaeth hwn. Rydym yn gwahodd adborth drwy ddolenni ar ein gwefan a holiaduron wedi ymgeisio. Byddwn yn defnyddio’r hyn a ddywedir gennych er mwyn gwella’r gwasanaeth hwn a gwasanaethau cysylltiedig.
+    </p>
+
+    <h2>Defnydd o’r safle</h2>
+    <p>
+        Ar wahân i’r data a roddwch, rydym hefyd yn casglu gwybodaeth ddienw am ddefnyddio’r safle. Mae hyn yn ein helpu i weld sut y defnyddir y gwasanaeth a sut allwn ni ei wneud yn well. Mae Swyddfa Basbort Ei Mawrhydi yn rhannuír data yma gyda Gwasanaethau Digidol y Llywodraeth ac yn cydymffurfio gydaír <a href="https://www.gov.uk/data-protection/the-data-protection-act">Ddeddf Diogelu Data</a>.
+    </p>
+
+    <p>Darllenwch <a href="https://www.gov.uk/government/organisations/home-office/about/personal-information-charter">siarter gwybodaeth y Swyddfa Gartref</a> i weld sut i ofyn i gael gweld eich gwybodaeth neu gwyno am sut y’i defnyddir.</p>
+
+{% endblock %}

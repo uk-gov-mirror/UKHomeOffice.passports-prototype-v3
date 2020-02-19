@@ -1,0 +1,45 @@
+{% extends "layout-help.html" %}
+
+{% set hmpoTitle %}
+    Help
+{% endset %}
+
+{% block helpContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>Contact Her Majesty’s Passport Office (HM Passport Office) for help with British passports issued in the UK.</p>
+
+    <h2>Application updates</h2>
+    <p>You can <a href="/track">track your passport application online</a>.</p>
+
+    <h2>Digital photos from a booth or shop</h2>
+    <p>If you’re having problems with the quality of the photo, you need to contact the company that provided it.</p>
+
+    <h2>Help</h2>
+    <p>You can call the Passport Adviceline on:</p>
+    <p>
+        Telephone: 0300 330 0901<br/>
+        Textphone: 0300 330 0808<br/>
+        From overseas: +44 (0) 300 330 0901
+    </p>
+
+    <p>
+        Monday to Friday, 8:00am to 8:00pm<br/>
+        Weekends and public holidays, 9:00am to 5:30pm<br/>
+        <a id="url-call-charges" href="https://www.gov.uk/call-charges">Find out about call charges</a>
+    </p>
+    <p>You can also write to HM Passport Office at:</p>
+    <p>
+        HM Passport Office<br/>
+        PO Box 767<br/>
+        Southport<br/>
+        PR8 9PW<br/>
+        UK
+    </p>
+
+    {% call hmpoInsetText() %}
+        <p>If you have an application reference number, you need to include it in your letter.</p>
+    {% endcall %}
+
+{% endblock %}
