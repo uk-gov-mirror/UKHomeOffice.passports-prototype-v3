@@ -1,6 +1,8 @@
 {
   "govuk": {
     "serviceName": "HMPO Prototypes",
+    "serviceNameApply": "Apply for a passport",
+    "serviceNameTracking": "Manage your application",
     "errorSummaryTitle": "There’s a problem",
     "backLink": "Back"
   },
