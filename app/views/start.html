@@ -1,28 +1,40 @@
-
 {% extends "layout.html" %}
 
+{% set hmpoTitle %}Apply online for a UK passport{% endset %}
+
 {% block pageTitle %}
-  Apply for, renew or replace a UK passport
+    {{ hmpoTitle | safe }} – GOV.UK
 {% endblock %}
 
 {% block phaseBanner %}
 {% endblock %}
 
+{% block govukHeader %}
+    {{ govukHeader({
+        assetsPath: assetPath + '/images',
+        homepageUrl: govukHomePage or "https://gov.uk",
+        serviceName: "",
+        navigation: govukNavigation,
+        serviceUrl: govukServiceUrl or "/",
+        containerClasses: "govuk-width-container"
+    }) }}
+{% endblock %}
+
 {% block beforeContent %}
     {{ govukBreadcrumbs({
-    items: [
-        {
-            text: "Home",
-            href: "#"
-        },
-        {
-            text: "Passports, travel and living abroad",
-            href: "#"
-        },
-        {
-            text: "Passports"
-        }
-    ]
+        items: [
+            {
+                text: "Home",
+                href: "#"
+            },
+            {
+                text: "Passports, travel and living abroad",
+                href: "#"
+            },
+            {
+                text: "Passports"
+            }
+        ]
     }) }}
 {% endblock %}
 
@@ -30,7 +42,7 @@
     <div class="govuk-grid-row">
         <div class="govuk-grid-column-two-thirds-from-desktop">
 
-            <h1 class="govuk-heading-xl">Apply online for a UK passport</h1>
+            <h1 class="govuk-heading-xl">{{ hmpoTitle }}</h1>
 
             {% call hmpoWarningText({ iconFallbackText: "Warning" }) %}
                 The rules for passports, driving, EHIC cards, pet travel and

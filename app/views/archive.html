@@ -1,11 +1,10 @@
 {% extends "layout.html" %}
 
-{% set serviceName %}HMPO Prototypes{% endset %}
-{% set pageTitle, hmpoTitle %}Archive{% endset %}
+{% set hmpoTitle %}Archive{% endset %}
 
 {% block govukHeader %}
     {{ govukHeader({
-        serviceName: serviceName,
+        serviceName: govukServiceName,
         navigation: [
             {
             href: "./",
@@ -17,10 +16,11 @@
             },
             {
             href: "archive",
-            text: pageTitle,
+            text: hmpoTitle,
             active: true
             }
-        ]
+        ],
+        serviceUrl: "/"
     }) }}
 {% endblock %}
 
@@ -28,8 +28,8 @@
 {% endblock %}
 
 {% block mainContent %}
-    <span class="govuk-caption-xl">{{ serviceName }}</span>
-    <h1>{{ pageTitle }}</h1>
+    <span class="govuk-caption-xl">{{ govukServiceName }}</span>
+    <h1>{{ hmpoTitle }}</h1>
     <p>Archive placeholder page.</p>
 
 {% endblock %}

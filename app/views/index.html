@@ -1,26 +1,26 @@
 {% extends "layout.html" %}
 
-{% set serviceName %}HMPO Prototypes{% endset %}
-{% set pageTitle, hmpoTitle %}Latest{% endset %}
+{% set hmpoTitle %}Latest{% endset %}
 
 {% block header %}
     {{ govukHeader({
-        serviceName: serviceName,
+        serviceName: govukServiceName,
         navigation: [
             {
-            href: "./",
-            text: pageTitle,
-            active: true
+                href: "./",
+                text: hmpoTitle,
+                active: true
             },
             {
-            href: "notifications",
-            text: "Notifications"
+                href: "notifications",
+                text: "Notifications"
             },
             {
-            href: "archive",
-            text: "Archive"
+                href: "archive",
+                text: "Archive"
             }
-        ]
+        ],
+        serviceUrl: "/"
     }) }}
 {% endblock %}
 
@@ -28,8 +28,8 @@
 {% endblock %}
 
 {% block mainContent %}
-    <span class="govuk-caption-xl">{{ serviceName }}</span>
-    <h1>{{ pageTitle }}</h1>
+    <span class="govuk-caption-xl">{{ govukServiceName }}</span>
+    <h1>{{ hmpoTitle }}</h1>
 
     <h2>Apply</h2>
     <p>Main user journey for all application types.</p>
