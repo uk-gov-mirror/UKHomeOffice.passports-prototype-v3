@@ -1,0 +1,22 @@
+{% extends "layout-help.html" %}
+
+{% set hmpoTitle %}
+    Mae angen i chi alluogi cwcis
+{% endset %}
+
+{% block backLink %}{% endblock %}
+
+{% block mainContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>Rydym yn defnyddio ‘cwcis’ &ndash; ffeiliau bychan a gedwir ar eich cyfrifiadur &ndash; i ddarparu a gwella’r gwasanaeth hwn. Ni allwch ddefnyddio’r gwasanaeth hwn hebddynt.</p>
+    <p>Bydd angen i chi alluogi cwcis. Dysgwch sut i <a href="http://www.aboutcookies.org/Default.aspx?page=1" rel="external">newid eich gosodiadau cwcis</a>.</p>
+
+    {% set tryAgain %}
+        Rwyf wedi galluogi cwcis &ndash; rhowch gynnig arall arni
+    {% endset %}
+
+    {{ govukButton({ href: urls.start, html: tryAgain }) }}
+
+{% endblock %}

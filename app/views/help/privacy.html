@@ -1,0 +1,64 @@
+{% extends "layout-help.html" %}
+
+{% set hmpoTitle %}
+    Privacy policy
+{% endset %}
+
+{% block helpContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>This privacy policy relates to the online passport application service run by HM Passport Office.</p>
+
+    <p>By agreeing to the declaration, you understand that:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>the details you’ve given will be checked against information held by other organisations to decide whether to issue or withdraw a passport</li>
+        <li>we retain your data electronically and may use it to check our systems work securely and effectively</li>
+        <li>we may pass information about your passport or related records to organisations in the UK and abroad when you use your passport, obtain a service, or when it’s in the public interest to do so</li>
+        <li>we may ask for feedback through links and post-application surveys</li>
+    </ul>
+
+    <p>Read the <a href="https://www.gov.uk/government/publications/ips-privacy-policy">HM Passport Office privacy policy</a> to find out how we store and protect your information.</p>
+
+    <h2>Information we ask for</h2>
+    <p>When you apply for a UK passport you’ll be asked for a range of information, including your name, date of birth, contact details and a photo.</p>
+
+    {% call hmpoInsetText() %}
+        <p>You may be contacted for additional information, for example if your information doesn’t match that held by HM Passport Office, or you need to ask someone to confirm your identity.</p>
+    {% endcall %}
+
+    <p>
+        Information you enter online will be held temporarily and securely in line with our <a href="{{urls.cookies}}">cookie policy</a>.
+        We do this so you can progress through and complete your application.
+        Your information and uploaded photos won’t be stored permanently until you submit your application.
+    </p>
+
+    <p>
+        If you don’t submit your application, we’ll store your uploaded photos for up to 30 days.
+        We do this to test the tools we use and improve our service.
+        These photos aren’t stored with any other personal information.
+    </p>
+
+    <h2>Payment details</h2>
+    <p>
+        The payment part of this service is provided by Atos in line with our <a href="{{urls.terms}}">terms and conditions</a>.
+        HM Passport Office doesn’t collect or store any of your financial information.
+    </p>
+
+    <h2>Additional feedback</h2>
+    <p>
+        We welcome your views on this service.
+        We invite feedback through links in the website and post-application surveys.
+        We’ll use what you tell us to improve this and related services.
+    </p>
+
+    <h2>Site usage</h2>
+    <p>
+        Apart from the data you enter, we also collect anonymous site-usage information.
+        This helps us to see how the service is used and how we can make it better.
+        HM Passport Office shares this data with the Government Digital Service and complies with the <a href="https://www.gov.uk/data-protection/the-data-protection-act">Data Protection Act</a>.
+    </p>
+
+    <p>Read the <a href="https://www.gov.uk/government/organisations/home-office/about/personal-information-charter">Home Office information charter</a> to find out how to ask to see your information or complain about how it’s used.</p>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "layout-help.html" %}}
+{% set disableWelsh = true %}
+
+{% set hmpoTitle %}
+    Passport offices
+{% endset %}
+
+{% block helpContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>There are {{ passportOffices.length }} passport offices in cities in the UK.</p>
+
+    <p>Before going to a passport office, you must choose a collection time and complete your application.</p>
+
+    <div class="offices">
+        {% for office in passportOffices %}
+            <h2>{{ office.name }}</h2>
+            <p>
+                {% for line in office.address %}
+                    {{ line }}<br />
+                {% endfor %}
+                {{ office.postcode }}<br />
+                <a href="https://www.google.co.uk/maps/?q={{ office.name }}, {{ office.postcode }}" target="_blank" rel="external">View map</a>
+            </p>
+        {% endfor %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "layout-help.html" %}
+
+{% set hmpoTitle %}
+    Llun gyda chod
+{% endset %}
+
+{% block helpContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    <h2>Sut i gael cod llun</h2>
+    <p>Mewn bwth neu siop lluniau, dewiswch gael cod gyda’ch llun.</p>
+
+    <h2>Sut mae defnyddio cod llun</h2>
+    <p>Mae’n syml a hawdd i’w ddefnyddio. Yn y cais ar-lein am basbort:</p>
+
+    <ol class="govuk-list govuk-list--number">
+        <li>bydd gennych chi’r dewis i roi’r cod i gael mynediad i’ch llun</li>
+        <li>wedi rhoi’r cod, fe welwch eich llun ar y sgrin</li>
+        <li>gwiriwch eich llun a’i gyflwyno</li>
+        <li>bydd eich llun yn cael ei ychwanegu’n uniongyrchol i’ch cais</li>
+    </ol>
+    {% call hmpoInsetText() %}
+        <p>Mae’r cod llun yn wasanaeth newydd ac efallai na fydd ar gael eto mewn bythau lluniau neu siopau yn eich ardal.</p>
+    {% endcall %}
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+        <div class="app-related-items">
+            <h2>Ble i ddod o hyd i’ch cod</h2>
+            <img src="{{ assetPath }}/images/printed-photo-code.jpg" alt="">
+        </div>
+    </div>
+    <div class="govuk-grid-column-two-thirds">
+
+{% endblock %}

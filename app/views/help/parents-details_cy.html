@@ -1,0 +1,76 @@
+{% extends "layout-help.html" %}
+
+{% set hmpoTitle %}
+    Ynghylch eich rhieni
+{% endset %}
+
+{% block helpContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>Rydym yn gofyn am fanylion eich rhieni i wirio eich hawliad i <a href="https://www.gov.uk/types-of-british-nationality" target="_blank">genedligrwydd Prydeinig</a> ac i gadarnhau pwy ydych chi.</p>
+    <p>
+        Mae’n bwysig eich bod yn rhoi cymaint o wybodaeth â phosibl. Os nad ydych yn gwybod eu manylion, bydd angen i chi esbonio pam.
+    </p>
+
+    <h2>Pa fanylion ddylwn i ddarparu?</h2>
+
+    {% set singleParentsHeading %}
+        Rhieni sengl
+    {% endset %}
+    {% set singleParentsContent %}
+        <p>Darparwch cymaint o wybodaeth â phosibl. Os nad ydych chi’n gwybod unrhyw beth am eich rhiant arall, gadewch eu manylion yn wag.</p>
+        <p>Bydd angen i chi ddweud pam na allwch chi ddarparu eu manylion.</p>
+    {% endset %}
+
+    {% set adoptionHeading %}
+        Os cawsoch chi eich mabwysiadu
+    {% endset %}
+    {% set adoptionContent %}
+        <p>Rhowch fanylion eich rhieni mabwysiadol.</p>
+        <p>Ar gyfer cyplau un rhyw, rhiant 1 yw’r sawl sydd a restrir ail ar y dystysgrif fabwysiadu. Y rhiant arall yw rhiant 2.</p>
+        <p>Os mai dim ond un rhiant mabwysiadol sydd gennych chi, rhowch ei fanylion/manylion a gadael yr adran ar gyfer y rhiant arall yn wag. Bydd angen i chi roi gwybod i ni ei fod yn fabwysiad unigol.</p>
+    {% endset %}
+
+    {% set donationHeading %}
+        Os cawsoch chi eich cenhedlu trwy roi sberm
+    {% endset %}
+    {% set donationContent %}
+        <p>Does dim rhaid i chi ddweud wrthym os cawsoch eich cenhedlu trwy roi sberm a’ch geni yn y Deyrnas Unedig. Rhowch fanylion y rhieni fel y maent ar y dystysgrif geni.</p>
+        <p>Ar gyfer cyplau un rhyw, rhiant 1 yw’r sawl a roddodd enedigaeth. Y rhiant arall yw rhiant 2.</p>
+        <p>Efallai y bydd <a href="https://www.gov.uk/government/publications/how-to-get-a-passport-if-your-child-was-conceived-through-sperm-donation/children-conceived-through-sperm-donation" target="_blank">rheolau gwahanol</a> os cawsoch eich cenhedlu trwy roi sberm a’ch geni tu allan i’r Deyrnas Unedig.</p>
+    {% endset %}
+
+    {% set surrogacyHeading %}
+        Os cawsoch chi eich geni trwy fenthyg croth
+    {% endset %}
+    {% set surrogacyContent %}
+        <p>Rhowch fanylion eich rhieni fel y maent ar y gorchymyn rhieniol.</p>
+        <p>Ar gyfer cyplau un rhyw, rhiant 1 yw’r sawl sydd wedi ei restrir gyntaf ar y gorchymyn rhieniol. Y rhiant arall yw rhiant 2.</p>
+        <p>Bydd angen i chi <a href="https://www.gov.uk/legal-rights-when-using-surrogates-and-donors" target="_blank">wirio’r rheolau am fenthyg croth a rhieni cyfreithiol</a> os nad oes ganddynt orchymyn rhieniol.</p>
+    {% endset %}
+
+    {{ govukAccordion({
+        id: "parents-details",
+        headingLevel: 3,
+        items: [
+            {
+                heading: { html: singleParentsHeading },
+                content: { html: singleParentsContent }
+            },
+            {
+                heading: { html: adoptionHeading },
+                content: { html: adoptionContent }
+            },
+            {
+                heading: { html: donationHeading },
+                content: { html: donationContent }
+            },
+            {
+                heading: { html: surrogacyHeading },
+                content: { html: surrogacyContent }
+            }
+        ]
+    }) }}
+
+{% endblock %}

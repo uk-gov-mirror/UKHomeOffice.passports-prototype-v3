@@ -1,0 +1,92 @@
+{% extends "layout-help.html" %}
+
+{% set hmpoTitle %}
+    Amodau a thelerau
+{% endset %}
+
+{% block helpContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>Drwy ymgeisio am basbort rydych yn cytuno i’r amodau a thelerau hyn.</p>
+
+    <p>Rydych chi’n cadarnhau eich bod chi neu’r ymgeisydd:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>yn wladolyn Prydeinig a heb golli nac ildio eich statws cenedlaethol</li>
+        <li>ddim yn torri amodau gorchymyn llys trwy wneud y cais hwn</li>
+        <li>ddim mewn dyled i lywodraeth y Deyrnas Unedig am gostau dychweliad, er enghraifft, pan fydd y llywodraeth yn talu i’ch cludo adref o dramor</li>
+        <li>yn deall trwy ymgeisio’n wirfoddol am basbort y Deyrnas Unedig y gallech golli dinasyddiaeth mewn gwlad arall</li>
+        <li>yn rhoi gwybod i Swyddfa Basbort Ei Mawrhydi os cawsoch eich geni trwy fenthyg croth</li>
+    </ul>
+
+    <p>Os yw’r cais yma yn un am basbort i blentyn, rydych chi’n cadarnhau:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>bod gennych chi gyfrifoldeb rhiant</li>
+        <li>y byddwch yn anfon unrhyw orchmynion llys yn ymwneud â phreswylfa’r plentyn, cyswllt neu deithio o’r Deyrnas Unedig</li>
+    </ul>
+
+    <p>Efallai y byddwn yn gofyn am ragor o wybodaeth cyn y gallwn fwrw ymlaen gyda’ch cais.</p>
+
+    {% call hmpoWarningText({ iconFallbackText: translate("govuk.warning") }) %}
+        Os byddwch chi’n rhoi gwybodaeth anwir neu gamarweiniol i gael pasbort, gellir eich erlyn.
+    {% endcall %}
+
+
+    <h2>Eich llun newydd</h2>
+    <p>
+        Rhaid i’ch llun newydd edrych fel chi ac ni ddylid ei addasu mewn unrhyw ffordd. Rhaid ei fod wedi ei dynnu o fewn y mis diwethaf.
+    </p>
+    <p>
+        Efallai y bydd lluniau sydd wedi pasio ein gwiriadau ar-lein yn dal yn anaddas ar gyfer eich pasbort newydd. Mae’n bosibl y byddwn yn gofyn am lun digidol neu bapur gwahanol.
+    </p>
+
+
+    <h2>Eich pasbort newydd</h2>
+    <p>
+        Pan fyddwch chi’n cael eich pasbort newydd, rhaid i chi ei lofnodi gyda beiro ddu. Ni allwch ei ddefnyddio nes i chi wneud hyn
+    </p>
+    <p>
+        Os na allwch chi lofnodi eich enw, esboniwch hyn cyn i chi dalu. Bydd eich pasbort yn dangos ‘nad oes rhaid i’r deiliad lofnodi’.
+    </p>
+
+
+    <h2>Ffi pasbort</h2>
+    <p>
+        Rheolir taliadau gan gwmni o’r enw Atos - byddwch yn mynd ymlaen i’w gwefan i dalu. Mae Atos yn gyfrifol am yr wybodaeth a roddwch ar eu gwefan ac argaeledd eu gwasanaeth.
+    </p>
+
+
+    <h2>Canslo ac ad-daliadau</h2>
+    <p>Ni chewch ad-daliad os:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>yw’ch cais wedi ei oedi oherwydd bod angen i ni wneud gwiriadau ychwanegol</li>
+        <li>byddwn yn eich symud i wasanaeth gwahanol ac mae’ch cais yn cymryd mwy o amser, er enghraifft os cewch eich symud o Premiwm Ar-lein i Llwybr Cyflym</li>
+        <li>nad ydym wedi derbyn eich hen basbort neu ddogfennau o fewn 90 niwrnod i gyflwyno eich cais</li>
+        <li>ydym yn tynnu eich cais yn ôl oherwydd nad ydym wedi derbyn yr holl wybodaeth y gofynnwyd amdani</li>
+        <li>byddwch chi’n canslo eich cais neu nad oes gennych chi hawl i basbort</li>
+    </ul>
+    <p>
+        Gallwch ganslo eich cais unrhyw bryd, ond bydd angen i chi wneud hyn yn ysgrifenedig. <a href="{{urls.help}}">Cysylltwch â ni</a> i weld beth sydd angen i chi ei wneud.
+    </p>
+
+
+    <h2>Ymgeisio gyda Premiwm Ar-lein</h2>
+    <p>
+        Bydd angen i chi ddod i’ch apwyntiad casglu yn bersonol. Rhaid i chi ddod â’ch hen basbort gyda chi – allwch chi ddim casglu eich pasbort newydd hebddo.
+    </p>
+
+    {% call hmpoWarningText({ iconFallbackText: translate("govuk.warning") }) %} Bydd eich hen basbort yn cael ei ganslo ar ddiwrnod eich apwyntiad casglu. Ni allwch ei ddefnyddio - gallech gael eich atal gan yr awdurdodau os byddwch. {% endcall %}
+
+    <p>
+        Os na allwch chi fynd i’ch apwyntiad casglu, <a href="{{urls.help}}">cysylltwch â ni</a>. Byddwn yn trefnu amser arall i gasglu eich pasbort newydd. Os na fyddwch yn ei gasglu o fewn 28 niwrnod byddwn yn ei ganslo. Bydd rhaid i chi ymgeisio a thalu eto.
+    </p>
+
+
+    <h2>Pasbortau sydd wedi eu colli, dwyn neu ddifrodi</h2>
+    <p>Rydych chi’n cadarnhau y byddwch chi neu’r ymgeisydd:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>yn cysylltu ar unwaith gyda Swyddfa Basbort Ei Mawrhydi os yw’r hen basbort yn cael ei ddwyn, colli neu ddifrodi wedi i chi ymgeisio</li>
+        <li>yn dychwelyd pasbort a aeth ar goll i swyddfa basbort y Deyrnas Unedig os daw i’ch meddiant</li>
+    </ul>
+
+{% endblock%}

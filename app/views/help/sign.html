@@ -1,0 +1,35 @@
+{% extends "layout-help.html" %}
+
+{% set hmpoTitle %}
+    Where to sign your passport
+{% endset %}
+
+{% block helpContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>
+        When you get your new passport, you must sign it with a black ballpoint pen.
+        You can’t use it until you do.
+    </p>
+    <p>
+        You need to sign on the holder’s signature line.
+        Don’t sign below the line.
+    </p>
+
+    <p>
+        <img class="full-width-image" src="{{assetPath}}/images/sign-passport.jpg" alt="Sign your passport on holders signature line">
+    </p>
+
+    <p>You don’t need to sign your new passport if:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>you’re aged 11 or under</li>
+        <li>you’ve told HM Passport Office you can’t sign because of a disability</li>
+    </ul>
+
+    <p>Your passport will show ‘the holder is not required to sign’.</p>
+
+    <p>If you make a mistake signing your passport, <a id="passport-adviceline" href="{{urls.help}}">contact the Passport Adviceline</a>.</p>
+
+{% endblock %}
+

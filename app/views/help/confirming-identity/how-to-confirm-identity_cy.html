@@ -1,0 +1,50 @@
+{% extends "layout-help.html" %}
+
+{% set hmpoTitle %}
+    Cadarnhau hunaniaeth rhywun: Sut i gadarnhau hunaniaeth rhywun
+{% endset %}
+
+{% block backLink %}{% endblock %}
+
+{% block mainContent %}
+
+    <h1>Cadarnhau hunaniaeth rhywun</h1>
+
+    <ul class="govuk-list govuk-list--dashed">
+        <li><a id="who-can-confirm-identity" href="../confirming-identity">Pwy all gadarnhau hunaniaeth rhywun</a></li>
+        <li>Sut i gadarnhau hunaniaeth rhywun</li>
+    </ul>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2>{{ helpSubtitle }}</h2>
+    <h2>Sut i gadarnhau hunaniaeth rhywun</h2>
+    <p>Ar gyfer ceisiadau gyda llun digidol, gallwch gadarnhau pwy yw rhywun ar-lein. Nid oes rhaid i chi lofnodi llun wedi ei argraffu.</p>
+
+    <h3>Beth sydd angen i’r ymgeisydd ei wneud</h3>
+    <p>Fel yr ymgeisydd, bydd angen i chi:</p>
+    <ol class="govuk-list govuk-list--number">
+        <li>Wirio <a id="check-who-can-confirm-identity" href="../confirming-identity">pwy all gadarnhau pwy ydych chi</a></li>
+        <li>Cysylltwch â’r unigolyn cyn rhoi ei fanylion/manylion i Swyddfa Basbort Ei Mawrhydi</li>
+        <li>Gwnewch yn siŵr eich bod yn gwybod ei gyfeiriad/ei chyfeiriad a dyddiad geni, yn cynnwys y flwyddyn</li>
+        <li>Mewngofnodwch i’ch cais i nodi enw ac e-bost yr unigolyn</li>
+    </ol>
+
+    <p>Os ydych chi’n gwneud cais ar gyfer plentyn, rhaid i’r unigolyn allu cadarnhau ble ganed y plentyn yn ogystal ag enwau a dyddiadau geni’r rhieni.</p>
+
+    <h3>Beth sydd angen i’r sawl sy’n cadarnhau pwy ydych chi ei wneud</h3>
+    <p>Fel yr unigolyn sy’n cadarnhau pwy yw rhywun, byddwch yn derbyn e-bost gan Swyddfa Basbort Ei Mawrhydi. Mae’r e-bost yn cynnwys dolen a chyfeirnod i fewngofnodi ar-lein.</p>
+    <p>Bydd angen i chi:</p>
+    <ol class="govuk-list govuk-list--number">
+        <li>Roi’r cyfeirnod o’r e-bost a dyddiad geni’r ymgeisydd</li>
+        <li>Roi eich manylion pasbort y Deyrnas Unedig a chyfeiriad cyfredol</li>
+        <li>Ateb ambell gwestiwn am sut ydych chi’n adnabod yr ymgeisydd</li>
+        <li>Gadarnhau rhai o fanylion yr ymgeisydd</li>
+        <li>Gwirio llun pasbort digidol</li>
+    </ol>
+    <p>Mae hyn yn cymryd oddeutu 10 munud.</p>
+    <p>Os yw’r ymgeisydd yn blentyn, bydd angen i chi ateb ambell gwestiwn am sut ydych chi’n adnabod y person sy’n gwneud y cais. Mae angen i ni gadarnhau bod gan y person sy’n ymgeisio gyfrifoldeb rhiant.</p>
+
+    {{ hmpoClose() }}
+
+{% endblock %}

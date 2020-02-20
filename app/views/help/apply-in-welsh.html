@@ -1,0 +1,43 @@
+{% extends "layout-help.html" %}
+
+{% set hmpoTitle %}
+    Ymgeisio trwy gyfrwng y Gymraeg am basbort
+{% endset %}
+
+{% block helpContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>Er mwyn ymgeisio trwy gyfrwng y Gymraeg, gallwch:<p>
+
+    <ol class="govuk-list govuk-list--number">
+        <li>gasglu ffurflenni cais o <a id="branch-finder-link" href="https://www.postoffice.co.uk/branch-finder">Swyddfa’r Post yng Nghymru</a></li>
+        <li>ffonio’r Llinell Gyngor Pasbortau a gofyn i ni anfon y ffurflenni cais atoch</li>
+    </ul>
+
+    <p>Gallwch anfon eich cais wedi ei gwblhau trwy’r post neu ddefnyddio <a id="check-and-send-link" href="https://www.gov.uk/how-the-post-office-check-and-send-service-works">gwasanaeth Gwirio ac Anfon Swyddfa’r Post.</a></p>
+
+    {% call hmpoInsetText() %}
+        <h3>Llinell Gyngor Pasbortau</h3>
+
+        Ffôn: 0300 222 0000<br>
+        O’r tu allan i’r Deyrnas Unedig: +44 (0)300 222 0000<br>
+        Ffôn testun: 18001 0300 222 0222<br>
+        Dydd Llun i Ddydd Gwener, 8am i 8pm<br>
+        Penwythnosau a gwyliau cyhoeddus, 9am tan 5:30pm<br>
+        <a id="call-charges-link" href="https://www.gov.uk/call-charges">Dysgwch am gostau galwadau</a>
+    {% endcall %}
+
+    <h2>Gostyngiad ar y ffi ymgeisio</h2>
+
+    <p>Nid yw’n bosibl ymgeisio trwy gyfrwng y Gymraeg ar-lein ar hyn o bryd, felly byddwch yn cael ad-daliad o £9.50. Mae hyn yn yr un faint â’r gostyngiad a roddir am ymgeisio ar-lein yn Saesneg.</p>
+
+    <p>Byddwn yn talu’r ad-daliad i chi cyn pen 20 diwrnod gwaith o gymeradwyo eich cais.</p>
+
+    <h2>Ffyrdd eraill o ymgeisio</h2>
+
+    <p>Pe byddai’n well gennych, gallwch <a id="apply-renew-passport-link" href="https://www.gov.uk/apply-renew-passport">ymgeisio ar-lein yn Saesneg.</a></p>
+
+    <p>Defnyddiwch wasanaeth gwahanol os ydych chi <a id="get-passport-urgently-link" href="https://www.gov.uk/get-a-passport-urgently">angen eich pasbort ar frys</a>. Gallwch ddefnyddio ffurflenni cais Cymraeg ar gyfer gwasanaethau Premiwm Papur neu Lwybr Cyflym.</p>
+
+{% endblock %}

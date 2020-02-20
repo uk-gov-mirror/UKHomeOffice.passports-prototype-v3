@@ -1,0 +1,200 @@
+{% extends "layout-help.html" %}
+
+{% set hmpoTitle %}
+    Cookies
+{% endset %}
+
+{% block helpContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>The online passport application service puts small files (known as ‘cookies’) onto your computer in order to:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>remember what messages you’ve seen so you’re not shown them again</li>
+        <li>understand how you use the service so we can update and improve it</li>
+        <li>temporarily store information you enter to support your application</li>
+    </ul>
+
+    {% call hmpoInsetText() %}
+        <p>The cookies we use don’t identify you personally.</p>
+    {% endcall %}
+
+    <p>Find out <a href="http://www.aboutcookies.org/Default.aspx?page=1" rel="external">how to manage cookies</a>.</p>
+
+    <h2>Introductory cookie message</h2>
+    <p>When you first use the service we show a ‘cookie message’. We then store a cookie on your computer so it knows not to show this message again.</p>
+
+
+    {% set cookieName %}
+        Name
+    {% endset %}
+
+    {% set cookiePurpose %}
+        Purpose
+    {% endset %}
+
+    {% set cookieExpires %}
+        Expires
+    {% endset %}
+
+    {% set seenPurpose %}
+        Lets us know you’ve already seen our cookie message
+    {% endset %}
+
+    {% set seenExpires %}
+        1 month
+    {% endset %}
+
+
+    {% set cookieHead = [ { html: cookieName }, { html: cookiePurpose }, { html: cookieExpires } ] %}
+    {{ govukTable({
+        head: cookieHead,
+        rows: [
+            [ { text: "seen_cookie_message" }, { html: seenPurpose }, { html: seenExpires } ]
+        ]
+    }) }}
+
+
+    <h2>Measuring site use</h2>
+    <p>We use Google Analytics to collect information about how you use this service. This helps us check it’s meeting your needs and make improvements.</p>
+    <p>Google Analytics stores information about:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>how you got to the site</li>
+        <li>pages you visit and how long you spend on them</li>
+        <li>what you click on</li>
+    </ul>
+    <p>No personal details are stored with this information, so you can’t be identified.</p>
+
+
+    {% set _gaPurpose %}
+        Used to distinguish users
+    {% endset %}
+
+    {% set _gaExpires %}
+        2 years
+    {% endset %}
+
+    {% set _gatPurpose %}
+        Used to throttle request rate
+    {% endset %}
+
+    {% set _gatExpires %}
+        10 minutes
+    {% endset %}
+
+    {% set _gcl_auPurpose %}
+        Used by Google AdSense for experimenting with advertisement efficiency across websites using their services
+    {% endset %}
+
+    {% set _gcl_auExpires %}
+        3 months
+    {% endset %}
+
+    {% set _gidPurpose %}
+        Used to distinguish users
+    {% endset %}
+
+    {% set _gidExpires %}
+        24 hours
+    {% endset %}
+
+    {% set _gacPurpose %}
+        Contains campaign related information for the user
+    {% endset %}
+
+    {% set _gacExpires %}
+        90 days
+    {% endset %}
+
+    {{ govukTable({
+        head: cookieHead,
+        rows: [
+            [ { text: "_ga" }, { html: _gaPurpose }, { html: _gaExpires } ],
+            [ { text: "_gat" }, { html: _gatPurpose }, { html: _gatExpires } ],
+            [ { text: "_gcl_au" }, { html: _gcl_auPurpose }, { html: _gcl_auExpires } ],
+            [ { text: "_gid" }, { html: _gidPurpose }, { html: _gidExpires } ],
+            [ { text: "_gac" }, { html: _gacPurpose }, { html: _gacExpires } ]
+        ]
+    }) }}
+
+
+    {% call hmpoInsetText() %}
+        <p>Google isn’t allowed to use or share our analytics data.</p>
+    {% endcall %}
+
+    <p>You can <a href="https://tools.google.com/dlpage/gaoptout" rel="external">opt out of Google Analytics cookies</a>.</p>
+
+    <h2>Session cookies</h2>
+    <p>We store session cookies on your computer to help keep your information secure while you use the service.</p>
+
+    {% set sidPurpose %}
+        Stores a session ID and temporarily stores data you enter to enable you to register or make an application
+    {% endset %}
+
+    {% set sidExpires %}
+        When you close your browser
+    {% endset %}
+
+    {% set langPurpose %}
+        Stores your language choice
+    {% endset %}
+
+    {% set langExpires %}
+        When you close your browser
+    {% endset %}
+
+    {% set pexPurpose %}
+        Stores the time you last accessed the service
+    {% endset %}
+
+    {% set pexExpires %}
+        24 hours
+    {% endset %}
+
+
+    {{ govukTable({
+        head: cookieHead,
+        rows: [
+            [ { text: "hmpo.*.sid" }, { html: sidPurpose }, { html: sidExpires } ],
+            [ { text: "lang" }, { html: langPurpose }, { html: langExpires } ],
+            [ { text: "pex-last-access" }, { html: pexPurpose }, { html: pexExpires } ]
+        ]
+    }) }}
+
+
+    <h2>Error detection</h2>
+
+    {% set scPurpose %}
+        Used to detect errors and show relevant content &ndash; eg if your session has expired
+    {% endset %}
+
+    {% set scExpires %}
+        When you close your browser
+    {% endset %}
+
+    {% set submittedPurpose %}
+        Used to detect a previously submitted application and show relevant content
+    {% endset %}
+
+    {% set submittedExpires %}
+        1 month
+    {% endset %}
+
+    {% set pexCcPurpose %}
+        Used to detect if cookies are enabled and show relevant content
+    {% endset %}
+
+    {% set pexCcExpires %}
+        When you close your browser
+    {% endset %}
+
+    {{ govukTable({
+        head: cookieHead,
+        rows: [
+            [ { text: "hmpo-wizard-sc" }, { html: scPurpose }, { html: scExpires } ],
+            [ { text: "pex-submitted" }, { html: submittedPurpose }, { html: submittedExpires } ],
+            [ { text: "pex-cc" }, { html: pexCcPurpose }, { html: pexCcExpires } ]
+        ]
+    }) }}
+
+{% endblock %}

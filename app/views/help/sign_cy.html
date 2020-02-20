@@ -1,0 +1,33 @@
+{% extends "layout-help.html" %}
+
+{% set hmpoTitle %}
+    Ble i lofnodi eich pasbort
+{% endset %}
+
+{% block helpContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>
+        Pan fyddwch chin cael eich pasbort newydd, rhaid i chi ei lofnodi gyda beiro ddu. Ni allwch ei ddefnyddio nes i chi wneud hyn
+    </p>
+    <p>
+        Bydd angen i chi lofnodi ar linell llofnod y deiliad.
+        Peidiwch ag arwyddo islaw’r llinell.
+    </p>
+
+    <p>
+        <img class="full-width-image" src="{{assetPath}}/images/sign-passport.jpg" alt="Llofnodwch eich pasbort ar y llinell llofnod" />
+    </p>
+
+    <p>Nid oes rhaid i chi lofnodi eich pasbort newydd os:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>ydych yn 11 neu’n iau</li>
+        <li>rydych chi wedi dweud wrth Swyddfa Basbort Ei Mawrhydi na allwch lofnodi oherwydd anabledd</li>
+    </ul>
+
+    <p>Bydd eich pasbort yn dangos ‘nad oes rhaid i’r deiliad lofnodi’.</p>
+
+    <p>Os byddwch chi’n gwneud camgymeriad wrth lofnodi eich pasbort, <a id="passport-adviceline" href="{{urls.help}}">cysylltwch â’r Llinell Gyngor Pasbortau</a>.</p>
+
+{% endblock %}
