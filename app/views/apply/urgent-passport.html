@@ -8,6 +8,14 @@
 {% endset %}
 
 
+{% if values.largePassport %}
+    {% set priceNoText = "No (£85.50)" %}
+    {% set priceYesText = "Yes (from £152)" %}
+{% else %}
+    {% set priceNoText = "No (£75.50)" %}
+    {% set priceYesText = "Yes (from £142)" %}
+{% endif %}
+
 {% block mainContent %}
     {% call hmpoForm(ctx) %}
         {{ hmpoRadios(ctx, {
@@ -21,12 +29,12 @@
                 },
             items: [
                 {
-                    value: false,
-                    text: "No (£75.50)"
+                    text: priceNoText,
+                    value: false
                 },
                 {
-                    value: true,
-                    text: "Yes (from £142)"
+                    text: priceYesText,
+                    value: true
                 }
             ]
         }) }}
