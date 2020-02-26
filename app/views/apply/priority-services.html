@@ -2,12 +2,19 @@
 
 {% set hmpoTitle %}Priority services{% endset %}
 
+{% if values.largePassport %}
+    {% set DFTprice = "Digital Fast Track service (£152)" %}
+    {% set DPSprice = "Online Premium service (£187)" %}
+{% else %}
+    {% set DFTprice = "Digital Fast Track service (£142)" %}
+    {% set DPSprice = "Online Premium service (£177)" %}
+{% endif %}
+
 
 {% block mainContent %}
     <h1 id="header">{{ hmpoTitle }}</h1>
 
     <p>Based on your answers, you’re eligible for the following services:</p>
-
 
     {% set DFTSection %}
         <h3>Choose an appointment</h3>
@@ -54,11 +61,11 @@
         id: "priority-services-accordion",
         items: [
             {
-                heading: { text: "Online Fast Track service (£142)" },
+                heading: { text: DFTprice },
                 content: { html: DFTSection }
             },
             {
-                heading: { text: "Online Premium service (£177)" },
+                heading: { text: DPSprice },
                 content: { html: DPSSection }
             }
         ]
@@ -74,11 +81,11 @@
                 items: [
                     {
                         value: "DFT",
-                        text: "Digital Fast Track service (£142)"
+                        text: DFTprice
                     },
                     {
                         value: "DPS",
-                        text: "Online Premium service (£177)"
+                        text: DPSprice
                     }
                 ]
             }) }}
