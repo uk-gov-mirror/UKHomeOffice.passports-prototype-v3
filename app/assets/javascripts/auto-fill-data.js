@@ -5,7 +5,7 @@
         'age': {
             'adult': 'Adult',
             'rising16': 'Rising 16',
-            'twelvetoFifteen': 'Child 12 to 15',
+            'twelveToFifteen': 'Child 12 to 15',
             'underTwelve': 'Child Under 12'
         },
         'type': {
@@ -28,7 +28,7 @@
 
         'grandparents': {
             'type': ['firstTime'],
-            'age': ['twelvetoFifteen', 'underTwelve']
+            'age': ['twelveToFifteen', 'underTwelve']
         },
 
         'damaged': {
@@ -132,7 +132,7 @@
         },
         'rising16': {
             'dateOfBirth-day': rising16Date.getDate(),
-            'datOfBirth-month': rising16Date.getMonth(),
+            'dateOfBirth-month': rising16Date.getMonth(),
             'dateOfBirth-year': rising16Date.getFullYear(),
             'passportIssue-year': now.getFullYear() - 5
         },
