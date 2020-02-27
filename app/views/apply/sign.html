@@ -22,12 +22,6 @@
 
     {% call hmpoForm(ctx) %}
 
-        <div class="sidebar" aria-hidden="true" id="where-to-sign-sidebar">
-            <h2>Where to sign</h2>
-            {# TODO: consolidate sidebar image sizes at some point #}
-            <img src="/public/images/where-to-sign-x2.png" style="width: 195px" alt="">
-        </div>
-
         {% if values.urgent %}
             {% set hintParagraph = "<p>When you collect your new passport, you need to sign it.</p>" %}
         {% else %}
