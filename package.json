@@ -43,7 +43,7 @@
     "gulp-nodemon": "^2.1.0",
     "gulp-sass": "^4.0.1",
     "gulp-sourcemaps": "^2.6.0",
-    "hmpo-components": "^2.5.1",
+    "hmpo-components": "^2.6.0",
     "hmpo-form-wizard": "^11.5.0",
     "hmpo-i18n": "^4.0.0",
     "keypather": "^3.0.0",
@@ -55,7 +55,7 @@
     "session-file-store": "^1.4.0",
     "sync-request": "^6.0.0",
     "universal-analytics": "^0.4.16",
-    "uuid": "^7.0.0"
+    "uuid": "^7.0.1"
   },
   "greenkeeper": {
     "ignore": [
