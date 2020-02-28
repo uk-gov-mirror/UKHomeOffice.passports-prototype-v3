@@ -15,10 +15,10 @@
             isPageHeading: true
         }) }}
 
-        <div class="sidebar" aria-hidden="true">
+        {% call hmpoSidebar({ attributes: { "aria-hidden": true }, classes: "hmpo-sidebar__small-image" }) %}
             <h2>Where to find your passport issue date</h2>
             <img src="/public/images/issue_date_illustration.png" alt="">
-        </div>
+        {% endcall %}
 
         {% if not values.isUKApplication %}
             {{ hmpoRadios(ctx, {
