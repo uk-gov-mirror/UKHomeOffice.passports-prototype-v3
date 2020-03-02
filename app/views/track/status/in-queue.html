@@ -28,6 +28,9 @@
     </p>
 
     <p>When we’ve finished checking your application, we’ll update this page.</p>
+{% endblock %}
+
+{% block trackingHistory %}
 
     {{ trackingHistory([
       "Form confirming identity received" if values.documentsRequired == "none" else "Documents received",

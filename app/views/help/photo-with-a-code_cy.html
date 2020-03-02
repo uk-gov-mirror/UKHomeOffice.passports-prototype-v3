@@ -24,14 +24,9 @@
         <p>Mae’r cod llun yn wasanaeth newydd ac efallai na fydd ar gael eto mewn bythau lluniau neu siopau yn eich ardal.</p>
     {% endcall %}
 
-    </div>
-
-    <div class="govuk-grid-column-one-third">
-        <div class="app-related-items">
-            <h2>Ble i ddod o hyd i’ch cod</h2>
-            <img src="{{ assetPath }}/images/printed-photo-code.jpg" alt="">
-        </div>
-    </div>
-    <div class="govuk-grid-column-two-thirds">
+    {% call hmpoSidebar({ classes: "hmpo-sidebar__big-image" }) %}
+        <h2>Ble i ddod o hyd i’ch cod</h2>
+        <img src="{{ assetPath }}/images/printed-photo-code.jpg" alt="">
+    {% endcall %}
 
 {% endblock %}

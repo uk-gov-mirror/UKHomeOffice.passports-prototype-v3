@@ -1,9 +1,9 @@
 {% if values.photo %}
-<div class="sidebar app-related-items photo-preview">
-    <h2>Your photo</h2>
-    <img class="photo" src="{{ values.photo }}" alt="Your photo">
-    {% if values["photoCode"] %}
-        <div class="photo-code-url"><p>{{ values.photoCode }}</p></div>
-    {% endif %}
-</div>
+    {% call hmpoSidebar({ classes: "hmpo-sidebar__photo-preview" }) %}
+        <h2>Your photo</h2>
+        <img src="{{ values.photo }}" alt="Your photo">
+        {% if values["photoCode"] %}
+            <div class="photo-code-url"><p>{{ values.photoCode }}</p></div>
+        {% endif %}
+    {% endcall %}
 {% endif %}

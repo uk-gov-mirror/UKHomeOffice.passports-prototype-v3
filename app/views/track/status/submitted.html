@@ -1,7 +1,7 @@
 {% extends "layout-tracking-status.html" %}
 
 {% block trackingHeader %}
-    <h1>Submitted</h1>
+    <h1>Send your documents</h1>
 {% endblock %}
 
 {% block trackingBody %}
@@ -45,6 +45,9 @@
             If we still haven’t received your {% if values.documentsRequired == "passport" %}old passport{% else %}documents{% endif %}, <a href="/help" target="_blank">contact HM Passport Office.</a>
         </p>
     {% endcall %}
+{% endblock %}
+
+{% block trackingHistory %}
 
     {{ trackingHistory([
       "Application submitted"
