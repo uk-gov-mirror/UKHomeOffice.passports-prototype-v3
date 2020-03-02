@@ -498,8 +498,17 @@ const apply = {
             '/apply/how-to-dps'
         ]
     },
-    '/apply/how-to-dft':{},
-    '/apply/how-to-dps':{},
+    '/apply/how-to-dft':{
+        next: [
+            '/apply/priority-booking-dateandplace'
+        ]
+    },
+    '/apply/how-to-dps':{
+        next: [
+            '/apply/priority-booking-dateandplace'
+        ]
+    },
+    '/apply/priority-booking-dateandplace':{},
     '/apply/confirm-identity': {
         next: [
             { field: 'documentsRequired', value: 'none', next: '/apply/cost' },
