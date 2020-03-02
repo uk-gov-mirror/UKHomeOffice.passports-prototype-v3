@@ -7,6 +7,9 @@
 {% block trackingBody %}
     <p>We sent you a letter on {{values.submitted | date}} that has more details about the problem with your application.</p>
     <p>If this letter has not arrived, please <a href="/help" target="_blank">contact us</a>.</p>
+{% endblock %}
+
+{% block trackingHistory %}
 
     {{ trackingHistory([
       "We’ve sent you a letter",

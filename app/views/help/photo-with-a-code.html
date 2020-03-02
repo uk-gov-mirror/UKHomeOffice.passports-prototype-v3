@@ -24,14 +24,9 @@
         <p>The photo code is a new service and may not be available yet from photo booths or shops in your area.</p>
     {% endcall %}
 
-    </div>
-
-    <div class="govuk-grid-column-one-third">
-        <div class="app-related-items">
-            <h2>Where to find your code</h2>
-            <img src="{{ assetPath }}/images/printed-photo-code.jpg" alt="">
-        </div>
-    </div>
-    <div class="govuk-grid-column-two-thirds">
+    {% call hmpoSidebar({ classes: "hmpo-sidebar__big-image" }) %}
+        <h2>Where to find your code</h2>
+        <img src="{{ assetPath }}/images/printed-photo-code.jpg" alt="">
+    {% endcall %}
 
 {% endblock %}

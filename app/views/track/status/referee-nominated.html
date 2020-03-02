@@ -24,7 +24,9 @@
     {% call hmpoDetails({ summaryText: "If the person you ask can’t do this online" }) %}
         You need to ask them to <a href="/track/use-a-form">use a paper form</a>.
     {% endcall %}
+{% endblock %}
 
+{% block trackingHistory %}
 
     {{ trackingHistory([
       "Email sent to person confirming your identity",

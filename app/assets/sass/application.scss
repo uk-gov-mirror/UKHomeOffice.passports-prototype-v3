@@ -7,12 +7,12 @@ $hmpo-assets-path: '/public/';
 
 // Import GOV.UK Frontend and any extension styles if extensions have been configured
 @import "lib/extensions/extensions";
+@import "node_modules/hmpo-components/all";
 
 // Patterns that aren't in Frontend
 @import "patterns/step-by-step-navigation";
 @import "patterns/task-list";
 @import "patterns/related-items";
-@import "patterns/sidebar";
 @import "patterns/summary-list";
 @import "patterns/accordions";
 @import "patterns/photo-guide";
@@ -25,6 +25,4 @@ $hmpo-assets-path: '/public/';
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
 
 @import "patterns/autofill";
-
-@import "node_modules/hmpo-components/all";
 

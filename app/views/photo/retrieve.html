@@ -57,10 +57,10 @@
             </fieldset>
         </div>
 
-        <div class="sidebar app-related-items">
+        {% call hmpoSidebar({ classes: "hmpo-sidebar__big-image" }) %}
             <h2>Where to find your code</h2>
-            <img src="/public/images/printed-photo-code.jpg" style="width: 100%; max-width: 400px" alt="">
-        </div>
+            <img src="/public/images/printed-photo-code.jpg" alt="">
+        {% endcall %}
 
         {{ hmpoSubmit(ctx) }}
     {% endcall %}

@@ -22,7 +22,7 @@
     }
   },
   "dependencies": {
-    "acorn": "^7.1.0",
+    "acorn": "^7.1.1",
     "ansi-colors": "^4.1.1",
     "basic-auth": "^2.0.0",
     "basic-auth-connect": "^1.0.0",
@@ -43,7 +43,7 @@
     "gulp-nodemon": "^2.1.0",
     "gulp-sass": "^4.0.1",
     "gulp-sourcemaps": "^2.6.0",
-    "hmpo-components": "^2.6.0",
+    "hmpo-components": "^2.6.3",
     "hmpo-form-wizard": "^11.5.0",
     "hmpo-i18n": "^4.0.0",
     "keypather": "^3.0.0",

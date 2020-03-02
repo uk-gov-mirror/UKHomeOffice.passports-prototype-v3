@@ -13,31 +13,31 @@
     {% block trackingBody %}{% endblock %}
 
     {% block trackingsidebar %}
-        <div class="sidebar">
-            <ul class="sidebar-task">
-                <li>
+        {% call hmpoSidebar({ classes: "sidebar-task" }) %}
+            <ul>
+                <li class="sidebar-task__panel">
                     <h3>Application reference</h3>
                     <p>{{ values.formattedReference }}</p>
                 </li>
 
                 {% if values.documentsRequired != "none" %}
-                    <li>
+                    <li class="sidebar-task__panel">
                         <h3>Documents</h3>
                         <p><a target="_blank" href="/help/documents">What you need to send</a></p>
                     </li>
                 {% endif %}
 
                 {% if values.status != "AWAITING_REFEREE_NOMINATION" %}
-                    <li>
+                    <li class="sidebar-task__panel">
                         <h3>Tell us what you think</h3>
                         <p><a target="_blank" href="/">Fill in a survey about this service</a></p>
                     </li>
                 {% endif %}
             </ul>
-        </div>
+        {% endcall %}
     {% endblock %}
 
-
+    {% block trackingHistory %}{% endblock %}
 {% endblock %}
 
 {% macro trackingHistory(history) %}

@@ -28,6 +28,9 @@
     {% elif values.emailNotification %}
         <p>We’ll email you when your application is approved.</p>
     {% endif %}
+{% endblock %}
+
+{% block trackingHistory %}
 
     {{ trackingHistory([
       "Application being processed",
