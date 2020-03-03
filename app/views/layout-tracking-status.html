@@ -41,6 +41,8 @@
 {% endblock %}
 
 {% macro trackingHistory(history) %}
+    {% set history = history | filter %}
+
     <hr class="govuk-section-break govuk-section-break--visible">
 
     {% set trackingStatusRows = [] %}

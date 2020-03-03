@@ -13,6 +13,10 @@
 
     {{ trackingHistory([
       "We’ve sent you a letter",
+      "Application received" if values.documentsRequired != "none",
+      "Identity details received" if values.csigRequired,
+      "Email sent to person confirming your identity" if values.csigRequired,
+      "Ask someone to confirm your identity" if values.csigRequired,
       "Application submitted"
     ]) }}
 

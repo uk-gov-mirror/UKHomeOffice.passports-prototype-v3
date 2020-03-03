@@ -1,7 +1,11 @@
 {% extends "layout-tracking-status.html" %}
 
 {% block trackingHeader %}
-    <h1>Send your documents</h1>
+    {% if values.documentsRequired == "passport" %}
+        <h1>Send your old passport</h1>
+    {% else %}
+        <h1>Send your documents</h1>
+    {% endif %}
 {% endblock %}
 
 {% block trackingBody %}
@@ -50,6 +54,10 @@
 {% block trackingHistory %}
 
     {{ trackingHistory([
+      "Application received",
+      "Identity details received" if values.csigRequired,
+      "Email sent to person confirming your identity" if values.csigRequired,
+      "Ask someone to confirm your identity" if values.csigRequired,
       "Application submitted"
     ]) }}
 
