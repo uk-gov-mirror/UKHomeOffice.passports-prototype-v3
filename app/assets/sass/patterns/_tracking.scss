@@ -7,6 +7,12 @@
         padding: 0;
     }
 
+    .sidebar-task__panel-group {
+        display: flex;
+        flex-flow: column-reverse;
+        margin: 0;
+    }
+
     .sidebar-task__panel {
         padding: ($govuk-gutter / 2) 0;
         margin: 0;
@@ -22,6 +28,9 @@
     }
 
     @include govuk-media-query($from: tablet) {
+        .sidebar-task__panel-group {
+            display: block;
+        }
         .sidebar-task__panel {
             padding: $govuk-gutter / 2;
             border-width: 1px 1px 0 1px;
