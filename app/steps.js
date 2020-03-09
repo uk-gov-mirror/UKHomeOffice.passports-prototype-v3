@@ -489,6 +489,9 @@ const apply = {
             '/apply/documents-to-send'
         ]
     },
+    '/apply/urgent-passport-how-to' : {
+        next: '/apply/ '
+    },
     '/apply/confirm-identity': {
         next: [
             { field: 'documentsRequired', value: 'none', next: '/apply/cost' },
