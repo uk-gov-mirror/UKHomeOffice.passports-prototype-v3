@@ -471,9 +471,21 @@ const apply = {
     '/apply/confirm': {
         editable: false,
         next: [
-            { field: 'csigRequired', value: true, next: '/apply/confirm-identity' },
-            { field: 'urgent', value: true, next: '/apply/cost' },
             { field: 'documentsRequired', value: 'none', next: '/apply/cost' },
+            { field: 'csigRequired', value: true, next: '/apply/confirm-identity' },
+            { field: 'applicationType', value: 'renew', next: [
+                { field: 'dpsUpsellEligible', value: true, next: '/apply/urgent-passport' },
+                '/apply/documents-to-send'
+            ] },
+            '/apply/documents-to-send'
+        ]
+    },
+    '/apply/urgent-passport': {
+        fields: [
+            'urgentPassport'
+        ],
+        next: [
+            { field: 'urgentPassport', value: true, next: '/apply/ ' },
             '/apply/documents-to-send'
         ]
     },

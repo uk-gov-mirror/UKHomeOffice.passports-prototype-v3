@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Do you need your passport urgently?{% endset %}
+
+{% set infoText %}
+    <p>It should take 3 weeks to get your passport with the standard service.</p>
+    <p>If you need your passport urgently, book an appointment to collect it from a <a href="https://www.passport.service.gov.uk/help/passport-offices/" target="_blank">passport office</a>. The earliest you can get an appointment is 2 days away.</p>
+{% endset %}
+
+
+{% if values.largePassport %}
+    {% set priceNoText = "No, I'll use the standard service (£85.50)" %}
+    {% set priceYesText = "Yes, I need it urgently (£187)" %}
+{% else %}
+    {% set priceNoText = "No, I'll use the standard service (£75.50)" %}
+    {% set priceYesText = "Yes, I need it urgently (£177)" %}
+{% endif %}
+
+{% block mainContent %}
+    {% call hmpoForm(ctx) %}
+        {{ hmpoRadios(ctx, {
+            id: "urgentPassport",
+            legend: {
+                text: hmpoTitle
+            },
+            isPageHeading: true,
+            hint:{
+                html: infoText
+                },
+            items: [
+                {
+                    text: priceNoText,
+                    value: false
+                },
+                {
+                    text: priceYesText,
+                    value: true
+                }
+            ]
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}

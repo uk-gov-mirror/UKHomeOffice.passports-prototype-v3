@@ -9,6 +9,7 @@ class DefaultController extends BaseController {
         this.setEUSSEligible(req)
         this.setGrandparentsRequired(req)
         this.setParentOfChild(req)
+        //this.setDPSUpsellEligible(req)
         this.setCosts(req)
         this.setCsigRequired(req)
         this.setDocsRequired(req)
@@ -179,6 +180,21 @@ class DefaultController extends BaseController {
         const isParentOfChild = isParent && req.sessionModel.get('adultOrChild') === 'child'
 
         req.sessionModel.set('isParentOfChild', isParentOfChild)
+    }
+
+    setDPSUpsellEligible (req) {
+        let dftUpsellEligible = false
+        if (req.sessionModel.get('adultOrChild') === 'adult' &&
+            req.sessionModel.get('bornInUK') === true &&
+            req.sessionModel.get('thirdParty') === false &&
+            req.sessionModel.get('isUKApplication') === true &&
+            req.sessionModel.get('changeOfName') === false &&
+            req.sessionModel.get('damaged') === false &&
+            req.sessionModel.get('lost') === false &&
+            req.sessionModel.get('otherPassports') === false) {
+            dftUpsellEligible = true
+        }
+        req.sessionModel.set('dpsUpsellEligible', dpsUpsellEligible)
     }
 
     setCosts (req) {

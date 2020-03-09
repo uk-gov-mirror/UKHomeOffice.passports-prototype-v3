@@ -698,6 +698,10 @@ module.exports = {
             // 'explanation'
         ]
     },
+    urgentPassport: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
     documentsToSend: {
         formatter: 'boolean'
     },
