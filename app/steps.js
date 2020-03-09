@@ -485,7 +485,7 @@ const apply = {
             'urgentPassport'
         ],
         next: [
-            { field: 'urgentPassport', value: true, next: '/apply/ ' },
+            { field: 'urgentPassport', value: true, next: '/apply/urgent-passport-how-to' },
             '/apply/documents-to-send'
         ]
     },
