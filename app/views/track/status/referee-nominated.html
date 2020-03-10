@@ -38,7 +38,8 @@
 
 
 {% set nextStatuses = [
-    "REFEREE_DETAILS_SUBMITTED",
+    "SUBMITTED" if values.documentsRequired != 'none',
+    "REFEREE_DETAILS_SUBMITTED" if values.documentsRequired == 'none',
     "REFEREE_INELIGIBLE"
-] %}
+] | filter %}
 

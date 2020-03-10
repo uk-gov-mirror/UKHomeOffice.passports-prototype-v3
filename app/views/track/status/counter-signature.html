@@ -26,6 +26,9 @@
       "Application being processed",
       "Form confirming identity received" if values.documentsRequired == "none" else "Documents received",
       "Application received",
+      "Identity details received" if values.csigRequired,
+      "Email sent to person confirming your identity" if values.csigRequired,
+      "Ask someone to confirm your identity" if values.csigRequired,
       "Application submitted"
     ]) }}
 
