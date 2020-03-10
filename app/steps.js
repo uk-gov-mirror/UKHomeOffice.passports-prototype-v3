@@ -490,6 +490,9 @@ const apply = {
         ]
     },
     '/apply/urgent-passport-how-to' : {
+        next: '/apply/urgent-passport-book-date-and-place'
+    },
+    '/apply/urgent-passport-book-date-and-place' : {
         next: '/apply/ '
     },
     '/apply/confirm-identity': {
