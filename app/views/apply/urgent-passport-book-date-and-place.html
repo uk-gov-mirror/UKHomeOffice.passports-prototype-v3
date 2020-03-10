@@ -2,57 +2,408 @@
 
 {% set hmpoTitle %}Choose a date and place{% endset %}
 
-{% block css %}
-<link rel="stylesheet" href="styles.css" />
-{% endblock %}
 
+{% block hmpoContent %}
 
-{% block mainContent %}
-    <h1>{{ hmpoTitle }}</h1>
-    <p>You'll need to collect your new passport from a <a href="https://www.passport.service.gov.uk/help/passport-offices/" target="_blank">passport office</a>. You can ask someone else to go for you if you’re not available.</p>
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+            <h1>{{ hmpoTitle }}</h1>
+            <p>You'll need to collect your new passport from a <a href="https://www.passport.service.gov.uk/help/passport-offices/" target="_blank">passport office</a>. You can ask someone else to go for you if you’re not available.</p>
 
+            <div style="padding-bottom:2em">
+                <div class="later-time direction-arrow ">
+                    <a class="govuk-body-m" href=" ">Later</a>
+                </div>
+            </div>
 
-{{ govukTable({
-  caption: "Dates and amounts",
-  firstCellIsHeader: true,
-  head: [
-    {
-      text: "Date"
-    },
-    {
-      text: "Amount"
-    }
-  ],
-  rows: [
-    [
-      {
-        text: "First 6 weeks"
-      },
-      {
-        text: "£109.80 per week"
-      }
-    ],
-    [
-      {
-        text: "Next 33 weeks"
-      },
-      {
-        text: "£109.80 per week"
-      }
-    ],
-    [
-      {
-        text: "Total estimated pay"
-      },
-      {
-        text: "£4,282.20"
-      }
-    ]
-  ]
-}) }}
+            <table class="govuk-table booking-table">
+                <thead class="govuk-table__head">
+                    <tr class="govuk-table__row">
 
+                        <th>
+                            Thursday<br>
+                            12 March
+                        </th>
 
+                        <th>
+                            Friday<br>
+                            13 March
+                        </th>
 
+                        <th>
+                            Saturday<br>
+                            14 March
+                        </th>
 
+                        <th>
+                            Monday<br>
+                            16 March
+                        </th>
+
+                        <th>
+                            Tuesday<br>
+                            17 March
+                        </th>
+
+                        <th>
+                            Wednesday<br>
+                            18 March
+                        </th>
+
+                    </tr>
+                </thead>
+
+                <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/london/2020-03-12">
+                                London
+                                <br>
+                                <span class="unavailable">Unavailable</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/london/2020-03-13">
+                                London
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/london/2020-03-14">
+                                London
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/london/2020-03-16">
+                                London
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/london/2020-03-17">
+                                London
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/london/2020-03-18">
+                                London
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/peterborough/2020-03-12">
+                                Peterborough
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/peterborough/2020-03-13">
+                                Peterborough
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/peterborough/2020-03-14">
+                                Peterborough
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/peterborough/2020-03-16">
+                                Peterborough
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/peterborough/2020-03-17">
+                                Peterborough
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/peterborough/2020-03-18">
+                                Peterborough
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                    </tr>
+                    <tr class="govuk-table__row">
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/newport/2020-03-12">
+                                Newport
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/newport/2020-03-13">
+                                Newport
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/newport/2020-03-14">
+                                Newport
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/newport/2020-03-16">
+                                Newport
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/newport/2020-03-17">
+                                Newport
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/newport/2020-03-18">
+                                Newport
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/liverpool/2020-03-12">
+                                Liverpool
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/liverpool/2020-03-13">
+                                Liverpool
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/liverpool/2020-03-14">
+                                Liverpool
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/liverpool/2020-03-16">
+                                Liverpool
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/liverpool/2020-03-17">
+                                Liverpool
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/liverpool/2020-03-18">
+                                Liverpool
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/durham/2020-03-12">
+                                Durham
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/durham/2020-03-13">
+                                Durham
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/durham/2020-03-14">
+                                Durham
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/durham/2020-03-16">
+                                Durham
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/durham/2020-03-17">
+                                Durham
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/durham/2020-03-18">
+                                Durham
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/glasgow/2020-03-12">
+                                Glasgow
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/glasgow/2020-03-13">
+                                Glasgow
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/glasgow/2020-03-14">
+                                Glasgow
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/glasgow/2020-03-16">
+                                Glasgow
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/glasgow/2020-03-17">
+                                Glasgow
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/glasgow/2020-03-18">
+                                Glasgow
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr class="govuk-table__row">
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/belfast/2020-03-12">
+                                Belfast
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/belfast/2020-03-13">
+                                Belfast
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/belfast/2020-03-14">
+                                Belfast
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/belfast/2020-03-16">
+                                Belfast
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <span class="unavailable">Belfast</span>
+                        </td>
+
+                        <td class="govuk-table__cell">
+                            <a href="/booking/choose-time/belfast/2020-03-18">
+                                Belfast
+                                <br>
+                                <span class="available">Available</span>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
 {% endblock %}

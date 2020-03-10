@@ -1,0 +1,109 @@
+.booking-table{
+    border:1px solid #b1b4b6;
+    table-layout:fixed
+}
+.booking-table td{
+    border-right:1px solid #b1b4b6
+}
+.booking-table td a{
+    text-decoration-line:none
+}
+.booking-table thead tr th{
+    border-right:1px solid #b1b4b6;
+    text-align:center;
+    padding:0.5em 0.8em;
+    height:2.7em
+}
+.booking-table thead th{
+    border-bottom:1px solid #b1b4b6
+}
+.booking-table tbody tr td{
+    text-align:center;
+    padding:0.5em 0.8em;
+    height:2.7em
+}
+.booking-table .unavailable{
+    color:#b1b4b6
+}
+.booking-table thead tr th{
+    font-size:13px
+}
+.booking-table tbody tr td{
+    font-size:13px
+}
+.booking-table .available{
+    font-size:13px
+}
+.booking-table td+td+td+td{
+    display:none
+}
+.booking-table th+th+th+th{
+    display:none
+}
+@media (min-width: 40.0625em){
+    .booking-table thead tr th{
+        font-size:14px
+    }
+    .booking-table tbody tr td{
+        font-size:14px
+    }
+    .booking-table td+td+td+td{
+        display:table-cell
+    }
+    .booking-table th+th+th+th{
+        display:table-cell
+    }
+}
+@media (min-width: 48.0625em){
+    .booking-table thead tr th{
+        font-size:1em
+    }
+    .booking-table tbody tr td{
+        font-size:1em
+    }
+    .booking-table .available{
+        font-size:16px
+    }
+    .booking-table td+td+td+td{
+        display:table-cell
+    }
+    .booking-table th+th+th+th{
+        display:table-cell
+    }
+}
+.direction-arrow{
+    display:inline
+}
+.direction-arrow a{
+    text-decoration:none
+}
+.earlier-time{
+    float:left
+}
+.earlier-time a{
+    background:url(/public/images/left-arr.png) no-repeat 0 0.3em;
+    padding-left:16px
+}
+.later-time{
+    float:right
+}
+.later-time a{
+    background:url(/public/images/right-arr.png) no-repeat 2.5em 0.3em;
+    padding-right:16px
+}
+.direction-links-container{
+    padding-bottom:2em
+}
+@media (min-width: 40.0625em){
+    .hide-above-mobile{
+        display:none
+    }
+}
+@media (min-width: 48.0625em){
+    .hide-above-mobile{
+        display:none
+    }
+}
+.address-title{
+    margin-bottom:0px
+}
