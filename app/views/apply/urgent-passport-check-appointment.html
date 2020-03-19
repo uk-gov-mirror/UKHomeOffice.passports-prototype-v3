@@ -1,0 +1,46 @@
+{% extends "layout-apply.html" %}
+
+{% set hmpoTitle %}Check your appointment{% endset %}
+
+{% block mainContent %}
+  <h1>{{ hmpoTitle }}</h1>
+  {{ govukWarningText({
+    text: "You must take your old passport to your appointment.",
+    iconFallbackText: "Warning"
+  }) }}
+  <h2>Collection appointment</h2>
+    <p>Thursday, 19 September 2019<br>
+    at 2:00pm</p>
+    <p>Glasgow HM Passport Office<br>
+    3 Northgate </br>
+    96 Milton Street </br>
+    Cowcaddens </br>
+    Glasgow </br>
+    G4 0BT </br>
+    <a href="https://www.google.co.uk/maps/?q=Glasgow%20HM%20Passport%20Office,%20G4%200BT" target="_blank">View map</a></p>
+  <br>
+
+  {{ govukSummaryList({ rows: [
+    {
+      key: { text: "Passport size" },
+      value: { html:
+          (
+              "Frequent traveller 50-page passport"
+              if values.largePassport else
+              "Standard 34-page passport"
+          )
+      }
+    },
+    {
+      key: { text: "Total" },
+      value: { html:
+        (values.passportCost | currency)
+      }
+    }
+  ]})}}
+
+  {% call hmpoForm(ctx) %}
+  {{ hmpoSubmit(ctx) }}
+  {% endcall %}
+
+{% endblock %}

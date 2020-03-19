@@ -493,9 +493,16 @@ const apply = {
         next: '/apply/urgent-passport-book-date-and-place'
     },
     '/apply/urgent-passport-book-date-and-place' : {
+        noPost: true,
         next: '/apply/urgent-passport-book-time'
     },
-
+    '/apply/urgent-passport-book-time' : {
+        noPost: true,
+        next: '/apply/urgent-passport-check-appointment'
+    },
+    '/apply/urgent-passport-check-appointment' : {
+        next: '/apply/declaration'
+    },
     '/apply/confirm-identity': {
         next: [
             { field: 'documentsRequired', value: 'none', next: '/apply/cost' },
