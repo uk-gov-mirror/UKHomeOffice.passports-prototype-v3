@@ -9,7 +9,8 @@
     <h1>{{ hmpoTitle }}</h1>
 
     <h2>How to get a photo code</h2>
-    <p>At a photo booth or shop, choose to get a code with your photo.</p>
+    <p>Check if the photo code is available at your local photo shop or booth.</p>
+    <p>You’ll need to choose to get a code with your photo.</p>
 
     <h2>How to use a photo code</h2>
     <p>It’s simple and easy to use. In the online passport application:</p>
@@ -20,13 +21,10 @@
         <li>check your photo and submit it</li>
         <li>your photo will be added directly to your application</li>
     </ol>
-    {% call hmpoInsetText() %}
-        <p>The photo code is a new service and may not be available yet from photo booths or shops in your area.</p>
-    {% endcall %}
 
     {% call hmpoSidebar({ classes: "hmpo-sidebar__big-image" }) %}
         <h2>Where to find your code</h2>
-        <img src="{{ assetPath }}/images/printed-photo-code.jpg" alt="">
+        <img src="/public/images/printed-photo-code.jpg" alt="">
     {% endcall %}
 
 {% endblock %}
