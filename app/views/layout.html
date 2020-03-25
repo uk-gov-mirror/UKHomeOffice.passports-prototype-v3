@@ -60,34 +60,33 @@
   {% include "includes/head.html" %}
 {% endblock %}
 
-
 {% block cookieBanner %}
-
-<div id="global-cookie-message" class="gem-c-cookie-banner govuk-clearfix" aria-label="cookie banner" style="display: block;">
-    <div class="gem-c-cookie-banner__wrapper govuk-width-container">
-        <div class="govuk-grid-row">
-            <div class="govuk-grid-column-two-thirds">
-
-                <div class="gem-c-cookie-banner__message">
-                    <br>
-                    <span class="govuk-heading-m">Tell us whether you accept cookies</span>
-                    <p class="govuk-body">We use <a class="govuk-link" href="/help/cookies">cookies to collect information</a> about how you use GOV.UK. We use this information to make the website work as well as possible and improve government services.</p>
-                </div>
-
+    {% if not values.cookiesAccepted %}
+        <div id="global-cookie-message" class="gem-c-cookie-banner govuk-clearfix" style="display: block;">
+            <div class="gem-c-cookie-banner__wrapper govuk-width-container">
                 <div class="govuk-grid-row">
-                    <div class="gem-c-cookie-banner__button gem-c-cookie-banner__button-accept govuk-grid-column-full govuk-grid-column-one-half-from-desktop">
-                        <a class="gem-c-button govuk-button gem-c-button--inline" type="submit">Accept all cookies</a>
-                    </div>
-                    <div class="gem-c-cookie-banner__button gem-c-cookie-banner__button-settings govuk-grid-column-full govuk-grid-column-one-half-from-desktop">
-                        <a class="gem-c-button govuk-button govuk-button--secondary gem-c-button--inline" href="/help/cookies">Set cookie preferences</a>
+                    <div class="govuk-grid-column-two-thirds">
+
+                        <div class="gem-c-cookie-banner__message">
+                            <br>
+                            <span class="govuk-heading-m">Tell us whether you accept cookies</span>
+                            <p class="govuk-body">We use <a class="govuk-link" href="/help/cookies">cookies to collect information</a> about how you use this service. We use this information to make the website work as well as possible and improve our services.</p>
+                        </div>
+
+                        <div class="govuk-grid-row">
+                            <div class="gem-c-cookie-banner__button gem-c-cookie-banner__button-accept govuk-grid-column-full govuk-grid-column-one-half-from-desktop">
+                                <a  name="cookies-accept-button" id="cookies-accept-button" class="gem-c-button govuk-button gem-c-button--inline" href="?cookies=true">Accept all cookies</a>
+                            </div>
+                            <div class="gem-c-cookie-banner__button gem-c-cookie-banner__button-settings govuk-grid-column-full govuk-grid-column-one-half-from-desktop">
+                                <a class="gem-c-button govuk-button govuk-button--secondary gem-c-button--inline" href="/help/cookies-setting?cookies=true">Set cookie preferences</a>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
-
             </div>
         </div>
-    </div>
-</div>
-
+    {% endif %}
 {% endblock %}
 
 {% block beforeContent %}

@@ -14,6 +14,16 @@ class DefaultController extends DateMixin(BaseController) {
         })
         next()
     }
+
+    getValues (req, res, next) {
+        // console.log('Getting values')
+        if  (req.query['cookies']) {
+            req.sessionModel.set ('cookiesAccepted', true)
+            console.log('Set cookie value')
+        }
+        super.getValues (req, res, next)
+    }
 }
+
 
 module.exports = DefaultController
