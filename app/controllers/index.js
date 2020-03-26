@@ -16,11 +16,21 @@ class DefaultController extends DateMixin(BaseController) {
     }
 
     getValues (req, res, next) {
-        // console.log('Getting values')
+        let backURL = req.sessionModel.get('backURL')
+        if  (backURL && backURL === req.originalUrl){ //clears backURL when redirected back
+            req.sessionModel.set('backURL', undefined)
+        }
+        req.sessionModel.set('currentURL', req.originalUrl)
+        console.log('Getting values')
         if  (req.query['cookies']) {
-            req.sessionModel.set ('cookiesAccepted', true)
+            res.cookie('cookiesAccepted', true)
+            req.cookies['cookiesAccepted'] = true
             console.log('Set cookie value')
         }
+        if (req.query['backURL']) {
+            req.sessionModel.set('backURL', req.query['backURL'])
+        }
+        req.sessionModel.set ('cookies', req.cookies)
         super.getValues (req, res, next)
     }
 }

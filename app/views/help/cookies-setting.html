@@ -1,8 +1,11 @@
 {% extends "layout-help.html" %}
 
+{% set backLink = false %}
+
 {% set hmpoTitle %}
     Cookies on our service
 {% endset %}
+
 
 {% block helpContent %}
 
@@ -196,5 +199,7 @@
             [ { text: "pex-cc" }, { html: pexCcPurpose }, { html: pexCcExpires } ]
         ]
     }) }}
+
+    <a  class="gem-c-button govuk-button gem-c-button--inline" href="{{values.backURL}}">Save settings</a>
 
 {% endblock %}

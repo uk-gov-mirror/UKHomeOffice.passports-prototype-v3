@@ -61,7 +61,8 @@
 {% endblock %}
 
 {% block cookieBanner %}
-    {% if not values.cookiesAccepted %}
+    {# {% if not values.cookiesAccepted %} #}
+    {% if not values.cookies.cookiesAccepted %}
         <div id="global-cookie-message" class="gem-c-cookie-banner govuk-clearfix" style="display: block;">
             <div class="gem-c-cookie-banner__wrapper govuk-width-container">
                 <div class="govuk-grid-row">
@@ -78,7 +79,7 @@
                                 <a  name="cookies-accept-button" id="cookies-accept-button" class="gem-c-button govuk-button gem-c-button--inline" href="?cookies=true">Accept all cookies</a>
                             </div>
                             <div class="gem-c-cookie-banner__button gem-c-cookie-banner__button-settings govuk-grid-column-full govuk-grid-column-one-half-from-desktop">
-                                <a class="gem-c-button govuk-button govuk-button--secondary gem-c-button--inline" href="/help/cookies-setting?cookies=true">Set cookie preferences</a>
+                                <a name="cookies-setting-button" id="cookies-setting-button" class="gem-c-button govuk-button govuk-button--secondary gem-c-button--inline" href="/help/cookies-setting?cookies=true&backURL={{values.currentURL}}">Set cookie preferences</a>
                             </div>
                         </div>
 

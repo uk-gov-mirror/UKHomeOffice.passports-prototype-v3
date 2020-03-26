@@ -1,4 +1,7 @@
 const apply = {
+    '/help/cookies-setting': {
+        checkJourney: false,
+    },
     '/filter': {
         entryPoint: true,
         resetJourney: true,
