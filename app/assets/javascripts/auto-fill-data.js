@@ -9,10 +9,10 @@
             'underTwelve': 'Child Under 12'
         },
         'type': {
+            'lostAndStolen': 'Lost and stolen',
             'renew': 'Renewal',
             'firstTime': 'First time',
             'oldBlue': 'Old blue book',
-            'lostAndStolen': 'Lost and stolen'
         },
         'damaged': 'Damaged',
         'naturalised': 'Naturalised',
