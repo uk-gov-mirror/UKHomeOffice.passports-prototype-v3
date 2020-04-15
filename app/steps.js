@@ -9,7 +9,7 @@ const apply = {
         next: '/filter/begin'
     },
     '/filter/begin': {
-        backLink: '/start.html',
+        backLink: '/index.html',
         next: '/filter/overseas'
     },
     '/filter/overseas': {
