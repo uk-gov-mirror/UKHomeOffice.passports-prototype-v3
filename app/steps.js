@@ -2,6 +2,9 @@ const apply = {
     '/help/cookies-setting': {
         checkJourney: false,
     },
+    '/help/cookies-policy': {
+        checkJourney: false,
+    },
     '/filter': {
         entryPoint: true,
         resetJourney: true,
