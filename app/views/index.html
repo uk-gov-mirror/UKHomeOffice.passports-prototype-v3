@@ -1,25 +1,10 @@
 {% extends "layout.html" %}
 
-{% set hmpoTitle %}Latest{% endset %}
+{% set hmpoTitle %}Cookie consent v2{% endset %}
 
 {% block header %}
     {{ govukHeader({
         serviceName: govukServiceName,
-        navigation: [
-            {
-                href: "./",
-                text: hmpoTitle,
-                active: true
-            },
-            {
-                href: "notifications",
-                text: "Notifications"
-            },
-            {
-                href: "archive",
-                text: "Archive"
-            }
-        ],
         serviceUrl: "/"
     }) }}
 {% endblock %}
@@ -28,61 +13,12 @@
 {% endblock %}
 
 {% block mainContent %}
-    <span class="govuk-caption-xl">{{ govukServiceName }}</span>
     <h1>{{ hmpoTitle }}</h1>
-
-    <h2>Apply</h2>
-    <p>Main user journey for all application types.</p>
+    <p>Lab day: 16 April 2020</p>
     {{ govukButton({
         text: "View prototype",
         href: "/start",
         classes: "govuk-!-margin-bottom-2"
     }) }}
-
-    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-
-    <h2>Tracking</h2>
-    <p>User journeys for tracking.</p>
-    <ul class="govuk-list govuk-list--bullet">
-        <li><a href="/track">Adult renewal</a></li>
-        {# <li><a href="#">DPS </a></li>
-        <li><a href="#">Change of Name</a></li> #}
-    </ul>
-
-    {# <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-
-    <h2>Countersignatures</h2>
-    <p>User journeys for countersignatures.</p>
-
-    <h3>Applicant – user initiated</h3>
-    <ul class="govuk-list govuk-list--bullet">
-        <li><a href="#">Adult csig</a></li>
-        <li><a href="#">Child csig</a></li>
-        <li><a href="#">Adult csig (overseas)</a></li>
-        <li><a href="#">Child csig (overseas)</a></li>
-        <li><a href="#">Adult renominate</a></li>
-        <li><a href="#">Application submitted</a></li>
-        <li><a href="#">Identity details received</a></li>
-    </ul>
-
-    <h3>Applicant – examiner initiated/no docs</h3>
-    <ul class="govuk-list govuk-list--bullet">
-        <li><a href="#">Your application is in the queue</a></li>
-        <li><a href="#">Application approved</a></li>
-        <li><a href="#">Your passport is on its way</a></li>
-        <li><a href="#">Ask someone to confirm your identity</a></li>
-        <li><a href="#">Identity details received</a></li>
-        <li><a href="#">Person not eligible</a></li>
-        <li><a href="#">Send the form</a></li>
-    </ul>
-
-    <h3>Person confirming identity</h3>
-    <ul class="govuk-list govuk-list--bullet">
-        <li><a href="#">Confirm someone's identity</a></li>
-        <li><a href="#">Experian check failed</a></li>
-        <li><a href="#">Experian check failed 3 times</a></li>
-        <!-- <li><a href="#">Renominate anytime</a></li> -->
-        <!-- <li><a href="#">What you need to do (new tracking page)</a></li> -->
-    </ul> #}
 
 {% endblock %}
