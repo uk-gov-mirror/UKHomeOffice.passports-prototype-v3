@@ -1,150 +1,24 @@
 {% extends "layout.html" %}
 
-{% block cookieBanner %}
-{% endblock %}
+{% set hmpoTitle %}Cookie consent v3{% endset %}
 
-{% set hmpoTitle %}Apply online for a UK passport{% endset %}
-
-{% block pageTitle %}
-    {{ hmpoTitle | safe }} – GOV.UK
+{% block header %}
+    {{ govukHeader({
+        serviceName: govukServiceName,
+        serviceUrl: "/"
+    }) }}
 {% endblock %}
 
 {% block phaseBanner %}
 {% endblock %}
 
-{% block govukHeader %}
-    {{ govukHeader({
-        assetsPath: assetPath + '/images',
-        homepageUrl: govukHomePage or "https://gov.uk",
-        serviceName: "",
-        navigation: govukNavigation,
-        serviceUrl: govukServiceUrl or "/",
-        containerClasses: "govuk-width-container"
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+    <p>Lab day: 20 April 2020</p>
+    {{ govukButton({
+        text: "View prototype",
+        href: "/start",
+        classes: "govuk-!-margin-bottom-2"
     }) }}
-{% endblock %}
-
-{% block beforeContent %}
-    {{ govukBreadcrumbs({
-        items: [
-            {
-                text: "Home",
-                href: "#"
-            },
-            {
-                text: "Passports, travel and living abroad",
-                href: "#"
-            },
-            {
-                text: "Passports"
-            }
-        ]
-    }) }}
-{% endblock %}
-
-{% block content %}
-    <div class="govuk-grid-row">
-        <div class="govuk-grid-column-two-thirds-from-desktop">
-
-            <h1 class="govuk-heading-xl">{{ hmpoTitle }}</h1>
-
-            {% call hmpoWarningText({ iconFallbackText: "Warning" }) %}
-                The rules for passports, driving, EHIC cards, pet travel and
-                more may change after the UK leaves the EU.
-                <a href="https://www.gov.uk/visit-europe-brexit">Act now so you can
-                travel as planned.</a>
-            {% endcall %}
-
-            <p>You can apply for, renew, replace or update your passport and pay for it online.</p>
-
-            {{ govukButton({
-                text: "Start now",
-                href: "/filter",
-                isStartButton: true
-            }) }}
-
-            <br/>
-
-            {% set moreInformationHtml %}
-                <p>You’ll need a debit or credit card to use this service.</p>
-                <p><a href="https://www.gov.uk/passport-fees">It’s £9.50 cheaper</a> to apply for a passport online than by post.</p>
-                <p>It should take around 6 weeks to get your first UK adult passport, but it can take longer.</p>
-                <p>All other application types (for example, renewing a passport or getting a child passport) should take 3
-                    weeks. It can take longer if more information is needed or your application hasn’t been filled out
-                    correctly.</p>
-                <p>You should use a different service if you <a href="https://www.gov.uk/get-a-passport-urgently">need your passport urgently</a>.</p>
-
-                {{ govukInsetText({
-                    text: "Don’t book travel until you have a valid passport - doing so is at your own risk."
-                }) }}
-            {% endset %}
-
-            {% set otherWaysToApplyHtml %}
-                <p>You can pick up passport application forms from your <a href="http://www.postoffice.co.uk/branch-finder">local
-                    Post Office</a> and apply by post, or use the <a href="https://www.gov.uk/how-the-post-office-check-and-send-service-works">Post
-                    Office Check and Send service</a>.</p>
-            {% endset %}
-
-            {{ govukTabs({
-                items: [
-                    {
-                        label: "More information",
-                        id: "before-you-start",
-                        panel: {
-                            html: moreInformationHtml,
-                            attributes: {
-                                style: "border: 0"
-                            }
-                        }
-                    },
-                    {
-                        label: "Other ways to apply",
-                        id: "other-ways-to-apply",
-                        panel: {
-                            html: otherWaysToApplyHtml,
-                            attributes: {
-                                style: "border: 0"
-                            }
-                        }
-                    }
-                ]
-            }) }}
-        </div>
-
-        <div class="govuk-grid-column-one-third-from-desktop app-related-items">
-            <h3 id="parent-subsection" style="margin-bottom: 10px;">Related content</h3>
-            <nav role="navigation" aria-labelledby="parent-subsection">
-                <ul>
-                    <li>
-                        <a href="https://www.gov.uk/passport-fees">Passport fees</a>
-                    </li>
-                    <li>
-                        <a href="https://www.gov.uk/photos-for-passports">Get a passport photo</a>
-                    </li>
-                    <li>
-                        <a href="https://www.gov.uk/changing-passport-information">Change your name or personal details on your passport</a>
-                    </li>
-                    <li>
-                        <a href="https://www.gov.uk/apply-first-adult-passport">Getting your first adult passport</a>
-                    </li>
-                    <li>
-                        <a href="https://www.gov.uk/get-a-child-passport">Get a passport for your child</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-
-        <div class="govuk-grid-column-two-thirds-from-desktop app-related-items">
-            <nav role="navigation">
-                <h3 class="navigation__sub-heading">
-                    Explore the topic
-                </h3>
-                <ul>
-                    <li class="navigation__link"><a class="navigation__section-link" href="https://www.gov.uk/browse/abroad/passports">Passports</a></li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-  </div>
-</div>
 
 {% endblock %}
