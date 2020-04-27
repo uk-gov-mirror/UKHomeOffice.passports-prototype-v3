@@ -8,6 +8,7 @@
   },
   "buttons": {
     "next": "Continue",
+    "choose-appointment": "Choose a collection appointment",
     "payment": "Continue to payment",
     "print": "Print page",
     "submitApplication": "Submit application",

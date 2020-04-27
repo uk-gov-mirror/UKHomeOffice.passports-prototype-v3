@@ -12,7 +12,45 @@
 
     <p>Application reference: <strong>PEX 123 456 789X</strong></p>
 
-    {% if values.csigRequired %}
+    {% if values.urgentPassport %}
+        {{ govukWarningText({
+            text: "You can't use your old passport on the day of your appointment",
+            iconFallbackText: "Warning"
+        }) }}
+    <h2 class="compact">Your collection appointment</h2>
+    <p>Wednesday, 1 April 2020<br>
+    at 8:45pm</p>
+    <p>Glasgow HM Passport Office<br>
+    3 Northgate </br>
+    96 Milton Street </br>
+    Cowcaddens </br>
+    Glasgow </br>
+    G4 0BT </br>
+    <a href="https://www.google.co.uk/maps/?q=Glasgow%20HM%20Passport%20Office,%20G4%200BT" target="_blank">View map</a></p>
+    <p>It usually takes 30 minutes to collect your new passport. Don't arrive any earlier than 10 minutes before your collection appointment.</p>
+
+    <h2 class="compact">What you need to bring</h2>
+    <p>You must bring your old passport with you.</p>
+    <p class="govuk-body">If someone is collecting your new passport for you, they need to bring:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>your old passport</li>
+        <li>a signed and dated letter from you, confirming their full name and giving then permission to collect your passport</li>
+        <li>proof of their identity, for example a driving licence or passport</li>
+    </ul>
+
+    <h2 class="compact">Track your application</h2>
+    <p>Use your reference <strong>PEX 123 456 789X</strong> to <a href="/track">track your application.</a> We’ll send updates to {{ values.contactEmail }} and {{ values.contactPhone }}. </p>
+    <p>We'll check your application. If there's a problem, we'll call you on the number you provided.</p>
+    <p>If you have any questions contact <a href="https://www.passport.service.gov.uk/help">HM PassportOffice</a>.</p>
+
+    {{ hmpoSubmit(ctx, {
+        text: "Give feedback",
+        href: "/help/feedback"
+    }) }}
+
+
+
+    {% elif values.csigRequired %}
 
         <h1>What you need to do</h1>
 

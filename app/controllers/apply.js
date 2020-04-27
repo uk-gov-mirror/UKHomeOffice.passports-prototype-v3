@@ -9,6 +9,7 @@ class DefaultController extends BaseController {
         this.setEUSSEligible(req)
         this.setGrandparentsRequired(req)
         this.setParentOfChild(req)
+        this.setDPSUpsellEligible(req)
         this.setCosts(req)
         this.setCsigRequired(req)
         this.setDocsRequired(req)
@@ -181,6 +182,21 @@ class DefaultController extends BaseController {
         req.sessionModel.set('isParentOfChild', isParentOfChild)
     }
 
+    setDPSUpsellEligible (req) {
+        let dpsUpsellEligible = false
+        if (req.sessionModel.get('adultOrChild') === 'adult' &&
+            req.sessionModel.get('bornInUK') === true &&
+            req.sessionModel.get('thirdParty') === false &&
+            req.sessionModel.get('isUKApplication') === true &&
+            req.sessionModel.get('changeOfName') === false &&
+            req.sessionModel.get('damaged') === false &&
+            req.sessionModel.get('lost') === false &&
+            req.sessionModel.get('otherPassports') === false) {
+            dpsUpsellEligible = true
+        }
+        req.sessionModel.set('dpsUpsellEligible', dpsUpsellEligible)
+    }
+
     setCosts (req) {
         let passportCost
         if (req.sessionModel.get('adultOrChild') === 'child') {
@@ -195,14 +211,20 @@ class DefaultController extends BaseController {
             } else {
                 passportCost = 75.50
             }
+        } if (req.sessionModel.get('urgentPassport') === true) {
+            if (req.sessionModel.get('largePassport')) {
+                passportCost = 187
+            } else {
+                passportCost = 177
+            }
         }
 
         let deliveryCost
         if (req.sessionModel.get('secureDelivery')) {
             deliveryCost = 5.00
-        } else {
-            deliveryCost = 0.00
-        }
+            } else {
+                deliveryCost = 0.00
+            }
 
         req.sessionModel.set('passportCost', passportCost)
         req.sessionModel.set('deliveryCost', deliveryCost)
