@@ -1,0 +1,72 @@
+{% extends "layout-help.html" %}
+
+{% set backLink = false %}
+
+{% set hmpoTitle %}
+    Cookies on our service
+{% endset %}
+
+
+{% block helpContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>The online passport application service puts small files</a> (known as ‘cookies’) onto your device in order to:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>remember what messages you’ve seen so you’re not shown them again</li>
+        <li>understand how you use the service so we can update and improve it</li>
+        <li>temporarily store information you enter to support your application</li>
+    </ul>
+
+    {% call hmpoInsetText() %}
+        <p>The cookies we use don’t identify you personally. You can still apply for a passport online if you don’t accept cookies that measure website use.</p>
+    {% endcall %}
+
+    <h2>Strictly necessary cookies</h2>
+    <p>Essential cookies remember your progress through your application</p>
+    <p>They always need to be on.</p>
+    <br>
+
+    {% set measureCookieHint %}
+        <div id="measureCookieHint" class="govuk-hint">
+            <p>We use Google Analytics to collect information about how you use this service. This helps us check it’s meeting your needs and make improvements.</p>
+            <p>Google Analytics stores information about:</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>how you got to the site</li>
+                <li>pages you visit and how long you spend on them</li>
+                <li>what you click on</li>
+            </ul>
+            <p>No personal details are stored with this information, so you can’t be identified.</p>
+        </div>
+    {% endset%}
+
+    {% call hmpoForm(ctx) %}
+        {{ govukRadios({
+            name:"measure-cookie",
+            hint: {
+                html: measureCookieHint
+            },
+            fieldset: {
+                legend: {
+                text: "Cookies that measure website use",
+                isPageHeading: true,
+                classes: "govuk-fieldset__legend--m"
+                }
+            },
+            items: [
+                {
+                text: "Use cookies that measure my website use"
+                },
+                {
+                text: "Do not use cookies that measure my website use"
+                }
+            ]
+            }) }}
+    {% endcall %}
+
+    <a  class="gem-c-button govuk-button gem-c-button--inline" href="{{values.backURL}}">Save settings</a>
+    <br>
+    <br>
+    <p><a href="/help/cookies-policy" target="_blank">Find out more about cookies</a> on the online passport application service.</p>
+
+{% endblock %}

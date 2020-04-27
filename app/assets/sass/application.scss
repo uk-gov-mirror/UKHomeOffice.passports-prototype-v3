@@ -12,7 +12,6 @@ $hmpo-assets-path: '/public/';
 // Patterns that aren't in Frontend
 @import "patterns/step-by-step-navigation";
 @import "patterns/task-list";
-@import "patterns/booking-table";
 @import "patterns/related-items";
 @import "patterns/summary-list";
 @import "patterns/accordions";
@@ -28,4 +27,6 @@ $hmpo-assets-path: '/public/';
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
 
 @import "patterns/autofill";
+@import "patterns/cookie-banner";
+@import "patterns/booking-table";
 

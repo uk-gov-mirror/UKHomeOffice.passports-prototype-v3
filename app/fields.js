@@ -1,4 +1,10 @@
 module.exports = {
+    cookies: {
+        journeyKey: 'application.cookies'
+    },
+    backURL: {
+        journeyKey: 'application.backURL'
+    },
     isUKApplication: {
         formatter: 'boolean',
         validate: 'required'

@@ -10,9 +10,9 @@
         },
         'type': {
             'renew': 'Renewal',
+            'lostAndStolen': 'Lost and stolen',
             'firstTime': 'First time',
             'oldBlue': 'Old blue book',
-            'lostAndStolen': 'Lost and stolen'
         },
         'damaged': 'Damaged',
         'naturalised': 'Naturalised',
