@@ -210,21 +210,21 @@ class DefaultController extends BaseController {
                 passportCost = 85.50
             } else {
                 passportCost = 75.50
-            }
-        } if (req.sessionModel.get('urgentPassport') === true) {
+            }}
+
+        if (req.sessionModel.get('urgentPassport') === true) {
             if (req.sessionModel.get('largePassport')) {
                 passportCost = 187
-            } else {
-                passportCost = 177
-            }
-        }
+        } else {
+            passportCost = 177
+        }}
 
         let deliveryCost
         if (req.sessionModel.get('secureDelivery')) {
             deliveryCost = 5.00
-            } else {
-                deliveryCost = 0.00
-            }
+        } else {
+            deliveryCost = 0.00
+        }
 
         req.sessionModel.set('passportCost', passportCost)
         req.sessionModel.set('deliveryCost', deliveryCost)
