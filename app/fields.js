@@ -5,6 +5,10 @@ module.exports = {
     backURL: {
         journeyKey: 'application.backURL'
     },
+    feedbackorHelp: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
     isUKApplication: {
         formatter: 'boolean',
         validate: 'required'

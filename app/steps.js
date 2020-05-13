@@ -5,6 +5,21 @@ const apply = {
     '/help/cookies-policy': {
         checkJourney: false,
     },
+    'help/feedback-or-help': {
+        fields: [
+            'feedbackorHelp'
+        ],
+        next: '/help/feedback-thank-you'
+        // next: [
+        //     { field: 'feedbackorHelp', value: 'help', next: '/help' },
+        //     '/help/feedback'
+        // ]
+    },
+    'help/feedback': {
+        next: '/help/feedback-thank-you'
+    },
+    'help/feedback-thank-you': {
+    },
     '/filter': {
         entryPoint: true,
         resetJourney: true,

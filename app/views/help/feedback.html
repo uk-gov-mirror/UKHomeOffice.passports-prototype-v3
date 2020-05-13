@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% set hmpoTitle %}Feedback{% endset %}
+
+{% block cookieBanner %}
+{% endblock %}
+{% block phaseBanner %}
+{% endblock %}
+
+{% block mainContent %}
+
+    {% call hmpoForm(ctx) %}
+        <h1>{{ hmpoTitle }}</h1>
+
+        {{ govukCharacterCount({
+            id: "label-as-page-heading",
+            name: "label-as-page-heading",
+            maxlength: 500,
+            rows: "8",
+            label: {
+                text: "Don't include any personal or financial information."
+            }
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}
+
