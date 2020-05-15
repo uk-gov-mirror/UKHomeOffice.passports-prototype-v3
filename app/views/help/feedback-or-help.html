@@ -2,10 +2,8 @@
 
 {% set hmpoTitle %}What do you want to do?{% endset %}
 
-{% block cookieBanner %}
-{% endblock %}
-{% block phaseBanner %}
-{% endblock %}
+{% block cookieBanner %}{% endblock %}
+{% block phaseBanner %}{% endblock %}
 
 {% block mainContent %}
 
@@ -17,16 +15,13 @@
                 text: hmpoTitle
             },
             isPageHeading: true,
-            items: [
-                {
-                    value: "feedback",
-                    text: "Leave feedback"
-                },
-                {
-                    value: "help",
-                    text: "Get help with my application"
-                }
-            ]
+            items: [{
+                value: "feedback",
+                text: "Leave feedback"
+            }, {
+                value: "help",
+                text: "Get help with my application"
+            }]
         }) }}
 
         {{ hmpoSubmit(ctx) }}

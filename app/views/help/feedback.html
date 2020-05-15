@@ -2,10 +2,8 @@
 
 {% set hmpoTitle %}Feedback{% endset %}
 
-{% block cookieBanner %}
-{% endblock %}
-{% block phaseBanner %}
-{% endblock %}
+{% block cookieBanner %}{% endblock %}
+{% block phaseBanner %}{% endblock %}
 
 {% block mainContent %}
 
@@ -13,8 +11,7 @@
         <h1>{{ hmpoTitle }}</h1>
 
         {{ govukCharacterCount({
-            id: "label-as-page-heading",
-            name: "label-as-page-heading",
+            id: "feedbackText",
             maxlength: 500,
             rows: "8",
             label: {
