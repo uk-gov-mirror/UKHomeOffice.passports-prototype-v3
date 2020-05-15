@@ -11,7 +11,7 @@ const apply = {
             'feedbackOrHelp'
         ],
         next: [
-            { field: 'feedbackorHelp', value: 'help', next: '/help' },
+            { field: 'feedbackOrHelp', value: 'help', next: '/help' },
             '/help/feedback'
         ]
     },
