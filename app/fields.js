@@ -5,7 +5,7 @@ module.exports = {
     backURL: {
         journeyKey: 'application.backURL'
     },
-    feedbackorHelp: {
+    feedbackOrHelp: {
         validate: 'required'
     },
     isUKApplication: {
