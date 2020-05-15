@@ -8,7 +8,7 @@ const apply = {
     '/help/feedback-or-help': {
         checkJourney: false,
         fields: [
-            'feedbackorHelp'
+            'feedbackOrHelp'
         ],
         next: [
             { field: 'feedbackorHelp', value: 'help', next: '/help' },
