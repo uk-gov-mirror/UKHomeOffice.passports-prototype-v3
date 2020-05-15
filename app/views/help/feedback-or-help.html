@@ -1,0 +1,31 @@
+{% extends "layout-help.html" %}
+
+{% set hmpoTitle %}What do you want to do?{% endset %}
+
+{% block cookieBanner %}{% endblock %}
+{% block phaseBanner %}{% endblock %}
+
+{% block mainContent %}
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoRadios(ctx, {
+            id: "feedbackOrHelp",
+            legend: {
+                text: hmpoTitle
+            },
+            isPageHeading: true,
+            items: [{
+                value: "feedback",
+                text: "Leave feedback"
+            }, {
+                value: "help",
+                text: "Get help with my application"
+            }]
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}

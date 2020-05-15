@@ -5,6 +5,24 @@ const apply = {
     '/help/cookies-policy': {
         checkJourney: false,
     },
+    '/help/feedback-or-help': {
+        checkJourney: false,
+        fields: [
+            'feedbackOrHelp'
+        ],
+        next: [
+            { field: 'feedbackOrHelp', value: 'help', next: '/help' },
+            '/help/feedback'
+        ]
+    },
+    '/help/feedback': {
+        backLink: '/help/feedback-or-help',
+        checkJourney: false,
+        next: '/help/feedback-thank-you'
+    },
+    '/help/feedback-thank-you': {
+        checkJourney: false,
+    },
     '/filter': {
         entryPoint: true,
         resetJourney: true,
@@ -31,7 +49,6 @@ const apply = {
         ],
         next: '/photo/digital-photo'
     },
-
     '/photo/digital-photo': {
         next: '/photo/choose-photo-method'
     },

@@ -5,6 +5,9 @@ module.exports = {
     backURL: {
         journeyKey: 'application.backURL'
     },
+    feedbackOrHelp: {
+        validate: 'required'
+    },
     isUKApplication: {
         formatter: 'boolean',
         validate: 'required'
@@ -18,7 +21,6 @@ module.exports = {
         validate: ['required', 'date'],
         autocomplete: 'bday'
     },
-
     photoMethod: {
         validate: 'required'
     },
