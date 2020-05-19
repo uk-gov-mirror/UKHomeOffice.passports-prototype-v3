@@ -808,5 +808,21 @@ module.exports = {
     },
     csigDateOfBirth: {
         validate: ['required', 'date'],
+    },
+    refereePassportNumber: {
+        validate: [
+            'required',
+            'numeric',
+            { type: 'exactlength', arguments: 9 }
+        ]
+    },
+    refereePassportExpiry: {
+        validate: [
+            'required',
+            'date'
+        ]
+    },
+    refereeDateOfBirth: {
+        validate: ['required', 'date']
     }
 }
