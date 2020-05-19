@@ -690,10 +690,27 @@ const tracking = {
     '/track/confirm-identity-form': {
         prereqs: ['/track/view'],
         noPost: true
+    },
+}
+
+const csig = {
+    '/csig/start': {
+        entryPoint: true,
+        skip: true,
+        next: '/csig/sign-in'
+    },
+    '/csig/sign-in': {
+        fields: [
+            'csigAppReference',
+            'csigDateOfBirth'
+        ],
+        next: '/csig'
     }
+
 }
 
 module.exports = {
     apply,
-    tracking
+    tracking,
+    csig
 }

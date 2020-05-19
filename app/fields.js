@@ -802,5 +802,11 @@ module.exports = {
     paperForm: {
         formatter: 'boolean',
         validate: 'required'
+    },
+    csigAppReference: {
+        validate: 'required'
+    },
+    csigDateOfBirth: {
+        validate: ['required', 'date'],
     }
 }

@@ -1,0 +1,41 @@
+{% extends "layout-temp-csig.html" %}
+
+
+{% set hmpoTitle %}Confirm someone's identity{% endset %}
+
+{% block mainContent %}
+    <h1 class="govuk-heading-xl">{{ hmpoTitle }}</h1>
+
+    <p>Before you start, you'll need your UK passport details.
+
+    <p class="govuk-body">You'll need to:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>enter the applicant's date of birth, including the year</li>
+      <li>confirm their current address</li>
+    </ul>
+
+    <p class="govuk-body">If the applicant is a child, you'll also need to confirm their:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>place of birth</li>
+      <li>parents' names and year they were born</li>
+    </ul>
+
+    <p>Make sure you do this on a secure device.</p>
+
+    <p>It takes about 10 minutes.</p>
+
+    {% call hmpoSidebar({ classes: "hmpo-sidebar__thick-border" }) %}
+        <h2>Find out more</h2>
+        <p>There are rules about who can confirm someone's identity.</p>
+        <ul>
+            <li style="margin-bottom:10px"><a href="/prototype/help/who-can-confirm">Who can do this</a></li>
+            <li><a href="/prototype/help/confirming-your-identity">How to do this online</a></li>
+        </ul>
+    {% endcall %}
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoSubmit(ctx, { text: translate("buttons.signIn") }) }}
+    {% endcall %}
+
+{% endblock %}
+
