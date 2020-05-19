@@ -657,8 +657,30 @@ const csig = {
             'csigAppReference',
             'csigDateOfBirth'
         ],
+        next: '/csig/declaration'
+    },
+    '/csig/declaration': {
+        fields: [
+            'csigDeclaration'
+        ],
+        next: '/csig/referee-passport'
+    },
+    '/csig/referee-passport': {
+        fields: [
+            'refereePassportNumber',
+            'refereePassportExpiry',
+            'refereeDateOfBirth'
+        ],
+        next: '/csig/referee-name'
+    },
+
+    '/csig/referee-name': {
+        fields: [
+
+        ],
         next: '/csig'
     }
+
 
 }
 
