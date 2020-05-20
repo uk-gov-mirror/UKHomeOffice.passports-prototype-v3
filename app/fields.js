@@ -755,7 +755,6 @@ module.exports = {
             { type: 'equal', arguments: true }
         ]
     },
-
     appReference: {
         validate: 'required'
     },
@@ -766,7 +765,6 @@ module.exports = {
     trackEmail: {
         validate: 'required'
     },
-
     refereeFirstName: {
         validate: 'required'
     },
@@ -824,5 +822,18 @@ module.exports = {
     },
     refereeDateOfBirth: {
         validate: ['required', 'date']
+    },
+    csigFirstName: {
+        validate: 'required'
+    },
+    csigMiddleName: {
+        validate: 'required'
+    },
+    csigLastName: {
+        validate: 'required'
+    },
+    refereePostcode: {
+        validate: 'required'
     }
+
 }

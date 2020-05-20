@@ -696,7 +696,7 @@ const tracking = {
 const csig = {
     '/csig/start': {
         entryPoint: true,
-        skip: true,
+        backLink: false,
         next: '/csig/sign-in'
     },
     '/csig/sign-in': {
@@ -720,14 +720,23 @@ const csig = {
         ],
         next: '/csig/referee-name'
     },
-
     '/csig/referee-name': {
         fields: [
-
+            'csigFirstName',
+            'csigMiddleName',
+            'csigLastName'
         ],
-        next: '/csig'
+        next: '/csig/referee-address'
+    },
+    '/csig/referee-address': {
+        fields: [
+            'refereePostcode'
+        ],
+        next: '/csig/referee-address-select'
+    },
+    '/csig/referee-address-select': {
+        next:'/csig/'
     }
-
 
 }
 
