@@ -703,7 +703,16 @@ const csig = {
         fields: [
             'isDetailsCorrect',
         ],
-        next: '/csig/'
+        next: '/csig/confirm-applicant-child-eligibility'
+    },
+    '/csig/confirm-applicant-child-eligibility':{
+        fields: [
+            'knowPersonally',
+            'areRelated',
+            'howKnow',
+            'howLong'
+        ],
+        next:'/csig/'
     }
 
 }
