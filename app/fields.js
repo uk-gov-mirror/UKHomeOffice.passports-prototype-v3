@@ -841,6 +841,23 @@ module.exports = {
     isDetailsCorrect: {
         formatter: 'boolean',
         validate: 'required'
-    }
+    },
+    knowPersonally: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
+    areRelated: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
+    howKnow: {
+        validate: 'required'
+    },
+    howKnow: {
+        validate: [
+            'required',
+            'numeric'
+        ]
+    },
 
 }
