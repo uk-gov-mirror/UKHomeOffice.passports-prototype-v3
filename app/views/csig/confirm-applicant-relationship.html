@@ -31,31 +31,32 @@
         }
     ] }) }}
 
-
-    {{ govukDetails({
-        summaryText: "What do we mean by ‘responsible’?",
-        text: "A person responsible for the applicant has to maintain and protect them. Most parents are responsible for their children, unless for example a court order has said otherwise."
-    }) }}
-
-    {{ hmpoRadios(ctx, {
-        id: "isDetailsCorrect",
-        legend: {
-            text: 'Can you confirm these details are correct?',
-            classes: "govuk-label--m"
-        },
-        isPageHeading: true,
-        items: [
-            {
-                value: true
-            },
-            {
-                value: false
-            }
-        ]
-    }) }}
-
     {% call hmpoForm(ctx) %}
+        {{ govukDetails({
+            summaryText: "What do we mean by ‘responsible’?",
+            text: "A person responsible for the applicant has to maintain and protect them. Most parents are responsible for their children, unless for example a court order has said otherwise."
+        }) }}
+
+        {{ hmpoRadios(ctx, {
+            classes: "govuk-radios--inline",
+            id: "isDetailsCorrect",
+            legend: {
+                text: 'Can you confirm these details are correct?',
+                classes: "govuk-label--m"
+            },
+            isPageHeading: true,
+            items: [
+                {
+                    value: true
+                },
+                {
+                    value: false
+                }
+            ]
+        }) }}
+
         {{ hmpoSubmit(ctx) }}
+
     {% endcall %}
 
 {% endblock %}
