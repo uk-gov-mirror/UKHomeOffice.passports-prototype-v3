@@ -803,6 +803,9 @@ module.exports = {
     },
     refereePostcode: {
         validate: 'required'
+    },
+    refereeAddressSelect: {
+        validate: 'required'
     }
 
 }

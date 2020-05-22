@@ -14,7 +14,8 @@
     "submitApplication": "Submit application",
     "giveFeedback": "Give feedback",
     "close": "Close",
-    "signIn":"Sign in"
+    "signIn":"Sign in",
+    "findAddress":"Find Address"
     },
     "fields": {
       "date-day": {
