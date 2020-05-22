@@ -1,0 +1,50 @@
+{% extends "layout-temp-csig.html" %}
+
+{% set hmpoTitle %}Select an address{% endset %}
+
+{% block mainContent %}
+
+    <style>
+    .form-user-data {
+        h2 {
+            margin: 0;
+        }
+        span {
+            font-weight: 700;
+            margin-right: $gutter-half;
+        }
+    }
+    </style>
+
+    <h1 id="header">{{ hmpoTitle }}</h1>
+
+    {% call hmpoForm(ctx) %}
+
+        {{ govukSelect({
+            id: "refereeAddressSelect",
+            items: [
+                {
+                    text: "12 addresses found"
+                },
+                {
+                    text: "Flat A/04, Parliament View Apartments, 1 Albert Embankment, LONDON SE1 7XH"
+                },
+                {
+                    text: "Flat A/05, Parliament View Apartments, 1 Albert Embankment, LONDON SE1 7XH"
+                },
+                {
+                    text: "Flat A/06, Parliament View Apartments, 1 Albert Embankment, LONDON SE1 7XH"
+                }
+            ]
+        }) }}
+
+              <div class="form-user-data">
+        <h2>Postcode</h2>
+        <p><span>SE1 7XH</span><a href="./home-address">Change</a></p>
+      </div>
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}

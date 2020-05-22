@@ -735,7 +735,10 @@ const csig = {
         next: '/csig/referee-address-select'
     },
     '/csig/referee-address-select': {
-        next:'/csig/'
+        fields: [
+            'refereeAddressSelect'
+        ],
+        next:'/csig/identity-auth'
     }
 
 }
