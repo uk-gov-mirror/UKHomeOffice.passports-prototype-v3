@@ -739,6 +739,18 @@ const csig = {
             'refereeAddressSelect'
         ],
         next:'/csig/identity-auth'
+    },
+    '/csig/identity-auth': {
+        next:'/csig/what-happens-next'
+    },
+    '/csig/what-happens-next':{
+        next:'/csig/confirm-applicant-relationship'
+    },
+    '/csig/confirm-applicant-relationship':{
+        fields: [
+            'isDetailsCorrect',
+        ],
+        next: '/csig/'
     }
 
 }
