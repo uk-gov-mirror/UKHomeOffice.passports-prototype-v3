@@ -6,9 +6,9 @@
 
     <style>
         .govuk-summary-list__key {
-        margin-bottom: 5px;
-        font-weight: 700;
-        width: 55%;
+            margin-bottom: 5px;
+            font-weight: 700;
+            width: 55%;
         }
     </style>
     <h1>{{ hmpoTitle }}</h1>
@@ -17,42 +17,42 @@
     <p>These details were provided by the person making the application. Answer to the best of your knowledge.</p>
 
     {{ govukSummaryList({ rows: [
-    {
-        key: { text: "Person making this application" },
-        value: { text: "Suzanne Angela Smith" }
-    },
-    {
-        key: { text: "Relationship to applicant" },
-        value: { text: "Mother" }
-    },
-    {
-        key: { text: "Responsible for applicant" },
-        value: { text: "Yes"}
-    }
+        {
+            key: { text: "Person making this application" },
+            value: { text: "Suzanne Angela Smith" }
+        },
+        {
+            key: { text: "Relationship to applicant" },
+            value: { text: "Mother" }
+        },
+        {
+            key: { text: "Responsible for applicant" },
+            value: { text: "Yes"}
+        }
     ] }) }}
 
 
     {{ govukDetails({
-    summaryText: "What do we mean by ‘responsible’?",
-    text: "A person responsible for the applicant has to maintain and protect them. Most parents are responsible for their children, unless for example a court order has said otherwise."
+        summaryText: "What do we mean by ‘responsible’?",
+        text: "A person responsible for the applicant has to maintain and protect them. Most parents are responsible for their children, unless for example a court order has said otherwise."
     }) }}
 
-            {{ hmpoRadios(ctx, {
-            id: "isDetailsCorrect",
-            legend: {
-                text: 'Can you confirm these details are correct?',
-                classes: "govuk-label--m"
+    {{ hmpoRadios(ctx, {
+        id: "isDetailsCorrect",
+        legend: {
+            text: 'Can you confirm these details are correct?',
+            classes: "govuk-label--m"
+        },
+        isPageHeading: true,
+        items: [
+            {
+                value: true
             },
-            isPageHeading: true,
-            items: [
-                {
-                    value: true
-                },
-                {
-                    value: false
-                }
-            ]
-        }) }}
+            {
+                value: false
+            }
+        ]
+    }) }}
 
     {% call hmpoForm(ctx) %}
         {{ hmpoSubmit(ctx) }}
