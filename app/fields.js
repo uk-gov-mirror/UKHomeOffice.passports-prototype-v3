@@ -804,7 +804,11 @@ module.exports = {
     refereePostcode: {
         validate: 'required'
     },
-    refereeAddressSelect: {
+    // refereeAddressSelect: {
+    //     validate: 'required'
+    // }
+    isDetailsCorrect: {
+        formatter: 'boolean',
         validate: 'required'
     }
 
