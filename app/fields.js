@@ -820,13 +820,17 @@ module.exports = {
         validate: 'required'
     },
     howKnow: {
-        validate: 'required'
-    },
-    howKnow: {
         validate: [
             'required',
-            'numeric'
+            { type: 'maxlength', arguments: 30 }
         ]
     },
+    howLong: {
+        validate: [
+            'required',
+            'numeric',
+            { type: 'maxlength', arguments: 2 }
+        ]
+    }
 
 }
