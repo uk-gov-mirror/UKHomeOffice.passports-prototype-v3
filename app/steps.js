@@ -664,7 +664,15 @@ const tracking = {
     }
 }
 
+const dps = {
+    '/dps/dps-start': {
+        entryPoint: true,
+        next: ''
+    }
+}
+
 module.exports = {
     apply,
-    tracking
+    tracking,
+    dps
 }

@@ -14,7 +14,8 @@
     "submitApplication": "Submit application",
     "giveFeedback": "Give feedback",
     "close": "Close",
-    "signIn":"Sign in"
+    "signIn": "Sign in",
+    "checkEligibility": "Check you can use this service"
     },
     "fields": {
       "date-day": {
