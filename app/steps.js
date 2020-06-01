@@ -533,10 +533,13 @@ const apply = {
         next: [
             { field: 'documentsRequired', value: 'none', next: '/apply/cost' },
             { field: 'csigRequired', value: true, next: '/apply/confirm-identity' },
-            { field: 'applicationType', value: 'renew', next: [
-                { field: 'dpsUpsellEligible', value: true, next: '/apply/urgent-passport' },
-                '/apply/documents-to-send'
-            ] },
+            // ====================================================================
+            // DPS upsell journey disabled due to COVID-19. Uncomment to re-enable.
+            // ====================================================================
+            // { field: 'applicationType', value: 'renew', next: [
+            //     { field: 'dpsUpsellEligible', value: true, next: '/apply/urgent-passport' },
+            //     '/apply/documents-to-send'
+            // ] },
             '/apply/documents-to-send'
         ]
     },
