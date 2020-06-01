@@ -783,5 +783,11 @@ module.exports = {
     paperForm: {
         formatter: 'boolean',
         validate: 'required'
+    },
+    dpsDamaged: {
+        validate: 'required'
+    },
+    dpsOtherPassports:{
+        validate: 'required'
     }
 }
