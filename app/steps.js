@@ -759,7 +759,10 @@ const dps = {
         ]
     },
     '/dps/dps-application-summary':{
-        next:'/dps/'
+        next:'/dps/dps-how-to-apply'
+    },
+    '/dps/dps-how-to-apply':{
+        next:'/dps'
     }
 }
 
