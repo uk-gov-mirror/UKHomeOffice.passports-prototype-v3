@@ -789,5 +789,8 @@ module.exports = {
     },
     dpsOtherPassports:{
         validate: 'required'
-    }
+    },
+    dpsCancelled: {
+        validate: 'required'
+    },
 }
