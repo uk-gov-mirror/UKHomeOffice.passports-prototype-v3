@@ -1,17 +1,10 @@
 
-{% from "hmpo-inset-text/macro.njk" import hmpoInsetText %}
+{% from "hmpo-warning-text/macro.njk" import hmpoWarningText %}
 
-{% call hmpoInsetText({
-    id: "original-docs-panel",
-    classes: "hmpo-inset-info"
-}) %}
-    <p>
-        {% if params.overseas %}
-            You must send original documents, unless we ask for a photocopy.
-        {% else %}
-            You must send original documents - we can’t accept photocopies.
-        {% endif %}
-
-        Your application will be delayed if you don’t send everything we need.
-    </p>
+{% call hmpoWarningText({ iconFallbackText: "Warning" }) %}
+    {% if params.overseas %}
+        You must send original documents, unless we ask for a photocopy.
+    {% else %}
+        You must send original documents - we can’t accept photocopies.
+    {% endif %}
 {% endcall %}

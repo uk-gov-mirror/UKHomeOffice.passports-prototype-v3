@@ -1,0 +1,39 @@
+{% extends "layout-apply.html" %}
+
+{% set hmpoTitle %}
+    Passport applications and coronavirus (COVID-19)
+{% endset %}
+
+{% block mainContent %}
+    {% call hmpoForm(ctx) %}
+
+        <h1>{{ hmpoTitle }}</h1>
+
+        {% call hmpoWarningText({ iconFallbackText: "Warning" }) %}
+            Normal service standards are currently suspended. We cannot confirm when a passport will be received, or when
+            documents provided in support of an application will be returned.
+        {% endcall %}
+
+        {{ hmpoRadios(ctx, {
+            id: "applyNow",
+            legend: {
+                text: "Do you want to apply for a passport now?",
+                classes: "govuk-label--m"
+            },
+            items: [{
+                value: false,
+                text: "No, I can apply later"
+            }, {
+                value: true,
+                text: "Yes, I want to apply now",
+                conditional: {
+                    html: "<p>Please consider coming back at a later date to apply. This will help us support those with
+                        urgent applications, who need our help the most.</p>"
+                }
+            }]
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+    {% endcall %}
+{% endblock %}
+

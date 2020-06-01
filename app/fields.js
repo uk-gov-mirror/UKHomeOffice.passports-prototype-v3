@@ -112,6 +112,13 @@ module.exports = {
         validate: 'required'
     },
 
+    applyReason: {
+        validate: 'required'
+    },
+    applyNow: {
+        validate: 'required'
+    },
+
     whatYouNeed: {
         formatter: 'boolean',
         validate: [
