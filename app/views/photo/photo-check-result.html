@@ -28,20 +28,88 @@
 
             {% if values.photoQuality == "poor" or values.photoQuality == "fair" %}
                 {% call hmpoDetails({ summaryText: "Find out the reason for this result" }) %}
-                    <h2>It looks like your eyes are closed</h2>
-                    <ul class="govuk-list govuk-list--bullet">
-                        <li>keep your head straight and in the centre of the photo</li>
-                        <li>you can still submit your photo if you believe it should be accepted (for example there’s a medical reason why you can’t open your eyes)</li>
-                    </ul>
 
-                    <h2>Your image and the background are difficult to tell apart</h2>
-                    <p>Try:</p>
-                    <ul class="govuk-list govuk-list--bullet">
-                        <li>standing in front of a plain, light-coloured background</li>
-                        <li>tying your hair back or brushing it down if it’s loose</li>
-                        <li>standing further away from the wall to avoid shadows</li>
-                        <li>to make sure the background has no glare or patterns</li>
-                    </ul>
+                    {% if values.photoQuality == "poor" %}
+                        {% if values.photoAgeRange == "baby-12months" or values.photoAgeRange == "child-1to5" or values.photoAgeRange == "child-6to11" %}
+                            {# TODO: Needs updated to correct errors #}
+                            <h2>The lighting is too dark or uneven</h2>
+                            <p>Try:</p>
+                            <ul class="govuk-list govuk-list--bullet">
+                                <li>standing further away from the wall to avoid shadows</li>
+                                <li>switching the flash off</li>
+                                <li>standing where there's more natural light</li>
+                            </ul>
+
+                            <h2>Your photo is too light or too dark</h2>
+                            <p>Try:</p>
+                            <ul class="govuk-list govuk-list--bullet">
+                                <li>standing in front of a light background</li>
+                                <li>standing where there's even lighting</li>
+                                <li>to keep your face and features in focus so they stand out from the background</li>
+                            </ul>
+
+                            <h2>There are reflections on your face</h2>
+                            <ul class="govuk-list govuk-list--bullet">
+                                <li>any reflections, or areas that appear white, will cause problems</li>
+                                <li>avoid using a flash</li>
+                                <li>try standing where there's even lighting</li>
+                            </ul>
+                        {% elif values.photoAgeRange == "child-12to15" %}
+                            <h2>The lighting is too dark or uneven</h2>
+                            <p>Try:</p>
+                            <ul class="govuk-list govuk-list--bullet">
+                                <li>standing further away from the wall to avoid shadows</li>
+                                <li>switching the flash off</li>
+                                <li>standing where there's more natural light</li>
+                            </ul>
+
+                            <h2>Your photo is too light or too dark</h2>
+                            <p>Try:</p>
+                            <ul class="govuk-list govuk-list--bullet">
+                                <li>standing in front of a light background</li>
+                                <li>standing where there's even lighting</li>
+                                <li>to keep your face and features in focus so they stand out from the background</li>
+                            </ul>
+
+                            <h2>There are reflections on your face</h2>
+                            <ul class="govuk-list govuk-list--bullet">
+                                <li>any reflections, or areas that appear white, will cause problems</li>
+                                <li>avoid using a flash</li>
+                                <li>try standing where there's even lighting</li>
+                            </ul>
+                        {% else %}
+                            <h2>It looks like you're not facing the camera</h2>
+                            <ul class="govuk-list govuk-list--bullet">
+                                <li>don't tilt your head or look away from the camera</li>
+                                <li>you can still submit your photo if you believe it should be accepted (for example
+                                    there's a medical reason why you can't face the camera)</li>
+                            </ul>
+                        {% endif %}
+
+                    {% elif values.photoQuality == "fair" %}
+                        {% if values.photoAgeRange == "baby-12months" or values.photoAgeRange == "child-1to5" or values.photoAgeRange == "child-6to11" %}
+                            {# TODO: Needs updated to correct errors #}
+                            <h2>It looks like you're not facing the camera</h2>
+                            <ul class="govuk-list govuk-list--bullet">
+                                <li>don't tilt your head or look away from the camera</li>
+                                <li>you can still submit your photo if you believe it should be accepted (for example
+                                    there's a medical reason why you can't face the camera)</li>
+                            </ul>
+                        {% elif values.photoAgeRange == "child-12to15" %}
+                            <h2>It looks like you're not facing the camera</h2>
+                            <ul class="govuk-list govuk-list--bullet">
+                                <li>don't tilt your head or look away from the camera</li>
+                                <li>you can still submit your photo if you believe it should be accepted (for example
+                                    there's a medical reason why you can't face the camera)</li>
+                            </ul>
+                        {% else %}
+                            <h2>There's a reflection on your glasses</h2>
+                            <ul class="govuk-list govuk-list--bullet">
+                                <li>reflections can obscure your eyes</li>
+                                <li>take off your glasses or change the lighting to avoid reflections</li>
+                            </ul>
+                        {% endif %}
+                    {% endif %}
                 {% endcall %}
 
                 <p>Next, you can:</p>
