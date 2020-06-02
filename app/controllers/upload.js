@@ -5,13 +5,25 @@ class UploadController extends BaseController {
         const filename = req.sessionModel.get('photo')
         let quality
 
-        if (filename.match(/bad|fail|4|fail-adult|fail-child-12to15|fail-child-6to11|fail-child-1to5|fail-baby-12months|4-adult|4-child-12to15|4-child-6to11|4-child-1to5|4-baby-12months\.jpe?g/i)) {
+        if (filename.match(/bad|fail|4\.jpe?g/i)) {
             quality = undefined
-        } else if (filename.match(/poor|3|poor-adult|poor-child-12to15|poor-child-6to11|poor-child-1to5|poor-baby-12months|3-adult|3-child-12to15|3-child-6to11|3-child-1to5|3-baby-12months\.jpe?g/i)) {
+        } else if (filename.match(/poor|3\.jpe?g/i)) {
             quality = 'poor'
-        } else if (filename.match(/fair|okay|2|fair-adult|fair-child-12to15|fair-child-6to11|fair-child-1to5|fair-baby-12months|2-adult|2-child-12to15|2-child-1to5|2-child-6to11|2-baby-12months\.jpe?g/i)) {
+        } else if (filename.match(/fair|okay|2\.jpe?g/i)) {
             quality = 'fair'
+        } else if (filename.match(/good|1\.jpe?g/i)) {
+            quality = 'good'
         } else {
+            quality = 'good'
+        }
+        // Override quality for specific filename
+        if (filename.match(/fail-adult|fail-child-12to15|fail-child-6to11|fail-child-1to5|fail-baby-12months|4-adult|4-child-12to15|4-child-6to11|4-child-1to5|4-baby-12months\.jpe?g/i)) {
+            quality = undefined
+        } else if (filename.match(/poor-adult|poor-child-12to15|poor-child-6to11|poor-child-1to5|poor-baby-12months|3-adult|3-child-12to15|3-child-6to11|3-child-1to5|3-baby-12months\.jpe?g/i)) {
+            quality = 'poor'
+        } else if (filename.match(/fair-adult|fair-child-12to15|fair-child-6to11|fair-child-1to5|fair-baby-12months|2-adult|2-child-12to15|2-child-1to5|2-child-6to11|2-baby-12months\.jpe?g/i)) {
+            quality = 'fair'
+        } else if (filename.match(/good-adult|good-child-12to15|good-child-6to11|good-child-1to5|good-baby-12months|1-adult|1-child-12to15|1-child-1to5|1-child-6to11|1-baby-12months\.jpe?g/i)) {
             quality = 'good'
         }
         req.sessionModel.set('photoQuality', quality)
