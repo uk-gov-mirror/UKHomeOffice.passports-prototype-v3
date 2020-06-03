@@ -793,4 +793,7 @@ module.exports = {
     dpsCancelled: {
         validate: 'required'
     },
+    dps: {
+        journeyKey: 'application.dps'
+    },
 }
