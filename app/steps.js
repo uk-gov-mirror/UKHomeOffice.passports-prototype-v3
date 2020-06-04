@@ -129,14 +129,14 @@ const apply = {
             'submitPhoto'
         ],
         next: [
-            { field: 'dps', value: true, next: '/dps' },
+            { field: 'dps', value: true, next: '/dps/dps-passport-details' },
             { field: 'submitPhoto', value: false, next: '/photo/choose-photo-method' },
             '/filter/previous-passport'
         ]
     },
     '/photo/choose-submit-photo': {
         next: [
-            { field: 'dps', value: true, next: '/dps' },
+            { field: 'dps', value: true, next: '/dps/dps-passport-details' },
             '/filter/previous-passport'
         ]
     },
@@ -779,6 +779,9 @@ const dps = {
     },
     '/dps/dps-check-appointment':{
         next:'/photo/digital-photo'
+    },
+    '/dps/dps-passport-details':{
+        next:'/dps'
     }
 }
 
