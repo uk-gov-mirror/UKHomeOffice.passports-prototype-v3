@@ -300,7 +300,10 @@ const apply = {
         fields: [
             'gender'
         ],
-        next: '/apply/birth'
+        next: [
+            { field: 'dps', value: true, next: '/dps/dps-birth' },
+            '/apply/birth'
+        ]
     },
     '/apply/birth': {
         fields: [
@@ -459,7 +462,10 @@ const apply = {
             'mobilePhone',
             'mobilePhoneGroup'
         ],
-        next: '/apply/new-passport'
+        next: [
+            { field: 'dps', value: true, next: '/dps/dps-new-passport' },
+            '/apply/new-passport'
+        ]
     },
     '/apply/new-passport': {
         fields: [
@@ -478,6 +484,7 @@ const apply = {
             'noSignReason'
         ],
         next: [
+            { field: 'dps', value: true, next: '/apply/confirm' },
             { field: 'isUKApplication', value: true, next: [
                 { field: 'adultOrChild', value: 'child', next: '/apply/relationship-to-applicant' },
                 '/apply/who-for'
@@ -781,7 +788,16 @@ const dps = {
         next:'/photo/digital-photo'
     },
     '/dps/dps-passport-details':{
-        next:'/dps'
+        next:'/dps/dps-name'
+    },
+    '/dps/dps-name':{
+        next:'/apply/previous-names'
+    },
+    '/dps/dps-birth':{
+        next:'/apply/address-manual'
+    },
+    '/dps/dps-new-passport':{
+        next:'/apply/sign'
     }
 }
 
