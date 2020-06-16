@@ -134,7 +134,14 @@ const apply = {
         ]
     },
     '/photo/choose-submit-photo': {
-        next: '/filter/previous-passport'
+        fields: [
+            'photoOverride',
+            'photoOverrideReason'
+        ],
+        next: [
+            { field: 'photoOverride', value: false, next: '/photo/choose-photo-method' },
+            '/filter/previous-passport'
+        ]
     },
 
     '/filter/previous-passport': {

@@ -65,6 +65,18 @@ module.exports = {
         //     { type: 'maxlength', arguments: 8 }
         // ]
     },
+    photoOverride: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
+    photoOverrideReason: {
+        validate: [
+            'required',
+            'alphanumex1',
+            { type: 'maxlength', arguments: 250 }
+        ],
+        dependent: { field: 'photoOverride', value: true }
+    },
     submitPhoto: {
         formatter: 'boolean',
         validate: 'required'
