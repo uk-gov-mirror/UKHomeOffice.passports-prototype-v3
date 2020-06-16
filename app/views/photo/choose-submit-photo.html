@@ -21,12 +21,22 @@
 
     {% call hmpoForm(ctx) %}
         {{ hmpoRadios(ctx, {
-            id: "submitPhoto",
+            id: "photoOverride",
             legend: { classes: "govuk-visually-hidden" },
             items: [
                 { value: true, text: "Yes, this photo meets the rules" },
                 { value: false, text: "No, I want to get another photo" }
-            ]
+            ],
+            conditionals: {
+                "true": {
+                    html: hmpoTextarea(ctx, {
+                        id: "photoOverrideReason",
+                        label: {
+                            text: "Explain why you’d like to use this photo"
+                        }
+                    })
+                }
+            }
         }) }}
         {{ hmpoSubmit(ctx) }}
     {% endcall %}
