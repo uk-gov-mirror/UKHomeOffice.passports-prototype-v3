@@ -5,10 +5,17 @@
 {% block cookieBanner %}{% endblock %}
 {% block phaseBanner %}{% endblock %}
 
+{% set detailsText %}You should <a href="/help" class="govuk-link">contact us </a>if you need help with your application.{% endset %}
+{% set insetText %}We won’t reply to your message. {% endset %}
+
 {% block mainContent %}
 
     {% call hmpoForm(ctx) %}
         <h1>{{ hmpoTitle }}</h1>
+
+        {{ govukInsetText({
+            html: insetText
+        }) }}
 
         {{ govukCharacterCount({
             id: "feedbackText",
@@ -17,6 +24,11 @@
             label: {
                 text: "Don't include any personal or financial information."
             }
+        }) }}
+
+        {{ govukDetails({
+            summaryText: "I need help with my application",
+            html: detailsText
         }) }}
 
         {{ hmpoSubmit(ctx) }}

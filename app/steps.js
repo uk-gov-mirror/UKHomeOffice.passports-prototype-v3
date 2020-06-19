@@ -16,6 +16,10 @@ const apply = {
     // },
     // ========================
 
+    '/help': {
+        checkJourney: false,
+    },
+
     '/help/cookies-setting': {
         checkJourney: false,
     },
