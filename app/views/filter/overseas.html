@@ -6,6 +6,10 @@
 
     {% call hmpoForm(ctx) %}
 
+        <div class="govuk-inset-text hmpo-inset-info">
+            If you’re applying on behalf of an adult or child, answer these questions with their details rather than your own.
+        </div>
+
         {{ hmpoRadios(ctx, {
             id: "isUKApplication",
             legend: {
