@@ -45,12 +45,12 @@ const apply = {
         entryPoint: true,
         resetJourney: true,
         skip: true,
-        next: '/filter/begin'
-    },
-    '/filter/begin': {
-        backLink: '/start.html',
         next: '/filter/overseas'
     },
+    // '/filter/begin': {
+    //     backLink: '/start.html',
+    //     next: '/filter/overseas'
+    // },
     '/filter/overseas': {
         fields: [
             'isUKApplication',
