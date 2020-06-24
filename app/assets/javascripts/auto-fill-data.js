@@ -48,7 +48,6 @@
             'dateOfBirth-month': 7,
             'dateOfBirth-year': now.getFullYear() - 30,
             'photoMethod': 'digitalphoto',
-            'photo-filename': 'test-pass.jpg',
             'submitPhoto': true,
             'previousPassport': true,
             'lost': false,
