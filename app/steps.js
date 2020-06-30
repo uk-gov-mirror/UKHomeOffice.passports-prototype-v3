@@ -96,7 +96,7 @@ const apply = {
     },
     '/photo/retrieve': {
         // controller: require('../../controllers/photo-code'),
-        // template: 'photo-code',
+        template: 'photo/photo-code',
         fields: [
             'photoCodeSld',
             'photoCodeTld',
