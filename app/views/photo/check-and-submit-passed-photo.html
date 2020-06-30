@@ -1,0 +1,30 @@
+{% extends "layout-apply.html" %}
+
+{% set hmpoTitle %}Check your photo{% endset %}
+
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    {% include "../includes/photo-checklist.html" %}
+
+    {% call hmpoInsetText(ctx) %}
+        <p>If your photo doesn’t meet the rules you may have problems with your application or when you travel.</p>
+    {% endcall %}
+
+    {% include "../includes/photo-preview.html" %}
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoRadios(ctx, {
+            id: "submitPhoto",
+            legend: {
+                text: "Do you want to submit this photo?",
+                classes: "govuk-fieldset__legend--m"
+            },
+            items: [
+                { value: true, text: "Yes, I want to submit it" },
+                { value: false, text: "No, I want to get a different photo" }
+            ]
+        }) }}
+        {{ hmpoSubmit(ctx) }}
+    {% endcall %}
+{% endblock %}

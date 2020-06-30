@@ -1,0 +1,9 @@
+#photo-errors-blue {
+    border-color: govuk-colour("light-blue");
+    background-color: mix(govuk-colour("light-blue"), white, 10);
+}
+
+#photo-errors-red {
+    border-color: govuk-colour("red");
+    background-color: mix(govuk-colour("red"), white, 10);
+}
