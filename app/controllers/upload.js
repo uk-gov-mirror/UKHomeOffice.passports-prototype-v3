@@ -4,6 +4,7 @@ class UploadController extends BaseController {
     successHandler (req, res, next) {
         const filename = req.sessionModel.get('photo')
         let quality
+        let showPhotoPreview = true
 
         /*
             Unable to consolidate into single RegEx, so duplicating conditional
@@ -18,7 +19,8 @@ class UploadController extends BaseController {
         } else if (filename.match(/poor/i)) {
             quality = 'poor'
         } else if (filename.match(/fail/i)) {
-            quality = undefined // TODO: add -> quality = 'fail'
+            quality = 'fail'
+            showPhotoPreview = false
         } else if (filename.match(/[a-z\s_-]*(?<!\d|\dto)1(?!\d|to\d)/i)) {
             quality = 'good'
         } else if (filename.match(/[a-z\s_-]*(?<!\d|\dto)2(?!\d|to\d)/i)) {
@@ -26,7 +28,8 @@ class UploadController extends BaseController {
         } else if (filename.match(/[a-z\s_-]*(?<!\d|\dto)3(?!\d|to\d)/i)) {
             quality = 'poor'
         } else if (filename.match(/[a-z\s_-]*(?<!\d|\dto)4(?!\d|to\d)/i)) {
-            quality = undefined // TODO: add -> quality = 'fail'
+            quality = 'fail'
+            showPhotoPreview = false
         } else {
             quality = 'good'
         }
@@ -66,7 +69,11 @@ class UploadController extends BaseController {
         }
         req.sessionModel.set('photoAgeRange', photoAgeRange)
 
-        req.sessionModel.set('photo', quality && ('/public/images/photo-preview-thumbnail/' + photoAgeRange + '/thumbnail-' + quality + '-' + photoAgeRange + '.jpg'))
+        if (!showPhotoPreview) {
+            req.sessionModel.unset('photo')
+        } else {
+            req.sessionModel.set('photo', quality && ('/public/images/photo-preview-thumbnail/' + photoAgeRange + '/thumbnail-' + quality + '-' + photoAgeRange + '.jpg'))
+        }
 
         super.successHandler(req, res, next)
     }

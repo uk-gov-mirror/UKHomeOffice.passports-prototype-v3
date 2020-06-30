@@ -4,6 +4,7 @@ class RetrievingImageController extends BaseController {
     successHandler (req, res, next) {
         const url = req.sessionModel.get('photoCodePath')
         let quality
+        let showPhotoPreview = true
 
         if (url.match(/pass|^1$|2AtDAiw/i)) {
             quality = 'pass'
@@ -11,8 +12,10 @@ class RetrievingImageController extends BaseController {
             quality = 'overridable'
         } else if (url.match(/fail|^3$|2kp3DUh/i)) {
             quality = 'fail'
+            showPhotoPreview = false
         } else if (url.match(/invalid|error|^4$|12345678|a1b2c3d4/i)) {
-            quality = undefined
+            quality = 'code-error'
+            showPhotoPreview = false
         } else {
             quality = 'pass'
         }
@@ -36,7 +39,11 @@ class RetrievingImageController extends BaseController {
         }
         req.sessionModel.set('photoAgeRange', photoAgeRange)
 
-        req.sessionModel.set('photo', quality && ('/public/images/photo-preview-thumbnail/' + photoAgeRange + '/thumbnail-' + quality + '-' + photoAgeRange + '.jpg'))
+        if (!showPhotoPreview) {
+            req.sessionModel.unset('photo')
+        } else {
+            req.sessionModel.set('photo', quality && ('/public/images/photo-preview-thumbnail/' + photoAgeRange + '/thumbnail-' + quality + '-' + photoAgeRange + '.jpg'))
+        }
 
         super.successHandler(req, res, next)
     }
