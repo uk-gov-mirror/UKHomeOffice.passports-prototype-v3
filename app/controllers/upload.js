@@ -2,6 +2,8 @@ const BaseController = require('./apply')
 
 class UploadController extends BaseController {
     successHandler (req, res, next) {
+        req.sessionModel.unset('photoCode')
+
         const filename = req.sessionModel.get('photo')
         let quality
         let showPhotoPreview = true
