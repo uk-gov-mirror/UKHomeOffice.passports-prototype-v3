@@ -21,28 +21,18 @@ class RetrievingImageController extends BaseController {
         }
         req.sessionModel.set('photoQuality', quality)
 
-        let photoAgeGroup = req.sessionModel.get('photoAgeGroup')
-        let photoAgeRange
-
-        if (photoAgeGroup == 'adult') {
-            photoAgeRange = 'adult'
-        } else if (photoAgeGroup == '12to15') {
-            photoAgeRange = 'child-12to15'
-        } else if (photoAgeGroup == '6to11') {
-            photoAgeRange = 'child-6to11'
-        } else if (photoAgeGroup == '1to5') {
-            photoAgeRange = 'child-1to5'
-        } else if (photoAgeGroup == 'under1') {
-            photoAgeRange = 'baby-12months'
-        } else {
-            photoAgeRange = 'adult'
-        }
-        req.sessionModel.set('photoAgeRange', photoAgeRange)
-
         if (!showPhotoPreview) {
             req.sessionModel.unset('photo')
         } else {
-            req.sessionModel.set('photo', quality && ('/public/images/photo-preview-thumbnail/' + photoAgeRange + '/thumbnail-' + quality + '-' + photoAgeRange + '.jpg'))
+            if (url.match(/pass|^1$|2AtDAiw/i)) {
+                req.sessionModel.set('photo', quality && ('/public/images/photo-preview-thumbnail/oix/adult/thumbnail-' + quality + '-adult-2AtDAiw.jpg'))
+            } else if (url.match(/override?(able)?|^2$|2jdD4hk/i)) {
+                req.sessionModel.set('photo', quality && ('/public/images/photo-preview-thumbnail/oix/adult/thumbnail-' + quality + '-adult-2jdD4hk.jpg'))
+            } else if (url.match(/35lyjrG/i)) {
+                req.sessionModel.set('photo', quality && ('/public/images/photo-preview-thumbnail/oix/adult/thumbnail-' + quality + '-adult-35lyjrG.jpg'))
+            } else {
+                req.sessionModel.set('photo', quality && ('/public/images/photo-preview-thumbnail/oix/adult/thumbnail-' + quality + '-adult-2AtDAiw.jpg'))
+            }
         }
 
         super.successHandler(req, res, next)
