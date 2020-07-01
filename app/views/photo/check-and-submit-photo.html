@@ -11,7 +11,14 @@
         <div class="photo-errors photo-errors-red">
             <h2>Automated check</h2>
             <ul class="govuk-list govuk-list--bullet">
-                <li>your mouth may be open</li>
+                {% if values.photoCodePath == "2jdD4hk" %}
+                    <li>your mouth may be open</li>
+                {% elif values.photoCodePath == "35lyjrG" %}
+                    <li>it looks like your eyes are closed</li>
+                    <li>your image and the background are difficult to tell apart</li>
+                {% else %}
+                    <li>your mouth may be open</li>
+                {% endif %}
             </ul>
         </div>
     {% endcall %}
