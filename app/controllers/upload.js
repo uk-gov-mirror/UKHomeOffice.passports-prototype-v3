@@ -72,7 +72,7 @@ class UploadController extends BaseController {
         if (!showPhotoPreview) {
             req.sessionModel.unset('photo')
         } else {
-            req.sessionModel.set('photo', quality && ('/public/images/photo-preview-thumbnail/' + photoAgeRange + '/thumbnail-' + quality + '-' + photoAgeRange + '.jpg'))
+            req.sessionModel.set('photo', quality && ('/public/images/photo-preview-thumbnail/upload/' + photoAgeRange + '/thumbnail-' + quality + '-' + photoAgeRange + '.jpg'))
         }
 
         super.successHandler(req, res, next)
