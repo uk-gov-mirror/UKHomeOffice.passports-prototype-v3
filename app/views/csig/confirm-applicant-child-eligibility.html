@@ -12,15 +12,7 @@
             classes: "govuk-radios--inline",
             legend:{
                 text: 'Do you know them personally, for example as a friend, neighbour or colleague?'
-            },
-            items: [
-                {
-                    value: true
-                },
-                {
-                    value: false
-                }
-            ]
+            }
         }) }}
 
         {{ hmpoRadios(ctx, {
@@ -28,28 +20,20 @@
             classes: "govuk-radios--inline",
             legend:{
                 text: 'Are you related to, in a relationship with or living at the same address as them?'
-            },
-            items: [
-                {
-                    value: true
-                },
-                {
-                    value: false
-                }
-            ]
+            }
         }) }}
 
-        {{ govukInput({
-            classes: "govuk-input--width-20",
+         {{ hmpoText(ctx, {
             id: "howKnow",
+            classes: "govuk-input--width-20",
             label: {
                 text: "How do you know them?"
             }
         }) }}
 
-        {{ govukInput({
-            classes: "govuk-input--width-2",
+        {{ hmpoNumber(ctx, {
             id: "howLong",
+            classes: "govuk-input--width-2",
             label: {
                 text: "How many years have you known them?"
             }
