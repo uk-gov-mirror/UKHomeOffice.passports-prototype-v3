@@ -831,6 +831,14 @@ module.exports = {
             'numeric',
             { type: 'maxlength', arguments: 2 }
         ]
-    }
+    },
+    confirmPhoto: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
+    confirmTown: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
 
 }

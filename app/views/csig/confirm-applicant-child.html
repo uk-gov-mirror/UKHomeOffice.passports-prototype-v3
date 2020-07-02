@@ -1,0 +1,52 @@
+{% extends "layout-temp-csig.html" %}
+
+{% set hmpoTitle %}Is this a true likeness of Patrick Michael Smith?{% endset %}
+
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    <div class="grid-row">
+        <div class="column-one-third">
+          <img src="../../public/images/CSIG-child-photo.jpg" width="200">
+        </div>
+    </div>
+    </br>
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoRadios(ctx, {
+            id: "confirmPhoto",
+            classes: "govuk-radios--inline",
+            legend: { classes: "govuk-visually-hidden" },
+            items: [
+                {
+                    value: true
+                },
+                {
+                    value: false
+                }
+            ]
+        }) }}
+
+        {{ hmpoRadios(ctx, {
+            id: "confirmTown",
+            classes: "govuk-radios--inline",
+            legend:{
+                text: 'Can you confirm they were born in Dagenham?'
+            },
+            items: [
+                {
+                    value: true
+                },
+                {
+                    value: false
+                }
+            ]
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}
+

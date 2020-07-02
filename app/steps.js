@@ -649,6 +649,7 @@ const tracking = {
 const csig = {
     '/csig/start': {
         entryPoint: true,
+        resetJourney: true,
         backLink: false,
         next: '/csig/sign-in'
     },
@@ -712,7 +713,28 @@ const csig = {
             'howKnow',
             'howLong'
         ],
-        next:'/csig/'
+        next:[
+            { field: 'areRelated', value: true, next:'/csig/applicant-summary'},
+            '/csig/confirm-applicant-child'
+        ]
+    },
+    '/csig/applicant-summary':{
+        backLink: false,
+        next: '/csig/exceptions'
+    },
+    '/csig/exceptions':{
+        backLink: false,
+        next: 'https://www.gov.uk/'
+    },
+    '/csig/confirm-applicant-child':{
+        fields: [
+            'confirmPhoto',
+            'confirmTown'
+        ],
+        next:'/csig/applicant-photo-fail'
+    },
+    '/csig/applicant-photo-fail':{
+        next:'/csig'
     }
 
 }

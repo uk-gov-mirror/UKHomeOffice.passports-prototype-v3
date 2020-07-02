@@ -1,0 +1,18 @@
+{% extends "layout-temp-csig.html" %}
+
+{% set hmpoTitle %}You don't meet the criteria{% endset %}
+
+{% block mainContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>You can't confirm this person's identity. You may be able to do this for others.</p>
+    <p>We'll tell the applicant to ask someone else.</p>
+    <p>Thank you.</p>
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoSubmit(ctx, { text: "Done" }) }}
+    {% endcall %}
+
+{% endblock %}
+
