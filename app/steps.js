@@ -707,14 +707,16 @@ const csig = {
         next: '/csig/confirm-applicant-child-eligibility'
     },
     '/csig/confirm-applicant-child-eligibility':{
+        controller: require('./controllers/apply'),
         fields: [
             'knowPersonally',
             'areRelated',
             'howKnow',
             'howLong'
         ],
-        next:[
-            { field: 'areRelated', value: true, next:'/csig/applicant-summary'},
+        next: [
+            { field: 'areRelated', value: true, next: '/csig/applicant-summary' },
+            { field: 'CsigEligible', value: false, next: '/csig/applicant-summary' },
             '/csig/confirm-applicant-child'
         ]
     },
