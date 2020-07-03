@@ -1,26 +1,26 @@
 {% extends "layout-temp-csig.html" %}
 
-{% set hmpoTitle %}Your contact details{% endset %}
+{% set hmpoTitle %}Details submitted{% endset %}
 
 {% block mainContent %}
-  <div class="govuk-grid-row">
-      {{ govukPanel({
-        html: "<h1>Application complete</h1>"
-      }) }}
 
-      <p class="govuk-body">We have sent you a confirmation email.</p>
+    <style>
+        .hmpo-inset-info {
+            border-color: #28a197;
+            background-color: #eaf6f5;
+        }
+    </style>
 
-      <h2 class="govuk-heading-m">What happens next</h2>
+    <div class="govuk-inset-text hmpo-inset-info">
+        <h2>Details submitted</h2>
+    </div>
 
-      <p class="govuk-body">
-        We’ve sent your application to Hackney Electoral Register Office.
-      </p>
-      <p class="govuk-body">
-        They will contact you either to confirm your registration, or to ask for more information.
-      </p>
+    <p>We'll let the applicant know and look into any details you were unable to confirm. You don't need to sign a printed photo.</p>
 
-      <p class="govuk-body">
-        <a href="#" class="govuk-link">What did you think of this service?</a> (takes 30 seconds)
-      </p>
-  </div>
+    <p>Thank you.</p>
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoSubmit(ctx, { text: "Give feedback" }) }}
+    {% endcall %}
+
 {% endblock %}
