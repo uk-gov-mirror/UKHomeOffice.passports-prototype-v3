@@ -840,5 +840,69 @@ module.exports = {
         formatter: 'boolean',
         validate: 'required'
     },
-
+    parent1Details: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
+    parent2Details: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
+    confirmAddress: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
+    csigProfession: {
+        validate: 'required'
+    },
+    csigRetired: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
+    workEmployerName: {
+        validate: 'required'
+    },
+    workAddressLine1: {
+        validate: [
+            'required',
+            { type: 'minlength', arguments: 3 },
+            { type: 'maxlength', arguments: 40 }
+        ]
+    },
+    workAddressLine2: {
+        validate: [
+            { type: 'maxlength', arguments: 40 }
+        ]
+    },
+    workAddressTown: {
+        validate: [
+            'required',
+            { type: 'maxlength', arguments: 30 }
+        ]
+    },
+    workAddressPostcode: {
+        formatter: 'uppercase',
+        validate: [
+            'required',
+            { type: 'maxlength', arguments: 10 }
+        ]
+    },
+    csigEmail: {
+        formatter: ['trim'],
+        validate: [
+            'required',
+            'email',
+            { type: 'maxlength', arguments: 240 }
+        ],
+        type: 'email',
+        'ignore-defaults': true // stops removing double dashes etc by default
+    },
+    csigPhone: {
+        formatter: ['removespaces', 'removehyphens'],
+        validate: [
+            'required',
+            { type: 'maxlength', arguments: 15 }
+        ],
+        type: 'tel'
+    }
 }

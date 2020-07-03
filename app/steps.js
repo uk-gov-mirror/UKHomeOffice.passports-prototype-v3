@@ -731,12 +731,60 @@ const csig = {
             'confirmPhoto',
             'confirmTown'
         ],
-        next:'/csig/applicant-photo-fail'
+        next:[
+        { field: 'confirmPhoto', value: false, next:'/csig/applicant-photo-fail'},
+        '/csig/confirm-applicant-parents'
+        ]
     },
     '/csig/applicant-photo-fail':{
-        next:'/csig'
+        fields: [
+            'describeProblem'
+        ],
+        next:'/csig/confirm-applicant-parents'
+    },
+    '/csig/confirm-applicant-parents': {
+        fields: [
+            'parent1Details',
+            'parent2Details'
+        ],
+        next:'/csig/confirm-applicant-address'
+    },
+    '/csig/confirm-applicant-address':{
+        fields: [
+            'confirmAddress'
+        ],
+        next:'/csig/csig-details-work'
+    },
+    '/csig/csig-details-work':{
+        fields: [
+            'csigProfession',
+            'csigRetired'
+        ],
+        next:[
+            { field: 'csigRetired', value: true, next:'csig-details-contact'},
+            '/csig/csig-details-work-address'
+        ]
+    },
+    '/csig/csig-details-work-address':{
+        fields: [
+            'workEmployerName',
+            'workAddressLine1',
+            'workAddressLine2',
+            'workAddressTown',
+            'workAddressPostcode'
+        ],
+        next:'/csig/csig-details-contact'
+    },
+    '/csig/csig-details-contact':{
+        fields: [
+            'csigEmail',
+            'csigPhone'
+        ],
+        next:'/csig/confirmation'
+    },
+    '/csig/confirmation':{
+        backLink: false
     }
-
 }
 
 module.exports = {
