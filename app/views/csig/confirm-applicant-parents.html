@@ -6,9 +6,10 @@
 
     <style>
         .govuk-summary-list__key {
-            margin-bottom: 5px;
-            font-weight: 700;
             width: 55%;
+        }
+                .form-user-data h2 {
+            margin-bottom: 0px;
         }
     </style>
 
@@ -17,7 +18,9 @@
         <h1>{{ hmpoTitle }}</h1>
         <p>We need to check the applicant is eligible for a UK passport. Answer to the best of your knowledge.</p>
 
-        <h2>Mother or parent 1</h2>
+        <div class="form-user-data">
+            <h2>Mother or parent 1</h2>
+        </div>
 
         {{ govukSummaryList({ rows: [
             {
@@ -47,7 +50,9 @@
 
         <br>
 
-        <h2>Father or parent 2</h2>
+        <div class="form-user-data">
+            <h2>Father or parent 2</h2>
+        </div>
 
         {{ govukSummaryList({ rows: [
             {
