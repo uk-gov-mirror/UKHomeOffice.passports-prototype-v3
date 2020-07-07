@@ -654,11 +654,22 @@ const csig = {
         next: '/csig/sign-in'
     },
     '/csig/sign-in': {
+        controller: require('./controllers/csig-reference'),
         fields: [
             'csigAppReference',
             'csigDateOfBirth'
         ],
-        next: '/csig/declaration'
+        next:[
+        { field: 'csig-expired', value: true, next: '/csig/csig-expired' },
+        { field: 'csig-invalid', value: true, next: '/csig/csig-invalid' },
+        '/csig/declaration'
+        ]
+    },
+    '/csig/csig-expired':{
+        next: 'https://www.gov.uk/'
+    },
+    '/csig/csig-invalid':{
+        next:'/csig/sign-in'
     },
     '/csig/declaration': {
         fields: [
@@ -692,6 +703,10 @@ const csig = {
         fields: [
             'refereeAddressSelect'
         ],
+        next:'/csig/identity-auth'
+    },
+    '/csig/referee-address-manual':{
+        prereqs: ['csig/referee-address'],
         next:'/csig/identity-auth'
     },
     '/csig/identity-auth': {
