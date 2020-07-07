@@ -1,0 +1,52 @@
+{% extends "layout-csig.html" %}
+
+{% set hmpoTitle %}Is this a true likeness of Susan Howard?{% endset %}
+
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    <div class="grid-row">
+        <div class="column-one-third">
+          <img src="../../public/images/CSIG-child-photo.jpg" width="200">
+        </div>
+    </div>
+    </br>
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoRadios(ctx, {
+            id: "confirmAdultPhoto",
+            classes: "govuk-radios--inline",
+            legend: { classes: "govuk-visually-hidden" },
+            items: [
+                {
+                    value: true
+                },
+                {
+                    value: false,
+                    conditional: {
+                        html: hmpoRadios(ctx, {
+                            id: "knowPersonally",
+                            classes: "govuk-radios--inline",
+                            legend:{
+                                text: 'Do you know them personally, for example as a friend, neighbour or colleague?'
+                            }
+                        }),
+                        html: hmpoRadios(ctx, {
+                            id: "areRelated",
+                            classes: "govuk-radios--inline",
+                            legend:{
+                                text: 'Are you related to, in a relationship with or living at the same address as them?'
+                            }
+                        })
+                    }
+                }
+            ]
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}
+
