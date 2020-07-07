@@ -3,59 +3,46 @@
 {% set hmpoTitle %}Retrieve your digital photo{% endset %}
 
 {% block mainContent %}
-    <style>
-        .photo-code .govuk-form-group {
-            display: inline-block;
-        }
-        .photo-code span {
-            margin-top: 0.5em;
-            font-weight: bold;
-            font-size: 25px;
-        }
-    </style>
-
     <h1>{{ hmpoTitle }}</h1>
 
     {% call hmpoForm(ctx) %}
-        <div id="photo-code" class="govuk-form-group">
-            <fieldset class="govuk-fieldset">
-                <legend class="govuk-fieldset__legend">
-                    Photo code
-                </legend>
-                <span id="photo-code-hint" class="govuk-hint">
-                    This is case-sensitive, for example abc.de/1fG2h3i4
-                </span>
 
-                <div class="photo-code">
-                    {{ hmpoText(ctx, {
-                        id: "photoCodeSld",
-                        classes: "govuk-input--width-5",
-                        label: {
-                            text: "Photo code first part",
-                            classes: "govuk-visually-hidden"
-                        }
-                    }) }}
-                    <span>.</span>
-                    {{ hmpoText(ctx, {
-                        id: "photoCodeTld",
-                        classes: "govuk-input--width-3",
-                        label: {
-                            text: "Photo code second part",
-                            classes: "govuk-visually-hidden"
-                        }
-                    }) }}
-                    <span>/</span>
-                    {{ hmpoText(ctx, {
-                        id: "photoCodePath",
-                        classes: "govuk-input--width-5",
-                        label: {
-                            text: "Photo code third part",
-                            classes: "govuk-visually-hidden"
-                        }
-                    }) }}
-                </div>
-            </fieldset>
-        </div>
+        {% call hmpoErrorGroup(ctx, {
+            id: "photoCode",
+            classes: "photo-code",
+            legend: {
+                text: "Photo code",
+                classes: "govuk-fieldset__legend--m"
+            },
+            hint: "This is case-sensitive, for example abc.de/1fG2h3i4"
+        }) %}
+            {{ hmpoText(ctx, {
+                id: "photoCodeSld",
+                classes: "govuk-input--width-5",
+                label: {
+                    text: "First part",
+                    classes: "govuk-visually-hidden"
+                }
+            }) }}
+            <span class="photo-code__separator">.</span>
+            {{ hmpoText(ctx, {
+                id: "photoCodeTld",
+                classes: "govuk-input--width-3",
+                label: {
+                    text: "Second part",
+                    classes: "govuk-visually-hidden"
+                }
+            }) }}
+            <span class="photo-code__separator">/</span>
+            {{ hmpoText(ctx, {
+                id: "photoCodePath",
+                classes: "govuk-input--width-5",
+                label: {
+                    text: "Third part",
+                    classes: "govuk-visually-hidden"
+                }
+            }) }}
+        {% endcall %}
 
         {% call hmpoSidebar({ classes: "hmpo-sidebar__big-image" }) %}
             <h2>Where to find your code</h2>
@@ -63,6 +50,6 @@
         {% endcall %}
 
         {{ hmpoSubmit(ctx) }}
-    {% endcall %}
 
+    {% endcall %}
 {% endblock %}

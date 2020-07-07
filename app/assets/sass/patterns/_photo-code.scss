@@ -1,0 +1,29 @@
+.photo-code {
+
+    .photo-code__separator {
+        margin-top: 0.5em;
+        font-weight: bold;
+        font-size: 25px
+    }
+
+    .govuk-input {
+        display: inline-block;
+    }
+
+    .govuk-form-group {
+        display: inline-block;
+        margin-bottom: 0;
+    }
+
+    #photo-code-sld-group {
+        width: 5em;
+    }
+
+    #photo-code-tld-group {
+        width: 3em;
+    }
+
+    #photo-code-path-group {
+        width: 6em;
+    }
+}
