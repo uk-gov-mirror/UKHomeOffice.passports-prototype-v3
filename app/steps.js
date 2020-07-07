@@ -760,7 +760,10 @@ const csig = {
         next:'/csig/what-happens-next'
     },
     '/csig/what-happens-next':{
-        next:'/csig/confirm-applicant-relationship'
+        next:[
+            { field: 'csig-child', value: false, next: '/csig/confirm-applicant' },
+            '/csig/confirm-applicant-relationship'
+        ]
     },
     '/csig/confirm-applicant-relationship':{
         fields: [
