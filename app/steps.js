@@ -736,7 +736,7 @@ const csig = {
             { field: 'confirmPhotoAdult', value: false, next: [
                 { field: 'areRelatedAdult', value: true, next: '/csig/applicant-summary-adult' },
                 { field: 'CsigEligible', value: false, next: '/csig/applicant-summary-adult' },
-                '/csig/applicant-photo-fail'
+                '/csig/applicant-photo-fail-adult'
             ] }
         ]
     },
