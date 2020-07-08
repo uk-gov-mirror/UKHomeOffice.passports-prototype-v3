@@ -765,6 +765,28 @@ const csig = {
             '/csig/confirm-applicant-relationship'
         ]
     },
+    '/csig/confirm-applicant':{
+        controller: require('./controllers/apply'),
+        fields: [
+            'confirmPhotoAdult',
+            'knowPersonallyAdult',
+            'areRelatedAdult',
+            'howKnowAdult',
+            'howLongAdult'
+        ],
+        next: [
+            { field: 'confirmPhotoAdult', value: true, next: [
+                { field: 'areRelatedAdult', value: true, next: '/csig/applicant-summary-adult' },
+                { field: 'CsigEligible', value: false, next: '/csig/applicant-summary-adult' },
+                '/csig/confirm-applicant-address'
+            ] },
+            { field: 'confirmPhotoAdult', value: false, next: [
+                { field: 'areRelatedAdult', value: true, next: '/csig/applicant-summary-adult' },
+                { field: 'CsigEligible', value: false, next: '/csig/applicant-summary-adult' },
+                '/csig/applicant-photo-fail'
+            ] }
+        ]
+    },
     '/csig/confirm-applicant-relationship':{
         fields: [
             'isDetailsCorrect',
@@ -780,12 +802,16 @@ const csig = {
             'howLong'
         ],
         next: [
-            { field: 'areRelated', value: true, next: '/csig/applicant-summary' },
-            { field: 'CsigEligible', value: false, next: '/csig/applicant-summary' },
+            { field: 'areRelated', value: true, next: '/csig/applicant-summary-child' },
+            { field: 'CsigEligibleChild', value: false, next: '/csig/applicant-summary-child' },
             '/csig/confirm-applicant-child'
         ]
     },
-    '/csig/applicant-summary':{
+    '/csig/applicant-summary-adult':{
+        backLink: false,
+        next: '/csig/exceptions'
+    },
+    '/csig/applicant-summary-child':{
         backLink: false,
         next: '/csig/exceptions'
     },
@@ -799,13 +825,19 @@ const csig = {
             'confirmTown'
         ],
         next:[
-        { field: 'confirmPhoto', value: false, next:'/csig/applicant-photo-fail'},
+        { field: 'confirmPhoto', value: false, next:'/csig/applicant-photo-fail-child'},
         '/csig/confirm-applicant-parents'
         ]
     },
-    '/csig/applicant-photo-fail':{
+    '/csig/applicant-photo-fail-adult':{
         fields: [
-            'describeProblem'
+            'describeProblemAdult'
+        ],
+        next:'/csig/confirm-applicant-address'
+    },
+    '/csig/applicant-photo-fail-child':{
+        fields: [
+            'describeProblemChild'
         ],
         next:'/csig/confirm-applicant-parents'
     },

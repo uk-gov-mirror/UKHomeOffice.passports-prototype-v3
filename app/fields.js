@@ -842,6 +842,31 @@ module.exports = {
         formatter: 'boolean',
         validate: 'required'
     },
+    confirmPhotoAdult: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
+    knowPersonallyAdult: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
+    areRelatedAdult: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
+    howKnowAdult: {
+        validate: [
+            'required',
+            { type: 'maxlength', arguments: 30 }
+        ]
+    },
+    howLongAdult: {
+        validate: [
+            'required',
+            'numeric',
+            { type: 'maxlength', arguments: 2 }
+        ]
+    },
     knowPersonally: {
         formatter: 'boolean',
         validate: 'required'
@@ -865,6 +890,12 @@ module.exports = {
     },
     confirmPhoto: {
         formatter: 'boolean',
+        validate: 'required'
+    },
+    describeProblemAdult: {
+        validate: 'required'
+    },
+    describeProblemChild: {
         validate: 'required'
     },
     confirmTown: {

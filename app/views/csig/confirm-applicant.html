@@ -7,38 +7,80 @@
 
     <div class="grid-row">
         <div class="column-one-third">
-          <img src="../../public/images/CSIG-child-photo.jpg" width="200">
+          <img src="../../public/images/thumbnail-good.jpg" width="200">
         </div>
     </div>
     </br>
 
     {% call hmpoForm(ctx) %}
 
+        {% set eligibilityCondition %}
+
+            {{ hmpoRadios(ctx, {
+                id: "knowPersonallyAdult",
+                classes: "govuk-radios--inline",
+                legend:{
+                    text: 'Do you know the applicant personally, for example as a friend, neighbour or colleague?'
+                },
+                items: [
+                    {
+                        value: true
+                    },
+                    {
+                        value: false
+                    }
+                ]
+            }) }}
+
+            {{ hmpoRadios(ctx, {
+                id: "areRelatedAdult",
+                classes: "govuk-radios--inline",
+                legend:{
+                    text: 'Are you related to, in a relationship with or living at the same address as the applicant?'
+                },
+                items: [
+                    {
+                        value: true
+                    },
+                    {
+                        value: false
+                    }
+                ]
+            }) }}
+
+            {{ hmpoText(ctx, {
+                id: "howKnowAdult",
+                classes: "govuk-input--width-20",
+                label: {
+                    text: "How do you know the applicant?"
+                }
+            }) }}
+
+            {{ hmpoNumber(ctx, {
+                id: "howLongAdult",
+                classes: "govuk-input--width-2",
+                label: {
+                    text: "How many years have you known the applicant?"
+                }
+            }) }}
+
+        {% endset -%}
+
         {{ hmpoRadios(ctx, {
-            id: "confirmAdultPhoto",
+            id: "confirmPhotoAdult",
             classes: "govuk-radios--inline",
             legend: { classes: "govuk-visually-hidden" },
             items: [
                 {
-                    value: true
+                    value: true,
+                    conditional: {
+                        html: eligibilityCondition
+                    }
                 },
                 {
                     value: false,
                     conditional: {
-                        html: hmpoRadios(ctx, {
-                            id: "knowPersonally",
-                            classes: "govuk-radios--inline",
-                            legend:{
-                                text: 'Do you know them personally, for example as a friend, neighbour or colleague?'
-                            }
-                        }),
-                        html: hmpoRadios(ctx, {
-                            id: "areRelated",
-                            classes: "govuk-radios--inline",
-                            legend:{
-                                text: 'Are you related to, in a relationship with or living at the same address as them?'
-                            }
-                        })
+                        html: eligibilityCondition
                     }
                 }
             ]
