@@ -3,7 +3,8 @@ const moment = require('moment')
 
 class DefaultController extends BaseController {
     successHandler (req, res, next) {
-        this.setCsigEligible(req)
+        this.setCsigEligibleChild(req)
+        this.setCsigEligibleAdult(req)
         this.setAgeGroup(req)
         this.setApplicationType(req)
         this.setParentsRequired(req)
@@ -17,7 +18,15 @@ class DefaultController extends BaseController {
         super.successHandler(req, res, next)
     }
 
-    setCsigEligible(req) {
+    setCsigEligibleAdult(req) {
+        let CsigEligible = true
+        if (req.sessionModel.get('howLongAdult') < '2') {
+            CsigEligible = false
+        }
+        req.sessionModel.set('CsigEligible', CsigEligible)
+    }
+
+    setCsigEligibleChild(req) {
         let CsigEligible = true
         if (req.sessionModel.get('howLong') < '2') {
             CsigEligible = false
