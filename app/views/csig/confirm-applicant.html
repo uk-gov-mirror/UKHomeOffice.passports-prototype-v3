@@ -14,8 +14,21 @@
 
     {% call hmpoForm(ctx) %}
 
-        {% set eligibilityCondition %}
+        {{ hmpoRadios(ctx, {
+            id: "confirmPhotoAdult",
+            classes: "govuk-radios--inline",
+            legend: { classes: "govuk-visually-hidden" },
+            items: [
+                {
+                    value: true
+                },
+                {
+                    value: false
+                }
+            ]
+        }) }}
 
+        <div class= "panel panel-border-narrow js-hidden" id= "declarations">
             {{ hmpoRadios(ctx, {
                 id: "knowPersonallyAdult",
                 classes: "govuk-radios--inline",
@@ -63,28 +76,7 @@
                     text: "How many years have you known the applicant?"
                 }
             }) }}
-
-        {% endset -%}
-
-        {{ hmpoRadios(ctx, {
-            id: "confirmPhotoAdult",
-            classes: "govuk-radios--inline",
-            legend: { classes: "govuk-visually-hidden" },
-            items: [
-                {
-                    value: true,
-                    conditional: {
-                        html: eligibilityCondition
-                    }
-                },
-                {
-                    value: false,
-                    conditional: {
-                        html: eligibilityCondition
-                    }
-                }
-            ]
-        }) }}
+        </div>
 
         {{ hmpoSubmit(ctx) }}
 
