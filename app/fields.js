@@ -844,7 +844,14 @@ module.exports = {
     },
     confirmPhotoAdult: {
         formatter: 'boolean',
-        validate: 'required'
+        validate: 'required',
+        legend: {
+            className: 'visuallyhidden'
+        },
+        options: [
+          { value: 'Yes', label: 'Yes', toggle: 'declarations' },
+          { value: 'No', label: 'No', toggle: 'declarations' }
+        ],
     },
     knowPersonallyAdult: {
         formatter: 'boolean',
