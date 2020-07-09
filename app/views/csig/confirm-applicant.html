@@ -16,7 +16,8 @@
 
         {{ hmpoRadios(ctx, {
             id: "confirmPhotoAdult",
-            classes: "govuk-radios--inline",
+            classes: "govuk-radios--nobottommargin",
+            inline: true,
             legend: { classes: "govuk-visually-hidden" },
             items: [
                 {
@@ -28,7 +29,7 @@
             ]
         }) }}
 
-        <div class= "panel panel-border-narrow js-hidden" id= "declarations">
+        <div class= "govuk-radios__conditional" id= "declarations" style="display:none">
             {{ hmpoRadios(ctx, {
                 id: "knowPersonallyAdult",
                 classes: "govuk-radios--inline",
@@ -80,7 +81,27 @@
 
         {{ hmpoSubmit(ctx) }}
 
+        <script type="text/javascript">
+
+            var trueRadio = document.getElementById("confirmPhotoAdult-true");
+            trueRadio.addEventListener("click", function() {
+                document.getElementById("declarations").style.display = "block";
+            });
+            var falseRadio = document.getElementById("confirmPhotoAdult-false");
+            falseRadio.addEventListener("click", function() {
+                document.getElementById("declarations").style.display = "block";
+            });
+            if (trueRadio.checked) {
+                trueRadio.click();
+            }
+            if (falseRadio.checked) {
+                falseRadio.click();
+            };
+        </script>
+
     {% endcall %}
 
 {% endblock %}
+
+
 
