@@ -1,23 +1,25 @@
-const BaseController = require('./apply');
+const BaseController = require('./apply')
 
 class PhotoCodeRetrieveController extends BaseController {
     process(req, res, next) {
 
-        let photoCode =
-            req.form.values['photoCodeSld'] + '.' +
-            req.form.values['photoCodeTld'] + '/' +
-            req.form.values['photoCodePath']
-
-        if (photoCode.match(/^\.\/$/i)) {
-            photoCode = 'bit.ly/2AtDAiw'
-        } else if (photoCode.match(/^\.\/.+$|^.+\.\/.+$|^\..+\/.+$/i)) {
-            photoCode = 'bit.ly/' + req.form.values['photoCodePath']
+        if (!req.form.values.photoCodeSld || !req.form.values.photoCodeTld) {
+            req.form.values.photoCodeSld = 'bit'
+            req.form.values.photoCodeTld = 'ly'
+        }
+        if (!req.form.values.photoCodePath) {
+            req.form.values.photoCodePath = '2AtDAiw'
         }
 
-        req.form.values['photoCode'] = photoCode;
+        let photoCode =
+            req.form.values.photoCodeSld + '.' +
+            req.form.values.photoCodeTld + '/' +
+            req.form.values.photoCodePath
 
-        super.process(req, res, next);
+        req.form.values.photoCode = photoCode
+
+        super.process(req, res, next)
     }
 }
 
-module.exports = PhotoCodeRetrieveController;
+module.exports = PhotoCodeRetrieveController
