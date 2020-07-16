@@ -67,6 +67,7 @@ const apply = {
         ],
         next: '/photo/digital-photo'
     },
+
     '/photo/digital-photo': {
         next: '/photo/choose-photo-method'
     },
@@ -82,31 +83,29 @@ const apply = {
     '/photo/how-to-take-a-photo': {
         next: '/photo/upload'
     },
+
+    /* Upload */
     '/photo/upload': {
         controller: require('./controllers/upload'),
         fields: [
             'photo'
         ],
+        // TODO: add in errors
+        // next: [
+        //     { field: 'photo-error-type', value: 'server-too-busy', next: 'server-too-busy' },
+        //     { field: 'photo-error-type', value: 'file-invalid', next: 'file-invalid' },
+        //     { field: 'photo-error-type', value: 'fail', next: 'not-accepted' },
+        //     { field: 'photo-quality', value: 'good', next: 'photo-check-result-good' },
+        //     { field: 'photo-quality', value: 'fair', next: 'photo-check-result-fair' },
+        //     { field: 'photo-quality', value: 'poor', next: 'photo-check-result-poor' },
+        //     'not-accepted'
+        // ]
         next: [
             { field: 'photoQuality', value: 'good', next: '/photo/photo-check-result-good' },
             { field: 'photoQuality', value: 'fair', next: '/photo/photo-check-result-fair' },
             { field: 'photoQuality', value: 'poor', next: '/photo/photo-check-result-poor' },
             '/photo/not-accepted'
         ]
-    },
-    '/photo/retrieve': {
-        // controller: require('../../controllers/photo-code'),
-        // template: 'photo-code',
-        fields: [
-            'photoCodeSld',
-            'photoCodeTld',
-            'photoCodePath',
-            'photoCode'
-        ],
-        next: '/photo/retrieving-image'
-    },
-    '/photo/retrieving-image': {
-        next: '/photo/photo-check-result-good'
     },
     '/photo/photo-check-result-good': {
         template: 'photo/photo-check-result',
@@ -119,10 +118,6 @@ const apply = {
     '/photo/photo-check-result-poor': {
         template: 'photo/photo-check-result',
         next: '/photo/choose-submit-photo'
-    },
-    '/photo/not-accepted': {
-    },
-    '/photo/code-error': {
     },
     '/photo/choose-submit-good-photo': {
         fields: [
@@ -142,6 +137,74 @@ const apply = {
             { field: 'photoOverride', value: false, next: '/photo/choose-photo-method' },
             '/filter/previous-passport'
         ]
+    },
+
+    /* OIX */
+    '/photo/retrieve': {
+        controller: require('./controllers/photo-code'),
+        template: 'photo/photo-code',
+        fields: [
+            'photoCodeSld',
+            'photoCodeTld',
+            'photoCodePath',
+            'photoCode'
+        ],
+        next: '/photo/retrieving-image'
+    },
+    '/photo/retrieving-image': {
+        controller: require('./controllers/retrieving-image'),
+        // TODO: add in errors
+        // next: [
+        //     { field: 'photo-error-type', value: 'too-many-requests', next: 'server-too-busy' },
+        //     { field: 'photo-error-type', value: 'server-too-busy', next: 'server-too-busy' },
+        //     { field: 'photo-error-type', value: 'fetch', next: 'code-error' },
+        //     { field: 'photo-error-type', value: 'file-invalid', next: 'file-invalid' },
+        //     { field: 'photo-error-type', value: 'fail', next: 'not-accepted' },
+        //     { field: 'photo-error-type', value: 'overridable', next: 'check-and-submit-photo' },
+        //     { field: 'photo-error-type', value: undefined, next: 'check-and-submit-passed-photo' },
+        //     'not-accepted'
+        // ]
+        next: [
+            { field: 'photoQuality', value: 'pass', next: '/photo/check-and-submit-passed-photo' },
+            { field: 'photoQuality', value: 'overridable', next: '/photo/check-and-submit-photo' },
+            { field: 'photoQuality', value: 'fail', next: '/photo/not-accepted' },
+            '/photo/code-error'
+        ]
+    },
+    '/photo/check-and-submit-passed-photo': {
+        // controller: require('../../controllers/check-photo'),
+        fields: [
+            'submitPhoto'
+        ],
+        next: [
+            { field: 'submitPhoto', value: false, next: '/photo/choose-photo-method' },
+            '/filter/previous-passport'
+        ]
+    },
+    '/photo/check-and-submit-photo': {
+        // controller: require('../../controllers/check-photo'),
+        fields: [
+            'photoOverride',
+            'photoOverrideReason'
+        ],
+        next: [
+            { field: 'photoOverride', value: false, next: '/photo/choose-photo-method' },
+            '/filter/previous-passport'
+        ]
+    },
+
+    /* Both Upload and OIX */
+    // '/photo/server-too-busy': {
+    //     controller: PhotoResult
+    // },
+    // '/photo/file-invalid': {
+    //     controller: PhotoResult
+    // },
+    '/photo/code-error': { // TODO: add -> photoQuality = undefined
+        // controller: PhotoResult
+    },
+    '/photo/not-accepted': { // TODO: add -> photoQuality = 'fail'
+        // controller: PhotoResult,
     },
 
     '/filter/previous-passport': {

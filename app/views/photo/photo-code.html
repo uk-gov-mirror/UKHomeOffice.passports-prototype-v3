@@ -1,0 +1,165 @@
+{% extends "layout-apply.html" %}
+
+{% set hmpoTitle %}Retrieve your digital photo{% endset %}
+
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    {% call hmpoForm(ctx) %}
+
+        {% call hmpoErrorGroup(ctx, {
+            id: "photoCode",
+            classes: "photo-code",
+            legend: {
+                text: "Photo code",
+                classes: "govuk-fieldset__legend--m"
+            },
+            hint: "This is case-sensitive, for example abc.de/1fG2h3i4"
+        }) %}
+            {{ hmpoText(ctx, {
+                id: "photoCodeSld",
+                classes: "govuk-input--width-5",
+                label: {
+                    text: "First part",
+                    classes: "govuk-visually-hidden"
+                }
+            }) }}
+            <span class="photo-code__separator">.</span>
+            {{ hmpoText(ctx, {
+                id: "photoCodeTld",
+                classes: "govuk-input--width-3",
+                label: {
+                    text: "Second part",
+                    classes: "govuk-visually-hidden"
+                }
+            }) }}
+            <span class="photo-code__separator">/</span>
+            {{ hmpoText(ctx, {
+                id: "photoCodePath",
+                classes: "govuk-input--width-5",
+                label: {
+                    text: "Third part",
+                    classes: "govuk-visually-hidden"
+                }
+            }) }}
+        {% endcall %}
+
+        {% call hmpoSidebar({ classes: "hmpo-sidebar__big-image" }) %}
+            <h2>Where to find your code</h2>
+            <img src="/public/images/printed-photo-code.jpg" alt="">
+        {% endcall %}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+{% endblock %}
+
+{% block pageScripts %}
+    <script>
+        'use strict';
+        (function () {
+            var reAllowedChars = /([a-z0-9]+)/i;
+
+            var reShortUrl = /^\s*(https?:\/\/)?([a-z0-9]+)\s*\.\s*([a-z0-9]+)\s*\/\s*([a-z0-9]+)\s*$/i;
+
+
+            function targetElement(e) {
+                return e.target || e.srcElement;
+            }
+
+            function documentReady(callback) {
+                photoCode.addEvent(document, 'DOMContentLoaded', callback);
+                photoCode.addEvent(window, 'load', callback);
+            }
+
+            var photoCode = {
+                limitChars: function (e) {
+                    if (!String(e.key).match(reAllowedChars)) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        return false;
+                    }
+                },
+
+                onKeyGoto: function (char, dest) {
+                    return function (e) {
+                        var target = targetElement(e);
+                        if (char === e.key && target.value.length) {
+                            dest.focus();
+                            dest.selectRange ? dest.selectRange(0, dest.value.length) : dest.select();
+                        }
+                    };
+                },
+
+                onPaste: function (sld, tld, path) {
+                    return function (e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+
+                        var clipboardData = e.clipboardData || window.clipboardData;
+                        var pastedData = clipboardData && clipboardData.getData('Text');
+
+                        var match = reShortUrl.exec(pastedData);
+                        if (match) {
+                            if (match[2].length > sld.maxLength) return false;
+                            if (match[3].length > tld.maxLength) return false;
+                            if (match[4].length > path.maxLength) return false;
+
+                            sld.value = match[2];
+                            tld.value = match[3];
+                            path.value = match[4];
+                            return false;
+                        }
+
+                        match = reAllowedChars.exec(pastedData);
+                        if (match) {
+                            var target = targetElement(e);
+                            if (match[1].length > target.maxLength) return false;
+
+                            target.value = match[1];
+                            return false;
+                        }
+
+                        return false;
+                    };
+                },
+
+
+                addEvent: function addEvent(el, type, callback) {
+                    if (el.addEventListener) {
+                        el.addEventListener(type, callback, false);
+                    } else if (el.attachEvent) {
+                        el.attachEvent('on' + type, callback);
+                    }
+                },
+
+                init: function init() {
+                    var photoCodeSLD = document.getElementById('photoCodeSld');
+                    var photoCodeTLD = document.getElementById('photoCodeTld');
+                    var photoCodePath = document.getElementById('photoCodePath');
+
+                    if (!photoCodeSLD || !photoCodeTLD || !photoCodePath) return;
+
+                    var onPaste = photoCode.onPaste(photoCodeSLD, photoCodeTLD, photoCodePath);
+                    photoCode.addEvent(photoCodeSLD, 'paste', onPaste);
+                    photoCode.addEvent(photoCodeTLD, 'paste', onPaste);
+                    photoCode.addEvent(photoCodePath, 'paste', onPaste);
+
+                    photoCode.addEvent(photoCodeSLD, 'keypress', photoCode.onKeyGoto('.', photoCodeTLD));
+                    photoCode.addEvent(photoCodeTLD, 'keypress', photoCode.onKeyGoto('/', photoCodePath));
+
+                    photoCode.addEvent(photoCodeSLD, 'keypress', photoCode.limitChars);
+                    photoCode.addEvent(photoCodeTLD, 'keypress', photoCode.limitChars);
+                    photoCode.addEvent(photoCodePath, 'keypress', photoCode.limitChars);
+                }
+            };
+
+            documentReady(photoCode.init);
+            if (typeof exports !== 'undefined') {
+                if (typeof module !== 'undefined' && module.exports) {
+                    exports = module.exports = photoCode;
+                }
+            }
+        })();
+    </script>
+{% endblock %}

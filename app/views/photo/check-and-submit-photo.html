@@ -1,0 +1,64 @@
+{% extends "layout-apply.html" %}
+
+{% set hmpoTitle %}Check your photo{% endset %}
+
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    {% include "../includes/photo-checklist.html" %}
+
+    {% call hmpoInsetText({ id: "photo-errors-red" }) %}
+        <div class="photo-errors photo-errors-red">
+            <h2>Automated check</h2>
+            <ul class="govuk-list govuk-list--bullet">
+                {% if values.photoCodePath == "2jdD4hk" %}
+                    <li>your mouth may be open</li>
+                {% elif values.photoCodePath == "35lyjrG" %}
+                    <li>it looks like your eyes are closed</li>
+                    <li>your image and the background are difficult to tell apart</li>
+                {% else %}
+                    <li>your mouth may be open</li>
+                {% endif %}
+            </ul>
+        </div>
+    {% endcall %}
+
+    {% include "../includes/photo-preview.html" %}
+
+    <h2>You can use the photo</h2>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>if you have a medical or religious reason why it doesn’t meet the rules</li>
+        <li>if you think it meets all the rules</li>
+    </ul>
+
+    {% call hmpoInsetText(ctx) %}
+        <p>If your photo doesn’t meet the rules you may have problems with your application or when you travel.</p>
+    {% endcall %}
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoRadios(ctx, {
+            id: "photoOverride",
+            legend: {
+                text: "Do you want to submit this photo?",
+                classes: "govuk-fieldset__legend--m"
+            },
+            items: [
+                { value: true, text: "Yes, I want to submit it" },
+                { value: false, text: "No, I want to get another photo" }
+            ],
+            conditionals: {
+                "true": {
+                    html: hmpoTextarea(ctx, {
+                        id: "photoOverrideReason",
+                        label: {
+                            text: "Explain why you’d like to use this photo"
+                        }
+                    })
+                }
+            }
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+    {% endcall %}
+
+{% endblock %}

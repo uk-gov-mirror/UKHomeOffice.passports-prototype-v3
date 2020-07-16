@@ -2,8 +2,11 @@ const BaseController = require('./apply')
 
 class UploadController extends BaseController {
     successHandler (req, res, next) {
+        req.sessionModel.unset('photoCode')
+
         const filename = req.sessionModel.get('photo')
         let quality
+        let showPhotoPreview = true
 
         /*
             Unable to consolidate into single RegEx, so duplicating conditional
@@ -17,16 +20,18 @@ class UploadController extends BaseController {
             quality = 'fair'
         } else if (filename.match(/poor/i)) {
             quality = 'poor'
-        } else if (filename.match(/fail|bad/i)) {
-            quality = undefined
-        } else if (filename.match(/[a-z\s_-]*(?<!\d|\dto)1(?!\d|to\d)/i)) {
+        } else if (filename.match(/fail/i)) {
+            quality = 'fail'
+            showPhotoPreview = false
+        } else if (filename.match(/(?<!\d|\dto)1(?!\d|to\d)/i)) {
             quality = 'good'
-        } else if (filename.match(/[a-z\s_-]*(?<!\d|\dto)2(?!\d|to\d)/i)) {
+        } else if (filename.match(/(?<!\d|\dto)2(?!\d|to\d)/i)) {
             quality = 'fair'
-        } else if (filename.match(/[a-z\s_-]*(?<!\d|\dto)3(?!\d|to\d)/i)) {
+        } else if (filename.match(/(?<!\d|\dto)3(?!\d|to\d)/i)) {
             quality = 'poor'
-        } else if (filename.match(/[a-z\s_-]*(?<!\d|\dto)4(?!\d|to\d)/i)) {
-            quality = undefined
+        } else if (filename.match(/(?<!\d|\dto)4(?!\d|to\d)/i)) {
+            quality = 'fail'
+            showPhotoPreview = false
         } else {
             quality = 'good'
         }
@@ -61,12 +66,16 @@ class UploadController extends BaseController {
             photoAgeRange = 'child-1to5'
         } else if (filename.match(/baby|12months/i)) {
             photoAgeRange = 'baby-12months'
-        } else if (filename.match(/child(?![a-z\s_-]*\d+to|12months)/i)) {
+        } else if (filename.match(/child/i)) {
             photoAgeRange = 'child-12to15'
         }
         req.sessionModel.set('photoAgeRange', photoAgeRange)
 
-        req.sessionModel.set('photo', quality && ('/public/images/photo-preview-thumbnail/' + photoAgeRange + '/thumbnail-' + quality + '-' + photoAgeRange + '.jpg'))
+        if (!showPhotoPreview) {
+            req.sessionModel.unset('photo')
+        } else {
+            req.sessionModel.set('photo', '/public/images/photo-preview-thumbnail/upload/' + photoAgeRange + '/thumbnail-' + quality + '-' + photoAgeRange + '.jpg')
+        }
 
         super.successHandler(req, res, next)
     }

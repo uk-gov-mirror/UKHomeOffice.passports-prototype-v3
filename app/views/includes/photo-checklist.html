@@ -1,0 +1,39 @@
+<ol class="govuk-list govuk-list--number photo-check-list">
+    <li class="govuk-heading-m">1. Background and lighting
+        <div class="list-content">
+            <p>Your photo must have:</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>a plain light-coloured background - without texture or pattern</li>
+                <li>balanced light - no shadows on your face or behind you</li>
+                <li>no objects behind you</li>
+            </ul>
+        </div>
+    </li>
+
+    <li class="govuk-heading-m">2. Your appearance
+        <div class="list-content">
+            <p>Make sure:</p>
+            {# TODO: Update conditionals #}
+            <ul class="govuk-list govuk-list--bullet">
+                <li>the photo is a good likeness taken in the last month</li>
+                <li>your whole face is visible{% if not underSix %} with your eyes open{% endif %}</li>
+                {% if not underSix %}
+                    <li>you have a plain expression - no smile and mouth closed</li>
+                {% endif %}
+                <li>there are no reflections or glare (if you have to wear glasses)</li>
+                <li>you’re not wearing headwear (unless for religious or medical reasons)</li>
+            </ul>
+        </div>
+    </li>
+
+    <li class="govuk-heading-m">3. Photo quality and format
+        <div class="list-content">
+            <p>Your photo must:</p>
+            <ul class="govuk-list govuk-list--bullet">
+                <li>be in colour, with no effects or filters</li>
+                <li>not be blurred or have ‘red eye’</li>
+                <li>be unedited - you can’t ‘correct’ your passport photo</li>
+            </ul>
+        </div>
+    </li>
+</ol>
