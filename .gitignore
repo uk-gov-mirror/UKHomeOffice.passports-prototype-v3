@@ -60,6 +60,9 @@ typings/
 # next.js build output
 .next
 
+# OS generated files
+.DS_Store
+
 # ignore generated files from govuk prototype
 public
 _extensions.scss
