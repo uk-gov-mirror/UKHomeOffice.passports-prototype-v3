@@ -23,13 +23,13 @@ class UploadController extends BaseController {
         } else if (filename.match(/fail/i)) {
             quality = 'fail'
             showPhotoPreview = false
-        } else if (filename.match(/[a-z\s_-]*(?<!\d|\dto)1(?!\d|to\d)/i)) {
+        } else if (filename.match(/(?<!\d|\dto)1(?!\d|to\d)/i)) {
             quality = 'good'
-        } else if (filename.match(/[a-z\s_-]*(?<!\d|\dto)2(?!\d|to\d)/i)) {
+        } else if (filename.match(/(?<!\d|\dto)2(?!\d|to\d)/i)) {
             quality = 'fair'
-        } else if (filename.match(/[a-z\s_-]*(?<!\d|\dto)3(?!\d|to\d)/i)) {
+        } else if (filename.match(/(?<!\d|\dto)3(?!\d|to\d)/i)) {
             quality = 'poor'
-        } else if (filename.match(/[a-z\s_-]*(?<!\d|\dto)4(?!\d|to\d)/i)) {
+        } else if (filename.match(/(?<!\d|\dto)4(?!\d|to\d)/i)) {
             quality = 'fail'
             showPhotoPreview = false
         } else {
