@@ -66,7 +66,7 @@ class UploadController extends BaseController {
             photoAgeRange = 'child-1to5'
         } else if (filename.match(/baby|12months/i)) {
             photoAgeRange = 'baby-12months'
-        } else if (filename.match(/child(?![a-z\s_-]*\d+to|12months)/i)) {
+        } else if (filename.match(/child/i)) {
             photoAgeRange = 'child-12to15'
         }
         req.sessionModel.set('photoAgeRange', photoAgeRange)
