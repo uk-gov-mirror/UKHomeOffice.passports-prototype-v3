@@ -25,13 +25,13 @@ class RetrievingImageController extends BaseController {
             req.sessionModel.unset('photo')
         } else {
             if (url.match(/pass|^1$|2AtDAiw/i)) {
-                req.sessionModel.set('photo', quality && ('/public/images/photo-preview-thumbnail/oix/adult/thumbnail-' + quality + '-adult-2AtDAiw.jpg'))
+                req.sessionModel.set('photo', '/public/images/photo-preview-thumbnail/oix/adult/thumbnail-' + quality + '-adult-2AtDAiw.jpg')
             } else if (url.match(/override?(able)?|^2$|2jdD4hk/i)) {
-                req.sessionModel.set('photo', quality && ('/public/images/photo-preview-thumbnail/oix/adult/thumbnail-' + quality + '-adult-2jdD4hk.jpg'))
+                req.sessionModel.set('photo', '/public/images/photo-preview-thumbnail/oix/adult/thumbnail-' + quality + '-adult-2jdD4hk.jpg')
             } else if (url.match(/35lyjrG/i)) {
-                req.sessionModel.set('photo', quality && ('/public/images/photo-preview-thumbnail/oix/adult/thumbnail-' + quality + '-adult-35lyjrG.jpg'))
+                req.sessionModel.set('photo', '/public/images/photo-preview-thumbnail/oix/adult/thumbnail-' + quality + '-adult-35lyjrG.jpg')
             } else {
-                req.sessionModel.set('photo', quality && ('/public/images/photo-preview-thumbnail/oix/adult/thumbnail-' + quality + '-adult-2AtDAiw.jpg'))
+                req.sessionModel.set('photo', '/public/images/photo-preview-thumbnail/oix/adult/thumbnail-' + quality + '-adult-2AtDAiw.jpg')
             }
         }
 
