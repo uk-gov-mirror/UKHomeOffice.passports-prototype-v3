@@ -13,11 +13,10 @@
     <li class="govuk-heading-m">2. Your appearance
         <div class="list-content">
             <p>Make sure:</p>
-            {# TODO: Update conditionals #}
             <ul class="govuk-list govuk-list--bullet">
                 <li>the photo is a good likeness taken in the last month</li>
-                <li>your whole face is visible{% if not underSix %} with your eyes open{% endif %}</li>
-                {% if not underSix %}
+                <li>your whole face is visible{% if not (values.photoAgeGroup == "under1" or values.photoAgeGroup == "1to5") %} with your eyes open{% endif %}</li>
+                {% if not (values.photoAgeGroup == "under1" or values.photoAgeGroup == "1to5") %}
                     <li>you have a plain expression - no smile and mouth closed</li>
                 {% endif %}
                 <li>there are no reflections or glare (if you have to wear glasses)</li>
