@@ -9,12 +9,21 @@ class RetrievingImageController extends BaseController {
         if (url.match(/pass|^1$|2AtDAiw/i)) {
             quality = 'pass'
         } else if (url.match(/override?(able)?|^2$|2jdD4hk|35lyjrG/i)) {
-            quality = 'overridable'
-        } else if (url.match(/fail|^3$|2kp3DUh/i)) {
-            quality = 'fail'
+            quality = 'error-overridable'
+        } else if (url.match(/fail|not-?accepted|^3$|2kp3DUh/i)) {
+            quality = 'error-fail'
             showPhotoPreview = false
-        } else if (url.match(/invalid|error|^4$|12345678|a1b2c3d4/i)) {
-            quality = 'code-error'
+        } else if (url.match(/fetch|code-?(error)?|^4$|12345678|a1b2c3d4/i)) {
+            quality = 'error-fetch'
+            showPhotoPreview = false
+        } else if (url.match(/file|invalid|^5$/i)) {
+            quality = 'error-file-invalid'
+            showPhotoPreview = false
+        } else if (url.match(/server|busy|requests|^6$/i)) {
+            quality = 'error-server-too-busy-or-error-too-many-requests'
+            showPhotoPreview = false
+        } else if (url.match(/error/i)) {
+            quality = 'error-fail'
             showPhotoPreview = false
         } else {
             quality = 'pass'
