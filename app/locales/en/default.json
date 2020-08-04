@@ -8,6 +8,8 @@
   },
   "buttons": {
     "next": "Continue",
+    "photoSubmit": "Upload your photo",
+    "photoSubmitMobile": "Get your photo",
     "tryAgain": "Try again",
     "chooseAnotherPhoto": "Choose another photo",
     "uploadPhoto": "Upload photo",
