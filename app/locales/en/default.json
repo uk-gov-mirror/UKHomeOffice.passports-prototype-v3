@@ -8,6 +8,9 @@
   },
   "buttons": {
     "next": "Continue",
+    "tryAgain": "Try again",
+    "chooseAnotherPhoto": "Choose another photo",
+    "uploadPhoto": "Upload photo",
     "choose-appointment": "Choose a collection appointment",
     "payment": "Continue to payment",
     "print": "Print page",
