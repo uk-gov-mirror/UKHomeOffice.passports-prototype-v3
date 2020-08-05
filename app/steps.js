@@ -152,7 +152,8 @@ const apply = {
             { field: 'photoQuality', value: 'error-fail', next: '/photo/not-accepted' },
             { field: 'photoQuality', value: 'error-fetch', next: '/photo/code-error' },
             { field: 'photoQuality', value: 'error-file-invalid', next: '/photo/file-invalid' },
-            { field: 'photoQuality', value: 'error-server-too-busy-or-error-too-many-requests', next: '/photo/server-too-busy' },
+            { field: 'photoQuality', value: 'error-server-too-busy', next: '/photo/server-too-busy' },
+            { field: 'photoQuality', value: 'error-too-many-requests', next: '/photo/server-too-busy' },
             '/photo/not-accepted'
         ]
     },

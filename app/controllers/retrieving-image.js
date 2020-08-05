@@ -19,8 +19,11 @@ class RetrievingImageController extends BaseController {
         } else if (url.match(/file|invalid|^5$/i)) {
             quality = 'error-file-invalid'
             showPhotoPreview = false
-        } else if (url.match(/server|busy|requests|^6$/i)) {
-            quality = 'error-server-too-busy-or-error-too-many-requests'
+        } else if (url.match(/server|busy|^6$/i)) {
+            quality = 'error-server-too-busy'
+            showPhotoPreview = false
+        } else if (url.match(/requests|^7$/i)) {
+            quality = 'error-too-many-requests'
             showPhotoPreview = false
         } else if (url.match(/error/i)) {
             quality = 'error-fail'
