@@ -61,7 +61,6 @@
 {% endblock %}
 
 {% block cookieBanner %}
-    {# {% if not values.cookiesAccepted %} #}
 {% endblock %}
 
 {% block beforeContent %}
@@ -74,7 +73,7 @@
         }) }}
     {% endblock %}
 
-    {% if not values.cookies.cookiesAccepted %}
+    {% if not values.cookies.cookiesAccepted and not disableCookieBanner %}
         <div class="dcs-cookie-banner govuk-clearfix">
             <div class="govuk-width-container">
                 <div class="govuk-grid-row">
