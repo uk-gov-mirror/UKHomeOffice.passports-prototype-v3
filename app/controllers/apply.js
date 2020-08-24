@@ -27,11 +27,11 @@ class DefaultController extends BaseController {
     }
 
     setCsigEligibleChild(req) {
-        let CsigEligible = true
+        let CsigEligibleChild = true
         if (req.sessionModel.get('howLong') < '2') {
-            CsigEligible = false
+            CsigEligibleChild = false
         }
-        req.sessionModel.set('CsigEligible', CsigEligible)
+        req.sessionModel.set('CsigEligibleChild', CsigEligibleChild)
     }
 
     setAgeGroup (req) {

@@ -802,6 +802,7 @@ const csig = {
             'howLong'
         ],
         next: [
+            { field: 'knowPersonally', value: false, next: '/csig/applicant-summary-child' },
             { field: 'areRelated', value: true, next: '/csig/applicant-summary-child' },
             { field: 'CsigEligibleChild', value: false, next: '/csig/applicant-summary-child' },
             '/csig/confirm-applicant-child'
