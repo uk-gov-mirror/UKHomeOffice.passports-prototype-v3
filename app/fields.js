@@ -827,7 +827,7 @@ module.exports = {
         validate: 'required'
     },
     csigMiddleName: {
-        validate: 'required'
+    
     },
     csigLastName: {
         validate: 'required'

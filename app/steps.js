@@ -860,7 +860,7 @@ const csig = {
             'csigRetired'
         ],
         next:[
-            { field: 'csigRetired', value: true, next:'csig-details-contact'},
+            { field: 'csigRetired', value: true, next:'/csig/csig-details-contact'},
             '/csig/csig-details-work-address'
         ]
     },
