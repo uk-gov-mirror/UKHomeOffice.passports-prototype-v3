@@ -776,11 +776,13 @@ const csig = {
         ],
         next: [
             { field: 'confirmPhotoAdult', value: true, next: [
+                { field: 'knowPersonallyAdult', value: false, next: '/csig/applicant-summary-adult' },
                 { field: 'areRelatedAdult', value: true, next: '/csig/applicant-summary-adult' },
                 { field: 'CsigEligible', value: false, next: '/csig/applicant-summary-adult' },
                 '/csig/confirm-applicant-address'
             ] },
             { field: 'confirmPhotoAdult', value: false, next: [
+                { field: 'knowPersonallyAdult', value: false, next: '/csig/applicant-summary-adult' },
                 { field: 'areRelatedAdult', value: true, next: '/csig/applicant-summary-adult' },
                 { field: 'CsigEligible', value: false, next: '/csig/applicant-summary-adult' },
                 '/csig/applicant-photo-fail-adult'
