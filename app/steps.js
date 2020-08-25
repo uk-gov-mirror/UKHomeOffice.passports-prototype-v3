@@ -756,6 +756,16 @@ const csig = {
         prereqs: ['csig/referee-address'],
         next:'/csig/identity-auth'
     },
+    '/csig/csig-summary':{
+        backLink: false,
+        entryPoint: true,
+        next:'/csig/referee-passport'
+    },
+    '/csig/csig-identity-fail-three-times':{
+        backLink: false,
+        entryPoint: true,
+        next:'/index'
+    },
     '/csig/identity-auth': {
         next:'/csig/what-happens-next'
     },

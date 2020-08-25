@@ -1,0 +1,65 @@
+{% extends "layout-csig.html" %}
+
+{% set hmpoTitle %}Check your details and try again{% endset %}
+
+{% block mainContent %}
+
+    <style>
+        .govuk-summary-list__key {
+            margin-bottom: 5px;
+            font-weight: 700;
+            width: 55%;
+        }
+    </style>
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>We haven’t been able to confirm who you are. This is because either:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>you entered incorrect details</li>
+        <li>the details were correct but our online checks couldn’t confirm them</li>
+    </ul>
+
+    {{ govukSummaryList({ rows: [
+        {
+            key: { text: "Passport number" },
+            value: { text: values.refereePassportNumber }
+        },
+        {
+            key: { text: "Expiry date" },
+            value: { text: values.refereePassportExpiry | date }
+        },
+        {
+            key: { text: "Date of birth" },
+            value: { text: values.refereeDateOfBirth | date }
+        },
+        {
+            key: { text: "First name" },
+            value: { text: values.csigFirstName }
+        },
+        {
+            key: { text: "Middle names" },
+            value: { text: values.csigMiddleName }
+        },
+        {
+            key: { text: "Last name" },
+            value: { text: values.csigLastName }
+        },
+        {
+            key: { text: "Current address" },
+            value: { html: [
+                values.addressLine1,
+                values.addressLine2,
+                values.addressTown,
+                values.refereePostcode
+            ] | filter | join("<br/>") }
+        }
+
+    ] }) }}
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoSubmit(ctx, { text: "Try again" }) }}
+    {% endcall %}
+
+{% endblock %}
+
