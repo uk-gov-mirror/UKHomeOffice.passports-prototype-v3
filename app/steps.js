@@ -776,7 +776,7 @@ const csig = {
         ]
     },
     '/csig/confirm-applicant':{
-        controller: require('./controllers/apply'),
+        controller: require('./controllers/csig-eligiblity'),
         fields: [
             'confirmPhotoAdult',
             'knowPersonallyAdult',
@@ -788,13 +788,13 @@ const csig = {
             { field: 'confirmPhotoAdult', value: true, next: [
                 { field: 'knowPersonallyAdult', value: false, next: '/csig/applicant-summary-adult' },
                 { field: 'areRelatedAdult', value: true, next: '/csig/applicant-summary-adult' },
-                { field: 'CsigEligible', value: false, next: '/csig/applicant-summary-adult' },
+                { field: 'CsigAdultEligible', value: false, next: '/csig/applicant-summary-adult' },
                 '/csig/confirm-applicant-address'
             ] },
             { field: 'confirmPhotoAdult', value: false, next: [
                 { field: 'knowPersonallyAdult', value: false, next: '/csig/applicant-summary-adult' },
                 { field: 'areRelatedAdult', value: true, next: '/csig/applicant-summary-adult' },
-                { field: 'CsigEligible', value: false, next: '/csig/applicant-summary-adult' },
+                { field: 'CsigAdultEligible', value: false, next: '/csig/applicant-summary-adult' },
                 '/csig/applicant-photo-fail-adult'
             ] }
         ]
@@ -806,7 +806,7 @@ const csig = {
         next: '/csig/confirm-applicant-child-eligibility'
     },
     '/csig/confirm-applicant-child-eligibility':{
-        controller: require('./controllers/apply'),
+        controller: require('./controllers/csig-eligiblity'),
         fields: [
             'knowPersonally',
             'areRelated',
@@ -816,7 +816,7 @@ const csig = {
         next: [
             { field: 'knowPersonally', value: false, next: '/csig/applicant-summary-child' },
             { field: 'areRelated', value: true, next: '/csig/applicant-summary-child' },
-            { field: 'CsigEligibleChild', value: false, next: '/csig/applicant-summary-child' },
+            { field: 'CsigChildEligible', value: false, next: '/csig/applicant-summary-child' },
             '/csig/confirm-applicant-child'
         ]
     },
