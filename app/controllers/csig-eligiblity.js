@@ -1,22 +1,27 @@
 const BaseController = require('./apply')
 
-class csigEligiblity extends BaseController {
+class CsigEligiblityController extends BaseController {
+    successHandler (req, res, next) {
+        this.setCsigAdultEligible(req)
+        this.setCsigChildEligible(req)
+        super.successHandler(req, res, next)
+    }
 
     setCsigAdultEligible(req) {
-        let CsigAdultEligible = true
+        let csigAdultEligible = true
         if (req.sessionModel.get('howLongAdult') < '2') {
-            CsigAdultEligible = false
+            csigAdultEligible = false
         }
-        req.sessionModel.set('CsigAdultEligible', CsigAdultEligible)
+        req.sessionModel.set('csigAdultEligible', csigAdultEligible)
     }
 
     setCsigChildEligible(req) {
-        let CsigChildEligible = true
+        let csigChildEligible = true
         if (req.sessionModel.get('howLong') < '2') {
-            CsigChildEligible = false
+            csigChildEligible = false
         }
-        req.sessionModel.set('CsigChildEligible', CsigChildEligible)
+        req.sessionModel.set('csigChildEligible', csigChildEligible)
     }
 
 };
-module.exports = csigEligiblity
+module.exports = CsigEligiblityController

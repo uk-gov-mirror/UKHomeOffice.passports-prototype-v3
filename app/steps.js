@@ -788,13 +788,13 @@ const csig = {
             { field: 'confirmPhotoAdult', value: true, next: [
                 { field: 'knowPersonallyAdult', value: false, next: '/csig/applicant-summary-adult' },
                 { field: 'areRelatedAdult', value: true, next: '/csig/applicant-summary-adult' },
-                { field: 'CsigAdultEligible', value: false, next: '/csig/applicant-summary-adult' },
+                { field: 'csigAdultEligible', value: false, next: '/csig/applicant-summary-adult' },
                 '/csig/confirm-applicant-address'
             ] },
             { field: 'confirmPhotoAdult', value: false, next: [
                 { field: 'knowPersonallyAdult', value: false, next: '/csig/applicant-summary-adult' },
                 { field: 'areRelatedAdult', value: true, next: '/csig/applicant-summary-adult' },
-                { field: 'CsigAdultEligible', value: false, next: '/csig/applicant-summary-adult' },
+                { field: 'csigAdultEligible', value: false, next: '/csig/applicant-summary-adult' },
                 '/csig/applicant-photo-fail-adult'
             ] }
         ]
@@ -816,7 +816,7 @@ const csig = {
         next: [
             { field: 'knowPersonally', value: false, next: '/csig/applicant-summary-child' },
             { field: 'areRelated', value: true, next: '/csig/applicant-summary-child' },
-            { field: 'CsigChildEligible', value: false, next: '/csig/applicant-summary-child' },
+            { field: 'csigChildEligible', value: false, next: '/csig/applicant-summary-child' },
             '/csig/confirm-applicant-child'
         ]
     },
