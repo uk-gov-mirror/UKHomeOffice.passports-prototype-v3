@@ -190,7 +190,7 @@ const apply = {
         next: '/photo/choose-photo-method'
     },
     '/photo/server-too-busy': {
-        next: '/photo/upload'
+        next: '/photo/choose-photo-method'
     },
 
     '/filter/previous-passport': {
