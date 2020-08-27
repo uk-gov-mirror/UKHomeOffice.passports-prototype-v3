@@ -181,16 +181,16 @@ const apply = {
 
     /* Both Upload and OIX */
     '/photo/not-accepted': {
-        // controller: PhotoResult
+        next: '/photo/choose-photo-method'
     },
     '/photo/code-error': {
-        // controller: PhotoResult
+        next: '/photo/choose-photo-method'
     },
     '/photo/file-invalid': {
-        // controller: PhotoResult
+        next: '/photo/choose-photo-method'
     },
     '/photo/server-too-busy': {
-        // controller: PhotoResult
+        next: '/photo/upload'
     },
 
     '/filter/previous-passport': {
