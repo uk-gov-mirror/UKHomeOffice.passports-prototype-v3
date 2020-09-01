@@ -707,8 +707,8 @@ const csig = {
             'csigDateOfBirth'
         ],
         next:[
-        { field: 'csig-expired', value: true, next: '/csig/csig-expired' },
-        { field: 'csig-invalid', value: true, next: '/csig/csig-invalid' },
+        { field: 'csigExpired', value: true, next: '/csig/csig-expired' },
+        { field: 'csigInvalid', value: true, next: '/csig/csig-invalid' },
         '/csig/declaration'
         ]
     },
@@ -771,7 +771,7 @@ const csig = {
     },
     '/csig/what-happens-next':{
         next:[
-            { field: 'csig-child', value: false, next: '/csig/confirm-applicant' },
+            { field: 'csigChild', value: false, next: '/csig/confirm-applicant' },
             '/csig/confirm-applicant-relationship'
         ]
     },
