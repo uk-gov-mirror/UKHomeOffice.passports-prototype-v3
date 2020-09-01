@@ -8,7 +8,7 @@
     {% call hmpoForm(ctx) %}
 
         {{ hmpoRadios(ctx, {
-            id: "knowPersonally",
+            id: "knowPersonallyChild",
             classes: "govuk-radios--inline",
             legend:{
                 text: 'Do you know them personally, for example as a friend, neighbour or colleague?'
@@ -16,7 +16,7 @@
         }) }}
 
         {{ hmpoRadios(ctx, {
-            id: "areRelated",
+            id: "areRelatedInRelationshipOrLivingSameAddressChild",
             classes: "govuk-radios--inline",
             legend:{
                 text: 'Are you related to, in a relationship with or living at the same address as them?'
@@ -24,7 +24,7 @@
         }) }}
 
          {{ hmpoText(ctx, {
-            id: "howKnow",
+            id: "howKnowChild",
             classes: "govuk-input--width-20",
             label: {
                 text: "How do you know them?"
@@ -32,7 +32,7 @@
         }) }}
 
         {{ hmpoNumber(ctx, {
-            id: "howLong",
+            id: "howManyYearsKnownChild",
             classes: "govuk-input--width-2",
             label: {
                 text: "How many years have you known them?"

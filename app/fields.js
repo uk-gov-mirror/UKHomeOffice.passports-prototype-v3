@@ -850,7 +850,7 @@ module.exports = {
         formatter: 'boolean',
         validate: 'required'
     },
-    areRelatedAdult: {
+    areRelatedInRelationshipOrLivingSameAddressAdult: {
         formatter: 'boolean',
         validate: 'required'
     },
@@ -860,28 +860,28 @@ module.exports = {
             { type: 'maxlength', arguments: 30 }
         ]
     },
-    howLongAdult: {
+    howManyYearsKnownAdult: {
         validate: [
             'required',
             'numeric',
             { type: 'maxlength', arguments: 2 }
         ]
     },
-    knowPersonally: {
+    knowPersonallyChild: {
         formatter: 'boolean',
         validate: 'required'
     },
-    areRelated: {
+    areRelatedInRelationshipOrLivingSameAddressChild: {
         formatter: 'boolean',
         validate: 'required'
     },
-    howKnow: {
+    howKnowChild: {
         validate: [
             'required',
             { type: 'maxlength', arguments: 30 }
         ]
     },
-    howLong: {
+    howManyYearsKnownChild: {
         validate: [
             'required',
             'numeric',

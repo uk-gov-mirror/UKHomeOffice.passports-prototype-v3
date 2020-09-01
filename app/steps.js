@@ -780,20 +780,20 @@ const csig = {
         fields: [
             'confirmPhotoAdult',
             'knowPersonallyAdult',
-            'areRelatedAdult',
+            'areRelatedInRelationshipOrLivingSameAddressAdult',
             'howKnowAdult',
-            'howLongAdult'
+            'howManyYearsKnownAdult'
         ],
         next: [
             { field: 'confirmPhotoAdult', value: true, next: [
                 { field: 'knowPersonallyAdult', value: false, next: '/csig/applicant-summary-adult' },
-                { field: 'areRelatedAdult', value: true, next: '/csig/applicant-summary-adult' },
+                { field: 'areRelatedInRelationshipOrLivingSameAddressAdult', value: true, next: '/csig/applicant-summary-adult' },
                 { field: 'csigAdultEligible', value: false, next: '/csig/applicant-summary-adult' },
                 '/csig/confirm-applicant-address'
             ] },
             { field: 'confirmPhotoAdult', value: false, next: [
                 { field: 'knowPersonallyAdult', value: false, next: '/csig/applicant-summary-adult' },
-                { field: 'areRelatedAdult', value: true, next: '/csig/applicant-summary-adult' },
+                { field: 'areRelatedInRelationshipOrLivingSameAddressAdult', value: true, next: '/csig/applicant-summary-adult' },
                 { field: 'csigAdultEligible', value: false, next: '/csig/applicant-summary-adult' },
                 '/csig/applicant-photo-fail-adult'
             ] }
@@ -808,14 +808,14 @@ const csig = {
     '/csig/confirm-applicant-child-eligibility':{
         controller: require('./controllers/csig-eligiblity'),
         fields: [
-            'knowPersonally',
-            'areRelated',
-            'howKnow',
-            'howLong'
+            'knowPersonallyChild',
+            'areRelatedInRelationshipOrLivingSameAddressChild',
+            'howKnowChild',
+            'howManyYearsKnownChild'
         ],
         next: [
-            { field: 'knowPersonally', value: false, next: '/csig/applicant-summary-child' },
-            { field: 'areRelated', value: true, next: '/csig/applicant-summary-child' },
+            { field: 'knowPersonallyChild', value: false, next: '/csig/applicant-summary-child' },
+            { field: 'areRelatedInRelationshipOrLivingSameAddressChild', value: true, next: '/csig/applicant-summary-child' },
             { field: 'csigChildEligible', value: false, next: '/csig/applicant-summary-child' },
             '/csig/confirm-applicant-child'
         ]
