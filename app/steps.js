@@ -701,7 +701,7 @@ const csig = {
         next: '/csig/sign-in'
     },
     '/csig/sign-in': {
-        controller: require('./controllers/csig-reference'),
+        controller: require('./controllers/csig-pex-reference-sign-in'),
         fields: [
             'csigAppReference',
             'csigDateOfBirth'

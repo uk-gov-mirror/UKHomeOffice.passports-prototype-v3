@@ -1,7 +1,7 @@
 
 const BaseController = require('./index')
 
-class csigSignInController extends BaseController {
+class CsigPEXReferenceSignInController extends BaseController {
     get(req, res, next){
         req.sessionModel.set('csig-child', false);
         req.sessionModel.set('csig-expired', false);
@@ -22,4 +22,4 @@ class csigSignInController extends BaseController {
         super.successHandler(req, res, next)
     }
 };
-module.exports = csigSignInController
+module.exports = CsigPEXReferenceSignInController
