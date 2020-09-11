@@ -105,6 +105,23 @@
 {% endblock %}
 
 {% block footer %}
+    {# <a class="showBanner" href="?cookies=clear" style="
+        position: absolute;
+        top: 7px;
+        right: 7px;
+        color: white;
+        background-color: darkslategray;
+        padding: 5px 10px 5px 10px;
+        font-size: 17px;
+        margin-right: 160px;
+        font-weight: bold;
+        text-decoration: none;
+        border-width: 2px;
+        border-style: outset;
+        border-color: #767676;
+        cursor: default;
+        border-image: initial;
+    ">Cookie banner</a> #}
     {{ hmpoFooter({
         meta: {
             items: [
@@ -132,6 +149,10 @@
                     attributes: { target: "_blank" },
                     href: "/help/terms-and-conditions",
                     text: "Terms and conditions"
+                },
+                {
+                    href: "?cookies=clear",
+                    text: "Show cookie banner"
                 }
             ],
             html: footerHtml
