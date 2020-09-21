@@ -20,8 +20,14 @@ class UploadController extends BaseController {
             quality = 'fair'
         } else if (filename.match(/poor/i)) {
             quality = 'poor'
-        } else if (filename.match(/fail/i)) {
-            quality = 'fail'
+        } else if (filename.match(/fail|not-?accepted/i)) {
+            quality = 'error-fail'
+            showPhotoPreview = false
+        } else if (filename.match(/file-?invalid/i)) {
+            quality = 'error-file-invalid'
+            showPhotoPreview = false
+        } else if (filename.match(/server-?too-?busy/i)) {
+            quality = 'error-server-too-busy'
             showPhotoPreview = false
         } else if (filename.match(/(?<!\d|\dto)1(?!\d|to\d)/i)) {
             quality = 'good'
@@ -30,7 +36,16 @@ class UploadController extends BaseController {
         } else if (filename.match(/(?<!\d|\dto)3(?!\d|to\d)/i)) {
             quality = 'poor'
         } else if (filename.match(/(?<!\d|\dto)4(?!\d|to\d)/i)) {
-            quality = 'fail'
+            quality = 'error-fail'
+            showPhotoPreview = false
+        } else if (filename.match(/(?<!\d|\dto)5(?!\d|to\d)/i)) {
+            quality = 'error-file-invalid'
+            showPhotoPreview = false
+        } else if (filename.match(/(?<!\d|\dto)6(?!\d|to\d)/i)) {
+            quality = 'error-server-too-busy'
+            showPhotoPreview = false
+        } else if (filename.match(/error/i)) {
+            quality = 'error-fail'
             showPhotoPreview = false
         } else {
             quality = 'good'

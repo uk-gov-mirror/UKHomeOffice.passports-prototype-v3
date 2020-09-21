@@ -1,0 +1,15 @@
+{% extends "layout-apply.html" %}
+
+{% set hmpoTitle %}You can’t use this photo{% endset %}
+
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>It looks like there’s a problem with this photo. You’ll need to try a new one.</p>
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoSubmit(ctx, {
+            text: translate("buttons.chooseAnotherPhoto")
+        }) }}
+    {% endcall %}
+{% endblock %}

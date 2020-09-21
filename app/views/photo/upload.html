@@ -8,12 +8,13 @@
 
     {% call hmpoForm(ctx) %}
 
+        {# TODO: Add logic for `mobileDevice` #}
         {{ govukFileUpload({
             id: "photo",
             classes: "photo-choose-file",
             label: {
                 attributes: { id: "photo-label" },
-                text: "Get your photo" if mobileDevice else "Upload your photo"
+                text: translate("buttons.photoSubmitMobile") if mobileDevice else translate("buttons.photoSubmit")
             },
             attributes: {
                 accept: "image/jpeg"

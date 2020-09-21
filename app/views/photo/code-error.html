@@ -1,0 +1,17 @@
+{% extends "layout-apply.html" %}
+
+{% set hmpoTitle %}We can’t find your code{% endset %}
+
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>Check your code and try again. You need to enter the code exactly as it’s written.</p>
+    <p>You entered: {{ values.photoCode }}</p>
+    <p>If this keeps happening, contact the company that provided your digital photo.</p>
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoSubmit(ctx, {
+            text: translate("buttons.tryAgain")
+        }) }}
+    {% endcall %}
+{% endblock %}

@@ -90,20 +90,13 @@ const apply = {
         fields: [
             'photo'
         ],
-        // TODO: add in errors
-        // next: [
-        //     { field: 'photo-error-type', value: 'server-too-busy', next: 'server-too-busy' },
-        //     { field: 'photo-error-type', value: 'file-invalid', next: 'file-invalid' },
-        //     { field: 'photo-error-type', value: 'fail', next: 'not-accepted' },
-        //     { field: 'photo-quality', value: 'good', next: 'photo-check-result-good' },
-        //     { field: 'photo-quality', value: 'fair', next: 'photo-check-result-fair' },
-        //     { field: 'photo-quality', value: 'poor', next: 'photo-check-result-poor' },
-        //     'not-accepted'
-        // ]
         next: [
             { field: 'photoQuality', value: 'good', next: '/photo/photo-check-result-good' },
             { field: 'photoQuality', value: 'fair', next: '/photo/photo-check-result-fair' },
             { field: 'photoQuality', value: 'poor', next: '/photo/photo-check-result-poor' },
+            { field: 'photoQuality', value: 'error-fail', next: '/photo/not-accepted' },
+            { field: 'photoQuality', value: 'error-file-invalid', next: '/photo/file-invalid' },
+            { field: 'photoQuality', value: 'error-server-too-busy', next: '/photo/server-too-busy' },
             '/photo/not-accepted'
         ]
     },
@@ -153,22 +146,15 @@ const apply = {
     },
     '/photo/retrieving-image': {
         controller: require('./controllers/retrieving-image'),
-        // TODO: add in errors
-        // next: [
-        //     { field: 'photo-error-type', value: 'too-many-requests', next: 'server-too-busy' },
-        //     { field: 'photo-error-type', value: 'server-too-busy', next: 'server-too-busy' },
-        //     { field: 'photo-error-type', value: 'fetch', next: 'code-error' },
-        //     { field: 'photo-error-type', value: 'file-invalid', next: 'file-invalid' },
-        //     { field: 'photo-error-type', value: 'fail', next: 'not-accepted' },
-        //     { field: 'photo-error-type', value: 'overridable', next: 'check-and-submit-photo' },
-        //     { field: 'photo-error-type', value: undefined, next: 'check-and-submit-passed-photo' },
-        //     'not-accepted'
-        // ]
         next: [
             { field: 'photoQuality', value: 'pass', next: '/photo/check-and-submit-passed-photo' },
-            { field: 'photoQuality', value: 'overridable', next: '/photo/check-and-submit-photo' },
-            { field: 'photoQuality', value: 'fail', next: '/photo/not-accepted' },
-            '/photo/code-error'
+            { field: 'photoQuality', value: 'error-overridable', next: '/photo/check-and-submit-photo' },
+            { field: 'photoQuality', value: 'error-fail', next: '/photo/not-accepted' },
+            { field: 'photoQuality', value: 'error-fetch', next: '/photo/code-error' },
+            { field: 'photoQuality', value: 'error-file-invalid', next: '/photo/file-invalid' },
+            { field: 'photoQuality', value: 'error-server-too-busy', next: '/photo/server-too-busy' },
+            { field: 'photoQuality', value: 'error-too-many-requests', next: '/photo/server-too-busy' },
+            '/photo/not-accepted'
         ]
     },
     '/photo/check-and-submit-passed-photo': {
@@ -194,17 +180,17 @@ const apply = {
     },
 
     /* Both Upload and OIX */
-    // '/photo/server-too-busy': {
-    //     controller: PhotoResult
-    // },
-    // '/photo/file-invalid': {
-    //     controller: PhotoResult
-    // },
-    '/photo/code-error': { // TODO: add -> photoQuality = undefined
-        // controller: PhotoResult
+    '/photo/not-accepted': {
+        next: '/photo/choose-photo-method'
     },
-    '/photo/not-accepted': { // TODO: add -> photoQuality = 'fail'
-        // controller: PhotoResult,
+    '/photo/code-error': {
+        next: '/photo/choose-photo-method'
+    },
+    '/photo/file-invalid': {
+        next: '/photo/choose-photo-method'
+    },
+    '/photo/server-too-busy': {
+        next: '/photo/choose-photo-method'
     },
 
     '/filter/previous-passport': {
