@@ -1,6 +1,6 @@
 {% extends "layout-csig.html" %}
 
-{% set hmpoTitle %}Check your details and try again{% endset %}
+{% set hmpoTitle %}Check your details{% endset %}
 
 {% block mainContent %}
 
@@ -14,11 +14,10 @@
 
     <h1>{{ hmpoTitle }}</h1>
 
-    <p>We haven’t been able to confirm who you are. This is because either:</p>
-    <ul class="govuk-list govuk-list--bullet">
-        <li>you entered incorrect details</li>
-        <li>the details were correct but our online checks couldn’t confirm them</li>
-    </ul>
+    {{ govukErrorSummary({
+        titleText: "Your details don't match our records.",
+        descriptionHtml: "Check what you've entered and try again. <p>You can try 2 more times.</p>"
+    }) }}
 
     {{ govukSummaryList({ rows: [
         {
@@ -47,11 +46,12 @@
         },
         {
             key: { text: "Current address" },
-            value: { html: [
-                values.addressLine1,
-                values.addressLine2,
-                values.addressTown,
-                values.refereePostcode
+            value: { html: ["
+                Flat A/04
+                <br>Parliament View Apartments
+                <br>1 Albert Embankment
+                <br>London
+                <br>SE1 7XH"
             ] | filter | join("<br/>") }
         }
 
