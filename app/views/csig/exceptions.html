@@ -6,7 +6,12 @@
 
     <h1>{{ hmpoTitle }}</h1>
 
-    <p>You can't confirm this person's identity. You may be able to do this for others.</p>
+    {% if values.csigAdultOrChild == 'child' %}
+        <p>You can't confirm this person's identity. You need to be over 18 to do this .....
+    {% else %}
+        <p>You can't confirm this person's identity. You may be able to do this for others.</p>
+    {% endif %}
+
     <p>We'll tell the applicant to ask someone else.</p>
     <p>Thank you.</p>
 

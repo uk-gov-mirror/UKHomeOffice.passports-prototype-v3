@@ -827,7 +827,7 @@ module.exports = {
         validate: 'required'
     },
     csigMiddleName: {
-    
+
     },
     csigLastName: {
         validate: 'required'
@@ -835,9 +835,9 @@ module.exports = {
     refereePostcode: {
         validate: 'required'
     },
-    // refereeAddressSelect: {
-    //     validate: 'required'
-    // }
+    refereeAddressSelect: {
+       // validate: 'required'
+    },
     isDetailsCorrect: {
         formatter: 'boolean',
         validate: 'required'

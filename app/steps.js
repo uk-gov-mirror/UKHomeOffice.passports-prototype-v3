@@ -725,6 +725,7 @@ const csig = {
         next: '/csig/referee-passport'
     },
     '/csig/referee-passport': {
+        controller: require('./controllers/csig-get-age'),
         fields: [
             'refereePassportNumber',
             'refereePassportExpiry',
@@ -756,18 +757,22 @@ const csig = {
         prereqs: ['csig/referee-address'],
         next:'/csig/identity-auth'
     },
-    '/csig/csig-summary':{
+    '/csig/csig-identity-failed':{
         backLink: false,
         entryPoint: true,
         next:'/csig/referee-passport'
     },
-    '/csig/csig-identity-fail-three-times':{
+    '/csig/csig-identity-failed-three-times':{
         backLink: false,
         entryPoint: true,
         next:'/index'
     },
     '/csig/identity-auth': {
-        next:'/csig/what-happens-next'
+        next:[
+            { field: 'csigAdultOrChild', value: 'child', next: '/csig/exceptions' },
+            { field: 'csigIdentityFailed', value: true, next: '/csig/csig-identity-failed' },
+            '/csig/what-happens-next'
+        ]
     },
     '/csig/what-happens-next':{
         next:[
