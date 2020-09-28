@@ -1,5 +1,5 @@
 
-const BaseController = require('./index')
+const BaseController = require('./csig')
 
 class CsigPEXReferenceSignInController extends BaseController {
     get(req, res, next){

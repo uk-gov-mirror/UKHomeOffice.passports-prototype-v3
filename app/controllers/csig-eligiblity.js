@@ -1,4 +1,4 @@
-const BaseController = require('./apply')
+const BaseController = require('./csig')
 
 class CsigEligiblityController extends BaseController {
     successHandler (req, res, next) {
