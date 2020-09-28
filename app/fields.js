@@ -838,6 +838,30 @@ module.exports = {
     refereeAddressSelect: {
        // validate: 'required'
     },
+    homeFlatName: {
+        validate: 'required'
+    },
+    homeBuildingName: {
+        validate: 'required'
+    },
+    homeBuildingNumber: {
+        validate: 'required'
+    },
+    homeStreet: {
+        validate: 'required'
+    },
+    homeDistrict: {
+        validate: 'required'
+    },
+    addressTown: {
+        validate: 'required'
+    },
+    homeCounty: {
+        validate: 'required'
+    },
+    addressPostcode: {
+        validate: 'required'
+    },
     isDetailsCorrect: {
         formatter: 'boolean',
         validate: 'required'
@@ -920,6 +944,12 @@ module.exports = {
     csigRetired: {
         formatter: 'boolean',
         validate: 'required'
+    },
+    addressLine1:{
+
+    },
+    addressLine2:{
+
     },
     workEmployerName: {
         validate: 'required'

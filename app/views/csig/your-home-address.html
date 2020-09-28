@@ -1,0 +1,46 @@
+{% extends "layout-csig.html" %}
+
+{% set hmpoTitle %}Your home address{% endset %}
+
+{% block mainContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+    <p>We'll only write to you if we need to check any details.</p>
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoText(ctx, {
+            id: "addressLine1",
+            label: {
+                text: "Address",
+                classes: "govuk-label--m"
+            },
+            attributes: { autocapitalize: "on" },
+            classes: "govuk-!-width-three-quarters"
+        }) }}
+        {{ hmpoText(ctx, {
+            id: "addressLine2",
+            label: { classes: "govuk-visually-hidden" },
+            attributes: { autocapitalize: "on" },
+            classes: "govuk-!-width-three-quarters"
+        }) }}
+        {{ hmpoText(ctx, {
+            id: "addressTown",
+            label: {
+                text: "Town or city",
+                classes: "govuk-label--m"
+            },
+            attributes: { autocapitalize: "on" },
+            classes: "govuk-!-width-one-half"
+        }) }}
+        {{ hmpoText(ctx, {
+            id: "addressPostcode",
+            label: {
+                text: "Postcode",
+                classes: "govuk-label--m"
+            },
+            attributes: { autocapitalize: "characters" },
+            classes: "govuk-input--width-10"
+        }) }}
+        {{ hmpoSubmit(ctx) }}
+    {% endcall %}
+{% endblock %}

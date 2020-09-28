@@ -754,7 +754,18 @@ const csig = {
         next:'/csig/identity-auth'
     },
     '/csig/referee-address-manual':{
+        controller: require('./controllers/manual-address'),
         prereqs: ['csig/referee-address'],
+        fields: [
+            'homeFlatName',
+            'homeBuildingName',
+            'homeBuildingNumber',
+            'homeStreet',
+            'homeDistrict',
+            'addressTown',
+            'homeCounty',
+            'addressPostcode'
+        ],
         next:'/csig/identity-auth'
     },
     '/csig/csig-identity-failed':{
@@ -878,10 +889,24 @@ const csig = {
             'csigRetired'
         ],
         next:[
-            { field: 'csigRetired', value: true, next:'/csig/csig-details-contact'},
+            //{ field: 'csigRetired', value: true, next:'/csig/csig-details-contact'},
+            { field: 'csigRetired', value: true, next: [
+                { field: 'address-lookup', value: false, next: '/csig/your-home-address'  },
+                '/csig/csig-details-contact'
+            ]},
             '/csig/csig-details-work-address'
         ]
     },
+    '/csig/your-home-address':{
+        fields: [
+            'addressLine1',
+            'addressLine2',
+            'addressTown',
+            'addressPostcode'
+        ],
+        next:'/csig/csig-details-contact'
+    },
+
     '/csig/csig-details-work-address':{
         fields: [
             'workEmployerName',
