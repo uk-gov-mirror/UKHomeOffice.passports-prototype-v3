@@ -30,6 +30,16 @@ router.use(Wizard(
     }
 ))
 
+router.use(Wizard(
+    steps.csig,
+    fields,
+    {
+        name: 'apply',
+        journeyName: 'csig',
+        controller: require('./controllers/csig')
+    }
+))
+
 router.use((err, req, res, next) => {
     if (err.code === 'SESSION_EXPIRED') err.redirect = '/'
     if (err.code === 'MISSING_PREREQ' && !err.redirect) err.redirect = '/'

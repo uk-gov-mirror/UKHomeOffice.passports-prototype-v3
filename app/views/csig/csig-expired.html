@@ -1,0 +1,13 @@
+{% extends "layout-csig.html" %}
+
+{% set hmpoTitle %}You no longer need to do this{% endset %}
+
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+    <p>Susan has asked someone else to do this. Only one person can confirm Susan's identity.</p>
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoSubmit(ctx, { text: "Done" }) }}
+    {% endcall %}
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "layout-csig.html" %}
+
+{% set hmpoTitle %}Details not recognised{% endset %}
+
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p class="govuk-body">Please try again. You need to check:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>the reference in the email from HM Passport Office</li>
+        <li>the applicant's date of birth</li>
+    </ul>
+    <p>If this keeps happening, please let the applicant know. They'll need to contact the Passport Office.</p>
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoSubmit(ctx, { text: "Try again" }) }}
+    {% endcall %}
+
+{% endblock %}

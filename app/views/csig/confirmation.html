@@ -1,0 +1,26 @@
+{% extends "layout-csig.html" %}
+
+{% set hmpoTitle %}Details submitted{% endset %}
+
+{% block mainContent %}
+
+    <style>
+        .hmpo-inset-info {
+            border-color: #28a197;
+            background-color: #eaf6f5;
+        }
+    </style>
+
+    <div class="govuk-inset-text hmpo-inset-info">
+        <h2>Details submitted</h2>
+    </div>
+
+    <p>We'll let the applicant know and look into any details you were unable to confirm. You don't need to sign a printed photo.</p>
+
+    <p>Thank you.</p>
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoSubmit(ctx, { text: "Give feedback" }) }}
+    {% endcall %}
+
+{% endblock %}

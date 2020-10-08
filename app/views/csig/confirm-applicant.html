@@ -1,0 +1,107 @@
+{% extends "layout-csig.html" %}
+
+{% set hmpoTitle %}Is this a true likeness of Susan Howard?{% endset %}
+
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    <div class="grid-row">
+        <div class="column-one-third">
+          <img src="../../public/images/photo-preview-thumbnail/adult/thumbnail-good-female-adult.jpg" alt="Your photo" width="250">
+        </div>
+    </div>
+    <br>
+    <br>
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoRadios(ctx, {
+            id: "confirmPhotoAdult",
+            classes: "govuk-radios--nobottommargin",
+            inline: true,
+            legend: { classes: "govuk-visually-hidden" },
+            items: [
+                {
+                    value: true
+                },
+                {
+                    value: false
+                }
+            ]
+        }) }}
+
+        <div class= "govuk-radios__conditional" id= "declarations" style="display:none">
+            {{ hmpoRadios(ctx, {
+                id: "knowPersonallyAdult",
+                classes: "govuk-radios--inline",
+                legend:{
+                    text: 'Do you know the applicant personally, for example as a friend, neighbour or colleague?'
+                },
+                items: [
+                    {
+                        value: true
+                    },
+                    {
+                        value: false
+                    }
+                ]
+            }) }}
+
+            {{ hmpoRadios(ctx, {
+                id: "areRelatedInRelationshipOrLivingSameAddressAdult",
+                classes: "govuk-radios--inline",
+                legend:{
+                    text: 'Are you related to, in a relationship with or living at the same address as the applicant?'
+                },
+                items: [
+                    {
+                        value: true
+                    },
+                    {
+                        value: false
+                    }
+                ]
+            }) }}
+
+            {{ hmpoText(ctx, {
+                id: "howKnowAdult",
+                classes: "govuk-input--width-20",
+                label: {
+                    text: "How do you know the applicant?"
+                }
+            }) }}
+
+            {{ hmpoNumber(ctx, {
+                id: "howManyYearsKnownAdult",
+                classes: "govuk-input--width-2",
+                label: {
+                    text: "How many years have you known the applicant?"
+                }
+            }) }}
+        </div>
+
+        {{ hmpoSubmit(ctx) }}
+
+        <script type="text/javascript">
+
+            var trueRadio = document.getElementById("confirmPhotoAdult-true");
+            trueRadio.addEventListener("click", function() {
+                document.getElementById("declarations").style.display = "block";
+            });
+            var falseRadio = document.getElementById("confirmPhotoAdult-false");
+            falseRadio.addEventListener("click", function() {
+                document.getElementById("declarations").style.display = "block";
+            });
+            if (trueRadio.checked) {
+                trueRadio.click();
+            }
+            if (falseRadio.checked) {
+                falseRadio.click();
+            };
+        </script>
+
+    {% endcall %}
+
+{% endblock %}
+
+
+

@@ -739,10 +739,247 @@ const tracking = {
     '/track/confirm-identity-form': {
         prereqs: ['/track/view'],
         noPost: true
+    },
+}
+
+const csig = {
+    '/csig/start': {
+        entryPoint: true,
+        resetJourney: true,
+        backLink: false,
+        next: '/csig/sign-in'
+    },
+    '/csig/sign-in': {
+        controller: require('./controllers/csig-pex-reference-sign-in'),
+        fields: [
+            'csigAppReference',
+            'csigDateOfBirth'
+        ],
+        next:[
+        { field: 'csigExpired', value: true, next: '/csig/csig-expired' },
+        { field: 'csigInvalid', value: true, next: '/csig/csig-invalid' },
+        '/csig/declaration'
+        ]
+    },
+    '/csig/csig-expired':{
+        next: 'https://www.gov.uk/'
+    },
+    '/csig/csig-invalid':{
+        next:'/csig/sign-in'
+    },
+    '/csig/declaration': {
+        fields: [
+            'csigDeclaration'
+        ],
+        next: '/csig/referee-passport'
+    },
+    '/csig/referee-passport': {
+        controller: require('./controllers/csig-get-age'),
+        fields: [
+            'refereePassportNumber',
+            'refereePassportExpiry',
+            'refereeDateOfBirth'
+        ],
+        next: '/csig/referee-name'
+    },
+    '/csig/referee-name': {
+        fields: [
+            'csigFirstName',
+            'csigMiddleName',
+            'csigLastName'
+        ],
+        next: '/csig/referee-address'
+    },
+    '/csig/referee-address': {
+        fields: [
+            'refereePostcode'
+        ],
+        next: '/csig/referee-address-select'
+    },
+    '/csig/referee-address-select': {
+        fields: [
+            'refereeAddressSelect'
+        ],
+        next:'/csig/identity-auth'
+    },
+    '/csig/referee-address-manual':{
+        controller: require('./controllers/manual-address'),
+        prereqs: ['csig/referee-address'],
+        fields: [
+            'homeFlatName',
+            'homeBuildingName',
+            'homeBuildingNumber',
+            'homeStreet',
+            'homeDistrict',
+            'addressTown',
+            'homeCounty',
+            'addressPostcode'
+        ],
+        next:'/csig/identity-auth'
+    },
+    '/csig/csig-identity-failed':{
+        backLink: false,
+        entryPoint: true,
+        next:'/csig/referee-passport'
+    },
+    '/csig/csig-identity-failed-three-times':{
+        backLink: false,
+        entryPoint: true,
+        next:'/index'
+    },
+    '/csig/identity-auth': {
+        next:[
+            { field: 'csigAdultOrChild', value: 'child', next: '/csig/exceptions' },
+            { field: 'csigIdentityFailed', value: true, next: '/csig/csig-identity-failed' },
+            '/csig/what-happens-next'
+        ]
+    },
+    '/csig/what-happens-next':{
+        next:[
+            { field: 'csigChild', value: false, next: '/csig/confirm-applicant' },
+            '/csig/confirm-applicant-relationship'
+        ]
+    },
+    '/csig/confirm-applicant':{
+        controller: require('./controllers/csig-eligiblity'),
+        fields: [
+            'confirmPhotoAdult',
+            'knowPersonallyAdult',
+            'areRelatedInRelationshipOrLivingSameAddressAdult',
+            'howKnowAdult',
+            'howManyYearsKnownAdult'
+        ],
+        next: [
+            { field: 'confirmPhotoAdult', value: true, next: [
+                { field: 'knowPersonallyAdult', value: false, next: '/csig/applicant-summary-adult' },
+                { field: 'areRelatedInRelationshipOrLivingSameAddressAdult', value: true, next: '/csig/applicant-summary-adult' },
+                { field: 'csigAdultEligible', value: false, next: '/csig/applicant-summary-adult' },
+                '/csig/confirm-applicant-address'
+            ] },
+            { field: 'confirmPhotoAdult', value: false, next: [
+                { field: 'knowPersonallyAdult', value: false, next: '/csig/applicant-summary-adult' },
+                { field: 'areRelatedInRelationshipOrLivingSameAddressAdult', value: true, next: '/csig/applicant-summary-adult' },
+                { field: 'csigAdultEligible', value: false, next: '/csig/applicant-summary-adult' },
+                '/csig/applicant-photo-fail-adult'
+            ] }
+        ]
+    },
+    '/csig/confirm-applicant-relationship':{
+        fields: [
+            'isDetailsCorrect',
+        ],
+        next: '/csig/confirm-applicant-child-eligibility'
+    },
+    '/csig/confirm-applicant-child-eligibility':{
+        controller: require('./controllers/csig-eligiblity'),
+        fields: [
+            'knowPersonallyChild',
+            'areRelatedInRelationshipOrLivingSameAddressChild',
+            'howKnowChild',
+            'howManyYearsKnownChild'
+        ],
+        next: [
+            { field: 'knowPersonallyChild', value: false, next: '/csig/applicant-summary-child' },
+            { field: 'areRelatedInRelationshipOrLivingSameAddressChild', value: true, next: '/csig/applicant-summary-child' },
+            { field: 'csigChildEligible', value: false, next: '/csig/applicant-summary-child' },
+            '/csig/confirm-applicant-child'
+        ]
+    },
+    '/csig/applicant-summary-adult':{
+        backLink: false,
+        next: '/csig/exceptions'
+    },
+    '/csig/applicant-summary-child':{
+        backLink: false,
+        next: '/csig/exceptions'
+    },
+    '/csig/exceptions':{
+        backLink: false,
+        next: 'https://www.gov.uk/'
+    },
+    '/csig/confirm-applicant-child':{
+        fields: [
+            'confirmPhoto',
+            'confirmTown'
+        ],
+        next:[
+        { field: 'confirmPhoto', value: false, next:'/csig/applicant-photo-fail-child'},
+        '/csig/confirm-applicant-parents'
+        ]
+    },
+    '/csig/applicant-photo-fail-adult':{
+        fields: [
+            'describeProblemAdult'
+        ],
+        next:'/csig/confirm-applicant-address'
+    },
+    '/csig/applicant-photo-fail-child':{
+        fields: [
+            'describeProblemChild'
+        ],
+        next:'/csig/confirm-applicant-parents'
+    },
+    '/csig/confirm-applicant-parents': {
+        fields: [
+            'parent1Details',
+            'parent2Details'
+        ],
+        next:'/csig/confirm-applicant-address'
+    },
+    '/csig/confirm-applicant-address':{
+        fields: [
+            'confirmAddress'
+        ],
+        next:'/csig/csig-details-work'
+    },
+    '/csig/csig-details-work':{
+        fields: [
+            'csigProfession',
+            'csigRetired'
+        ],
+        next:[
+            //{ field: 'csigRetired', value: true, next:'/csig/csig-details-contact'},
+            { field: 'csigRetired', value: true, next: [
+                { field: 'address-lookup', value: false, next: '/csig/your-home-address'  },
+                '/csig/csig-details-contact'
+            ]},
+            '/csig/csig-details-work-address'
+        ]
+    },
+    '/csig/your-home-address':{
+        fields: [
+            'addressLine1',
+            'addressLine2',
+            'addressTown',
+            'addressPostcode'
+        ],
+        next:'/csig/csig-details-contact'
+    },
+
+    '/csig/csig-details-work-address':{
+        fields: [
+            'workEmployerName',
+            'workAddressLine1',
+            'workAddressLine2',
+            'workAddressTown',
+            'workAddressPostcode'
+        ],
+        next:'/csig/csig-details-contact'
+    },
+    '/csig/csig-details-contact':{
+        fields: [
+            'csigEmail',
+            'csigPhone'
+        ],
+        next:'/csig/confirmation'
+    },
+    '/csig/confirmation':{
+        backLink: false
     }
 }
 
 module.exports = {
     apply,
-    tracking
+    tracking,
+    csig
 }

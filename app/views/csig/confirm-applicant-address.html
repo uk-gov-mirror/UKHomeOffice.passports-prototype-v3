@@ -1,0 +1,30 @@
+{% extends "layout-csig.html" %}
+
+{% set hmpoTitle %}Is this the applicant's address?{% endset %}
+
+{% block mainContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+    <p>We need to check the child has links to this address.</p>
+
+    <p>35 Vanguard House<br>
+    10 Martello Street<br>
+    London<br>
+    SE12 5DR</p>
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoRadios(ctx, {
+            classes: "govuk-radios--inline",
+            id: "confirmAddress",
+            legend: {
+                text: "If you don't know the full address, answer to the best of your knowledge."
+            }
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}
+

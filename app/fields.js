@@ -755,7 +755,6 @@ module.exports = {
             { type: 'equal', arguments: true }
         ]
     },
-
     appReference: {
         validate: 'required'
     },
@@ -766,7 +765,6 @@ module.exports = {
     trackEmail: {
         validate: 'required'
     },
-
     refereeFirstName: {
         validate: 'required'
     },
@@ -802,5 +800,201 @@ module.exports = {
     paperForm: {
         formatter: 'boolean',
         validate: 'required'
+    },
+    csigAppReference: {
+        validate: 'required'
+    },
+    csigDateOfBirth: {
+        validate: ['required', 'date'],
+    },
+    refereePassportNumber: {
+        validate: [
+            'required',
+            'numeric',
+            { type: 'exactlength', arguments: 9 }
+        ]
+    },
+    refereePassportExpiry: {
+        validate: [
+            'required',
+            'date'
+        ]
+    },
+    refereeDateOfBirth: {
+        validate: ['required', 'date']
+    },
+    csigFirstName: {
+        validate: 'required'
+    },
+    csigMiddleName: {
+
+    },
+    csigLastName: {
+        validate: 'required'
+    },
+    refereePostcode: {
+        validate: 'required'
+    },
+    refereeAddressSelect: {
+       // validate: 'required'
+    },
+    homeFlatName: {
+        validate: 'required'
+    },
+    homeBuildingName: {
+        validate: 'required'
+    },
+    homeBuildingNumber: {
+        validate: 'required'
+    },
+    homeStreet: {
+        validate: 'required'
+    },
+    homeDistrict: {
+        validate: 'required'
+    },
+    addressTown: {
+        validate: 'required'
+    },
+    homeCounty: {
+        validate: 'required'
+    },
+    addressPostcode: {
+        validate: 'required'
+    },
+    isDetailsCorrect: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
+    confirmPhotoAdult: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
+    knowPersonallyAdult: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
+    areRelatedInRelationshipOrLivingSameAddressAdult: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
+    howKnowAdult: {
+        validate: [
+            'required',
+            { type: 'maxlength', arguments: 30 }
+        ]
+    },
+    howManyYearsKnownAdult: {
+        validate: [
+            'required',
+            'numeric',
+            { type: 'maxlength', arguments: 2 }
+        ]
+    },
+    knowPersonallyChild: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
+    areRelatedInRelationshipOrLivingSameAddressChild: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
+    howKnowChild: {
+        validate: [
+            'required',
+            { type: 'maxlength', arguments: 30 }
+        ]
+    },
+    howManyYearsKnownChild: {
+        validate: [
+            'required',
+            'numeric',
+            { type: 'maxlength', arguments: 2 }
+        ]
+    },
+    confirmPhoto: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
+    describeProblemAdult: {
+        validate: 'required'
+    },
+    describeProblemChild: {
+        validate: 'required'
+    },
+    confirmTown: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
+    parent1Details: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
+    parent2Details: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
+    confirmAddress: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
+    csigProfession: {
+        validate: 'required'
+    },
+    csigRetired: {
+        formatter: 'boolean',
+        validate: 'required'
+    },
+    addressLine1:{
+
+    },
+    addressLine2:{
+
+    },
+    workEmployerName: {
+        validate: 'required'
+    },
+    workAddressLine1: {
+        validate: [
+            'required',
+            { type: 'minlength', arguments: 3 },
+            { type: 'maxlength', arguments: 40 }
+        ]
+    },
+    workAddressLine2: {
+        validate: [
+            { type: 'maxlength', arguments: 40 }
+        ]
+    },
+    workAddressTown: {
+        validate: [
+            'required',
+            { type: 'maxlength', arguments: 30 }
+        ]
+    },
+    workAddressPostcode: {
+        formatter: 'uppercase',
+        validate: [
+            'required',
+            { type: 'maxlength', arguments: 10 }
+        ]
+    },
+    csigEmail: {
+        formatter: ['trim'],
+        validate: [
+            'required',
+            'email',
+            { type: 'maxlength', arguments: 240 }
+        ],
+        type: 'email',
+        'ignore-defaults': true // stops removing double dashes etc by default
+    },
+    csigPhone: {
+        formatter: ['removespaces', 'removehyphens'],
+        validate: [
+            'required',
+            { type: 'maxlength', arguments: 15 }
+        ],
+        type: 'tel'
     }
 }

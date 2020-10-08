@@ -1,0 +1,17 @@
+{% extends "layout-csig.html" %}
+
+{% set hmpoTitle %}You can’t confirm the applicant’s identity online{% endset %}
+
+{% block mainContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>We couldn’t confirm who you are using our online check. Sometimes this happens even if you've entered all your details correctly.</p>
+    <p>We’ll contact the applicant. They can either ask someone else or give you a paper form instead.</p>
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoSubmit(ctx, { text: "Done" }) }}
+    {% endcall %}
+
+{% endblock %}
+

@@ -1,0 +1,63 @@
+{% extends "layout-csig.html" %}
+
+{% set hmpoTitle %}Your work address{% endset %}
+
+{% block mainContent %}
+    <h1 id="header">{{ hmpoTitle }}</h1>
+
+    <p>We'll only write to you at this address if we need to check any details. If you're self-employed, enter your name and home address.</p>
+
+    {% call hmpoForm(ctx) %}
+            {{ hmpoText(ctx, {
+            id: "workEmployerName",
+            label: {
+                text: "Employer",
+                classes: "govuk-label--m"
+                },
+            attributes: { autocapitalize: "words" },
+            classes: "govuk-!-width-three-quarters"
+        }) }}
+
+        {{ hmpoText(ctx, {
+            id: "workAddressLine1",
+            label: {
+                text: "Your work address",
+                classes: "govuk-label--m"
+                },
+            attributes: { autocapitalize: "words" },
+            classes: "govuk-!-width-three-quarters"
+        }) }}
+
+        {{ hmpoText(ctx, {
+            id: "workAddressLine2",
+            label: { classes: "govuk-visually-hidden" },
+            attributes: { autocapitalize: "words" },
+            classes: "govuk-!-width-three-quarters"
+        }) }}
+
+        {{ hmpoText(ctx, {
+            id: "workAddressTown",
+            label: {
+                text: "Town or city",
+                classes: "govuk-label--m"
+            },
+            attributes: { autocapitalize: "words" },
+            classes: "govuk-!-width-one-half"
+        }) }}
+
+        {{ hmpoText(ctx, {
+            id: "workAddressPostcode",
+            label: {
+                text: "Postcode",
+                classes: "govuk-label--m"
+            },
+            attributes: { autocapitalize: "characters" },
+            classes: "govuk-!-width-one-quarter"
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}
+

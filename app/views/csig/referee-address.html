@@ -1,0 +1,24 @@
+{% extends "layout-csig.html" %}
+
+{% set hmpoTitle %}Your home address{% endset %}
+
+{% block mainContent %}
+    <h1 id="header">{{ hmpoTitle }}</h1>
+    <p>Tell us where you live. Only give a work address if you also live there.</p>
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoText(ctx, {
+            id: "refereePostcode",
+            label: {
+                text: "Postcode",
+                classes: "govuk-label--m"
+            },
+            classes: "govuk-input--width-10"
+        }) }}
+
+        {{ hmpoSubmit(ctx, { text: translate("buttons.findAddress") }) }}
+
+    {% endcall %}
+
+{% endblock %}

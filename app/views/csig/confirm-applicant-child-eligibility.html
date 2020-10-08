@@ -1,0 +1,47 @@
+{% extends "layout-csig.html" %}
+
+{% set hmpoTitle %}How you know Suzanne Angela Smith{% endset %}
+
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoRadios(ctx, {
+            id: "knowPersonallyChild",
+            classes: "govuk-radios--inline",
+            legend:{
+                text: 'Do you know them personally, for example as a friend, neighbour or colleague?'
+            }
+        }) }}
+
+        {{ hmpoRadios(ctx, {
+            id: "areRelatedInRelationshipOrLivingSameAddressChild",
+            classes: "govuk-radios--inline",
+            legend:{
+                text: 'Are you related to, in a relationship with or living at the same address as them?'
+            }
+        }) }}
+
+         {{ hmpoText(ctx, {
+            id: "howKnowChild",
+            classes: "govuk-input--width-20",
+            label: {
+                text: "How do you know them?"
+            }
+        }) }}
+
+        {{ hmpoNumber(ctx, {
+            id: "howManyYearsKnownChild",
+            classes: "govuk-input--width-2",
+            label: {
+                text: "How many years have you known them?"
+            }
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}
+

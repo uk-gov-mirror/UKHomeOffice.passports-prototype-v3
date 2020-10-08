@@ -1,0 +1,88 @@
+{% extends "layout-csig.html" %}
+
+{% set hmpoTitle %}Patrick Michael Smith's parents{% endset %}
+
+{% block mainContent %}
+
+    <style>
+        .govuk-summary-list__key {
+            width: 55%;
+        }
+        .form-user-data h2 {
+            margin-bottom: 0px;
+        }
+    </style>
+
+    {% call hmpoForm(ctx) %}
+
+        <h1>{{ hmpoTitle }}</h1>
+        <p>We need to check the applicant is eligible for a UK passport. Answer to the best of your knowledge.</p>
+
+        <div class="form-user-data">
+            <h2>Mother or parent 1</h2>
+        </div>
+
+        {{ govukSummaryList({ rows: [
+            {
+                key: { text: ""}
+            },
+            {
+                key: { text: "First and middle names" },
+                value: { text: "Suzanne Angela" }
+            },
+            {
+                key: { text: "Last name" },
+                value: { text: "Smith" }
+            },
+            {
+                key: { text: "Year of birth" },
+                value: { text: "1982"}
+            }
+        ] }) }}
+
+        {{ hmpoRadios(ctx, {
+            classes: "govuk-radios--inline",
+            id: "parent1Details",
+            legend: {
+                text: 'Can you confirm these details are correct?'
+            }
+        }) }}
+
+        <br>
+
+        <div class="form-user-data">
+            <h2>Father or parent 2</h2>
+        </div>
+
+        {{ govukSummaryList({ rows: [
+            {
+                key: { text: ""}
+            },
+            {
+                key: { text: "First and middle names" },
+                value: { text: "Jason Peter" }
+            },
+            {
+                key: { text: "Last name" },
+                value: { text: "Smith" }
+            },
+            {
+                key: { text: "Year of birth" },
+                value: { text: "1980"}
+            }
+        ] }) }}
+
+        {{ hmpoRadios(ctx, {
+            classes: "govuk-radios--inline",
+            id: "parent2Details",
+            legend: {
+                text: 'Can you confirm these details are correct?'
+            }
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}
+

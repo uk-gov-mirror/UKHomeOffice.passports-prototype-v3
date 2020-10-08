@@ -1,0 +1,33 @@
+{% extends "layout-csig.html" %}
+
+{% set hmpoTitle %}Sign in{% endset %}
+
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+    <p>We need these details to match you with the right application.</p>
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoText(ctx, {
+            id: "csigAppReference",
+            label: {
+                text: "Application reference",
+                classes: "govuk-label--m"
+            },
+            hint: "For example 42A B34 5C6. This is in the email from HM Passport Office."
+        }) }}
+
+        {{ hmpoDate(ctx, {
+            id: "csigDateOfBirth",
+            legend: {
+                text: "Applicant's date of birth",
+                classes: "govuk-label--m"
+            },
+            hint: "For example 31 08 1970. You may need to check with the applicant."
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}

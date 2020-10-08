@@ -1,0 +1,31 @@
+{% extends "layout-csig.html" %}
+
+{% set hmpoTitle %}Declaration{% endset %}
+
+{% block mainContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>By continuing you confirm that:</p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>the information you’ve given is correct</li>
+        <li>HM Passport Office and Experian can check the information</li>
+        <li>you agree to the <a href="/csig/terms-and-conditions" target="_blank">terms and conditions<span class="visuallyhidden"></span></a></li>
+    </ul>
+
+    {% call hmpoWarningText({ iconFallbackText: "Warning" }) %}
+        It is a criminal offence to make a false statement to help someone get a passport.
+    {% endcall %}
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoCheckboxes(ctx, {
+            id: "csigDeclaration",
+            label: "I agree"
+        }) }}
+
+    {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}

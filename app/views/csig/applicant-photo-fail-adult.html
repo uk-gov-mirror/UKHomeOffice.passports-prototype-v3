@@ -1,0 +1,40 @@
+{% extends "layout-csig.html" %}
+
+{% set hmpoTitle %}What's wrong with this photo?
+{% endset %}
+
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    <div class="grid-row">
+        <div class="column-one-third">
+          <img src="../../public/images/photo-preview-thumbnail/adult/thumbnail-good-female-adult.jpg" alt="Your photo" width="250">
+        </div>
+    </div>
+    </br>
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoTextarea(ctx, {
+            id: "describeProblemAdult",
+            label: {
+                text: 'Describe the problem'
+            },
+            items: [
+                {
+                    value: true
+                },
+                {
+                    value: false
+                }
+            ]
+        }) }}
+
+        <p>We'll look into this &ndash; please continue.</p>
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}
+

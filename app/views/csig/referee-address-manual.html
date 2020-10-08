@@ -1,0 +1,88 @@
+{% extends "layout-csig.html" %}
+
+{% set hmpoTitle %}Enter home address{% endset %}
+
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoText(ctx, {
+            id: "homeFlatName",
+            label: {
+                text: "Flat number or name",
+                classes: "govuk-label--m"
+                },
+            classes: "govuk-!-width-one-half"
+        }) }}
+
+        {{ hmpoText(ctx, {
+            id: "homeBuildingName",
+            label: {
+                text: "House or building name",
+                classes: "govuk-label--m"
+                },
+            classes: "govuk-!-width-one-half"
+        }) }}
+
+        {{ hmpoText(ctx, {
+            id: "homeBuildingNumber",
+            label: {
+                text: "House or building number",
+                classes: "govuk-label--m"
+                },
+            classes: "govuk-!-width-one-quarter"
+        }) }}
+
+        {{ hmpoText(ctx, {
+            id: "homeStreet",
+            label: {
+                text: "Street",
+                classes: "govuk-label--m"
+                },
+            classes: "govuk-!-width-three-quarters"
+        }) }}
+
+        {{ hmpoText(ctx, {
+            id: "homeDistrict",
+            label: {
+                text: "District",
+                classes: "govuk-label--m"
+                },
+            classes: "govuk-!-width-three-quarters"
+        }) }}
+
+        {{ hmpoText(ctx, {
+            id: "addressTown",
+            label: {
+                text: "Town or city",
+                classes: "govuk-label--m"
+            },
+            classes: "govuk-!-width-three-quarters"
+        }) }}
+
+        {{ hmpoText(ctx, {
+            id: "homeCounty",
+            label: {
+                text: "County",
+                classes: "govuk-label--m"
+                },
+            classes: "govuk-!-width-one-half"
+        }) }}
+
+        {{ hmpoText(ctx, {
+            id: "addressPostcode",
+            label: {
+                text: "Postcode",
+                classes: "govuk-label--m"
+            },
+            attributes: { autocapitalize: "characters" },
+            classes: "govuk-!-width-one-quarter"
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}
+

@@ -1,0 +1,23 @@
+{% extends "layout-csig.html" %}
+
+{% set hmpoTitle %}You don't meet the criteria{% endset %}
+
+{% block mainContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    {% if values.csigAdultOrChild == 'child' %}
+        <p>You can't confirm this person's identity. You need to be over 18 to do this.
+    {% else %}
+        <p>You can't confirm this person's identity. You may be able to do this for others.</p>
+    {% endif %}
+
+    <p>We'll tell the applicant to ask someone else.</p>
+    <p>Thank you.</p>
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoSubmit(ctx, { text: "Done" }) }}
+    {% endcall %}
+
+{% endblock %}
+

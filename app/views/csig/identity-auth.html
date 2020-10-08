@@ -1,0 +1,25 @@
+{% extends "layout-csig.html" %}
+
+{% set hmpoTitle %}We’re checking your details{% endset %}
+
+{% block backLink %}{% endblock %}
+
+{% set content %}
+    <h1>{{ hmpoTitle }}</h1>
+    <p>Please don’t press back or refresh your browser.</p>
+{% endset %}
+
+{% block hmpoContent %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+            {% call hmpoForm(ctx) %}
+
+                {{ hmpoAutoSubmit(ctx, {
+                    submitDelay: 2000,
+                    html: content
+                }) }}
+
+            {% endcall %}
+        </div>
+    </div>
+{% endblock %}

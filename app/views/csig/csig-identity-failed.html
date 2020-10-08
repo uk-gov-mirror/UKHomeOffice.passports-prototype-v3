@@ -1,0 +1,65 @@
+{% extends "layout-csig.html" %}
+
+{% set hmpoTitle %}Check your details{% endset %}
+
+{% block mainContent %}
+
+    <style>
+        .govuk-summary-list__key {
+            margin-bottom: 5px;
+            font-weight: 700;
+            width: 55%;
+        }
+    </style>
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    {{ govukErrorSummary({
+        titleText: "Your details don't match our records.",
+        descriptionHtml: "Check what you've entered and try again. <p>You can try 2 more times.</p>"
+    }) }}
+
+    {{ govukSummaryList({ rows: [
+        {
+            key: { text: "Passport number" },
+            value: { text: values.refereePassportNumber }
+        },
+        {
+            key: { text: "Expiry date" },
+            value: { text: values.refereePassportExpiry | date }
+        },
+        {
+            key: { text: "Date of birth" },
+            value: { text: values.refereeDateOfBirth | date }
+        },
+        {
+            key: { text: "First name" },
+            value: { text: values.csigFirstName }
+        },
+        {
+            key: { text: "Middle names" },
+            value: { text: values.csigMiddleName }
+        },
+        {
+            key: { text: "Last name" },
+            value: { text: values.csigLastName }
+        },
+        {
+            key: { text: "Current address" },
+            value: { html: ["
+                Flat A/04
+                <br>Parliament View Apartments
+                <br>1 Albert Embankment
+                <br>London
+                <br>SE1 7XH"
+            ] | filter | join("<br/>") }
+        }
+
+    ] }) }}
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoSubmit(ctx, { text: "Try again" }) }}
+    {% endcall %}
+
+{% endblock %}
+

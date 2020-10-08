@@ -1,0 +1,50 @@
+{% extends "layout-csig.html" %}
+
+{% set hmpoTitle %}Select an address{% endset %}
+
+{% block mainContent %}
+
+    <style>
+        .form-user-data span {
+            font-weight: 700;
+            margin-right: 15px;
+        }
+        .form-user-data h2 {
+            margin-bottom: 1px;
+        }
+    </style>
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    {% call hmpoForm(ctx) %}
+
+        {{ govukSelect({
+            id: "refereeAddressSelect",
+            items: [
+                {
+                    text: "12 addresses found"
+                },
+                {
+                    text: "Flat A/04, Parliament View Apartments, 1 Albert Embankment, LONDON SE1 7XH"
+                },
+                {
+                    text: "Flat A/05, Parliament View Apartments, 1 Albert Embankment, LONDON SE1 7XH"
+                },
+                {
+                    text: "Flat A/06, Parliament View Apartments, 1 Albert Embankment, LONDON SE1 7XH"
+                }
+            ]
+        }) }}
+
+        <div class="form-user-data">
+            <h2>Postcode</h2>
+            <p><span>SE1 7XH</span><a href="/csig/referee-address">Change</a></p>
+        </div>
+
+        <p><a href="/csig/referee-address-manual">I can’t find my address in the list</a></p>
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}

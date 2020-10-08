@@ -1,0 +1,16 @@
+{% extends "layout-csig.html" %}
+
+{% set hmpoTitle %}What happends next{% endset %}
+
+{% block mainContent %}
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>We'll ask you a few questions to check you know the person making this application. We'll also show you a passport photo.</p>
+    <p>If you're unable to confirm some details, please continue to the end. We'll look into any issues with the application.</p>
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoSubmit(ctx) }}
+    {% endcall %}
+
+{% endblock %}
+

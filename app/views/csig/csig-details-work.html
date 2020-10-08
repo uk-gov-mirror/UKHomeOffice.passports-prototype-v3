@@ -1,0 +1,36 @@
+{% extends "layout-csig.html" %}
+
+{% set hmpoTitle %}Your work{% endset %}
+
+{% block mainContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    {% call hmpoForm(ctx) %}
+
+        <p>We need to confirm that you work in a <a href="/help/confirming-identity" target= "blank" >recognised profession.</a> </p>
+
+        {{ hmpoText(ctx, {
+            id: "csigProfession",
+            classes: "govuk-input--width-20",
+            label: {
+                classes: "govuk-label--m",
+                text: "Profession"
+            }
+        }) }}
+
+        {{ hmpoRadios(ctx, {
+            id: "csigRetired",
+            classes: "govuk-radios--inline",
+            legend:{
+                classes: "govuk-label--m",
+                text: 'Are you retired?'
+            }
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}
+

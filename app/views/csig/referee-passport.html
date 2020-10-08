@@ -1,0 +1,42 @@
+{% extends "layout-csig.html" %}
+
+{% set hmpoTitle %}Your passport{% endset %}
+
+{% block mainContent %}
+    <h1 id="header">{{ hmpoTitle }}</h1>
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoNumber(ctx, {
+            id: "refereePassportNumber",
+            label: {
+                text: "Passport number",
+                classes: "govuk-label--m"
+            },
+            hint: "For example, 502135326"
+        }) }}
+
+        {{ hmpoDate(ctx, {
+            id: "refereePassportExpiry",
+            legend: {
+                text: "Passport expiry date",
+                classes: "govuk-label--m"
+            },
+            hint: "For example, 01 08 2017"
+        }) }}
+
+        {{ hmpoDate(ctx, {
+            id: "refereeDateOfBirth",
+            legend: {
+                text: "Your date of birth",
+                classes: "govuk-label--m"
+            },
+            hint: "For example 20 01 1973"
+        }) }}
+
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}

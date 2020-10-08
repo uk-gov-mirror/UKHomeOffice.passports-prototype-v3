@@ -1,0 +1,40 @@
+{% extends "layout-csig.html" %}
+
+{% set hmpoTitle %}Your name{% endset %}
+
+{% block mainContent %}
+    <h1 id="header">{{ hmpoTitle }}</h1>
+
+    {% call hmpoForm(ctx) %}
+
+
+        {{ hmpoText(ctx, {
+            id: "csigFirstName",
+            label: {
+                text: "First name",
+                classes: "govuk-label--m"
+            }
+        }) }}
+
+        {{ hmpoText(ctx, {
+            id: "csigMiddleName",
+            label: {
+                text: "Middle names",
+                classes: "govuk-label--m"
+            }
+        }) }}
+
+        {{ hmpoText(ctx, {
+            id: "csigLastName",
+            label: {
+                text: "Last name",
+                classes: "govuk-label--m"
+            },
+            hint: "As written on your passport"
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+{% endblock %}

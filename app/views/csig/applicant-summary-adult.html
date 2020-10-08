@@ -1,0 +1,47 @@
+{% extends "layout-csig.html" %}
+
+{% set hmpoTitle %}Confirm your answers{% endset %}
+
+{% block mainContent %}
+
+    <style>
+        .govuk-summary-list__key {
+            margin-bottom: 5px;
+            font-weight: 700;
+            width: 55%;
+        }
+    </style>
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    <p>It looks like you're not eligible to do this for this applicant. Please confirm your answers.</p>
+
+    {{ govukSummaryList({ rows: [
+        {
+            key: { text: "Do you know them personally, for example as a friend, neighbour or colleague?" },
+            value: { text: values.knowPersonallyAdult | yesOrNo},
+            actions: { items: [{ text: "Change", href: "javascript:history.back()" }]}
+        },
+        {
+            key: { text: "Are you related to, in a relationship with or living at the same address as them?" },
+            value: { text: values.areRelatedInRelationshipOrLivingSameAddressAdult | yesOrNo},
+            actions: { items: [{ text: "Change", href: "javascript:history.back()" }]}
+        },
+        {
+            key: { text: "How do you know them?" },
+            value: { text: values.howKnowAdult },
+            actions: { items: [{ text: "Change", href: "javascript:history.back()" }]}
+        },
+        {
+            key: { text: "How many years have you known them?" },
+            value: { text: values.howManyYearsKnownAdult },
+            actions: { items: [{ text: "Change", href: "javascript:history.back()" }]}
+        }
+    ] }) }}
+
+    {% call hmpoForm(ctx) %}
+        {{ hmpoSubmit(ctx) }}
+    {% endcall %}
+
+{% endblock %}
+

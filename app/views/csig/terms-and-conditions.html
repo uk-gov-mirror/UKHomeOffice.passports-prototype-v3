@@ -1,0 +1,50 @@
+{% extends "layout-csig.html" %}
+
+{% block backLink %}{% endblock %}
+
+{% set hmpoTitle %}Terms and conditions{% endset %}
+
+{% block mainContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+
+    <p>By confirming someone's identity you agree to these terms and conditions.</p>
+
+    <p>You confirm that:</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+        <li>the information you'll give is correct</li>
+        <li>you've known the person applying personally for at least 2 years, for example as a friend, neighbour or colleague</li>
+        <li>you work in or are retired from a <a href="https://www.gov.uk/countersigning-passport-applications/accepted-occupations-for-countersignatories">recognised profession</a></li>
+        <li>you live in the UK and have a current UK passport</li>
+        <li>you're not related to, in a relationship with or living at the same address as the person applying</p>
+    </ul>
+
+    <p>You also confirm that you don't work at:</p>
+    <ul class="list-bullet">
+        <li>HM Passport Office</li>
+        <li>UK Visas and Immigration and are involved with applications for British citizenship or right of abode in the UK</li>
+
+    </ul>
+
+    <p>HM Passport Office may contact you to check any of the details you provide.</p><br>
+
+    <div class="govuk-warning-text">
+    <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+    <strong class="govuk-warning-text__text">
+        <span class="govuk-warning-text__assistive">Warning</span>
+            If you make a false statement to help someone get a passport, or you know that they have made a false statement, you could be prosecuted and go to prison.
+    </strong>
+    </div>
+
+    <h2>Verifying your identity</h2>
+
+    <p>HM Passport Office and Experian can check the information you provide against any database they have access to, public or otherwise. They will only do this to verify your identity.</p>
+
+    <p>HM Passport Office will store the information you provide permanently and securely. A record of the search will appear on your credit report for 12 months. This has no affect on your credit score.</p>
+
+    <h2>Feedback</h2>
+    <p>HM Passport Office welcomes your views on this service. We invite feedback through links in the website and surveys. We’ll use what you tell us to improve this and related services.</p>
+
+{% endblock %}
