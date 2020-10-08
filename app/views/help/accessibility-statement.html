@@ -1,13 +1,94 @@
 {% extends "layout-help.html" %}
 
 {% set hmpoTitle %}
-    Accessibility statement
+    Accessibility statement for Apply for a UK passport
 {% endset %}
 
 {% block helpContent %}
 
     <h1>{{ hmpoTitle }}</h1>
 
-    <p>Placeholder page.</p>
+    <p>This accessibility statement applies to the apply for a UK passport service.</p>
+    <p>This website is run by Her Majesty’s Passport Office. We want as many people as possible to be able to use this website. For example, that means you should be able to:<p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>change colours, contrast levels and fonts</li>
+        <li>zoom in up to 300% without the text spilling off the screen</li>
+        <li>navigate most of the website using just a keyboard</li>
+        <li>navigate most of the website using speech recognition software</li>
+        <li>listen to most of the website using a screen reader (including the most recent versions of JAWS, NVDA and VoiceOver)</li>
+    </ul>
+    <p>We’ve also made the website text as simple as possible to understand.<p>
+    <p><a id="AbilityNet" href="https://mcmw.abilitynet.org.uk" target="_blank">AbilityNet</a> has advice on making your device easier to use if you have a disability.</p>
 
-{% endblock%}
+    <h2>How accessible this website is<h2>
+    <p>We know some parts of this website are not fully accessible. For example:<p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>the line height or spacing of text cannot be modified</li>
+        <li>PDF documents are partially accessible to screen reader software</li>
+        <li>the skip to main content link does not work when using a screen reader on desktop web browsers</li>
+        <li>if using a screen reader, the autofocus may not move to the error summary that appears when an error occurs </li>
+        <li>when selecting the continue button after leaving the form fields empty, the focus returns to the top of the page and the page title is read out - if this occurs, try asking the screen reader to start again from the top of the page</li>
+        <li>sometimes content on web elements are read out more than once using screen readers or "blank" is read out erroneously</li>
+    </ul>
+
+    <h2>Feedback and contact information<h2>
+    <p>If you need information on this website in a different format like accessible PDF, large print, easy read, audio recording or braille:<p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>email us at: <a id="link-alternative" href="mailto:alternativeformats@homeoffice.gov.uk" target="_blank">alternativeformats@homeoffice.gov.uk</a>
+    </ul>
+    <p>It will help us if you can tell us what assistive technology you use.<p>
+
+    <h2>Reporting accessibility problems with this website<h2>
+    <p>We’re always looking to improve the accessibility of this website. If you find any problems not listed on this page or think we’re not meeting accessibility requirements, <a id="contact us" href=https://www.gov.uk/passport-advice-line target="_blank">contact us</a>.</p>
+    
+    <h2>Enforcement procedure<h2>
+    <p>The Equality and Human Rights Commission (EHRC) is responsible for enforcing the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018 (the ‘accessibility regulations’). If you’re not happy with how we respond to your complaint, <a id="contact the Equality Advisory and Support Service (EASS)" href=https://www.equalityadvisoryservice.com/ target="_blank">contact the Equality Advisory and Support Service (EASS)</a>.
+    <p>If you are in Northern Ireland and are not happy with how we respond to your complaint you can contact the <a id="Equalities Commission for Northern Ireland" href=https://www.equalityni.org/Home target="_blank">Equalities Commission for Northern Ireland</a> who are responsible for enforcing the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018 (the ‘accessibility regulations’) in Northern Ireland.</p>
+
+    <h2>Contacting us by phone or visiting us in person<h2>
+    <p>We provide a text relay service for people who are D/deaf, hearing impaired or have a speech impediment.<p>
+    <p>Our offices have audio induction loops, or if you contact us before your visit we can arrange a sign language translator or other support to help you complete the service in person.<p>
+    <p>Find out how to <a id="contact us" href=https://www.gov.uk/passport-advice-line target="_blank">contact us</a>.</p>
+
+    <h2>Technical information about this website's accessibility<h2>
+    <p>Her Majesty’s Passport Office is committed to making its website accessible, in accordance with the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018.<p>
+
+    <h2>Compliance status<h2>
+    <p>This website is partially compliant with the <a id="Web Content Accessibility Guidelines version 2.1" href=https://www.w3.org/TR/WCAG21/ target="_blank">Web Content Accessibility Guidelines version 2.1</a> AA standard, due to the non-compliances listed below..</p>
+
+    <h2>Non-compliance with the accessibility regulations<h2>
+    <p>We have identified these instances which we are researching and looking into further. We will investigate where issues exist and fix them by March 2021.<p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>If a user does not enter all form information an error message appears which gives users links to where the errors are on the page. These links are not functioning correctly and move users to the start of the page. This fails WCAG 3.3.1 Error Identification (A).</li>
+        <li>The skip to content function on this service is not moving the user to the start of the main content on pages. This fails WCAG 2.4.1 Bypass Blocks (A).</li>
+        <li>Before the “back” link on each page, screen readers identify an additional blank link that does nothing. This is in error and fails WCAG 2.4.4 Link Purpose (A), 4.1.1 Parsing (A) and 4.1.2 Name, Role, Value (A).</li>
+        <li>Screen reader users may experience blank elements between form labels and user input fields when navigating with the arrow keys and in other places such as on the ‘How to take a digital passport photo’ guidance page. This fails WCAG 4.1.1 Parsing (A).</li>
+        <li>In High contrast modes, there are collapsible content boxes that use icons to identify their status. These can become difficult to identify in high contrast modes and fail WCAG 1.4.11 Non-text Contrast (AA).</li>
+        <li>On some pages, users are asked to provide expiry date information, or will come across questions that use radio buttons. These questions are not correctly described for screen reader users. This fails WCAG 1.3.5 Identify Input Purpose (AA) and 3.3.2 Labels or Instructions (A).</li>
+        <li>When adding additional names, some screen reader users may find it difficult to tell form fields apart and which additional name entry these fields are associated with. This fails WCAG 3.3.2 Labels or Instructions (A) and 4.1.1 Parsing (A).</li>
+        <li>When uploading a photo, the “upload your photo” button does not receive focus indication. This fails WCAG 2.4.7 Focus Visible (AA).</li>
+        <li>On the “Home address” and “Application history” pages there are some rogue elements that are read out to screen reader users in error. This fails WCAG 4.1.1 Parsing (A).</li>
+        <li>On the “Ask someone to confirm your identity online” page there is a button called “if they can’t do this online”. This button opens dropdown content that explains what to do. Some screen reader users may not be informed that this is dropdown content. This fails WCAG 4.1.2 Name, Role, Value (A).</li>
+        <li>On the “Choose a date and place” and “Choose a collection time” pages, the service uses tables to present timeslots for users. These may be particularly difficult for screen reader users to navigate as some of the links to book a given timeslot are not correctly read out. This fails WCAG 2.4.4 Link Purpose (A) and 4.1.1 Parsing (A).</li>
+    </ul>
+    <p>Other issues:<p>
+    <ul class="govuk-list govuk-list--bullet">
+        <li>We believe that there are some compatibility issues for users that use a combination of JAWS and pre-Chromium Microsoft edge which causes the screen reader to miss some plaintext content throughout pages. This is a very inconsistent issue and appears to be an AT / browser compatibility issues that we cannot change. If you are having difficulty please contact us.</li>
+        <li>We believe that there is a compatibility issue for users with Google Talkback / Android devices which causes some plaintext content throughout pages not to be read out. This is a very inconsistent issue and appears to be an AT / browser compatibility issues that we cannot change. If you are having difficulty please contact us.</li>
+        <li>For users that are using IOS/Voiceover they may experience difficulty in moving out of the keyboard when entering information in a form field. Clicking again on the form field should move users out of the keyboard and then be able to navigate as normal.</li>
+    </ul>
+
+    <h2>Disproportionate burden<h2>
+    <p>At this time, we have not made any disproportionate burden claims.<p>
+
+    <h2>Content that’s not within the scope of the accessibility regulations<h2>
+    <p>PDFs and other documents. Some of our PDFs are essential to providing our services. For example, we have PDFs that users can use to confirm their identity or provide proof of payment. We plan to either fix these or replace them with accessible HTML pages. Any new PDFs we publish will meet accessibility standards.<p>
+
+    <h2>Preparation of this accessibility statement<h2>
+    <p>This statement was prepared on 23 September 2020.<p>
+    <p>It was last reviewed on 23 September 2020.<p>
+    <p>This website was last tested on 15 June 2020 and was checked for compliance with WCAG 2.1 AA. Testing was carried out internally by the Home Office.<p>
+    <p>We tested the service based on a user's ability to complete key journeys. All parts of the chosen journeys were tested, including documents. Journeys were chosen on a number of factors including usage statistics, risk assessments and subject matter.<p>
+    </ul>
+
+{% endblock %}
