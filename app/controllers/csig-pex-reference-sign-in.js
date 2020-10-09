@@ -12,13 +12,13 @@ class CsigPEXReferenceSignInController extends BaseController {
     successHandler (req, res, next) {
         var referenceNumber = req.sessionModel.get('csigAppReference');
         if (referenceNumber.startsWith('2')) {
-            req.sessionModel.set ('csigExpired', true)
+            req.sessionModel.set('csigChild', true);
         }
         if (referenceNumber.startsWith('3')) {
             req.sessionModel.set ('csigInvalid', true)
         }
         if (referenceNumber.startsWith('4')){
-            req.sessionModel.set('csigChild', true);
+            req.sessionModel.set ('csigExpired', true)
         }
         if (referenceNumber.startsWith('5')){
             req.sessionModel.set('csigIdentityFailed', true);
