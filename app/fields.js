@@ -838,27 +838,17 @@ module.exports = {
     refereeAddressSelect: {
        // validate: 'required'
     },
-    homeFlatName: {
-        validate: 'required'
-    },
-    homeBuildingName: {
-        validate: 'required'
-    },
-    homeBuildingNumber: {
-        validate: 'required'
-    },
+    homeFlatName: {},
+    homeBuildingName: {},
+    homeBuildingNumber: {},
     homeStreet: {
         validate: 'required'
     },
-    homeDistrict: {
-        validate: 'required'
-    },
+    homeDistrict: {},
     addressTown: {
         validate: 'required'
     },
-    homeCounty: {
-        validate: 'required'
-    },
+    homeCounty: {},
     addressPostcode: {
         validate: 'required'
     },
