@@ -9,7 +9,7 @@ class CsigEligiblityController extends BaseController {
 
     setCsigAdultEligible(req) {
         let csigAdultEligible = true
-        if (req.sessionModel.get('howManyYearsKnownAdult') < '2') {
+        if (req.sessionModel.get('howManyYearsKnownAdult') < 2) {
             csigAdultEligible = false
         }
         req.sessionModel.set('csigAdultEligible', csigAdultEligible)
@@ -17,7 +17,7 @@ class CsigEligiblityController extends BaseController {
 
     setCsigChildEligible(req) {
         let csigChildEligible = true
-        if (req.sessionModel.get('howManyYearsKnownChild') < '2') {
+        if (req.sessionModel.get('howManyYearsKnownChild') < 2) {
             csigChildEligible = false
         }
         req.sessionModel.set('csigChildEligible', csigChildEligible)
