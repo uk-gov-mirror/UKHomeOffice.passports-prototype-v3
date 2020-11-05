@@ -32,6 +32,17 @@ class DefaultTrackController extends BaseController {
         }
         req.sessionModel.set({ csigRequired })
 
+        // choose if urgent
+        let isUrgent = req.sessionModel.get('isUrgent')
+        switch (req.query.urgent) {
+            case 'true':
+                isUrgent = true
+                break;
+            case 'false':
+                isUrgent = false
+        }
+        req.sessionModel.set({ isUrgent })
+
         // choose tracking status
         let status = req.sessionModel.get('status')
         if (req.query.status) {
