@@ -106,7 +106,8 @@ module.exports = {
     },
     damagedReason: {
         validate: [
-            'required',
+            // Removing require validation as it cause issues with the urgent journey. Solution should we found re this.
+            //'required',
             'alphanumex1',
             { type: 'maxlength', arguments: 250 }
         ],
@@ -125,7 +126,7 @@ module.exports = {
     },
 
     applyReason: {
-        validate: 'required'
+        //validate: 'required'
     },
     applyNow: {
         validate: 'required'
@@ -220,7 +221,8 @@ module.exports = {
     },
     changeOfName: {
         formatter: 'boolean',
-        validate: 'required'
+        // Removed require validation as it causes issues with the urgent journey.
+        //validate: 'required'
     },
     nameChangeReason: {
         validate: 'required'
@@ -986,5 +988,14 @@ module.exports = {
             { type: 'maxlength', arguments: 15 }
         ],
         type: 'tel'
-    }
+    },
+    nameChanged:{
+        validate: 'required'
+    },
+    nameChanged:{
+        validate: 'required'
+    },
+    urgent: {
+        journeyKey: 'application.urgent'
+    },
 }

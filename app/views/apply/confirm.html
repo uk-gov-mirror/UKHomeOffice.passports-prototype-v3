@@ -2,10 +2,23 @@
 
 {% set hmpoTitle %}Check this application{% endset %}
 
+{% set appointmentTime %}
+    <p>Wednesday 3 June 2020<br>
+    at 10:00pm</p>
+{% endset %}
+{% set appointmentAddress %}
+    <p>London HM Passport Office<br>
+    Globe House<br>
+    89 Eccleston Square<br>
+    London<br>
+    SW1V 1PN<br>
+    </p>
+{% endset %}
+
 {% block mainContent %}
     <h1>{{ hmpoTitle }}</h1>
 
-    {% if values.relationship %}
+{% if values.relationship %}
         <h2>Your relationship to the applicant</h2>
         {{ govukSummaryList({ rows: [
             {
@@ -410,20 +423,16 @@
         }
     ] }) }}
 
-    {% if values.dps %}
+    {% if values.urgent == true %}
         <h2>Appointment</h2>
             {{ govukSummaryList({ rows: [
             {
                 key: { text: "Date and time" },
-                value: { html:
-                    values.dpsAppointmentDateTime | date("dddd D MMMM YYYY") +
-                    "<br/> at " +
-                    values.dpsAppointmentDateTime | date("h:mma")
-                }
+                value: { html: appointmentTime}
             },
             {
                 key: { text: "Passport office" },
-                value: { html: values.dpsAppointmentLocation | dpsLocation | join("<br/>") }
+                value: { html: appointmentAddress}
             }
         ] }) }}
     {% endif %}

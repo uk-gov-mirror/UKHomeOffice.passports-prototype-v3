@@ -5,6 +5,7 @@ class DefaultController extends BaseController {
     successHandler (req, res, next) {
         this.setAgeGroup(req)
         this.setApplicationType(req)
+        this.setCsigRequiredUrgent(req)
         this.setParentsRequired(req)
         this.setEUSSEligible(req)
         this.setGrandparentsRequired(req)
@@ -84,6 +85,14 @@ class DefaultController extends BaseController {
         }
         req.sessionModel.set('applicationType', applicationType)
         req.sessionModel.set('oldBlue', oldBlue)
+    }
+
+    setCsigRequiredUrgent (req) {
+        let reqCsigRequiredUrgent = false
+        if (req.sessionModel.get('passportIssue') < '2002-01-01') {
+            reqCsigRequiredUrgent = true
+        }
+        req.sessionModel.set('reqCsigRequiredUrgent', reqCsigRequiredUrgent)
     }
 
     setParentsRequired (req) {
@@ -230,7 +239,7 @@ class DefaultController extends BaseController {
             }
         }
 
-        if (req.sessionModel.get('urgentPassport') === true) {
+        if (req.sessionModel.get('urgent') === true) {
             if (req.sessionModel.get('largePassport')) {
                 passportCost = 187
         } else {
