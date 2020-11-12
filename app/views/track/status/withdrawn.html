@@ -1,29 +1,42 @@
 {% extends "layout-tracking-status.html" %}
 
 {% block trackingHeader %}
-    <h1>We’ve sent you a letter</h1>
+    {% if values.isUrgent %}
+        <h1>We’ve called you</h1>
+        <div class="govuk-panel__body">There's a problem with your application.</div>
+    {% else %}
+        <h1>We’ve sent you a letter</h1>
+    {% endif %}
 {% endblock %}
 
 {% block trackingBody %}
-    <p>We sent you a letter on {{values.submitted | date}} that has more details about the problem with your application.</p>
-    <p>Please wait for this letter to arrive before contacting us or sending any documents.</p>
+    {% if values.isUrgent %}
+        <h2>What you need to do</h2>
+        <p>We explained on the phone what has happened and what you need to do.</p>
+        <p>It's no longer possible for you to collect your new passport at your collection appointment. Your collection appointment have been cancelled.</p>
+    {% else %}
+        <p>We sent you a letter on {{values.submitted | date}} that has more details about the problem with your application.</p>
+        <p>Please wait for this letter to arrive before contacting us or sending any documents.</p>
+    {% endif %}
 {% endblock %}
 
 {% block trackingHistory %}
 
     {{ trackingHistory([
-      "We’ve sent you a letter",
-      "Application received" if values.documentsRequired != "none",
-      "Identity details received" if values.csigRequired,
-      "Email sent to person confirming your identity" if values.csigRequired,
-      "Ask someone to confirm your identity" if values.csigRequired,
-      "Application submitted"
+        "We called to explain a problem" if values.isUrgent,
+        "We’ve sent you a letter" if values.isUrgent == false,
+        "Application received" if values.isUrgent,
+        "Application received" if values.documentsRequired != "none",
+        "Identity details received" if values.csigRequired,
+        "Email sent to person confirming your identity" if values.csigRequired,
+        "Ask someone to confirm your identity" if values.csigRequired,
+        "Application submitted"
     ]) }}
 
 {% endblock %}
 
 
 {% set nextStatuses = [
-    "WITHDRAWN_LATE"
-] %}
+    "WITHDRAWN_LATE" if values.isUrgent == false
+] | filter %}
 

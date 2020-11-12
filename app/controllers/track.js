@@ -11,6 +11,17 @@ class DefaultTrackController extends BaseController {
             resubmissionDeadlineDate: moment(date).add(49, 'days').toISOString()
         })
 
+        // choose if urgent
+        let isUrgent = req.sessionModel.get('isUrgent')
+        switch (req.query.urgent) {
+            case 'true':
+                isUrgent = true
+                break;
+            case 'false':
+                isUrgent = false
+        }
+        req.sessionModel.set({ isUrgent })
+
         // choose documents type
         let documentsRequired = req.sessionModel.get('documentsRequired') || 'documents'
         switch (req.query.docs) {
@@ -31,17 +42,6 @@ class DefaultTrackController extends BaseController {
                 csigRequired = false
         }
         req.sessionModel.set({ csigRequired })
-
-        // choose if urgent
-        let isUrgent = req.sessionModel.get('isUrgent')
-        switch (req.query.urgent) {
-            case 'true':
-                isUrgent = true
-                break;
-            case 'false':
-                isUrgent = false
-        }
-        req.sessionModel.set({ isUrgent })
 
         // choose tracking status
         let status = req.sessionModel.get('status')

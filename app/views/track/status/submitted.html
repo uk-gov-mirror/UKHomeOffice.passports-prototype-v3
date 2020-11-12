@@ -90,7 +90,6 @@
 {% block trackingHistory %}
 
     {{ trackingHistory([
-        "Application being processed" if values.isUrgent,
         "Application received",
         "Identity details received" if values.csigRequired,
         "Email sent to person confirming your identity" if values.csigRequired,
@@ -101,8 +100,11 @@
 {% endblock %}
 
 {% set nextStatuses = [
-    "IN_QUEUE",
-    "WITHDRAWN"
-] %}
+    "IN_QUEUE" if values.isUrgent == false,
+    "PROCESSING" if values.isUrgent,
+    "REPLACED",
+    "WITHDRAWN",
+    "APPLICATION_FAILED"
+] | filter %}
 
 

@@ -1,35 +1,75 @@
 {% extends "layout-tracking-status.html" %}
 
 {% block trackingHeader %}
-    <h1>You need a new photo</h1>
-    <p>Your application is on hold because there was a problem with your photo.</p>
+    {% if values.isUrgent %}
+        <h1>You need a new photo</h1>
+        <div class="govuk-panel__body">Your application is on hold. Your photo didn’t meet the rules for UK passport photos &#8211; we'll explain why.</div>
+    {% else %}
+        <h1>You need a new photo</h1>
+        <p>Your application is on hold because there was a problem with your photo.</p>
+    {% endif %}
 {% endblock %}
 
 {% block trackingBody %}
     <h2>What you need to do</h2>
-
-    <div class="photo-resub-notice">
-        <div class="icon">
-            <object data="/public/images/icon-warning.svg" type="image/svg+xml">
-                <img src="/public/images/icon-warning.png" alt="Photo rejected">
-            </object>
-        </div>
-        <p><strong>New photo needed</strong> {{values.photoRejectedDate | date("D MMMM YYYY") }}</p>
-        <p>Your photo didn’t meet the rules.</p>
-        <p>You must submit a new photo by {{values.resubmissionDeadlineDate | date }}</p>
+    {% if values.isUrgent %}
+        <p>You need to submit a new digital photo. It's important that you do this as soon as you can.</p>
         {{ hmpoSubmit(ctx, {
             classes:"govuk-button--secondary",
             text: "Find out more and submit a new photo",
             href: "/track/photo-rejected"
         }) }}
-    </div>
+        <h2>Your collection appointment</h2>
+        <p><b>Wednesday 1 April 2021</b>
+        <br>
+        at <b>8:45pm</b></p>
+        <p>Glasgow HM Passport Office<br>
+        3 Northgate<br>
+        96 Milton Street<br>
+        Cowcaddens<br>
+        Glasgow<br>
+        G4 0BT<br>
+        <a href="https://www.google.co.uk/maps/?q=Glasgow%20HM%20Passport%20Office,%20G4%200BT" target="_blank">View map</a></p>
+        <br>
+        <p> if you can't go to your collection appointment, <a href="" target="_blank">contact us</a>. Your new appointment details will be send to you by email.
 
-    <h2>What happens next</h2>
-    <p>
-        After you’ve supplied a new photo, we check it.
-        If there are no more problems, we issue your new passport.
-        If there is another problem, we will notify you.
-    </p>
+        <h2>What you need to bring</h2>
+        <p>You must bring your old passport with you.</p>
+        <p>If someone is collecting your new passport for you, they need to bring:</p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>your old passport</li>
+            <li>a signed and dated letter from you, confirming their full name and giving them permission to collect your passport</li>
+            <li>proof of their identity, for example a driving licence or passport</li>
+        </ul>
+
+        {{ govukWarningText({
+            text: "Your old passport will be cancelled on the day of your collection appointment. You won't be able to use it.",
+            iconFallbackText: "Warning"
+        }) }}
+    {% else %}
+        <div class="photo-resub-notice">
+            <div class="icon">
+                <object data="/public/images/icon-warning.svg" type="image/svg+xml">
+                    <img src="/public/images/icon-warning.png" alt="Photo rejected">
+                </object>
+            </div>
+            <p><strong>New photo needed</strong> {{values.photoRejectedDate | date("D MMMM YYYY") }}</p>
+            <p>Your photo didn’t meet the rules.</p>
+            <p>You must submit a new photo by {{values.resubmissionDeadlineDate | date }}</p>
+            {{ hmpoSubmit(ctx, {
+                classes:"govuk-button--secondary",
+                text: "Find out more and submit a new photo",
+                href: "/track/photo-rejected"
+            }) }}
+        </div>
+
+        <h2>What happens next</h2>
+        <p>
+            After you’ve supplied a new photo, we check it.
+            If there are no more problems, we issue your new passport.
+            If there is another problem, we will notify you.
+        </p>
+    {% endif %}
 {% endblock %}
 
 {% block trackingHistory %}
@@ -42,11 +82,14 @@
       "Identity details received" if values.csigRequired,
       "Email sent to person confirming your identity" if values.csigRequired,
       "Ask someone to confirm your identity" if values.csigRequired,
+      "Application received" if values.isUrgent,
       "Application submitted"
     ]) }}
 
 {% endblock %}
 
 {% set nextStatuses = [
-    "PHOTO_RESUBMISSION_SUBMITTED"
+    "PHOTO_RESUBMISSION_SUBMITTED",
+    "WITHDRAWN",
+    "APPLICATION_FAILED"
 ] %}
