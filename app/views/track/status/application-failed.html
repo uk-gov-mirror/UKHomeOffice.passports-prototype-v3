@@ -1,0 +1,44 @@
+{% extends "layout-tracking-status.html" %}
+
+{% block trackingHeader %}
+    {% if values.isUrgent %}
+        <h1>We've called you</h1>
+        <div class="govuk-panel__body">There's a problem with your application.</div>
+    {% endif %}
+{% endblock %}
+
+{% block trackingBody %}
+    {% if values.isUrgent %}
+        <h2>What you need to bring</h2>
+        <p>We explained on the phone what has happened and what you need to do.</p>
+        <p>It's no longer possible for you to collect your new passport at your collection appointment. Your collection appointment has been cancelled.</p>
+        {% endif %}
+{% endblock %}
+
+{% block trackingHistory %}
+    {% if values.isUrgent %}
+        {{ trackingHistory([
+        "We called and explain a problem",
+        "Application received",
+        "Identity details received" if values.csigRequired,
+        "Email sent to person confirming your identity" if values.csigRequired,
+        "Ask someone to confirm your identity" if values.csigRequired,
+        "Application submitted"
+        ]) }}
+    {% else %}
+        {{ trackingHistory([
+        "We’ve sent you a letter",
+        "Application received" if values.documentsRequired != "none",
+        "Identity details received" if values.csigRequired,
+        "Email sent to person confirming your identity" if values.csigRequired,
+        "Ask someone to confirm your identity" if values.csigRequired,
+        "Application submitted"
+        ]) }}
+    {% endif %}
+
+{% endblock %}
+
+
+{% set nextStatuses = [
+
+]| filter %}

@@ -3,69 +3,108 @@
 {% block trackingHeader %}
     {% if values.documentsRequired == "passport" %}
         <h1>Send your old passport</h1>
+    {% elif values.isUrgent %}
+        <h1>We're checking your application</h1>
     {% else %}
         <h1>Send your documents</h1>
     {% endif %}
 {% endblock %}
 
 {% block trackingBody %}
-    <h2>What you need to do</h2>
+    {% if values.isUrgent %}
+        <h2>What happends next</h2>
+        <p> We'll call you if there's a problem with your application. You need to be availible on the phone number you provided.</p>
+        <p>When we've finished checking your application we'll update this page.</p>
 
-    {% if values.documentsRequired == "passport" %}
-        <p>
-            You can now send your old passport.
-            Use a strong envelope that is the right size for your passport.
-            Check the weight and pay the correct postage – consider using signed for delivery.
-        </p>
+        <h2>Your collection appointment</h2>
+        <p><b>Wednesday 1 April 2021</b>
+        <br>
+        at <b>8:45pm</b></p>
+        <p>Glasgow HM Passport Office<br>
+        3 Northgate<br>
+        96 Milton Street<br>
+        Cowcaddens<br>
+        Glasgow<br>
+        G4 0BT<br>
+        <a href="https://www.google.co.uk/maps/?q=Glasgow%20HM%20Passport%20Office,%20G4%200BT" target="_blank">View map</a></p>
+        <br>
+        <p> if you can't go to your collection appointment, <a href="" target="_blank">contact us</a>. Your new appointment details will be send to you by email.
+
+        <h2>What you need to bring</h2>
+        <p>You must bring your old passport with you.</p>
+        <p>If someone is collecting your new passport for you, they need to bring:</p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>your old passport</li>
+            <li>a signed and dated letter from you, confirming their full name and giving them permission to collect your passport</li>
+            <li>proof of their identity, for example a driving licence or passport</li>
+        </ul>
+
+        {{ govukWarningText({
+            text: "Your old passport will be cancelled on the day of your collection appointment. You won't be able to use it.",
+            iconFallbackText: "Warning"
+        }) }}
     {% else %}
+        <h2>What you need to do</h2>
+
+        {% if values.documentsRequired == "passport" %}
+            <p>
+                You can now send your old passport.
+                Use a strong envelope that is the right size for your passport.
+                Check the weight and pay the correct postage – consider using signed for delivery.
+            </p>
+        {% else %}
+            <p>
+                You can now send your documents.
+                Use a strong envelope that is the right size for your documents.
+                Check the weight and pay the correct postage – consider using signed for delivery.
+            </p>
+        {% endif %}
+
+        {% if values.documentsRequired == "passport" %}
+            <p>Send your old passport to:</p>
+        {% else %}
+            <p>Send your documents to:</p>
+        {% endif %}
+
         <p>
-            You can now send your documents.
-            Use a strong envelope that is the right size for your documents.
-            Check the weight and pay the correct postage – consider using signed for delivery.
+            HM Passport Office<br/>
+            INBOUND<br/>
+            Durham HM Passport Office<br/>
+            Freemans Reach<br/>
+            Riverside Place<br/>
+            Durham<br/>
+            DH1 1SL
         </p>
+
+        <p>Find out how to send your documents if you’re <a target="_blank" href="/help/multiple-docs">applying as part of a family or couple.</a></p>
+
+        {% call hmpoDetails({ summaryHtml: "Already sent" }) %}
+            <p>
+                Check again in 3 days.
+                If we still haven’t received your {% if values.documentsRequired == "passport" %}old passport{% else %}documents{% endif %}, <a href="/help" target="_blank">contact HM Passport Office.</a>
+            </p>
+        {% endcall %}
     {% endif %}
-
-    {% if values.documentsRequired == "passport" %}
-        <p>Send your old passport to:</p>
-    {% else %}
-        <p>Send your documents to:</p>
-    {% endif %}
-
-    <p>
-        HM Passport Office<br/>
-        INBOUND<br/>
-        Durham HM Passport Office<br/>
-        Freemans Reach<br/>
-        Riverside Place<br/>
-        Durham<br/>
-        DH1 1SL
-    </p>
-
-    <p>Find out how to send your documents if you’re <a target="_blank" href="/help/multiple-docs">applying as part of a family or couple.</a></p>
-
-    {% call hmpoDetails({ summaryHtml: "Already sent" }) %}
-        <p>
-            Check again in 3 days.
-            If we still haven’t received your {% if values.documentsRequired == "passport" %}old passport{% else %}documents{% endif %}, <a href="/help" target="_blank">contact HM Passport Office.</a>
-        </p>
-    {% endcall %}
 {% endblock %}
 
 {% block trackingHistory %}
 
     {{ trackingHistory([
-      "Application received",
-      "Identity details received" if values.csigRequired,
-      "Email sent to person confirming your identity" if values.csigRequired,
-      "Ask someone to confirm your identity" if values.csigRequired,
-      "Application submitted"
+        "Application received",
+        "Identity details received" if values.csigRequired,
+        "Email sent to person confirming your identity" if values.csigRequired,
+        "Ask someone to confirm your identity" if values.csigRequired,
+        "Application submitted"
     ]) }}
 
 {% endblock %}
 
 {% set nextStatuses = [
-    "IN_QUEUE",
-    "WITHDRAWN"
-] %}
+    "IN_QUEUE" if values.isUrgent == false,
+    "PROCESSING" if values.isUrgent,
+    "REPLACED",
+    "WITHDRAWN",
+    "APPLICATION_FAILED"
+] | filter %}
 
 

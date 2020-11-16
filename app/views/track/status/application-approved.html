@@ -5,23 +5,57 @@
 {% endblock %}
 
 {% block trackingBody %}
-    <h2>What happens next</h2>
+    {% if values.isUrgent %}
+        <h2>What happends next</h2>
+        <p> We'll see you at your collection appointment. Remember to bring your old passport wih you.</p>
+        <p>It usually takes 30 minutes to collect your new passport. Don't arrive any earlier than 10 minutes before your collection appointment.</p>
 
-    <p>
-        Your new passport is being printed.
-        We’ll update this page when it’s on its way
-    </p>
+        <h2>Your collection appointment</h2>
+        <p><b>Wednesday 1 April 2021</b>
+        <br>
+        at <b>8:45pm</b></p>
+        <p>Glasgow HM Passport Office<br>
+        3 Northgate<br>
+        96 Milton Street<br>
+        Cowcaddens<br>
+        Glasgow<br>
+        G4 0BT<br>
+        <a href="https://www.google.co.uk/maps/?q=Glasgow%20HM%20Passport%20Office,%20G4%200BT" target="_blank">View map</a></p>
+        <br>
+        <p> if you can't go to your collection appointment, <a href="" target="_blank">contact us</a>. Your new appointment details will be send to you by email.
 
-    {% if values.documentsRequired == "documents" %}
+        <h2>What you need to bring</h2>
+        <p>You must bring your old passport with you.</p>
+        <p>If someone is collecting your new passport for you, they need to bring:</p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>your old passport</li>
+            <li>a signed and dated letter from you, confirming their full name and giving them permission to collect your passport</li>
+            <li>proof of their identity, for example a driving licence or passport</li>
+        </ul>
+
+        {{ govukWarningText({
+            text: "Your old passport will be cancelled on the day of your collection appointment. You won't be able to use it.",
+            iconFallbackText: "Warning"
+        }) }}
+    {% else %}
+        <h2>What happens next</h2>
+
         <p>
-            We’ll send back your documents separately.
-            They won’t be in the same envelope as your new passport.
+            Your new passport is being printed.
+            We’ll update this page when it’s on its way
         </p>
-    {% elif values.documentsRequired == "passport" %}
-        <p>
-            We’ll send back your old passport separately.
-            It won’t be in the same envelope as your new passport.
-        </p>
+
+        {% if values.documentsRequired == "documents" %}
+            <p>
+                We’ll send back your documents separately.
+                They won’t be in the same envelope as your new passport.
+            </p>
+        {% elif values.documentsRequired == "passport" %}
+            <p>
+                We’ll send back your old passport separately.
+                It won’t be in the same envelope as your new passport.
+            </p>
+        {% endif %}
     {% endif %}
 {% endblock %}
 
@@ -42,6 +76,6 @@
 
 
 {% set nextStatuses = [
-    "PASSPORT_DISPATCHED"
-] %}
+    "PASSPORT_DISPATCHED" if values.isUrgent == false
+] | filter %}
 

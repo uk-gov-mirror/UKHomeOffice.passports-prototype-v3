@@ -1,0 +1,47 @@
+{% extends "layout-tracking-status.html" %}
+
+{% block trackingHeader %}
+    {% if values.isUrgent %}
+        <h1>You've applied with a paper form</h1>
+    {% endif %}
+{% endblock %}
+
+{% block trackingBody %}
+    {% if values.isUrgent %}
+        <p>When you apply with a paper form, you can no longer track your application online.</p>
+        <p>If you need to <a href="/help" target="_blank">contact us</a> about your application, remember to give your new refrence number.</p>
+        {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+        {{ govukInsetText({
+            html: "Your new refrence number is <strong>007</strong>"
+        }) }}
+        {% endif %}
+{% endblock %}
+
+{% block trackingHistory %}
+    {% if values.isUrgent %}
+        {{ trackingHistory([
+        "Application moved to paper form",
+        "Application received",
+        "Identity details received" if values.csigRequired,
+        "Email sent to person confirming your identity" if values.csigRequired,
+        "Ask someone to confirm your identity" if values.csigRequired,
+        "Application submitted"
+        ]) }}
+    {% else %}
+        {{ trackingHistory([
+        "We’ve sent you a letter",
+        "Application received" if values.documentsRequired != "none",
+        "Identity details received" if values.csigRequired,
+        "Email sent to person confirming your identity" if values.csigRequired,
+        "Ask someone to confirm your identity" if values.csigRequired,
+        "Application submitted"
+        ]) }}
+    {% endif %}
+
+{% endblock %}
+
+
+{% set nextStatuses = [
+
+]| filter %}
+

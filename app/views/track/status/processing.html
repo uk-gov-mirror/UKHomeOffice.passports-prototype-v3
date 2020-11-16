@@ -1,45 +1,84 @@
 {% extends "layout-tracking-status.html" %}
 
 {% block trackingHeader %}
-    <h1>Your application is being processed</h1>
+    {% if values.isUrgent %}
+        <h1>We're checking your application</h1>
+    {% else %}
+        <h1>Your application is being processed</h1>
+    {% endif %}
 {% endblock %}
 
 {% block trackingBody %}
-    <h2>What happens next</h2>
+    {% if values.isUrgent %}
+        <h2>What happends next</h2>
+        <p> We'll call you if there's a problem with your application. You need to be availible on the phone number you provided.</p>
+        <p>When we've finished checking your application we'll update this page.</p>
 
-    <p>
-        {% if values.documentsRequired == "documents" %}
-            We’ll check your application and the documents we asked for.
-        {% elif values.documentsRequired == "passport" %}
-            We’ll check your application and your old passport.
-        {% else %}
-            We’ll check your application.
+        <h2>Your collection appointment</h2>
+        <p><b>Wednesday 1 April 2021</b>
+        <br>
+        at <b>8:45pm</b></p>
+        <p>Glasgow HM Passport Office<br>
+        3 Northgate<br>
+        96 Milton Street<br>
+        Cowcaddens<br>
+        Glasgow<br>
+        G4 0BT<br>
+        <a href="https://www.google.co.uk/maps/?q=Glasgow%20HM%20Passport%20Office,%20G4%200BT" target="_blank">View map</a></p>
+        <br>
+        <p> if you can't go to your collection appointment, <a href="" target="_blank">contact us</a>. Your new appointment details will be send to you by email.
+
+        <h2>What you need to bring</h2>
+        <p>You must bring your old passport with you.</p>
+        <p>If someone is collecting your new passport for you, they need to bring:</p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>your old passport</li>
+            <li>a signed and dated letter from you, confirming their full name and giving them permission to collect your passport</li>
+            <li>proof of their identity, for example a driving licence or passport</li>
+        </ul>
+
+        {{ govukWarningText({
+            text: "Your old passport will be cancelled on the day of your collection appointment. You won't be able to use it.",
+            iconFallbackText: "Warning"
+        }) }}
+    {% else %}
+        <h2>What happens next</h2>
+
+        <p>
+            {% if values.documentsRequired == "documents" %}
+                We’ll check your application and the documents we asked for.
+            {% elif values.documentsRequired == "passport" %}
+                We’ll check your application and your old passport.
+            {% else %}
+                We’ll check your application.
+            {% endif %}
+
+            If we need more information, we’ll contact you.
+        </p>
+
+        <p>When we’ve finished checking your application, we’ll update this page.</p>
+
+        {% if values.mobileNotification and values.emailNotification %}
+            <p>We’ll text and email you when your application is approved.</p>
+        {% elif values.mobileNotification %}
+            <p>We’ll text you when your application is approved.</p>
+        {% elif values.emailNotification %}
+            <p>We’ll email you when your application is approved.</p>
         {% endif %}
-
-        If we need more information, we’ll contact you.
-    </p>
-
-    <p>When we’ve finished checking your application, we’ll update this page.</p>
-
-    {% if values.mobileNotification and values.emailNotification %}
-        <p>We’ll text and email you when your application is approved.</p>
-    {% elif values.mobileNotification %}
-        <p>We’ll text you when your application is approved.</p>
-    {% elif values.emailNotification %}
-        <p>We’ll email you when your application is approved.</p>
     {% endif %}
 {% endblock %}
 
 {% block trackingHistory %}
 
     {{ trackingHistory([
-      "Application being processed",
-      "Documents received" if values.documentsRequired != "none",
-      "Application received" if values.documentsRequired != "none",
-      "Identity details received" if values.csigRequired,
-      "Email sent to person confirming your identity" if values.csigRequired,
-      "Ask someone to confirm your identity" if values.csigRequired,
-      "Application submitted"
+        "Application being processed",
+        "Documents received" if values.documentsRequired != "none",
+        "Application received" if values.isUrgent,
+        "Application received" if values.documentsRequired != "none",
+        "Identity details received" if values.csigRequired,
+        "Email sent to person confirming your identity" if values.csigRequired,
+        "Ask someone to confirm your identity" if values.csigRequired,
+        "Application submitted"
     ]) }}
 
 {% endblock %}
@@ -47,6 +86,9 @@
 {% set nextStatuses = [
     "APPLICATION_APPROVED",
     "PHOTO_FAIL",
+    "PHOTO_FAIL_NO_TIME" if values.isUrgent,
     "COUNTER_SIGNATURE",
-    "REPLACED"
-] %}
+    "REPLACED",
+    "WITHDRAWN",
+    "APPLICATION_FAILED"
+] | filter %}

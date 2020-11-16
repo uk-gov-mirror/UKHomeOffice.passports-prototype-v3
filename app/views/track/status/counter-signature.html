@@ -2,40 +2,86 @@
 
 {% block trackingHeader %}
     <h1>You need a countersignature</h1>
+    {% if values.isUrgent %}
+        <div class="govuk-panel__body">Your application is on hold. Your appearance has changed too much since your last passport.</div>
+    {% endif %}
 {% endblock %}
 
 {% block trackingBody %}
-    <p>Your passport application is on hold.</p>
-    <p>You need to ask someone to fill in and sign a form to confirm your identity. This is known as getting a countersignature.</p>
-    <p>We’ve posted a form to you.</p>
+    {% if values.isUrgent == false%}
+        <p>Your passport application is on hold.</p>
+        <p>You need to ask someone to fill in and sign a form to confirm your identity. This is known as getting a countersignature.</p>
+        <p>We’ve posted a form to you.</p>
+    {% endif %}
 
     <h2>What you need to do</h2>
-    <p>Find out <a href=\"https://www.gov.uk/countersigning-passport-applications/accepted-occupations-for-countersignatories" target="_blank">who you can ask to countersign your passport application</a>.</p>
-    <p>If someone has already confirmed your identity for this passport application, ask a different person this time.</p>
-    <p>After they’ve filled in and signed the form, return it to us.</p>
+    {% if values.isUrgent%}
+        <p>We've posted a form to you that includes your recent photo. You need to get someone to sign your form, then post it back to us.</p>
+        <p>To keep your appointment, it's important to do this as soon as you can.
+                <h2>Your collection appointment</h2>
+        <p><b>Wednesday 1 April 2021</b>
+        <br>
+        at <b>8:45pm</b></p>
+        <p>Glasgow HM Passport Office<br>
+        3 Northgate<br>
+        96 Milton Street<br>
+        Cowcaddens<br>
+        Glasgow<br>
+        G4 0BT<br>
+        <a href="https://www.google.co.uk/maps/?q=Glasgow%20HM%20Passport%20Office,%20G4%200BT" target="_blank">View map</a></p>
+        <p> if you can't go to your collection appointment, <a href="" target="_blank">contact us</a>. Your new appointment details will be send to you by email.
 
-    <h2>What happens next</h2>
-    <p>We may contact the person who signed the form. We’ll carry on with your application once we’ve made this check.</p>
-    <p>If you chose to get updates, we’ll send you an email or text when your application is approved.</p>
+        <h2>What you need to bring</h2>
+        <p>You must bring your old passport with you.</p>
+        <p>If someone is collecting your new passport for you, they need to bring:</p>
+        <ul class="govuk-list govuk-list--bullet">
+            <li>your old passport</li>
+            <li>a signed and dated letter from you, confirming their full name and giving them permission to collect your passport</li>
+            <li>proof of their identity, for example a driving licence or passport</li>
+        </ul>
+
+        {{ govukWarningText({
+            text: "Your old passport will be cancelled on the day of your collection appointment. You won't be able to use it.",
+            iconFallbackText: "Warning"
+        }) }}
+    {% else %}
+        <p>Find out <a href=\"https://www.gov.uk/countersigning-passport-applications/accepted-occupations-for-countersignatories" target="_blank">who you can ask to countersign your passport application</a>.</p>
+        <p>If someone has already confirmed your identity for this passport application, ask a different person this time.</p>
+        <p>After they’ve filled in and signed the form, return it to us.</p>
+
+        <h2>What happens next</h2>
+        <p>We may contact the person who signed the form. We’ll carry on with your application once we’ve made this check.</p>
+        <p>If you chose to get updates, we’ll send you an email or text when your application is approved.</p>
+    {% endif %}
 {% endblock %}
 
 {% block trackingHistory %}
-
-    {{ trackingHistory([
-      "Countersignature needed: on hold",
-      "Application being processed",
-      "Form confirming identity received" if values.documentsRequired == "none" else "Documents received",
-      "Application received",
-      "Identity details received" if values.csigRequired,
-      "Email sent to person confirming your identity" if values.csigRequired,
-      "Ask someone to confirm your identity" if values.csigRequired,
-      "Application submitted"
-    ]) }}
-
+    {% if values.isUrgent%}
+        {{ trackingHistory([
+            "Countersignature needed",
+            "Application being processed",
+            "Application received",
+            "Application submitted"
+        ]) }}
+    {% else%}
+        {{ trackingHistory([
+            "Countersignature needed: on hold",
+            "Application being processed",
+            "Form confirming identity received" if values.documentsRequired == "none" else  "Documents received",
+            "Application received",
+            "Identity details received" if values.csigRequired,
+            "Email sent to person confirming your identity" if values.csigRequired,
+            "Ask someone to confirm your identity" if values.csigRequired,
+            "Application submitted"
+        ]) }}
+    {% endif%}
 {% endblock %}
 
 
 {% set nextStatuses = [
-    "COUNTER_SIGNATURE_RECEIVED"
-] %}
+    "COUNTER_SIGNATURE_RECEIVED" if values.isUrgent == false,
+    "REPLACED",
+    "WITHDRAWN",
+    "APPLICATION_FAILED"
+] | filter %}
 
