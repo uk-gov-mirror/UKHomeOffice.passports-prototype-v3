@@ -65,7 +65,10 @@ const apply = {
         ]
     },
     '/filter/intro': {
-        next: '/filter/age'
+        next:[
+            { field: 'urgent', value: true, next:'/urgent/urgent-choose-date-and-place' },
+            '/filter/age'
+        ]
     },
     '/filter/age': {
         fields: [
@@ -317,7 +320,7 @@ const apply = {
             'applyReason'
         ],
         next: [
-            { field: 'urgent', value: true , next: '/urgent/urgent-how-to-apply' },
+            { field: 'urgent', value: true , next: '/filter/intro' },
             { field: 'applyReason', value: 'compassionate', next: '/apply/urgent-compassionate-guidance' },
             { field: 'applyReason', value: 'government', next: '/apply/urgent-compassionate-guidance' },
             { field: 'applyReason', value: 'identification', next: '/apply/urgent-compassionate-guidance' },
@@ -333,7 +336,6 @@ const apply = {
         ],
         next: [
             { field: 'applyNow', value: 'false', next: '/start' },
-            { field: 'urgent', value: true , next: '/urgent/urgent-how-to-apply' },
             { field: 'applicationType', value: 'first', next: '/apply/what-you-need' },
             { field: 'adultOrChild', value: 'child', next: '/apply/what-you-need' },
             { field: 'previousPassport', value: true, next: [
@@ -1059,9 +1061,6 @@ const urgent = {
             { field: 'nameChanged', value: 'false', next: '/filter/issue-date' },
             '/urgent/urgent-not-eligible'
         ]
-    },
-    '/urgent/urgent-how-to-apply':{
-        next:'/urgent/urgent-choose-date-and-place'
     },
     '/urgent/urgent-choose-date-and-place':{
         noPost: true,
