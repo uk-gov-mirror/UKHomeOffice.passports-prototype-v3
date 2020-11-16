@@ -51,6 +51,7 @@
             'submitPhoto': true,
             'previousPassport': true,
             'lost': false,
+            'nameChanged': false,
             'passportIssue-day': 20,
             'passportIssue-month': 3,
             'passportIssue-year': now.getFullYear() - 9,
