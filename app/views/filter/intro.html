@@ -2,54 +2,105 @@
 
 {% set hmpoTitle %}How to apply{% endset %}
 
-{% block mainContent %}
-    <h1>{{ hmpoTitle }}</h1>
+{% block hmpoContent %}
 
-    <ol class="govuk-list govuk-list--number govuk-heading-m">
-        <li>
-            <h2>Get a digital passport photo</h2>
-            <p>We’ll show you how to get a digital passport photo.</p>
-        </li>
-        <li>
-            <h2>Provide application details</h2>
-            <p>Fill in your application details.</p>
-        </li>
-        <li>
-            <h2>Find out what documents you need to send</h2>
-            <p>We’ll tell you what documents you need to send.</p>
-        </li>
-        <li>
-            <h2>Pay for your passport online</h2>
-            <p>A standard passport is £75.50 for an adult, and £49 for a child.</p>
-        </li>
-        <li>
-            <h2>If required, get someone to confirm your identity</h2>
-            <p>We’ll tell you if we need someone to confirm your identity. They can confirm your identity online without a printed photo.</p>
-        </li>
-        <li>
-            <h2>Track your application</h2>
-            <p>We’ll send you updates by email or text. You can also log in to:</p>
-            <ul class="govuk-list govuk-list--bullet">
-                <li>track progress on your application</li>
-                <li>check what documents you need to send, and where to send them</li>
-                <li>ask someone to confirm your identity (if required)</li>
-            </ul>
-        </li>
-    </ol>
+    {% if values.urgent %}
+        {% call hmpoFlashCard() %}
+            <div class="govuk-grid-row">
+                <div class="govuk-grid-column-two-thirds">
+                    <h1>{{ hmpoTitle }}</h1>
+                    <ul>
+                        <li class="circle-step">
+                        <span class="circle-step-circle">1</span>
+                            <h2>Choose a collection appointment</h2>
+                            <p>We’ll reserve a time for you to collect your passport from a <a href="/help/passport-offices">passport office in the UK</a>.</p>
+                        </li>
+                        <li class="circle-step">
+                        <span class="circle-step-circle">2</span>
+                            <h2>Apply online</h2>
+                            <p>You’ll need to get a digital photo - we’ll show you how. If there’s a problem with your application, we’ll contact you before you collect your passport.</p>
+                        </li>
+                        <li class="circle-step">
+                        <span class="circle-step-circle">3</span>
+                            <h2>Pay for your new passport online</h2>
+                            <p>You’ll need a debit or credit card. An adult passport using this service is £177.</p>
+                        </li>
+                        <li class="circle-step">
+                        <span class="circle-step-circle">4</span>
+                            <h2>Collect your new passport</h2>
+                            <p>This usually takes 30 minutes. You’ll need to take your old passport with you.</p>
+                        </li>
+                    </ul>
+                    {% call hmpoForm(ctx) %}
+                        {{ hmpoSubmit(ctx, { text: translate("buttons.choose-appointment") }) }}
+                    {% endcall %}
 
-    {% call hmpoDetails({ summaryText: "I need help doing things online" }) %}
-        <p>You can call the Passport Adviceline for help.</p>
-        <p>
-            Telephone: 0300 330 0901<br/>
-            Textphone: 0300 330 0808<br/>
-            Monday to Friday, 8:00am to 8:00pm<br/>
-            Weekends and public holidays, 9:00am to 5:30pm
-        </p>
-        <p><a href="https://www.gov.uk/call-charges">Find out about call charges</a></p>
-    {% endcall %}
+                    {% call hmpoDetails({ summaryText: "I need help doing things online" }) %}
+                        <p>You can call the Passport Adviceline and ask for help</p>
+                        <ul class="govuk-list govuk-list--bullet">
+                                <li>Telephone: +44 (0) 300 330 0901</li>
+                                <li>Monday to Friday, 8:00am to 8:00pm (UK time)</li>
+                                <li>Weekends and public holidays, 9:00am to 5:30pm (UK time)</li>
+                        </ul>
+                        <p><a href="https://www.gov.uk/call-charges" class="govuk-link">Find out about call charges</a></p>
+                    {% endcall %}
+                </div>
+            </div>
+        {% endcall %}
 
-    {% call hmpoForm(ctx) %}
-        {{ hmpoSubmit(ctx) }}
-    {% endcall %}
+    {% else %}
 
+        <h1>{{ hmpoTitle }}</h1>
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+                <ol class="govuk-list govuk-list--number govuk-heading-m">
+                    <li>
+                        <h2>Get a digital passport photo</h2>
+                        <p>We’ll show you how to get a digital passport photo.</p>
+                    </li>
+                    <li>
+                        <h2>Provide application details</h2>
+                        <p>Fill in your application details.</p>
+                    </li>
+                    <li>
+                        <h2>Find out what documents you need to send</h2>
+                        <p>We’ll tell you what documents you need to send.</p>
+                    </li>
+                    <li>
+                        <h2>Pay for your passport online</h2>
+                        <p>A standard passport is £75.50 for an adult, and £49 for a child.</p>
+                    </li>
+                    <li>
+                        <h2>If required, get someone to confirm your identity</h2>
+                        <p>We’ll tell you if we need someone to confirm your identity. They can confirm your identity online without a printed photo.</p>
+                    </li>
+                    <li>
+                        <h2>Track your application</h2>
+                        <p>We’ll send you updates by email or text. You can also log in to:</p>
+                        <ul class="govuk-list govuk-list--bullet">
+                            <li>track progress on your application</li>
+                            <li>check what documents you need to send, and where to send them</li>
+                            <li>ask someone to confirm your identity (if required)</li>
+                        </ul>
+                    </li>
+                </ol>
+
+                {% call hmpoDetails({ summaryText: "I need help doing things online" }) %}
+                    <p>You can call the Passport Adviceline for help.</p>
+                    <p>
+                        Telephone: 0300 330 0901<br/>
+                        Textphone: 0300 330 0808<br/>
+                        Monday to Friday, 8:00am to 8:00pm<br/>
+                        Weekends and public holidays, 9:00am to 5:30pm
+                    </p>
+                    <p><a href="https://www.gov.uk/call-charges">Find out about call charges</a></p>
+                {% endcall %}
+
+                {% call hmpoForm(ctx) %}
+                    {{ hmpoSubmit(ctx) }}
+                {% endcall %}
+            </div>
+        </div>
+
+    {% endif %}
 {% endblock %}
