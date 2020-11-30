@@ -313,26 +313,13 @@ const apply = {
     },
 
     '/apply/application-summary': {
-        fields: [
-            'applyReason'
-        ],
+        // fields: [
+        //     'applyReason'
+        // ],
         next: [
-            { field: 'urgent', value: true , next: '/urgent/urgent-how-to-apply' },
-            { field: 'applyReason', value: 'compassionate', next: '/apply/urgent-compassionate-guidance' },
-            { field: 'applyReason', value: 'government', next: '/apply/urgent-compassionate-guidance' },
-            { field: 'applyReason', value: 'identification', next: '/apply/urgent-compassionate-guidance' },
-            '/apply/apply-later'
-        ]
-    },
-
-    '/apply/urgent-compassionate-guidance': {
-    },
-    '/apply/apply-later': {
-        fields: [
-            'applyNow'
-        ],
-        next: [
-            { field: 'applyNow', value: 'false', next: '/start' },
+            // { field: 'applyReason', value: 'compassionate', next: '/apply/urgent-compassionate-guidance' },
+            // { field: 'applyReason', value: 'government', next: '/apply/urgent-compassionate-guidance' },
+            // { field: 'applyReason', value: 'identification', next: '/apply/urgent-compassionate-guidance' },
             { field: 'urgent', value: true , next: '/urgent/urgent-how-to-apply' },
             { field: 'applicationType', value: 'first', next: '/apply/what-you-need' },
             { field: 'adultOrChild', value: 'child', next: '/apply/what-you-need' },
@@ -343,6 +330,25 @@ const apply = {
             '/apply/what-you-need'
         ]
     },
+
+    // '/apply/urgent-compassionate-guidance': {
+    // },
+    // '/apply/apply-later': {
+    //     fields: [
+    //         'applyNow'
+    //     ],
+    //     next: [
+    //         { field: 'applyNow', value: 'false', next: '/start' },
+    //         { field: 'urgent', value: true , next: '/urgent/urgent-how-to-apply' },
+    //         { field: 'applicationType', value: 'first', next: '/apply/what-you-need' },
+    //         { field: 'adultOrChild', value: 'child', next: '/apply/what-you-need' },
+    //         { field: 'previousPassport', value: true, next: [
+    //             { field: 'lost', value: true, next: '/apply/optional-passport-details' },
+    //             '/apply/passport-details'
+    //         ] },
+    //         '/apply/what-you-need'
+    //     ]
+    // },
 
     '/apply/what-you-need': {
         fields: [
