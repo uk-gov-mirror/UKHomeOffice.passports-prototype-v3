@@ -67,7 +67,7 @@
 
         {% endif %}
 
-        <!-- {# Cost #}
+        {# Cost #}
         <h2>Cost</h2>
         {% if values.adultOrChild == "adult" and values.isUKApplication %}
             <p> A standard passport costs £75.50.</p>
@@ -165,9 +165,9 @@
             {% endif %}
         </ul>
 
-        <br/> -->
+        <br/>
 
-        {# COVID-19 messaging #}
+        {# Disable COVID-19 messaging 
         <h2>Coronavirus (COVID-19)</h2>
         <p>Coronavirus (COVID-19) – in line with public health guidance, we are working with fewer staff. It will take
             longer than usual to process your application.</p>
@@ -187,6 +187,7 @@
                 { value: "another", text: "Another reason" }
             ]
         }) }}
+        #}
 
         {% endif %}
         {{ hmpoSubmit(ctx) }}
