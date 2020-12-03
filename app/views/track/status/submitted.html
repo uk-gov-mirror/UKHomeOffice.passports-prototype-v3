@@ -100,8 +100,10 @@
 {% endblock %}
 
 {% set nextStatuses = [
-    "IN_QUEUE" if values.isUrgent == false,
-    "PROCESSING" if values.isUrgent,
+    "IN_QUEUE",
+    "IN-QUEUE-LESS-THAN-FOUR-WEEKS",
+    "IN-QUEUE-MORE-THAN-FOUR-WEEKS",
+    "PROCESSING",
     "REPLACED",
     "WITHDRAWN",
     "APPLICATION_FAILED"
