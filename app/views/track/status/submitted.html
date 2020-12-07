@@ -76,14 +76,14 @@
             DH1 1SL
         </p>
 
-        <p>Find out how to send your documents if you’re <a target="_blank" href="/help/multiple-docs">applying as part of a family or couple.</a></p>
+        {# <p>Find out how to send your documents if you’re <a target="_blank" href="/help/multiple-docs">applying as part of a family or couple.</a></p> #}
 
-        {% call hmpoDetails({ summaryHtml: "Already sent" }) %}
+        {# {% call hmpoDetails({ summaryHtml: "Already sent" }) %}
             <p>
                 Check again in 3 days.
                 If we still haven’t received your {% if values.documentsRequired == "passport" %}old passport{% else %}documents{% endif %}, <a href="/help" target="_blank">contact HM Passport Office.</a>
             </p>
-        {% endcall %}
+        {% endcall %} #}
     {% endif %}
 {% endblock %}
 

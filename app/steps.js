@@ -700,6 +700,7 @@ const apply = {
         ]
     },
     '/apply/documents-to-send': {
+        controller: require('./controllers/documents-to-send'),
         fields: [
             'documentsToSend'
         ],
