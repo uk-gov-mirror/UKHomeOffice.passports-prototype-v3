@@ -40,6 +40,10 @@ const apply = {
     '/help/feedback-thank-you': {
         checkJourney: false,
     },
+    '/help/urgent-compassionate-guidance': {
+        backLink: false,
+        checkJourney: false
+    },
 
     '/filter': {
         entryPoint: true,
