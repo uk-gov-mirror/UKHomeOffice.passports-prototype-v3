@@ -82,12 +82,17 @@
 
         {# How long it takes #}
         <h2>How long it takes</h2>
-        {# FTC #}
+        {% if values.applicationType == "first" and values.adultOrChild == "adult" %}
+            <p>Because of coronavirus (COVID-19), it’s taking longer to issue first time adult passports (it usually takes 6 weeks).</p>
+        {% else %}
+            <p>It takes up to 3 weeks to get a new passport.</p>
+        {#
+        { FTC }
         {% if values.applicationType == "first" and values.adultOrChild == "child" %}
 
             <p>It should take 3 weeks to get a new passport.</p>
 
-        {# FTA #}
+        { FTA }
         {% elif values.applicationType == "first" and values.adultOrChild == "adult" %}
 
             {% if values.ageGroup == "rising16" %}
@@ -96,12 +101,12 @@
                 <p>It should take around 6 weeks to get a new passport.</p>
             {% endif %}
 
-        {# Lost or Stolen Child 0–11s, Lost or Stolen Child 12–15s #}
+        { Lost or Stolen Child 0–11s, Lost or Stolen Child 12–15s }
         {% elif values.applicationType == "renew" and values.lost and values.adultOrChild == "child" %}
 
             <p>It should take 3 weeks to get a new passport. Use the 1 week Fast Track service if you need to <a href="https://www.gov.uk/get-a-passport-urgently/1-week-fast-track-service">get a passport urgently</a>.</p>
 
-        {# Lost or Stolen Adult #}
+        { Lost or Stolen Adult }
         {% elif values.applicationType == "renew" and values.lost and values.adultOrChild == "adult" %}
 
             {% if values.ageGroup == "rising16" %}
@@ -110,21 +115,21 @@
                 <p>It should take 3 weeks to get a new passport. Use the 1 week Fast Track service if you need to <a href="https://www.gov.uk/get-a-passport-urgently/1-week-fast-track-service">get a passport urgently</a>.</p>
             {% endif %}
 
-        {# 0–11 Renewals, 12–15 Renewals #}
+        { 0–11 Renewals, 12–15 Renewals }
         {% elif values.applicationType == "renew" and values.adultOrChild == "child" %}
 
             <p>It should take 3 weeks to get a new passport. Use a different service if you need to <a href="https://www.gov.uk/get-a-passport-urgently">get a passport urgently</a>.</p>
 
-        {# Adult Renewals #}
+        { Adult Renewals }
         {% elif values.applicationType == "renew" and values.adultOrChild == "adult" %}
 
             {% if values.ageGroup == "rising16" %}
                 <p>As you’re about to turn 16, you’ll get an adult passport. It should take 3 weeks - you won’t get it before your birthday.</p>
             {% else %}
                 <p>It should take 3 weeks to get a new passport.
-                 {# Use a different service if you need to <a href="https://www.gov.uk/get-a-passport-urgently">get a passport urgently</a>. #}
+                 { Use a different service if you need to <a href="https://www.gov.uk/get-a-passport-urgently">get a passport urgently</a>. }
                  </p>
-            {% endif %}
+            {% endif %} #}
 
         {% endif %}
 
