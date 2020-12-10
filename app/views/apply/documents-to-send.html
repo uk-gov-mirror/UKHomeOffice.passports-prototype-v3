@@ -143,6 +143,14 @@
 {% block mainContent %}
     <h1>{{ hmpoTitle }}</h1>
 
+    {% call hmpoInsetText({ classes: "hmpo-inset-info"}) %}
+        {% if values.isUKApplication == false %}
+            You must send original documents, unless we ask for a photocopy. Your application will be delayed if you don’t send everything we need.
+        {% else %}
+            You must send original documents - we can’t accept photocopies. Your application will be delayed if you don’t send everything we need.
+        {% endif %}
+    {% endcall %}
+
     {% if values.applicationType == "renew" %}
         {% if values.adultOrChild == "adult" %}
             {% if not values.changeOfName %}
