@@ -90,11 +90,11 @@
 {% block trackingHistory %}
 
     {{ trackingHistory([
-        "Application received",
+        { text: "Application received", date: "2020-11-22T18:04" },
         "Identity details received" if values.csigRequired,
         "Email sent to person confirming your identity" if values.csigRequired,
         "Ask someone to confirm your identity" if values.csigRequired,
-        "Application submitted"
+        { text: "Application submitted", date: "2020-11-22T18:04" }
     ]) }}
 
 {% endblock %}

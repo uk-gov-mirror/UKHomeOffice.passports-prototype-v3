@@ -49,7 +49,7 @@
 
     {{ trackingHistory([
         { text: "Documents received", date: "2020-11-24T14:24" } if values.documentsRequired != "none",
-        { text: "Application received", date: "2020-11-22T18:04" } if values.documentsRequired != "none",
+        { text: "Application received", date: "2020-11-22T18:04" },
         "Identity details received" if values.csigRequired,
         "Email sent to person confirming your identity" if values.csigRequired,
         "Ask someone to confirm your identity" if values.csigRequired,
