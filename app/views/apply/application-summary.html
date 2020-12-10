@@ -143,25 +143,25 @@
             {# FTC #}
             {% if values.applicationType == "first" and values.adultOrChild == "child" %}
 
-                <li>get someone to <a href="../help/confirming-your-identity" target="_blank">confirm your identity</a> &ndash; we’ll show you how</li>
+                <li>get someone to <a href="../help/confirming-identity/how-to-confirm-identity" target="_blank">confirm your identity</a> &ndash; we’ll show you how</li>
                 <li>send us your documents &ndash; we’ll tell you what you need to send</li>
 
             {# FTA, Hidden FTA (Old Blue) #}
             {% elif values.applicationType == "first" and values.adultOrChild == "adult" %}
 
-                <li>get someone to <a href="../help/confirming-your-identity" target="_blank">confirm your identity</a> &ndash; we’ll show you how</li>
+                <li>get someone to <a href="../help/confirming-identity/how-to-confirm-identity" target="_blank">confirm your identity</a> &ndash; we’ll show you how</li>
                 <li>send us your documents &ndash; we’ll tell you what you need to send</li>
                 <p style="margin-left: -20px; margin-top: 20px;">If you need an <a href="../help/identity-interviews" target="_blank">interview</a>, we’ll write to you with the details.</p>
 
             {# Lost or Stolen Child 0–11s, Lost or Stolen Child 12–15s, Lost or Stolen Adult #}
             {% elif values.applicationType == "renew" and values.lost %}
 
-                <li>get someone to <a href="../help/confirming-your-identity" target="_blank">confirm your identity</a> &ndash; we’ll show you how</li>
+                <li>get someone to <a href="../help/confirming-identity/how-to-confirm-identity" target="_blank">confirm your identity</a> &ndash; we’ll show you how</li>
 
             {# 0–11 Renewals, Replacements Damaged Child 0–11s #}
             {% elif values.applicationType == "renew" and values.ageGroup == "under12" %}
 
-                <li>get someone to <a href="../help/confirming-your-identity" target="_blank">confirm your identity</a> &ndash; we’ll show you how</li>
+                <li>get someone to <a href="../help/confirming-identity/how-to-confirm-identity" target="_blank">confirm your identity</a> &ndash; we’ll show you how</li>
                 <li>send us your old passport</li>
 
             {# 12–15 Renewals, Adult Renewals, Replacements Damaged Child 12–15s, Replacements Damaged Adult #}
