@@ -90,19 +90,17 @@
 {% block trackingHistory %}
 
     {{ trackingHistory([
-        { text: "Application received", date: "2020-11-22T18:04" },
+        "Application received",
         "Identity details received" if values.csigRequired,
         "Email sent to person confirming your identity" if values.csigRequired,
         "Ask someone to confirm your identity" if values.csigRequired,
-        { text: "Application submitted", date: "2020-11-22T18:04" }
+        "Application submitted"
     ]) }}
 
 {% endblock %}
 
 {% set nextStatuses = [
     "IN_QUEUE",
-    "IN-QUEUE-LESS-THAN-FOUR-WEEKS",
-    "IN-QUEUE-MORE-THAN-FOUR-WEEKS",
     "PROCESSING",
     "REPLACED",
     "WITHDRAWN",

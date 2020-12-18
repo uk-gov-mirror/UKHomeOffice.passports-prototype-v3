@@ -75,13 +75,13 @@
 {% block trackingHistory %}
 
     {{ trackingHistory([
-        { text: "Application being processed", date: "2020-12-15T09:35" },
-        { text: "Documents received", date: "2020-11-15T12:45" } if values.documentsRequired != "none",
-        { text: "Application received", date: "2020-11-13T17:24" },
+        "Application being processed",
+        "Documents received",
+        "Application received",
         "Identity details received" if values.csigRequired,
         "Email sent to person confirming your identity" if values.csigRequired,
         "Ask someone to confirm your identity" if values.csigRequired,
-        { text: "Application submitted", date: "2020-11-13T17:24" }
+        "Application submitted",
     ]) }}
 
 {% endblock %}
