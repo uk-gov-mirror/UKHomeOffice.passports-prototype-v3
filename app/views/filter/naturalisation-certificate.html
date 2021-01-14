@@ -1,8 +1,49 @@
 {% extends "layout-apply.html" %}
 
 {% set hmpoTitle %}Do you have a naturalisation or registration certificate?{% endset %}
+{% set hintText %}
+    <div class="govuk-hint">
+      You’ll only have one of these certificates if you weren’t British at birth, but applied to become British through the Home Office.
+    </div>
+    <div class="govuk-hint">
+      This isn’t a birth certificate.
+    </div>
+{% endset %}
+{% set naturalisedReveal %}<p>If you’re applying on behalf of a child, make sure you’ve answered this question with their details and not your own.</p>{% endset %}
 
 {% block mainContent %}
+
+    <style>
+    .photo-guide-photos img {
+        width: 98.5%;
+    }
+    </style>
+
+    {% if values.adultOrChild == 'child' %}
+        {% call hmpoSidebar({ attributes: { "aria-hidden": true }, classes: "hmpo-sidebar__small-image" }) %}
+            <h2>Example certificate</h2>
+            <img src="/public/images/nat-cert-example.png" alt="Example registration certificate" style="margin-bottom: 10px; border: 1px solid #555;">
+            <div class="govuk-hint">
+                Click on this image to enlarge it
+            </div>
+        {% endcall %}
+    {% else %}
+        {% call hmpoSidebar({ attributes: { "aria-hidden": true }, classes: "hmpo-sidebar" }) %}
+            <h2>Example certificates</h2>
+            <ul class="photo-guide-photos" aria-hidden="true" style="margin-bottom: 0px;">
+                <li>
+                    <img id="firstcert" src="/public/images/nat-cert-example.png" alt="Example registration certificate" style="border: 1px solid #555;">
+                </li>
+                <li>
+                    <img id="secondcert" src="/public/images/nat-cert-example.png" alt="Example naturalisation certificate" style="border: 1px solid #555;">
+                </li>
+            </ul>
+            <div class="govuk-hint">
+                Click on an image to enlarge it
+            </div>
+        {% endcall %}
+    {% endif %}
+    
 
     {% call hmpoForm(ctx) %}
 
@@ -11,13 +52,24 @@
             legend: {
                 text: hmpoTitle
             },
-            hint: "You’ll only have one of these certificates if you applied for British nationality through the Home Office. This isn’t your birth certificate.",
-            isPageHeading: true
+            hint: {
+                html: hintText
+            },
+            isPageHeading: true,
+            items: [{
+                value: false
+                },{
+                value: true,
+                conditional: {
+                    html: naturalisedReveal
+                } if values.adultOrChild == 'child'
+            }]
         }) }}
 
         {{ hmpoSubmit(ctx) }}
 
     {% endcall %}
-
-
+        <br>
+        <br>
+        <br>
 {% endblock %}

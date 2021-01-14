@@ -1,8 +1,26 @@
 {% extends "layout-apply.html" %}
 
 {% set hmpoTitle %}Naturalisation or registration details{% endset %}
-
+{% set guideText %}
+    <p>This is usually a 7 digit number towards the bottom left of the certificate.</p>
+    For example, 1091644
+{% endset %}
 {% block mainContent %}
+
+    <style>
+        .hmpo-sidebar__small-image .hmpo-sidebar__inner > img {
+            width: 200px;
+        }
+    </style>
+
+        {% call hmpoSidebar({ attributes: { "aria-hidden": true }, classes: "hmpo-sidebar__small-image" }) %}
+            <h2>Where to find your certificate number</h2>
+            <img src="/public/images/nat-cert-example.png" alt="Example registration certificate" width="300" style="margin-bottom: 10px; border: 1px solid #555;">
+            <img src="/public/images/nat-cert-example.png" alt="Example registration certificate" style="margin-bottom: 10px; border: 1px solid #555;">
+            <div class="govuk-hint">
+                Click on an image to enlarge it
+            </div>
+        {% endcall %}
     <h1 id="header">{{ hmpoTitle }}</h1>
 
     {% call hmpoForm(ctx) %}
@@ -13,7 +31,9 @@
                 text: "Certificate number",
                 classes: "govuk-label--m"
             },
-            hint: "For example, 1091644"
+            hint:{
+                html: guideText
+            } 
         }) }}
 
         {{ hmpoDate(ctx, {
@@ -28,5 +48,5 @@
         {{ hmpoSubmit(ctx) }}
 
     {% endcall %}
-
+    <br><br><br><br><br><br><br><br><br>
 {% endblock %}
