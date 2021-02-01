@@ -1,0 +1,19 @@
+ul.govuk-list--dashed>li {
+    margin-left: 20px;
+}
+
+ul.govuk-list--dashed {
+    list-style: none;
+    padding-left: 0;
+    
+}
+
+ul.govuk-list--dashed>li::before{
+    content:"\2014";
+    padding-right:8px;
+    margin-left: -15px;
+}
+
+ul.govuk-list--dashed>li{
+    font-size: 16px;
+}
