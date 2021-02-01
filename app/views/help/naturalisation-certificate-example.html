@@ -1,0 +1,23 @@
+{% extends "layout-help.html" %}
+
+{% set hmpoTitle %}Example naturalisation certificate{% endset %}
+
+{% block helpContent %}
+
+    <style>
+        .box {
+            {# box-shadow: 3px 3px 5px 5px #ccc; #}
+            border: 1px solid #b1b4b6;
+            margin-bottom: 20px;
+        } 
+    </style>
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    <div class="box">
+        <img id="firstcert" src="/public/images/nat-cert-example.png"  alt="Example registration certificate" style="width: 100%">
+    </div>
+
+{% endblock %}
+
+

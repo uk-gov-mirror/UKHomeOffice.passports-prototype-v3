@@ -40,9 +40,15 @@
         }) }}
 
         {% if values.adultOrChild == 'child' %}
-            {% call hmpoSidebar({ attributes: { "aria-hidden": true }, classes: "hmpo-sidebar__large-image" }) %}
+            {% call hmpoSidebar({ attributes: { "aria-hidden": true }, classes: "hmpo-sidebar__photo-preview" }) %}
                 <h2>Example certificate</h2>
-                <img src="/public/images/nat-cert-example.png" alt="Example registration certificate" style="margin-bottom: 10px; border: 1px solid #555;">
+                <ul class="photo-guide-photos" aria-hidden="true" style="margin-bottom: 0px;">
+                    <li>
+                        <a rel="opener" href="/help/registration-certificate-example" target="_blank">
+                            <img src="/public/images/nat-cert-example.png" alt="Example registration certificate" style="margin-bottom: 10px; border: 1px solid #b1b4b6;">
+                        </a>
+                    </li>
+                </ul>
                 <div class="govuk-hint">
                     Click on the image to view it (opens in a new window)
                 </div>
@@ -52,10 +58,14 @@
                 <h2>Example certificates</h2>
                 <ul class="photo-guide-photos" aria-hidden="true" style="margin-bottom: 0px;">
                     <li>
-                        <img id="firstcert" src="/public/images/nat-cert-example.png" alt="Example registration certificate" style="border: 1px solid #555;">
+                        <a rel="opener" href="/help/naturalisation-certificate-example" target="_blank">
+                            <img src="/public/images/nat-cert-example.png"  alt="Example registration certificate" style="border: 1px solid #b1b4b6;">
+                        </a>
                     </li>
                     <li>
-                        <img id="secondcert" src="/public/images/nat-cert-example.png" alt="Example naturalisation certificate" style="border: 1px solid #555;">
+                        <a rel="opener" href="/help/registration-certificate-example" target="_blank">
+                            <img src="/public/images/nat-cert-example.png" alt="Example naturalisation certificate" style="border: 1px solid #b1b4b6;">
+                        </a>
                     </li>
                 </ul>
                 <div class="govuk-hint">
