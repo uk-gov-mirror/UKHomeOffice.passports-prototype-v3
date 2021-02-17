@@ -323,7 +323,7 @@ const apply = {
             // { field: 'applyReason', value: 'compassionate', next: '/apply/urgent-compassionate-guidance' },
             // { field: 'applyReason', value: 'government', next: '/apply/urgent-compassionate-guidance' },
             // { field: 'applyReason', value: 'identification', next: '/apply/urgent-compassionate-guidance' },
-            { field: 'urgent', value: true , next: '/urgent/urgent-how-to-apply' },
+            { field: 'urgent', value: true , next: '/filter/intro' },
             { field: 'applicationType', value: 'first', next: '/apply/what-you-need' },
             { field: 'adultOrChild', value: 'child', next: '/apply/what-you-need' },
             { field: 'previousPassport', value: true, next: [
