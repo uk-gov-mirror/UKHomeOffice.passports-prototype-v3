@@ -40,6 +40,10 @@ const apply = {
     '/help/feedback-thank-you': {
         checkJourney: false,
     },
+    '/help/urgent-compassionate-guidance': {
+        backLink: false,
+        checkJourney: false
+    },
 
     '/filter': {
         entryPoint: true,
@@ -696,6 +700,7 @@ const apply = {
         ]
     },
     '/apply/documents-to-send': {
+        controller: require('./controllers/documents-to-send'),
         fields: [
             'documentsToSend'
         ],

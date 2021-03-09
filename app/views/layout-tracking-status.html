@@ -46,10 +46,11 @@
     <hr class="govuk-section-break govuk-section-break--visible">
 
     {% set trackingStatusRows = [] %}
+
     {% for item in history %}
         {% set trackingStatusRows = trackingStatusRows | push([
-            { text: item },
-            { text: values.submitted | date("h:mma on D MMMM YYYY") }
+            { text: item.text or item },
+            { text: (item.date or values.submitted) | date("h:mma on D MMMM YYYY") }
         ]) %}
     {% endfor %}
 

@@ -1,0 +1,23 @@
+{% extends "layout-help.html" %}
+
+{% set hmpoTitle %}
+    Urgent travel for compassionate reasons
+{% endset %}
+
+{% block mainContent %}
+
+    <h1>{{ hmpoTitle }}</h1>
+
+    <h2>What counts as travel for compassionate reasons</h2>
+    <p>Compassionate reasons to travel include:
+    <ul class="govuk-list govuk-list--bullet">
+        <li>you or someone you care for needs urgent medical treatment in another country</li>
+        <li>a family member or friend in another country is seriously ill or has died</li>
+    </ul>
+
+    <h2>How to apply</h2>
+    <p><a href="https://www.gov.uk/passport-advice-line">Contact the Passport Office</a> to find out what to do.</p>
+
+    <br>
+    {{ hmpoClose() }}
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "layout-tracking-status.html" %}
+
+{% block trackingHeader %}
+    <h1>
+        {% if values.documentsRequired == "passport" %}
+            We’ve received your old passport
+        {% elif values.documentsRequired == "documents" %}
+            We’ve received your documents
+        {% else %}
+            We’ve received the form confirming your identity
+        {% endif %}</h1>
+    </h1>
+{% endblock %}
+
+{% block trackingBody %}
+    <h2>What happens next</h2>
+
+    <p>
+        {% if values.documentsRequired == "documents" %}
+            We’ll check your application and the documents we asked for.
+        {% elif values.documentsRequired == "passport" %}
+            We’ll check your application and your old passport.
+        {% else %}
+            We’ll check your application and the form. We’ll contact you if we need more information.
+        {% endif %}
+
+        If we need more information, we’ll contact you.
+    </p>
+
+    <p>When we’ve finished checking your application, we’ll update this page.</p>
+
+    {% call hmpoDetails({ summaryText: "I need to travel soon, can I speed up my application?" }) %}
+        <p>
+            {% if values.applicationType == "renew" %}
+                You are not eligible yet to ask for your application to be processed faster. This is because we received
+                your old passport less than 4 weeks ago.
+            {% else %}
+                You are not eligible yet to ask for your application to be processed faster. This is because we received
+                your documents less than 4 weeks ago.
+            {% endif %}
+        </p>
+        <p>We'll update this page when you are eligible to get your passport sooner, with details of how to ask for it.</p>
+        <p>If you need to travel immediately for compassionate reasons, <a href="/help/urgent-compassionate-guidance" target="_blank">check if you can get a passport urgently</a>.</p>
+    {% endcall %}
+{% endblock %}
+
+{% block trackingHistory %}
+
+
+    {{ trackingHistory([
+        { text: "Documents received", date: "2020-11-24T14:24" } if values.documentsRequired != "none",
+        { text: "Application received", date: "2020-11-22T18:04" },
+        "Identity details received" if values.csigRequired,
+        "Email sent to person confirming your identity" if values.csigRequired,
+        "Ask someone to confirm your identity" if values.csigRequired,
+        { text: "Application submitted", date: "2020-11-22T18:04" }
+    ]) }}
+
+{% endblock %}
+
+{% set nextStatuses = [
+    "IN-QUEUE-MORE-THAN-FOUR-WEEKS",
+    "PROCESSING"
+] %}

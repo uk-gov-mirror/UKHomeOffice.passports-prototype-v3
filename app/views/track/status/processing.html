@@ -9,6 +9,10 @@
 {% endblock %}
 
 {% block trackingBody %}
+    {% call hmpoInsetText() %}
+            <p>Please don't contact us about progress. This will help ensure those who need our help the most can get in touch.</p>
+    {% endcall %}
+
     {% if values.isUrgent %}
         <h2>What happends next</h2>
         <p> We'll call you if there's a problem with your application. You need to be availible on the phone number you provided.</p>
@@ -72,13 +76,12 @@
 
     {{ trackingHistory([
         "Application being processed",
-        "Documents received" if values.documentsRequired != "none",
-        "Application received" if values.isUrgent,
-        "Application received" if values.documentsRequired != "none",
+        "Documents received",
+        "Application received",
         "Identity details received" if values.csigRequired,
         "Email sent to person confirming your identity" if values.csigRequired,
         "Ask someone to confirm your identity" if values.csigRequired,
-        "Application submitted"
+        "Application submitted",
     ]) }}
 
 {% endblock %}

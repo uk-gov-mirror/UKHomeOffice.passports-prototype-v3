@@ -1,0 +1,69 @@
+{% extends "layout-tracking-status.html" %}
+
+{% block trackingHeader %}
+    <h1>
+        {% if values.documentsRequired == "passport" %}
+            We’ve received your old passport
+        {% elif values.documentsRequired == "documents" %}
+            We’ve received your documents
+        {% else %}
+            We’ve received the form confirming your identity
+        {% endif %}</h1>
+    </h1>
+{% endblock %}
+
+{% block trackingBody %}
+    <h2>What happens next</h2>
+
+    <p>
+        {% if values.documentsRequired == "documents" %}
+            We’ll check your application and the documents we asked for.
+        {% elif values.documentsRequired == "passport" %}
+            We’ll check your application and your old passport.
+        {% else %}
+            We’ll check your application and the form. We’ll contact you if we need more information.
+        {% endif %}
+
+        If we need more information, we’ll contact you.
+    </p>
+
+    <h3>If you are travelling within the next 2 weeks</h3>
+    <p>
+        {% if values.applicationType == "renew" %}
+            As we received your old passport more than 4 weeks ago, you can ask for your application to be processed faster.
+        {% else %}
+            As we received your documents more than 4 weeks ago, you can ask for your application to be processed faster.
+        {% endif %}
+    </p>
+    <p>You need to email the Passport Office at: <a href="mailto:email">escalatedservice@hmpo.gov.uk</a> and include:
+    <ul class="govuk-list govuk-list--bullet">
+        <li>your full name and application reference in the email subject line</li>
+        <li>evidence that you are due to travel in the next 2 weeks</li>
+    </ul>
+
+    <p>
+        {% if values.applicationType == "first" and values.adultOrChild == "adult" %}
+            We'll then check your application within 48 hours, and update this page. If you need a <a href="/help/identity-interviews" target="_blank">passport interview</a>, we'll send you a letter with more details.
+        {% else %}
+            We'll then check your application within 48 hours, and update this page.
+        {% endif %}
+    </p>
+{% endblock %}
+
+{% block trackingHistory %}
+
+    {{ trackingHistory([
+        { text: "Documents received", date: "2020-11-15T12:45" } if values.documentsRequired != "none",
+        { text: "Application received", date: "2020-11-13T17:24" },
+        "Identity details received" if values.csigRequired,
+        "Email sent to person confirming your identity" if values.csigRequired,
+        "Ask someone to confirm your identity" if values.csigRequired,
+        { text: "Application submitted", date: "2020-11-13T17:24" }
+    ]) }}
+
+{% endblock %}
+
+{% set nextStatuses = [
+    "IN-QUEUE-LESS-THAN-FOUR-WEEKS",
+    "PROCESSING"
+] %}
