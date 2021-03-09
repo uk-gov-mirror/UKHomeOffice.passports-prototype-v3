@@ -2,8 +2,7 @@
 
 {% block trackingHeader %}
     {% if values.isUrgent %}
-        <h1>You need a new photo</h1>
-        <div class="govuk-panel__body">Your application is on hold. Your photo didn’t meet the rules for UK passport photos &#8211; we'll explain why.</div>
+        <h1>You need 2 printed photos</h1>
     {% else %}
         <h1>You need a new photo</h1>
         <p>Your application is on hold because there was a problem with your photo.</p>
@@ -13,12 +12,9 @@
 {% block trackingBody %}
     <h2>What you need to do</h2>
     {% if values.isUrgent %}
-        <p>You need to submit a new digital photo. It's important that you do this as soon as you can.</p>
-        {{ hmpoSubmit(ctx, {
-            classes:"govuk-button--secondary",
-            text: "Find out more and submit a new photo",
-            href: "/track/photo-rejected"
-        }) }}
+        <p>You need to take 2 printed photos to your collection appointment, as your digital photo didn’t meet the rules.</p>
+        <p>You can get printed photos from a photo shop or booth. There is also a photo booth at the passport office.</p>
+
         <h2>Your collection appointment</h2>
         <p><b>Wednesday 1 April 2021</b>
         <br>
@@ -31,6 +27,7 @@
         G4 0BT<br>
         <a href="https://www.google.co.uk/maps/?q=Glasgow%20HM%20Passport%20Office,%20G4%200BT" target="_blank">View map</a></p>
         <br>
+        <p>It takes longer to print a passport without a digital photo. You'll have to return to the passport office up to 4 working hours later to get your new passport.</p>
         <p> if you can't go to your collection appointment, <a href="" target="_blank">contact us</a>. Your new appointment details will be send to you by email.
 
         <h2>What you need to bring</h2>

@@ -3,7 +3,6 @@
 {% block trackingHeader %}
     {% if values.isUrgent %}
         <h1>You need a new photo</h1>
-        <div class="govuk-panel__body">Your application is on hold. Your photo didn’t meet the rules for UK passport photos &#8211; we'll explain why.</div>
     {% else %}
         <h1>You need a new photo</h1>
         <p>Your application is on hold because there was a problem with your photo.</p>
@@ -13,7 +12,7 @@
 {% block trackingBody %}
     <h2>What you need to do</h2>
     {% if values.isUrgent %}
-        <p>You need to submit a new digital photo. It's important that you do this as soon as you can.</p>
+        <p>You need to submit a new digital photo &#8211; the one you provided didn’t meet the rules. To keep your appointment, it's important to do this as soon as you can.</p>
         {{ hmpoSubmit(ctx, {
             classes:"govuk-button--secondary",
             text: "Find out more and submit a new photo",
