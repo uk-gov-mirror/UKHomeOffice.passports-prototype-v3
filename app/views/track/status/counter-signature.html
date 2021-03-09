@@ -2,9 +2,6 @@
 
 {% block trackingHeader %}
     <h1>You need a countersignature</h1>
-    {% if values.isUrgent %}
-        <div class="govuk-panel__body">Your application is on hold. Your appearance has changed too much since your last passport.</div>
-    {% endif %}
 {% endblock %}
 
 {% block trackingBody %}
@@ -16,9 +13,9 @@
 
     <h2>What you need to do</h2>
     {% if values.isUrgent%}
-        <p>We've posted a form to you that includes your recent photo. You need to get someone to sign your form, then post it back to us.</p>
-        <p>To keep your appointment, it's important to do this as soon as you can.
-                <h2>Your collection appointment</h2>
+        <p>We've posted a form to you. You need to get someone to fill in and sign the form to confirm your identity. This is known as a countersignature.</p>
+        <p>To keep your appointment, it's important you post the completed form to us as soon as you can. </p>
+        <h2>Your collection appointment</h2>
         <p><b>Wednesday 1 April 2021</b>
         <br>
         at <b>8:45pm</b></p>

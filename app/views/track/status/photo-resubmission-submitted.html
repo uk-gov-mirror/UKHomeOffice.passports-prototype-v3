@@ -3,7 +3,6 @@
 {% block trackingHeader %}
     {% if values.isUrgent %}
         <h1>New photo received</h1>
-        <div class="govuk-panel__body">We'll continue with your application</div>
     {% else %}
         <h1>We received your photo</h1>
     {% endif %}
@@ -17,7 +16,7 @@
 
     {% if values.isUrgent %}
         <h2>What happens next</h2>
-        <p>We’ll call you if there's a problem with your application. You need to be availible on the phone number you provided</p>
+        <p>We'll continue checking your application. We'll call you on the phone number you provided if there's a problem.</p>
         <p>When we've finished checking your application, we'll update this page.</p>
         <h2>Your collection appointment</h2>
         <p><b>Wednesday 1 April 2021</b>
