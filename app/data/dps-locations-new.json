@@ -1,6 +1,6 @@
 {
     "london": {
-      "location": "LONDON",
+      "location": "London",
       "name": "London HM Passport Office",
       "address": [
         "Globe House",
@@ -20,7 +20,7 @@
       "postcode": "PE1 1QG"
     },
     "newport": {
-      "location": "NEWPORT",
+      "location": "Newport",
       "name": "Newport HM Passport Office",
       "address": [
         "Nexus House",
@@ -30,7 +30,7 @@
       "postcode": "NP20 2DW"
     },
     "liverpool": {
-      "location": "LIVERPOOL",
+      "location": "Liverpool",
       "name": "Liverpool HM Passport Office",
       "address": [
         "101 Old Hall Street",
@@ -39,7 +39,7 @@
       "postcode": "L3 9BP"
     },
     "durham": {
-      "location": "DURHAM",
+      "location": "Durham",
       "name": "Durham HM Passport Office",
       "nameWelsh": "Durham Swyddfa Basbort Ei Mawrhydi",
       "address": [
@@ -50,7 +50,7 @@
       "postcode": "DH1 1SL"
     },
     "glasgow": {
-      "location": "GLASGOW",
+      "location": "Glasgow",
       "name": "Glasgow HM Passport Office",
       "address": [
         "3 Northgate",
@@ -60,7 +60,7 @@
       "postcode": "G4 0BT"
     },
     "belfast": {
-      "location": "BELFAST",
+      "location": "Belfast",
       "name": "Belfast HM Passport Office",
       "address": [
         "Law Society House",
