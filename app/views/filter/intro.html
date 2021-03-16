@@ -2,6 +2,22 @@
 
 {% set hmpoTitle %}How to apply{% endset %}
 
+{% set chooseAppointmentText%}
+    {% if values.urgent and values.urgentNameChanged == "false" %}
+        , where we’ll check your old passport and print your new one.
+    {% elif values.urgent and values.urgentNameChanged %}
+        , where we’ll check your documents and print your new passport.
+    {% endif %}
+{% endset %}
+
+{% set goAppointmentText%}
+    {% if values.urgent and values.urgentNameChanged == "false" %}
+        Take your old passport to your appointment and return 2 hours later to collect your new one.
+    {% elif values.urgent and values.urgentNameChanged %}
+        Take your old documents  to your appointment and return 2 hours later to collect your new passport.
+    {% endif %}
+{% endset %}
+ 
 {% block hmpoContent %}
 
     {% if values.urgent %}
@@ -12,27 +28,27 @@
                     <ul>
                         <li class="circle-step">
                         <span class="circle-step-circle">1</span>
-                            <h2>Choose a collection appointment</h2>
-                            <p>We’ll reserve a time for you to collect your passport from a <a href="/help/passport-offices">passport office in the UK</a>.</p>
+                            <h2>Choose an appointment</h2>
+                            <p>You’ll need an appointment at a <a target="_blank" href="https://www.passport.service.gov.uk/help/passport-offices/">passport office</a> {{ chooseAppointmentText }}</p>
                         </li>
                         <li class="circle-step">
                         <span class="circle-step-circle">2</span>
-                            <h2>Apply online</h2>
-                            <p>You’ll need to get a digital photo - we’ll show you how. If there’s a problem with your application, we’ll contact you before you collect your passport.</p>
+                            <h2>Get a digital passport photo</h2>
+                            <p>We’ll show you how to get a digital photo.</p>
                         </li>
                         <li class="circle-step">
                         <span class="circle-step-circle">3</span>
-                            <h2>Pay for your new passport online</h2>
-                            <p>You’ll need a debit or credit card. An adult passport using this service is £177.</p>
+                            <h2>Apply and pay online</h2>
+                            <p>You’ll need a debit or credit card. It costs £177 or £142 depending on how quickly you need your passport.</p>
                         </li>
                         <li class="circle-step">
                         <span class="circle-step-circle">4</span>
-                            <h2>Collect your new passport</h2>
-                            <p>This usually takes 30 minutes. You’ll need to take your old passport with you.</p>
+                            <h2>Go to your appointment</h2>
+                            <p>{{ goAppointmentText }}</p>
                         </li>
                     </ul>
                     {% call hmpoForm(ctx) %}
-                        {{ hmpoSubmit(ctx, { text: translate("buttons.choose-appointment") }) }}
+                        {{ hmpoSubmit(ctx) }}
                     {% endcall %}
 
                     {% call hmpoDetails({ summaryText: "I need help doing things online" }) %}

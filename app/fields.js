@@ -989,10 +989,10 @@ module.exports = {
         ],
         type: 'tel'
     },
-    nameChanged:{
+    urgentNameChanged:{
         validate: 'required'
     },
-    nameChanged:{
+    within5Urgent:{
         validate: 'required'
     },
     urgent: {

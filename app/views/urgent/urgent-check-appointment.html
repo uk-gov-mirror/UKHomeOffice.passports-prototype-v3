@@ -2,6 +2,13 @@
 
 {% set hmpoTitle %}Check your collection appointment{% endset %}
 
+{% block backLink %}
+    {{ govukBackLink({
+        text:  "Back",
+        href:  baseUrl + "/urgent/urgent-choose-time/"+ location.location | lowercase + "/" + ctx("apt-date-time") | date("DD-MM-YYYY") if backLink == "/urgent/urgent-choose-time" else backLink
+    }) }}
+{% endblock %}
+
 {% block mainContent %}
     <h1>{{ hmpoTitle }}</h1>
     {{ govukWarningText({
@@ -9,14 +16,15 @@
         iconFallbackText: "Warning"
     }) }}
     <p></p>
-    <h2>Wednesday 3 June 2020<br>
-    at 10:00pm</h2>
-    <p><span class="govuk-heading-m address-title">London HM Passport Office</span>
-    Globe House<br>
-    89 Eccleston Square<br>
-    London<br>
-    SW1V 1PN<br>
-    <a href="https://www.google.co.uk/maps/?q=London HM Passport Office, SW1V 1PN" target="_blank">View map</a>
+    <p>
+        <h2>{{ctx("apt-date-time") | date("dddd D MMMM YYYY")}}<br>
+        at {{ctx("apt-date-time") | date("h:mma") }}</h2></p>
+        <p><span class="govuk-heading-m address-title">{{location.name}}</span>
+        {% for item in location.address %}
+            {{item }}<br>
+        {% endfor %}
+        {{location.postcode}}<br>
+        <a data-id="appointment-location-map" href="https://www.google.co.uk/maps/?q={{location.name}}, {{location.postcode}}" class="new-window" target="_blank">View map</a>
     </p>
 
     {% call hmpoForm(ctx) %}

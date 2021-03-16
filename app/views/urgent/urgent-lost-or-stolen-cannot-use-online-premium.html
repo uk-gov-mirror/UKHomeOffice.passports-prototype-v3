@@ -1,19 +1,19 @@
 {% extends "layout-apply.html" %}
 
-{% set hmpoTitle %}You won’t be able to use the Online Premium service{% endset %}
+{% set hmpoTitle %}You can’t use Online Premium{% endset %}
 
 {% block mainContent %}
 
     <h1>{{ hmpoTitle }}</h1>
 
-    <p class="govuk-body">After you cancel your passport, you’ll need to choose a different service because your passport is lost or stolen. You’ll be able to use either:</p>
+    <p class="govuk-body">After you cancel your passport, you’ll need to use a different service to get a replacement. You can use:</p>
     <ul class="govuk-list govuk-list--bullet">
-        <li>1 week Fast Track service</li>
-        <li>the non-urgent service, which takes up to 3 weeks</li>
+        <li><a href="https://www.gov.uk/get-a-passport-urgently/1-week-fast-track-service">1 week Fast Track</a> - apply and pay at a Post Office, and collect your new passport from a passport office</li>
+        <li><a href="https://www.gov.uk/apply-renew-passport">the standard service</a> - it should take 3 weeks to get a passport but you don’t need an appointment</li>
     </ul>
 
     {% call hmpoForm(ctx) %}
-        {{ hmpoSubmit(ctx) }}
+        {{ hmpoSubmit(ctx, { text: translate("Cancel your passport") })}}
     {% endcall %}
 
 {% endblock %}

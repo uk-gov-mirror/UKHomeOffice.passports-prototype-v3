@@ -3,17 +3,20 @@
 {% set hmpoTitle %}Check this application{% endset %}
 
 {% set appointmentTime %}
-    <p>Wednesday 3 June 2020<br>
-    at 10:00pm</p>
+    <p>{{ctx("values.apt-date-time") | date("dddd D MMMM YYYY")}}<br>
+        at {{ctx("values.apt-date-time") | date("h:mma") }}</h2></p>
 {% endset %}
 {% set appointmentAddress %}
-    <p>London HM Passport Office<br>
-    Globe House<br>
-    89 Eccleston Square<br>
-    London<br>
-    SW1V 1PN<br>
+    <p>
+
+        <p><span class="govuk-heading-m address-title">{{ctx("values.apt-location")}}</span>
+        {# {% for item in {{ctx("values.apt-address")}} %}
+            {{item }}<br>
+        {% endfor %} #}
+        {{ctx("values.apt-postcode")}}<br>
+        <a data-id="appointment-location-map" href="https://www.google.co.uk/maps/?q={{ctx("values.apt-location")}}, {{ctx("values.apt-postcode")}}" class="new-window" target="_blank">View map</a>
     </p>
-{% endset %}
+{% endset %} 
 
 {% block mainContent %}
     <h1>{{ hmpoTitle }}</h1>
@@ -131,7 +134,7 @@
         {
             key: { text: "Name change" },
             value: {
-                text: "Your name hasn’t changed" if not values.changeOfName
+                text: "Your name hasn’t changed" if not values.changeOfName and not values.urgentNameChanged
                     else ("Your name has changed" if values.adultOrChild == "child" else values.nameChangeReason)
             },
             actions: { items: [{ text: "Change", href: "/apply/name/edit" }]}

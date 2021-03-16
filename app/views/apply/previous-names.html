@@ -1,6 +1,6 @@
 {% extends "layout-apply.html" %}
 
-{% set hmpoTitle = "Previous names" if values.changeOfName else "Have you ever used any other names?" %}
+{% set hmpoTitle = "Previous names" if values.changeOfName or values.urgentNameChanged else "Have you ever used any other names?" %}
 
 {% set previousNamesFields %}
     {% from "hmpo-error-group/macro.njk" import hmpoErrorGroup %}
@@ -99,7 +99,7 @@
     <div class="govuk-grid-row">
     <div class="govuk-grid-column-full">
 
-        {% if values.changeOfName %}
+        {% if values.changeOfName or values.urgentNameChanged %}
 
             <div class="govuk-grid-row">
             <div class="govuk-grid-column-two-thirds">

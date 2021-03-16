@@ -1,0 +1,35 @@
+{% extends "layout-apply.html" %}
+
+{% set hmpoTitle %}How urgently do you need your passport?{% endset %}
+
+{% block mainContent %}
+
+    {% call hmpoForm(ctx) %}
+
+        {{ hmpoRadios(ctx, {
+            id: "within5Urgent",
+            legend: {
+                text: hmpoTitle
+            },
+            isPageHeading: true,
+            items: [{
+                text: "Within 5 working days",
+                value: true,
+                hint: {
+                    text: "£177 for a standard passport"
+                }
+            }, {
+                text: "After 5 working days",
+                value: false,
+                hint: {
+                    text: "£142 for a standard passport"
+                }
+            }]
+        }) }}
+
+        {{ hmpoSubmit(ctx) }}
+
+    {% endcall %}
+
+
+{% endblock %}

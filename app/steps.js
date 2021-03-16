@@ -56,6 +56,7 @@ const apply = {
     //     next: '/filter/overseas'
     // },
     '/filter/overseas': {
+        backLink:false,
         fields: [
             'isUKApplication',
             'countryOfApplication'
@@ -70,7 +71,7 @@ const apply = {
     },
     '/filter/intro': {
         next:[
-            { field: 'urgent', value: true, next:'/urgent/urgent-choose-date-and-place' },
+            { field: 'urgent', value: true, next:'/urgent/urgent-how' },
             '/filter/age'
         ]
     },
@@ -415,7 +416,13 @@ const apply = {
             'nameChangeReason'
         ],
         revalidateIf: ['changeOfName'],
-        next: '/apply/previous-names'
+        next: [
+            { field: 'urgent', value: true, next: [
+                { field: 'nameChangeReason', value: 'Marriage or civil partnership', next: '/filter/issue-date' }, 
+                '/urgent/urgent-not-eligible'
+            ] },
+            '/apply/previous-names'
+        ]
     },
     '/apply/previous-names': {
         fields: [
@@ -657,7 +664,10 @@ const apply = {
     '/apply/confirm': {
         editable: false,
         next: [
-            { field: 'urgent', value: true, next: '/apply/cost' },
+            { field: 'urgent', value: true, next: [
+                { field: 'urgentNameChanged', value: true, next: '/apply/documents-to-send' },
+                '/apply/cost'
+            ] },
             { field: 'documentsRequired', value: 'none', next: '/apply/cost' },
             { field: 'csigRequired', value: true, next: '/apply/confirm-identity' },
             // ====================================================================
@@ -668,7 +678,7 @@ const apply = {
             //     '/apply/documents-to-send'
             // ] },
             '/apply/documents-to-send'
-        ]
+        ],
     },
     '/apply/urgent-passport': {
         fields: [
@@ -1067,22 +1077,45 @@ const urgent = {
     },
     '/urgent/urgent-name-changed': {
         fields: [
-            'nameChanged'
+            'urgentNameChanged'
         ],
         next:[
-            { field: 'nameChanged', value: 'false', next: '/filter/issue-date' },
-            '/urgent/urgent-not-eligible'
+            { field: 'urgentNameChanged', value: 'false', next: '/filter/issue-date' },
+            '/apply/change-of-name'
+        ]
+    },
+    '/urgent/urgent-how':{
+        fields: [
+            'within5Urgent'
+        ],
+        next:[
+            { field: 'within5Urgent', value: 'true', next: '/urgent/urgent-choose-date-and-place' },
+            '/urgent/urgent-choose-date-and-place-cheaper'
         ]
     },
     '/urgent/urgent-choose-date-and-place':{
         noPost: true,
+        //checkJourney: false,
         next: '/urgent/urgent-choose-time'
     },
-    '/urgent/urgent-choose-time':{
+    '/urgent/urgent-choose-date-and-place-cheaper':{
         noPost: true,
-        next:'/urgent/urgent-check-appointment'
+        checkJourney: false,
+    },
+    '/urgent/urgent-choose-time':{
+        controller: require('./controllers/urgent-booking'),
+        noPost: true,
+        params: '/:location/:date',
+        //checkJourney: false
+        next: '/urgent/urgent-check-appointment'
+    },
+    '/urgent/urgent-choose-time-cheaper':{
+        noPost: true,
+        //checkJourney: false,
     },
     '/urgent/urgent-check-appointment':{
+        controller: require('./controllers/urgent-check-appointment'),
+        params: '/:location/:date/:time',
         next:'/photo/digital-photo'
     },
 }

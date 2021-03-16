@@ -7,10 +7,6 @@
 
     {% call hmpoForm(ctx) %}
 
-        {% if values.urgent %}
-            <p>This passport will be cancelled on the day of your collection appointment. You won’t be able to use it.</p>
-        {% endif %}
-
         {{ hmpoNumber(ctx, {
             id: "passportNumber",
             label: {
@@ -35,13 +31,9 @@
             {% endcall %}
         {% endif %}
 
-        {% if values.urgent %}
+        {% if values.urgent == false %}
             {% call hmpoDetails({ summaryText: "My passport is lost or stolen" }) %}
-                You must <a href="#">cancel your old passport</a>. You can’t apply with Online Premium, but you can still get your passport urgently with Fast Track.
-            {% endcall %}
-        {% else %}
-            {% call hmpoDetails({ summaryText: "My passport is lost or stolen" }) %}
-                If you don’t have your old passport you must <a href="#">report it lost or stolen</a>.
+                If you don’t have your old passport you must <a href="https://www.gov.uk/report-a-lost-or-stolen-passport">report it lost or stolen</a>.
             {% endcall %}
         {% endif %}
 
