@@ -4,6 +4,14 @@
 
 {% block mainContent %}
     <h1>{{ hmpoTitle }}</h1>
-    <p>Online Premium is only available for some kinds of applications.</p>
-    <p>To get your passport urgently, you need to apply with <a href="https://www.gov.uk/get-a-passport-urgently">1 week Fast Track service</a>.</p>
+    {% if values.adultOrChild == 'adult' and not values.previousPassport %}
+        <p>You can’t get a passport urgently if you’re 16 or older and haven’t had a UK passport before.</p>
+        <p>You have to apply using the standard service. It takes 6 weeks and you may need to have a passport interview.</p>
+        {% call hmpoForm(ctx) %}
+            {{ hmpoSubmit(ctx, { text: "Use the standard service" }, {href: "/start"}) }}
+        {% endcall %}
+    {% else %}
+        <p>Online Premium is only available for some adult renewals or change of details by marriage or civil partnership.</p>
+        <p>To get your passport urgently, you need to apply with the <a href="https://www.gov.uk/get-a-passport-urgently">1 week Fast Track service</a>.</p>
+    {% endif %}
 {% endblock %}

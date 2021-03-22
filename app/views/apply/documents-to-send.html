@@ -1,6 +1,30 @@
 {% extends "layout-apply.html" %}
+{% from "govuk/components/accordion/macro.njk" import govukAccordion %}
 
 {% set hmpoTitle %}What you need to send{% endset %}
+{% set urgentDocs %}
+    {{ govukAccordion({
+        id: "accordion-default",
+        items: [
+            {
+                heading: {
+                    text: "Writing well for the web"
+                },
+                content: {
+                    html: "<p class='govuk-body'>This is the content for Writing well for the web.</p>"
+                }
+            },
+            {
+                heading: {
+                    text: "Writing well for specialists"
+                },
+                content: {
+                    html: "<p class='govuk-body'>This is the content for Writing well for specialists.</p>"
+                }
+            }
+        ]
+    }) }}
+{% endset %}
 
 {# Static html #}
 {# {% block mainContent %}
@@ -146,12 +170,14 @@
     {% call hmpoInsetText({ classes: "hmpo-inset-info"}) %}
         {% if values.isUKApplication == false %}
             You must send original documents, unless we ask for a photocopy. Your application will be delayed if you don’t send everything we need.
+        {% elif values.urgent and values.urgentNameChanged %}
+            You must bring original documents - we can’t accept photocopies. You won’t get your new passport if you don’t bring everything we need.
         {% else %}
             You must send original documents - we can’t accept photocopies. Your application will be delayed if you don’t send everything we need.
         {% endif %}
     {% endcall %}
 
-    {% if values.applicationType == "renew" %}
+    {% if values.applicationType == "renew" and not values.urgent %}
         {% if values.adultOrChild == "adult" %}
             {% if not values.changeOfName %}
                 {% set documentsObject = {
@@ -196,6 +222,52 @@
         {% else %}
             {# Add Child Renewal #}
         {% endif %}
+    {% elif values.urgent and values.urgentNameChanged %}
+        <h2>When is your appointment?</h2>
+        {{ govukAccordion({
+            id: "applicant-with-accordion",
+            items: [
+                {
+                    heading: {
+                        text: "After the ceremony"
+                    },
+                    content: {
+                        html:
+                            '<ul class="govuk-list govuk-list--bullet">
+                                <li>old passport</li>
+                                <li>marriage or civil partnership certificatees</li>
+                            </ul>'
+                    }
+                },
+                {
+                    heading: {
+                        text: "Before the ceremony"
+                    },
+                    content: {
+                        html:
+                            '<ul class="govuk-list govuk-list--bullet">
+                                <li>old passport</li>
+                                <li>a completed <a class="govuk-link" target="_blank"  href="https://www.gov.uk/government/publications/passports-for-newly-weds-and-civil-partners">passports for newly weds and civil partners</a> form</li>
+                            </ul>'
+                    }
+                }
+            ]
+        }) }}
+        {# {% set documentsObject = {
+            "overseas": false,
+            "has-applicant-docs": true,
+            "show-applicant-accordion": true,
+            "header": false,
+            "applicants-docs": [
+                {
+                    "documents": [
+                        {
+                            "name": urgentDocs
+                        }
+                    ]
+                }
+            ]
+        } %} #}
     {% elif values.applicationType == "first" %}
         {% if values.adultOrChild == "adult" %}
             {% if not values.changeOfName %}

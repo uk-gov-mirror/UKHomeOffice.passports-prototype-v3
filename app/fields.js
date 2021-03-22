@@ -990,6 +990,7 @@ module.exports = {
         type: 'tel'
     },
     urgentNameChanged:{
+        formatter: 'boolean',
         validate: 'required'
     },
     within5Urgent:{

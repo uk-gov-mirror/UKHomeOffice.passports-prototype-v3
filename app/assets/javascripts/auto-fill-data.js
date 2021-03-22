@@ -229,6 +229,7 @@
         },
         'changeOfName': {
             'changeOfName': true,
+            'urgentNameChanged': true,
             'nameChangeReason': 'Marriage or civil partnership',
             'previousNames': true,
             'previousFirstName1': 'Jennifer',

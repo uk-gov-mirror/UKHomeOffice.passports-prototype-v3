@@ -1,6 +1,8 @@
 {% extends "layout-apply.html" %}
 
-{% set hmpoTitle %}Cost{% endset %}
+{% set hmpoTitle %}Paying for your passport{% endset %}
+{% set payTitle %}How to pay{% endset %}
+{% set summaryTitle %}Cost summary{% endset %}
 
 {% set documents %}
     {%- if values.applicationType == "first" %}
@@ -42,7 +44,10 @@
 
 {% block mainContent %}
     <h1>{{ hmpoTitle }}</h1>
-
+    <h2>{{payTitle}}</h2>
+    <p><img src="/public/images/cards.png"/></p>
+    <p>We don’t accept some prepaid cards.</p><br>
+    <h2>{{summaryTitle}}</h2>
     {% if values.urgent === true%}
         {{ govukSummaryList({ rows: [
             {
@@ -57,6 +62,11 @@
                     (values.passportCost | currency)
                 },
                 actions: { items: [ { text: "Change", href: "/apply/new-passport/edit" }]}
+            },
+            {
+                key: { text: "Appointment type" },
+                value: { html:"Within 5 working days"},
+                actions: { items: [ { text: "Change", href: "/urgent/urgent-how/edit" }]} 
             },
             {
                 key: { text: "Total" },

@@ -1,10 +1,16 @@
 
 <div id="applicant-docs">
-    <h2 id="applicant-header">Applicant’s documents</h2>
 
-    {% if isObject(params["applicants-docs"]) %}
+{# REACTIVATE codes below after DPS CoN labs and fix docs accordian layout issues #}
+    {# {% if params.urgent %}
+        <h2 id="applicant-header">When is your appointment?</h2>
+    {% else %}
+        <h2 id="applicant-header">Applicant’s documents</h2>
+    {% endif %} #}
+
+    {# {% if isObject(params["applicants-docs"]) %}
         {% include "./applicant-with-accordion.njk" %}
     {% else %}
         {% include "./applicant-without-accordion.njk" %}
-    {% endif %}
+    {% endif %} #}
 </div>

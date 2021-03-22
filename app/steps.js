@@ -716,7 +716,10 @@ const apply = {
         ],
         next: [
             { field: 'documentsToSend', value: false, next: '/apply/cost' },
-            { field: 'isUKApplication', value: true, next: '/apply/passport-delivery' },
+            { field: 'isUKApplication', value: true, next: [
+                { field: 'urgent', value: true , next:'/apply/cost'},
+                '/apply/passport-delivery' 
+            ]},
             '/apply/cost'
         ]
     },
@@ -1080,7 +1083,7 @@ const urgent = {
             'urgentNameChanged'
         ],
         next:[
-            { field: 'urgentNameChanged', value: 'false', next: '/filter/issue-date' },
+            { field: 'urgentNameChanged', value: false, next: '/filter/issue-date' },
             '/apply/change-of-name'
         ]
     },

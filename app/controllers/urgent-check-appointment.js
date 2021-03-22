@@ -26,9 +26,6 @@ class UrgentCheckAppointment extends BaseController {
     saveValues(req, res, callback) {
         let parsedParams = this.parseBookingParams(req);
         req.sessionModel.set('apt-date-time', parsedParams.dateTime.toISOString());
-        req.sessionModel.set('apt-location', parsedParams.officeDetails.location);
-        req.sessionModel.set('apt-address', parsedParams.officeAddress.address);
-        req.sessionModel.set('apt-postcode', parsedParams.officeAddress.postcode);
         super.saveValues(req, res, callback)
     }
 }

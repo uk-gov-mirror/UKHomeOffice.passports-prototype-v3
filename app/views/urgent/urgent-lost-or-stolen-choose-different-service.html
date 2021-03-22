@@ -9,11 +9,11 @@
     <p class="govuk-body">You need to choose a different service. To replace a lost or stolen passport you can use:</p>
     <ul class="govuk-list govuk-list--bullet">
         <li><a href="https://www.gov.uk/get-a-passport-urgently/1-week-fast-track-service">1 week Fast Track</a> - apply and pay at a Post Office, and collect your new passport from a passport office</li>    
-        <li><a href="https://www.gov.uk/apply-renew-passport">the standard service</a> - it should take 3 weeks to get a passport but you don’t need an appointment</li>
+        <li><a href="/start">the standard service</a> - it should take 3 weeks to get a passport but you don’t need an appointment</li>
     </ul>
 
     {% call hmpoForm(ctx) %}
-        {{ hmpoSubmit(ctx, { text: "Use the standard service" }) }}
+        {{ hmpoSubmit(ctx, { text: "Use the standard service" }, {href: "/start"}) }}
     {% endcall %}
 
 {% endblock %}
