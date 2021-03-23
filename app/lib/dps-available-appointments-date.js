@@ -21,7 +21,7 @@ let availableAppointmentsByDateAndPlace = (req) => {
 
     let dateParamDiffFromTodaysDate = Math.ceil(moment(dateParam, 'DD-MM-YYYY').diff(moment(), 'days', true));
 
-    for (let days = 0; days < maxColumnLimit; days++) {
+    for (let days = 1; days <= maxColumnLimit; days++) {
       dates.push(moment(dateParam, 'DD-MM-YYYY').add(days, 'days'));
     }
 
@@ -59,7 +59,7 @@ let createNextAndPreviousLinks = (req, dateParam, locationsMaxDates, locationAva
     let directionParam = paramParser.parseDirectionParam(req);
     let nextDate = moment(dateParam, 'DD-MM-YYYY').add(navDateIterations, 'days');
     let previousDate = moment(dateParam, 'DD-MM-YYYY').subtract(navDateIterations, 'days');
-    let lastAvailableDate = moment(todaysDate, 'DD-MM-YYYY').add(locationsMaxDates - 1, 'days');
+    let lastAvailableDate = moment(todaysDate, 'DD-MM-YYYY').add(locationsMaxDates, 'days');
 
     if (dateParam == todaysDate) {
         //Only show next link if first page

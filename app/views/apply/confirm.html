@@ -8,15 +8,15 @@
 {% endset %}
 {% set appointmentAddress %}
     <p>
-
-        <p><span class="govuk-heading-m address-title">{{ctx("values.apt-location")}}</span>
-        {# {% for item in {{ctx("values.apt-address")}} %}
+        <b>{{ctx("values.apt-location.name")}}</b><br>
+        {% for item in ctx("values.apt-location.address") %}
             {{item }}<br>
-        {% endfor %} #}
-        {{ctx("values.apt-postcode")}}<br>
-        <a data-id="appointment-location-map" href="https://www.google.co.uk/maps/?q={{ctx("values.apt-location")}}, {{ctx("values.apt-postcode")}}" class="new-window" target="_blank">View map</a>
+        {% endfor %}
+
+        {{ctx("values.apt-location.postcode")}}<br>
+        <a data-id="appointment-location-map" href="https://www.google.co.uk/maps/?q={{ctx("values.apt-location.location")}}, {{ctx("apt-location.postcode")}}" class="new-window" target="_blank">View map</a>
     </p>
-{% endset %} 
+{% endset %}
 
 {% block mainContent %}
     <h1>{{ hmpoTitle }}</h1>
@@ -431,11 +431,11 @@
             {{ govukSummaryList({ rows: [
             {
                 key: { text: "Date and time" },
-                value: { html: appointmentTime}
+                value: { html: appointmentTime }
             },
             {
                 key: { text: "Passport office" },
-                value: { html: appointmentAddress}
+                value: { html: appointmentAddress }
             }
         ] }) }}
     {% endif %}

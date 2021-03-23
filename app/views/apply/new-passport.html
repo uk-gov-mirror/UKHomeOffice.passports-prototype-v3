@@ -4,7 +4,11 @@
 
 {% set largePassportInfo %}
     {% if values.urgent %}
-        Frequent traveller 50-page passport (£187)
+        {% if values["urgent-within-5-days"] %}
+            Frequent traveller 50-page passport (£187)
+        {% else %}
+            Frequent traveller 50-page passport (£157)
+        {% endif %}
     {% else %}
         Frequent traveller 50-page passport (£85.50)
     {% endif %}
@@ -12,7 +16,12 @@
 
 {% set standardPassportInfo %}
     {% if values.urgent %}
-        Standard 34-page passport (£177)
+        {% if values["urgent-within-5-days"] %}
+            Standard 34-page passport (£177)
+        {% else %}
+            Standard 34-page passport (£147)
+        {% endif %}
+
     {% else %}
         Standard 34-page passport (£75.50)
     {% endif %}
