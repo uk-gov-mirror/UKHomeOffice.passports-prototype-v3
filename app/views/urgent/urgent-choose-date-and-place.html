@@ -4,7 +4,7 @@
 
 {% set conText %}
     {% if values.urgent and values.urgentNameChanged == "false" %}
-        
+
     {% else %}
         and documents
     {% endif %}
@@ -17,322 +17,54 @@
     <p>You can ask someone else to go for you if you’re not available.</p>
 
     <div style="padding-bottom:2em">
-        <div class="later-time direction-arrow ">
-            <a class="govuk-body-m" href="/urgent/urgent-choose-date-and-place-cheaper">Later</a>
-        </div>
+        {% if links.previous %}
+            <div class="earlier-time direction-arrow">
+                <a class="govuk-body-m" href="/urgent/urgent-choose-date-and-place/{{links.previous}}">
+                    Earlier
+                </a>
+            </div>
+        {% endif %}
+        {% if links.next %}
+            <div class="later-time direction-arrow {% if ctx("last-full-page") %}hide-above-mobile{% endif %}">
+                <a class="govuk-body-m" href="/urgent/urgent-choose-date-and-place/{{links.next}}">
+                    Later
+                </a>
+            </div>
+        {% endif %}
     </div>
 
     <table class="govuk-table booking-table">
         <thead class="govuk-table__head">
             <tr class="govuk-table__row">
 
+                {% for day in appointmentDaysAndPrices %}
                 <th>
-                    Wednesday<br>
-                    31 March<br><br>
-                    £177
+                    {{ day.date | date("dddd") }}<br>
+                    {{ day.date | date("D MMMM") }}<br>
+                    {{ day.price }}
                 </th>
-
-                <th>
-                    Thursday<br>
-                    1 April<br><br>
-                    £177
-                </th>
-
-                <th>
-                    Friday<br>
-                    2 April<br><br>
-                    £177
-                </th>
-
-                <th>
-                    Saturday<br>
-                    3 April<br><br>
-                    £177
-                </th>
-
-                <th>
-                    Monday<br>
-                    5 April<br><br>
-                    £177
-                </th>
-
+                {% endfor %}
             </tr>
         </thead>
         <tbody class="govuk-table__body">
-            <tr class="govuk-table__row">
-
-                <td class="govuk-table__cell">
-                    <a>
-                        <span class="unavailable">London</span><span class="govuk-visually-hidden">Unavailable</span>
-                    </a>
-                </td>
-
-                <td class="govuk-table__cell">
-                    <a href="/urgent/urgent-choose-time/london/01-04-2021">
-                        London
+        {% for name, locations in appointmentsAvailability %}
+        <tr class="govuk-table__row">
+            {% for location in locations %}
+            <td class="govuk-table__cell">
+                {% if location.available %}
+                    <a href="/urgent/urgent-choose-time/{{ name | lowercase }}/{{ location.date | date('DD-MM-YYYY') }}">
+                        {{ name | capitalize }}
                         <br>
                         <span class="available">Available</span>
                     </a>
-                </td>
-
-                <td class="govuk-table__cell">
-                    <a href="#">
-                        London
-                        <br>
-                        <span class="available">Available</span>
-                    </a>
-                </td>
-
-                <td class="govuk-table__cell">
-                    <a href="#">
-                        London
-                        <br>
-                        <span class="available">Available</span>
-                    </a>
-                </td>
-
-                <td class="govuk-table__cell">
-                    <a href="#">
-                        London
-                        <br>
-                        <span class="available">Available</span>
-                    </a>
-                </td>
-
-            </tr>
-            <tr class="govuk-table__row">
-
-                <td class="govuk-table__cell">
-                    <a>
-                        <span class="unavailable">Peterborough</span><span class="govuk-visually-hidden">Unavailable</span>
-                    </a>
-                    </a>
-                </td>
-
-                <td class="govuk-table__cell">
-                    <a href="/urgent/urgent-choose-time/peterborough/01-04-2021">
-                        Peterborough
-                        <br>
-                        <span class="available">Available</span>
-                    </a>
-                </td>
-
-                <td class="govuk-table__cell">
-                    <a href="#">
-                        Peterborough
-                        <br>
-                        <span class="available">Available</span>
-                    </a>
-                </td>
-
-                <td class="govuk-table__cell">
-                    <a href="#">
-                        Peterborough
-                        <br>
-                        <span class="available">Available</span>
-                    </a>
-                </td>
-
-                <td class="govuk-table__cell">
-                    <a href="#">
-                        Peterborough
-                        <br>
-                        <span class="available">Available</span>
-                    </a>
-                </td>
-
-            </tr>
-            <tr class="govuk-table__row">
-
-                <td class="govuk-table__cell">
-                    <span class="unavailable">Newport</span><span class="govuk-visually-hidden">Unavailable</span>
-                </td>
-
-                <td class="govuk-table__cell">
-                    <a href="#">
-                        Newport
-                        <br>
-                        <span class="available">Available</span>
-                    </a>
-                </td>
-
-                <td class="govuk-table__cell">
-                    <a href="#">
-                        Newport
-                        <br>
-                        <span class="available">Available</span>
-                    </a>
-                </td>
-
-                <td class="govuk-table__cell">
-                    <span class="unavailable">Newport</span><span class="govuk-visually-hidden">Unavailable</span>
-                </td>
-
-                <td class="govuk-table__cell">
-                    <a href="#">
-                        Newport
-                        <br>
-                        <span class="available">Available</span>
-                    </a>
-                </td>
-
-            </tr>
-            <tr class="govuk-table__row">
-
-                <td class="govuk-table__cell">
-                    <span class="unavailable">Liverpool</span><span class="govuk-visually-hidden">Unavailable</span>
-                </td>
-
-                <td class="govuk-table__cell">
-                    <a href="#">
-                        Liverpool
-                        <br>
-                        <span class="available">Available</span>
-                    </a>
-                </td>
-
-                <td class="govuk-table__cell">
-                    <a href="#">
-                        Liverpool
-                        <br>
-                        <span class="available">Available</span>
-                    </a>
-                </td>
-
-                <td class="govuk-table__cell">
-                    <a href="#">
-                        Liverpool
-                        <br>
-                        <span class="available">Available</span>
-                    </a>
-                </td>
-                <td class="govuk-table__cell">
-                    <a href="#">
-                        Liverpool
-                        <br>
-                        <span class="available">Available</span>
-                    </a>
-                </td>
-
-            </tr>
-
-            <tr class="govuk-table__row">
-
-                <td class="govuk-table__cell">
-                    <span class="unavailable">Durham</span><span class="govuk-visually-hidden">Unavailable</span>
-                </td>
-
-                <td class="govuk-table__cell">
-                    <a href="#">
-                        Durham
-                        <br>
-                        <span class="available">Available</span>
-                    </a>
-                </td>
-
-                <td class="govuk-table__cell">
-                    <a href="#">
-                        Durham
-                        <br>
-                        <span class="available">Available</span>
-                    </a>
-                </td>
-
-                <td class="govuk-table__cell">
-                    <a href="#">
-                        Durham
-                        <br>
-                        <span class="available">Available</span>
-                    </a>
-                </td>
-
-                <td class="govuk-table__cell">
-                    <a href="#">
-                        Durham
-                        <br>
-                        <span class="available">Available</span>
-                    </a>
-                </td>
-
-
-            </tr>
-            <tr class="govuk-table__row">
-
-                <td class="govuk-table__cell">
-                    <span class="unavailable">Glasgow</span><span class="govuk-visually-hidden">Unavailable</span>
-                </td>
-
-                <td class="govuk-table__cell">
-                    <a href="#">
-                        Glasgow
-                        <br>
-                        <span class="available">Available</span>
-                    </a>
-                </td>
-
-                <td class="govuk-table__cell">
-                    <a href="#">
-                        Glasgow
-                        <br>
-                        <span class="available">Available</span>
-                    </a>
-                </td>
-
-                <td class="govuk-table__cell">
-                    <a href="#">
-                        Glasgow
-                        <br>
-                        <span class="available">Available</span>
-                    </a>
-                </td>
-
-                <td class="govuk-table__cell">
-                    <a href="#">
-                        Glasgow
-                        <br>
-                        <span class="available">Available</span>
-                    </a>
-                </td>
-
-            </tr>
-
-            <tr class="govuk-table__row">
-
-                <td class="govuk-table__cell">
-                    <span class="unavailable">Belfast</span><span class="govuk-visually-hidden">Unavailable</span>
-                </td>
-
-                <td class="govuk-table__cell">
-                    <a href="#">
-                        Belfast
-                        <br>
-                        <span class="available">Available</span>
-                    </a>
-                </td>
-
-                <td class="govuk-table__cell">
-                    <a href="#">
-                        Belfast
-                        <br>
-                        <span class="available">Available</span>
-                    </a>
-                </td>
-
-                <td class="govuk-table__cell">
-                    <a href="#">
-                        Belfast
-                        <br>
-                        <span class="available">Available</span>
-                    </a>
-                </td>
-
-                <td class="govuk-table__cell">
-                    <span class="unavailable">Belfast</span><span class="govuk-visually-hidden">
-                        Unavailable</span>
-                </td>
-
-            </tr>
-
+                {% else %}
+                    <span class="unavailable">{{ name | capitalize }}</span>
+                    <span class="govuk-visually-hidden">Unavailable</span>
+                {% endif %}
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
         </tbody>
     </table>
 

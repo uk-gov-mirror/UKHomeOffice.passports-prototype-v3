@@ -418,7 +418,7 @@ const apply = {
         revalidateIf: ['changeOfName'],
         next: [
             { field: 'urgent', value: true, next: [
-                { field: 'nameChangeReason', value: 'Marriage or civil partnership', next: '/filter/issue-date' }, 
+                { field: 'nameChangeReason', value: 'Marriage or civil partnership', next: '/filter/issue-date' },
                 '/urgent/urgent-not-eligible'
             ] },
             '/apply/previous-names'
@@ -718,7 +718,7 @@ const apply = {
             { field: 'documentsToSend', value: false, next: '/apply/cost' },
             { field: 'isUKApplication', value: true, next: [
                 { field: 'urgent', value: true , next:'/apply/cost'},
-                '/apply/passport-delivery' 
+                '/apply/passport-delivery'
             ]},
             '/apply/cost'
         ]
@@ -1091,14 +1091,12 @@ const urgent = {
         fields: [
             'within5Urgent'
         ],
-        next:[
-            { field: 'within5Urgent', value: 'true', next: '/urgent/urgent-choose-date-and-place' },
-            '/urgent/urgent-choose-date-and-place-cheaper'
-        ]
+        next: '/urgent/urgent-choose-date-and-place'
     },
     '/urgent/urgent-choose-date-and-place':{
+        controller: require('./controllers/urgent-date-and-place'),
         noPost: true,
-        //checkJourney: false,
+        params: '/:date?/:direction?',
         next: '/urgent/urgent-choose-time'
     },
     '/urgent/urgent-choose-date-and-place-cheaper':{
@@ -1106,10 +1104,9 @@ const urgent = {
         checkJourney: false,
     },
     '/urgent/urgent-choose-time':{
-        controller: require('./controllers/urgent-booking'),
+        controller: require('./controllers/urgent-choose-time'),
         noPost: true,
-        params: '/:location/:date',
-        //checkJourney: false
+        params: '/:location/:date/:direction?',
         next: '/urgent/urgent-check-appointment'
     },
     '/urgent/urgent-choose-time-cheaper':{
