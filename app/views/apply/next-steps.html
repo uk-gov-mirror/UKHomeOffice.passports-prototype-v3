@@ -50,14 +50,16 @@
 
     {% elif values.urgent %}
         <h2 class="compact">Your appointment</h2>
-        <p>Thursday, 1 April 2021<br>
-        at 10:00pm</p>
-        <p>London HM Passport Office<br>
-        Globe House<br>
-        89 Eccleston Square<br>
-        London<br>
-        SW1V 1PN<br>
-        <a href="https://www.google.co.uk/maps/?q=London%20HM%20Passport%20Office,%20SW1V%201PN" target="_blank">View map</a></p>
+        <p>{{ctx("values.apt-date-time") | date("dddd D MMMM YYYY")}}<br>
+        at {{ctx("values.apt-date-time") | date("h:mma") }}</h2></p>
+        <p>
+            <b>{{ctx("values.apt-location.name")}}</b><br>
+            {% for item in ctx("values.apt-location.address") %}
+                {{item }}<br>
+            {% endfor %}
+            {{ctx("values.apt-location.postcode")}}<br>
+            <a data-id="appointment-location-map" href="https://www.google.co.uk/maps/?q={{ctx("values.apt-location.location")}}, {{ctx("apt-location.postcode")}}" class="new-window" target="_blank">View map</a>
+        </p>
         <p>Follow signs to the main reception.</p>
 
         {% if values.urgentNameChanged %}
