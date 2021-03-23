@@ -1,5 +1,42 @@
 {% extends "layout-apply.html" %}
 
+{% set morningTimes = [
+        "09:00am",
+        "09:15am",
+        "09:30am",
+        "09:45am",
+        "10:00am",
+        "10:15am",
+        "10:30am",
+        "10:45am",
+        "11:00am",
+        "11:15am",
+        "11:30am",
+        "11:45am"
+    ]
+%}
+
+{% set afternoonTimes = [
+        "12:00pm",
+        "12:15pm",
+        "12:30pm",
+        "12:45pm",
+        "1:00pm",
+        "1:15pm",
+        "1:30pm",
+        "1:45pm",
+        "2:00pm",
+        "2:15pm",
+        "2:30pm",
+        "2:45pm",
+        "3:00pm",
+        "3:15pm",
+        "3:30pm",
+        "3:45pm",
+        "4:00pm"
+    ]
+%}
+
 {% set hmpoTitle %}Choose a collection time{% endset %}
 
 {% block hmpoContent %}
@@ -16,7 +53,7 @@
     <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-default">
         <div class="govuk-accordion__section ">
             <div class="govuk-accordion__section-header">
-                <h2 class="govuk-accordion__section-heading">
+                <h2 class="govuk-accordion__section-heading" id="morning">
                     <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
                         Morning
                     </span>
@@ -24,335 +61,70 @@
             </div>
             <div id="accordion-default-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1">
                 <div style="padding-bottom:2em">
-                    <div class="later-time direction-arrow">
-                        <a class="govuk-body-m" href="#">Later</a>
-                    </div>
+                    {% if links.previous %}
+                        <div class="earlier-time direction-arrow">
+                            <a class="govuk-body-m" href="/urgent/urgent-choose-time/{{office.location | lowercase}}/{{links.previous}}#morning">
+                                Earlier
+                            </a>
+                        </div>
+                    {% endif %}
+                    {% if links.next %}
+                        <div class="later-time direction-arrow {% if ctx("last-full-page") %}hide-above-mobile{% endif %}">
+                            <a class="govuk-body-m" href="/urgent/urgent-choose-time/{{office.location | lowercase}}/{{links.next}}#morning">
+                                Later
+                            </a>
+                        </div>
+                    {% endif %}
                 </div>
                 <table class="govuk-table booking-table">
                     <thead class="govuk-table__head">
                         <tr class="govuk-table__row">
 
+                            {% for day in appointmentsByTimeAndLocation %}
                             <th>
-                                Thursday<br>
-                                1 April<br><br>
-                                £177
+                                {{ day.date | date("dddd") }}<br>
+                                {{ day.date | date("D MMMM") }}<br>
+                                {{ day.price }}
                             </th>
-
-                            <th>
-                                Friday<br>
-                                2 April<br><br>
-                                £177
-                            </th>
-
-                            <th>
-                                Saturday<br>
-                                3 April<br><br>
-                                £177
-                            </th>
-
-                            <th>
-                                Monday<br>
-                                5 April<br><br>
-                                £177
-                            </th>
+                            {% endfor %}
 
                         </tr>
                     </thead>
                     <tbody class="govuk-table__body">
+                        {% for time in morningTimes %}
                         <tr class="govuk-table__row">
-
-                            <td class="govuk-table__cell">
-                                <span class="unavailable">09:00am</span><span class="govuk-visually-hidden">
-                                Unavailable</span>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">09:00am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">09:00am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">09:00am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
+                            {% for appointments in appointmentsByTimeAndLocation %}
+                                {% if appointments.available %}
+                                    {% if not time in appointments.timeUnavailable %}
+                                        <td class="govuk-table__cell">
+                                            <a href="{{baseUrl}}/urgent/urgent-check-appointment/{{office.location | lowercase}}/{{ appointments.date | date('DD-MM-YYYY') }}/{{time}}">
+                                                {{time}}<br>
+                                                <span class="available">Available</span>
+                                            </a>
+                                        </td>
+                                    {% else %}
+                                        <td class="govuk-table__cell">
+                                            <span class="unavailable">{{time}}</span>
+                                            <span class="govuk-visually-hidden">Unavailable</span>
+                                        </td>
+                                    {% endif %}
+                                {% else %}
+                                    <td class="govuk-table__cell">
+                                        <span class="unavailable">{{time}}</span>
+                                        <span class="govuk-visually-hidden">Unavailable</span>
+                                    </td>
+                                {% endif %}
+                            {% endfor %}
                         </tr>
+                        {% endfor %}
 
-                        <tr class="govuk-table__row">
-
-                            <td class="govuk-table__cell">
-                                <a href="#">09:15am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">09:15am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">09:15am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">09:15am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                        </tr>
-
-                        <tr class="govuk-table__row">
-
-                            <td class="govuk-table__cell">
-                                <a href="#">09:30am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">09:30am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">09:30am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">09:30am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                        </tr>
-                        
-                        <tr class="govuk-table__row">
-
-                            <td class="govuk-table__cell">
-                                <a href="#">09:45am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">09:45am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">09:45am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">09:45am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                        </tr>
-
-                        <tr class="govuk-table__row">
-
-                            <td class="govuk-table__cell">
-                                <a href="/urgent/urgent-check-appointment/{{office.location | lowercase}}/01-04-2021/10:00am">10:00am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">10:00am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">10:00am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">10:00am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                        </tr>
-
-                        <tr class="govuk-table__row">
-
-                            <td class="govuk-table__cell">
-                                <span class="unavailable">10:15am</span><span class="govuk-visually-hidden">
-                                Unavailable</span>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">10:15am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <span class="unavailable">10:15am</span><span class="govuk-visually-hidden">
-                                Unavailable</span>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">10:15am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                        </tr>
-
-                        <tr class="govuk-table__row">
-
-                            <td class="govuk-table__cell">
-                                <a href="#">10:30am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">10:30am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">10:30am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">10:30am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                        </tr>
-
-                        <tr class="govuk-table__row">
-
-                            <td class="govuk-table__cell">
-                                <a href="#">10:45am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">10:45am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <span class="unavailable">10:45am</span><span class="govuk-visually-hidden">
-                                Unavailable</span>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <span class="unavailable">10:45am</span><span class="govuk-visually-hidden">
-                                Unavailable</span>
-                            </td>
-
-                        </tr>
-
-                        <tr class="govuk-table__row">
-
-                            <td class="govuk-table__cell">
-                                <a href="#">11:00am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <span class="unavailable">11:00am</span><span class="govuk-visually-hidden">
-                                Unavailable</span>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">11:00am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                                <td class="govuk-table__cell">
-                                <a href="#">11:00am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                        </tr>
-                        <tr class="govuk-table__row">
-
-                            <td class="govuk-table__cell">
-                                <a href="#">11:15am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">11:15am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <span class="unavailable">11:15am</span><span class="govuk-visually-hidden">
-                                Unavailable</span>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <span class="unavailable">11:15am</span><span class="govuk-visually-hidden">
-                                Unavailable</span>
-                            </td>
-
-                        </tr>
-
-                        <tr class="govuk-table__row">
-
-                            <td class="govuk-table__cell">
-                                <a href="#">11:30am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">11:30am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">11:30am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">11:30am<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                        </tr>
-
-                        <tr class="govuk-table__row">
-
-                            <td class="govuk-table__cell">
-                                <a href="#">11:45am<br>
-                                    <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">11:45am<br>
-                                    <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">11:45am<br>
-                                    <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">11:45am<br>
-                                    <span class="available"> Available</span></a>
-                            </td>
-
-                        </tr>
-                    
                     </tbody>
                 </table>
             </div>
         </div>
                 <div class="govuk-accordion__section ">
             <div class="govuk-accordion__section-header">
-                <h2 class="govuk-accordion__section-heading">
+                <h2 class="govuk-accordion__section-heading" id="afternoon">
                     <span class="govuk-accordion__section-button" id="accordion-default-heading-1">
                         Afternoon
                     </span>
@@ -360,454 +132,70 @@
             </div>
             <div id="accordion-default-content-1" class="govuk-accordion__section-content" aria-labelledby="accordion-default-heading-1">
                 <div style="padding-bottom:2em">
-                    <div class="later-time direction-arrow">
-                        <a class="govuk-body-m" href="#">Later</a>
-                    </div>
+                    {% if links.previous %}
+                        <div class="earlier-time direction-arrow">
+                            <a class="govuk-body-m" href="/urgent/urgent-choose-time/{{office.location | lowercase}}/{{links.previous}}#afternoon">
+                                Earlier
+                            </a>
+                        </div>
+                    {% endif %}
+                    {% if links.next %}
+                        <div class="later-time direction-arrow {% if ctx("last-full-page") %}hide-above-mobile{% endif %}">
+                            <a class="govuk-body-m" href="/urgent/urgent-choose-time/{{office.location | lowercase}}/{{links.next}}#afternoon">
+                                Later
+                            </a>
+                        </div>
+                    {% endif %}
                 </div>
                 <table class="govuk-table booking-table">
                     <thead class="govuk-table__head">
                         <tr class="govuk-table__row">
 
+                            {% for day in appointmentsByTimeAndLocation %}
                             <th>
-                                Thursday<br>
-                                1 April<br><br>
-                                £177
+                                {{ day.date | date("dddd") }}<br>
+                                {{ day.date | date("D MMMM") }}<br>
+                                {{ day.price }}
                             </th>
-
-                            <th>
-                                Friday<br>
-                                2 April<br><br>
-                                £177
-                            </th>
-
-                            <th>
-                                Saturday<br>
-                                3 April<br><br>
-                                £177
-                            </th>
-
-                            <th>
-                                Monday<br>
-                                5 April<br><br>
-                                £177
-                            </th>
+                            {% endfor %}
 
                         </tr>
                     </thead>
                     <tbody class="govuk-table__body">
-                        <tr class="govuk-table__row">
 
-                            <td class="govuk-table__cell">
-                                <span class="unavailable">12:00pm</span><span class="govuk-visually-hidden">
-                                Unavailable</span>
-                            </td>
+                        {% for time in afternoonTimes %}
+                            <tr class="govuk-table__row">
+                                {% for appointments in appointmentsByTimeAndLocation %}
+                                    {% if appointments.available %}
+                                        {% if not time in appointments.timeUnavailable %}
+                                            <td class="govuk-table__cell">
+                                                <a href="{{baseUrl}}/urgent/urgent-check-appointment/{{office.location | lowercase}}/{{ appointments.date | date('DD-MM-YYYY') }}/{{time}}">
+                                                    {{time}}<br>
+                                                    <span class="available">Available</span>
+                                                </a>
+                                            </td>
+                                        {% else %}
+                                            <td class="govuk-table__cell">
+                                                <span class="unavailable">{{time}}</span>
+                                                <span class="govuk-visually-hidden">Unavailable</span>
+                                            </td>
+                                        {% endif %}
+                                    {% else %}
+                                        <td class="govuk-table__cell">
+                                            <span class="unavailable">{{time}}</span>
+                                            <span class="govuk-visually-hidden">Unavailable</span>
+                                        </td>
+                                    {% endif %}
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
 
-                            <td class="govuk-table__cell">
-                                <a href="#">12:00pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">12:00pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">12:00pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                        </tr>
-
-                        <tr class="govuk-table__row">
-
-                            <td class="govuk-table__cell">
-                                <a href="#">12:15pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">12:15pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">12:15pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">12:15pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                        </tr>
-
-                        <tr class="govuk-table__row">
-
-                            <td class="govuk-table__cell">
-                                <a href="#">12:30pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">12:30pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">12:30pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">12:30pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                        </tr>
-                        
-                        <tr class="govuk-table__row">
-
-                            <td class="govuk-table__cell">
-                                <a href="#">12:45pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">12:45pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">12:45pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">12:45pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                        </tr>
-
-                        <tr class="govuk-table__row">
-
-                            <td class="govuk-table__cell">
-                                <a href="/urgent/urgent-check-appointment">1:00pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">1:00pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">1:00pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">1:00pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                        </tr>
-
-                        <tr class="govuk-table__row">
-
-                            <td class="govuk-table__cell">
-                                <span class="unavailable">1:15pm</span><span class="govuk-visually-hidden">
-                                Unavailable</span>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">1:15pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <span class="unavailable">1:15pm</span><span class="govuk-visually-hidden">
-                                Unavailable</span>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">1:15pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                        </tr>
-
-                        <tr class="govuk-table__row">
-
-                            <td class="govuk-table__cell">
-                                <a href="#">1:30pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">1:30pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">1:30pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">1:30pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                        </tr>
-
-                        <tr class="govuk-table__row">
-
-                            <td class="govuk-table__cell">
-                                <a href="#">1:45pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">1:45pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <span class="unavailable">1:45pm</span><span class="govuk-visually-hidden">
-                                Unavailable</span>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <span class="unavailable">1:45pm</span><span class="govuk-visually-hidden">
-                                Unavailable</span>
-                            </td>
-
-                        </tr>
-
-                        <tr class="govuk-table__row">
-
-                            <td class="govuk-table__cell">
-                                <a href="#">2:00pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <span class="unavailable">2:00pm</span><span class="govuk-visually-hidden">
-                                Unavailable</span>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">2:00pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                                <td class="govuk-table__cell">
-                                <a href="#">2:00pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                        </tr>
-                        <tr class="govuk-table__row">
-
-                            <td class="govuk-table__cell">
-                                <a href="#">2:15pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">2:15pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <span class="unavailable">2:15pm</span><span class="govuk-visually-hidden">
-                                Unavailable</span>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <span class="unavailable">2:15pm</span><span class="govuk-visually-hidden">
-                                Unavailable</span>
-                            </td>
-
-                        </tr>
-
-                        <tr class="govuk-table__row">
-
-                            <td class="govuk-table__cell">
-                                <a href="#">2:30pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">2:30pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">2:30pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">2:30pm<br>
-                                <span class="available"> Available</span></a>
-                            </td>
-
-                        </tr>
-
-                        <tr class="govuk-table__row">
-
-                            <td class="govuk-table__cell">
-                                <a href="#">2:45pm<br>
-                                    <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">2:45pm<br>
-                                    <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">2:45pm<br>
-                                    <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">2:45pm<br>
-                                    <span class="available"> Available</span></a>
-                            </td>
-
-                        </tr>
-
-                        <tr class="govuk-table__row">
-
-                            <td class="govuk-table__cell">
-                                <a href="#">3:00pm<br>
-                                    <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">3:00pm<br>
-                                    <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">3:00pm<br>
-                                    <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">3:00pm<br>
-                                    <span class="available"> Available</span></a>
-                            </td>
-
-                        </tr>
-
-                        <tr class="govuk-table__row">
-
-                            <td class="govuk-table__cell">
-                                <a href="#">3:15pm<br>
-                                    <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">3:15pm<br>
-                                    <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">3:15pm<br>
-                                    <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">3:15pm<br>
-                                    <span class="available"> Available</span></a>
-                            </td>
-
-                        </tr>
-
-                        <tr class="govuk-table__row">
-
-                            <td class="govuk-table__cell">
-                                <a href="#">3:30pm<br>
-                                    <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">3:30pm<br>
-                                    <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">3:30pm<br>
-                                    <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">3:30pm<br>
-                                    <span class="available"> Available</span></a>
-                            </td>
-
-                        </tr>
-
-                        <tr class="govuk-table__row">
-
-                            <td class="govuk-table__cell">
-                                <a href="#">3:45pm<br>
-                                    <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">3:45pm<br>
-                                    <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">3:45pm<br>
-                                    <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">3:45pm<br>
-                                    <span class="available"> Available</span></a>
-                            </td>
-
-                        </tr>
-
-                        <tr class="govuk-table__row">
-
-                            <td class="govuk-table__cell">
-                                <a href="#">4:00pm<br>
-                                    <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">4:00pm<br>
-                                    <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">4:00pm<br>
-                                    <span class="available"> Available</span></a>
-                            </td>
-
-                            <td class="govuk-table__cell">
-                                <a href="#">4:00pm<br>
-                                    <span class="available"> Available</span></a>
-                            </td>
-
-                        </tr>
-                    
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 
-    
+
 
   {% endblock %}

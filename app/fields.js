@@ -994,6 +994,7 @@ module.exports = {
         validate: 'required'
     },
     within5Urgent:{
+        formatter: 'boolean',
         validate: 'required'
     },
     urgent: {
