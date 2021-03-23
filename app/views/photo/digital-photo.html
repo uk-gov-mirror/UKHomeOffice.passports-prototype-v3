@@ -2,6 +2,8 @@
 
 {% set hmpoTitle %}How to get a digital passport photo{% endset %}
 
+{% if values["urgent"] and values["dps-back-url"] %}{% set backLink = values["dps-back-url"] %}{% endif %}
+
 {% block mainContent %}
     <h1>{{ hmpoTitle }}</h1>
 
