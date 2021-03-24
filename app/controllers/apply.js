@@ -240,13 +240,13 @@ class DefaultController extends BaseController {
         }
 
         if (req.sessionModel.get('urgent') === true) {
-            passportCost = 147;
+            passportCost = 142;
             if (req.sessionModel.get('largePassport')) {
                 passportCost += 10;
             }
 
             if (req.sessionModel.get('urgent-within-5-days')) {
-                passportCost += 30
+                passportCost += 35
             }
         }
 

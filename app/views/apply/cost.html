@@ -18,7 +18,7 @@
             documents
         {%- endif %}
     {%- else %}
-        {%- if values.urgentNameChanged %}
+        {%- if values.nameChanged %}
             both
         {%- else %}
             passport
@@ -41,6 +41,14 @@
     {% set deliveryKey = "Delivery" %}
     {% set deliveryValue = "We’ll send your new passport by secure delivery. The cost is included in the passport fee." %}
 {% endif %}
+
+{% set appointmentType %}
+    {% if values.urgent-within-5-days %}
+        Within 5 working days
+    {% else %}
+        After 5 working days
+    {% endif %}
+{% endset %}
 
 {% block mainContent %}
     <h1>{{ hmpoTitle }}</h1>
@@ -65,7 +73,7 @@
             },
             {
                 key: { text: "Appointment type" },
-                value: { html:"Within 5 working days"},
+                value: { text: appointmentType },
                 actions: { items: [ { text: "Change", href: "/urgent/urgent-how/edit" }]} 
             },
             {
