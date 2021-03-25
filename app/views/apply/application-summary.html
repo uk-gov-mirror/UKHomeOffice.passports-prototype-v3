@@ -9,7 +9,7 @@
 {% endset %}
 
 {% set dpsText %}
-    {% if values.urgent and values.urgentNameChanged == "false" %}
+    {% if values.urgent and not values.urgentNameChanged %}
         Based on your answers, you’re applying for an adult renewal.
     {% elif values.urgent and values.urgentNameChanged %}
         Based on your answers, you’re applying for an adult renewal and you’ve changed your name.
@@ -25,6 +25,7 @@
         {% if values.urgent == true %}
             <p>{{ dpsText }}</p>
             <p>If you’re applying for someone who is unable to make their own decisions, you need to <a href="https://www.gov.uk/get-a-passport-urgently">apply with the 1 week Fast Track service</a>.</p>
+        
         {% else %}
 
             {# Hidden FTA (Old Blue) #}

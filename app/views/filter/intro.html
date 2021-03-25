@@ -3,7 +3,7 @@
 {% set hmpoTitle %}How to apply{% endset %}
 
 {% set chooseAppointmentText%}
-    {% if values.urgent and values.urgentNameChanged == "false" %}
+    {% if values.urgent and not values.urgentNameChanged %}
         , where we’ll check your old passport and print your new one.
     {% elif values.urgent and values.urgentNameChanged %}
         , where we’ll check your documents and print your new passport.
@@ -11,7 +11,7 @@
 {% endset %}
 
 {% set goAppointmentText%}
-    {% if values.urgent and values.urgentNameChanged == "false" %}
+    {% if values.urgent and not values.urgentNameChanged %}
         Take your old passport to your appointment and return 2 hours later to collect your new one.
     {% elif values.urgent and values.urgentNameChanged %}
         Take your old documents  to your appointment and return 2 hours later to collect your new passport.

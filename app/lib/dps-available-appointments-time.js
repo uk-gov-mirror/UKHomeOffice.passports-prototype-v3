@@ -14,7 +14,7 @@ let availableAppointmentsByTimeAndPlace = (req, location) => {
     let dateParam = paramParser.parseDateTimeParam(req, 'DD-MM-YYYY', 'date');
     let dateParamDiffFromTodaysDate = Math.ceil(moment(dateParam, 'DD-MM-YYYY').diff(moment(), 'days', true));
 
-    for (let days = 0; days < maxColumnLimit; days++) {
+    for (let days = 1; days <= maxColumnLimit; days++) {
       dates.push(moment(dateParam, 'DD-MM-YYYY').add(days, 'days'));
     }
 

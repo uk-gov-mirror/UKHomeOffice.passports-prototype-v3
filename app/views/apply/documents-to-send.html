@@ -1,7 +1,14 @@
 {% extends "layout-apply.html" %}
 {% from "govuk/components/accordion/macro.njk" import govukAccordion %}
 
-{% set hmpoTitle %}What you need to send{% endset %}
+{% set hmpoTitle %}
+    {% if values.urgent and values.urgentNameChanged %}
+        What you need to bring
+    {% else %}
+        What you need to send
+    {% endif %}
+    
+    {% endset %}
 {% set urgentDocs %}
     {{ govukAccordion({
         id: "accordion-default",
@@ -235,7 +242,7 @@
                         html:
                             '<ul class="govuk-list govuk-list--bullet">
                                 <li>old passport</li>
-                                <li>marriage or civil partnership certificatees</li>
+                                <li>marriage or civil partnership certificates</li>
                             </ul>'
                     }
                 },
