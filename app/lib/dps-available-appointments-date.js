@@ -48,7 +48,7 @@ let nonUrgentAppointment = () => {
 let createNextAndPreviousLinks = (req, dateParam, locationsMaxDates, locationAvailability, dateParamDiffFromTodaysDate) => {
 
     //Number of new dates to show in table navigation click
-    let navDateIterations = 3;
+    let navDateIterations = 6;
     let nextDateLink;
     let previousDateLink;
     let locationAvailabilitySize = locationAvailability.length;
@@ -72,7 +72,7 @@ let createNextAndPreviousLinks = (req, dateParam, locationsMaxDates, locationAva
            }
         }
 
-        if (dateParamDiffFromTodaysDate < 3) {
+        if (dateParamDiffFromTodaysDate <= 5) {
             previousDateLink = todaysDate + "/previous";
         } else {
             previousDateLink = previousDate.format('DD-MM-YYYY') + "/previous";

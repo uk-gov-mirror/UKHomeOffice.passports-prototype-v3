@@ -10,19 +10,26 @@ let availableAppointmentsByTimeAndPlace = (req, location) => {
     let dpsAppointmentsAvailability = require('../data/dps-appointments-availability.json');
     let locationChosen = dpsAppointmentsAvailability['locations'][location.toUpperCase()];
     let locationsMaxDates = dpsAppointmentsAvailability['locations']['LONDON'].length;
+    console.log(locationChosen)
 
     let dateParam = paramParser.parseDateTimeParam(req, 'DD-MM-YYYY', 'date');
     let dateParamDiffFromTodaysDate = Math.ceil(moment(dateParam, 'DD-MM-YYYY').diff(moment(), 'days', true));
+    console.log(dateParam)
+    console.log(dateParamDiffFromTodaysDate)
+    
 
-    for (let days = 1; days <= maxColumnLimit; days++) {
+
+    for (let days = 0; days < maxColumnLimit; days++) {
       dates.push(moment(dateParam, 'DD-MM-YYYY').add(days, 'days'));
     }
 
     locationAvailability = locationChosen.slice(dateParamDiffFromTodaysDate, maxColumnLimit + dateParamDiffFromTodaysDate);
+
     for (let i = 0; i < locationAvailability.length; i++){
          locationAvailability[i].date = dates[i];
     }
-
+    
+    console.log(locationAvailability )
     return {
         'appointmentsAvailability': locationAvailability,
         'links': createNextAndPreviousLinks(req, dateParam, locationsMaxDates, dateParamDiffFromTodaysDate)
@@ -39,11 +46,12 @@ let createNextAndPreviousLinks = (req, dateParam, locationsMaxDates, dateParamDi
     let previousDateLink;
 
     let todaysDate = moment().format('DD-MM-YYYY');
+    let tomorrowsDate = moment().add(1, 'days').format('DD-MM-YYYY');
     let directionParam = paramParser.parseDirectionParam(req);
     let nextDate = moment(dateParam, 'DD-MM-YYYY').add(navDateIterations, 'days');
-    let previousDate = moment(dateParam, 'DD-MM-YYYY').subtract(navDateIterations, 'days') ;
+    let previousDate = moment(dateParam, 'DD-MM-YYYY').subtract(navDateIterations, 'days');
 
-    if (dateParam == todaysDate) {
+    if(dateParamDiffFromTodaysDate <= 2){
         //Only show next link if first page
         nextDateLink = nextDate.format('DD-MM-YYYY') + "/next";
     } else {
@@ -52,8 +60,8 @@ let createNextAndPreviousLinks = (req, dateParam, locationsMaxDates, dateParamDi
            nextDateLink = nextDate.format('DD-MM-YYYY') + "/next";
         }
 
-        if (dateParamDiffFromTodaysDate < 3) {
-            previousDateLink = todaysDate + "/previous";
+        if (dateParamDiffFromTodaysDate <= 3) {
+            previousDateLink = moment().add(2, 'days').format('DD-MM-YYYY') + "/previous";
         } else {
             previousDateLink = previousDate.format('DD-MM-YYYY') + "/previous";
 

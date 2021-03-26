@@ -3,7 +3,7 @@
 {% set hmpoTitle %}Choose a date and place{% endset %}
 
 {% set conText %}
-    {% if values.urgent and values.urgentNameChanged == "false" %}
+    {% if values.urgent and not values.urgentNameChanged %}
 
     {% else %}
         and documents

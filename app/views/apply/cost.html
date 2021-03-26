@@ -43,7 +43,7 @@
 {% endif %}
 
 {% set appointmentType %}
-    {% if values.urgent-within-5-days %}
+    {% if values["urgent-within-5-days"] %}
         Within 5 working days
     {% else %}
         After 5 working days
