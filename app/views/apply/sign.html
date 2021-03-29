@@ -8,7 +8,7 @@
     {{ hmpoTextarea(ctx, {
         id: "noSignReason",
         hint: (
-            "You must explain why you can’t sign your passport, for example if there’s a medical reason or you can’t write. If you can, bring supporting evidence to your collection appointment." if values.urgent
+            "If you have evidence, you'll need to bring it to your appointment." if values.urgent
             else "If you have evidence, you’ll need to send it to us"
         ),
         label: {
