@@ -8,13 +8,13 @@
 {% endset %}
 {% set appointmentAddress %}
     <p>
-        <b>{{ctx("values.apt-location.name")}}</b><br>
+        {{ctx("values.apt-location.name")}}<br>
         {% for item in ctx("values.apt-location.address") %}
             {{item }}<br>
         {% endfor %}
 
         {{ctx("values.apt-location.postcode")}}<br>
-        <a data-id="appointment-location-map" href="https://www.google.co.uk/maps/?q={{ctx("values.apt-location.location")}}, {{ctx("apt-location.postcode")}}" class="new-window" target="_blank">View map</a>
+        <a data-id="appointment-location-map" href="https://www.google.co.uk/maps/?q={{ctx("values.apt-location.name")}}, {{ctx("values.apt-location.postcode")}}" class="new-window" target="_blank">View map</a>
     </p>
 {% endset %}
 
